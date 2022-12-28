@@ -15,10 +15,15 @@ $ ./scripts/get_stripe_openapi_gen_json_schema.bash
 
 (it downloads from https://github.com/stripe/openapi)
 
-Now you can use the regular cdd-python CLI to generate SQLalchemy from these JSON-schema files:
+Now you can use the regular [cdd-python](https://github.com/offscale/cdd-python) (`pip install python-cdd`) CLI to generate SQLalchemy from these JSON-schema files:
 ```sh
-$ for json_file in *.json; do
-     python -m cdd gen --name-tpl '{name}' --input-mapping "$json_file" --parse 'json_schema' --emit 'sqlalchemy' --output-filename "${json_file%.*}"'.py'
+$ for json_file in 'json_schemas'/*.json; do
+     python -m cdd gen --emit-and-infer-imports \
+                       --name-tpl '{name}' \
+                       --input-mapping "$json_file" \
+                       --parse 'json_schema' \
+                       --emit 'sqlalchemy' \
+                       --output-filename 'stripe_openapi/'"${json_file//+(*\/|.*)}"'.py'
   done
 ```
 
