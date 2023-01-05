@@ -1,7 +1,8 @@
 from sqlalchemy import Column, String
 
+
 class Source_Type_Ach_Debit(Base):
-    __tablename__ = 'source_type_ach_debit'
+    __tablename__ = "source_type_ach_debit"
     bank_name = Column(String, nullable=True, primary_key=True)
     country = Column(String, nullable=True)
     fingerprint = Column(String, nullable=True)
@@ -12,9 +13,18 @@ class Source_Type_Ach_Debit(Base):
     def __repr__(self):
         """
         Emit a string representation of the current instance
-        
+
         :return: String representation of instance
         :rtype: ```str```
         """
-        return 'Source_Type_Ach_Debit(bank_name={bank_name!r}, country={country!r}, fingerprint={fingerprint!r}, last4={last4!r}, routing_number={routing_number!r}, type={type!r})'.format(bank_name=self.bank_name, country=self.country, fingerprint=self.fingerprint, last4=self.last4, routing_number=self.routing_number, type=self.type)
-__all__ = ['source_type_ach_debit']
+        return "Source_Type_Ach_Debit(bank_name={bank_name!r}, country={country!r}, fingerprint={fingerprint!r}, last4={last4!r}, routing_number={routing_number!r}, type={type!r})".format(
+            bank_name=self.bank_name,
+            country=self.country,
+            fingerprint=self.fingerprint,
+            last4=self.last4,
+            routing_number=self.routing_number,
+            type=self.type,
+        )
+
+
+__all__ = ["source_type_ach_debit"]

@@ -1,16 +1,25 @@
 from sqlalchemy import Boolean, Column, Integer
 
+
 class Checkout_Card_Installments_Options(Base):
-    __tablename__ = 'checkout_card_installments_options'
-    enabled = Column(Boolean, comment='Indicates if installments are enabled', nullable=True)
+    __tablename__ = "checkout_card_installments_options"
+    enabled = Column(
+        Boolean, comment="Indicates if installments are enabled", nullable=True
+    )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):
         """
         Emit a string representation of the current instance
-        
+
         :return: String representation of instance
         :rtype: ```str```
         """
-        return 'Checkout_Card_Installments_Options(enabled={enabled!r}, id={id!r})'.format(enabled=self.enabled, id=self.id)
-__all__ = ['checkout_card_installments_options']
+        return (
+            "Checkout_Card_Installments_Options(enabled={enabled!r}, id={id!r})".format(
+                enabled=self.enabled, id=self.id
+            )
+        )
+
+
+__all__ = ["checkout_card_installments_options"]
