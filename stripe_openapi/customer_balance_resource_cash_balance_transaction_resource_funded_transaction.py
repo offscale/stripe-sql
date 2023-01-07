@@ -8,7 +8,10 @@ class Customer_Balance_Resource_Cash_Balance_Transaction_Resource_Funded_Transac
         "customer_balance_resource_cash_balance_transaction_resource_funded_transaction"
     )
     bank_transfer = Column(
-        CustomerBalanceResourceCashBalanceTransactionResourceFundedTransactionResourceBankTransfer
+        customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer,
+        ForeignKey(
+            "customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer"
+        ),
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

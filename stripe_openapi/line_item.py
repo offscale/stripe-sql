@@ -50,17 +50,19 @@ class Line_Item(Base):
         String,
         comment="String representing the object's type. Objects of the same type share the same value",
     )
-    period = Column(InvoiceLineItemPeriod)
+    period = Column(invoice_line_item_period, ForeignKey("invoice_line_item_period"))
     plan = Column(
-        Plan,
-        comment="The plan of the subscription, if the line item is a subscription or a proration",
+        plan,
+        comment="[[FK(plan)]] The plan of the subscription, if the line item is a subscription or a proration",
         nullable=True,
     )
-    price = Column(Price, comment="The price of the line item", nullable=True)
+    price = Column(
+        price, comment="[[FK(price)]] The price of the line item", nullable=True
+    )
     proration = Column(Boolean, comment="Whether this is a proration")
     proration_details = Column(
-        InvoicesLineItemsProrationDetails,
-        comment="Additional details for proration line items",
+        invoices_line_items_proration_details,
+        comment="[[FK(invoices_line_items_proration_details)]] Additional details for proration line items",
         nullable=True,
     )
     quantity = Column(

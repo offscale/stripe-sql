@@ -33,8 +33,8 @@ class Price(Base):
         nullable=True,
     )
     custom_unit_amount = Column(
-        CustomUnitAmount,
-        comment="When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links",
+        custom_unit_amount,
+        comment="[[FK(custom_unit_amount)]] When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links",
         nullable=True,
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
@@ -61,11 +61,12 @@ class Price(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     product = Column(
-        string | Product, comment="The ID of the product this price is associated with"
+        string | product,
+        comment="[[FK(deleted_product)]] The ID of the product this price is associated with",
     )
     recurring = Column(
-        Recurring,
-        comment="The recurring components of a price such as `interval` and `usage_type`",
+        recurring,
+        comment="[[FK(recurring)]] The recurring components of a price such as `interval` and `usage_type`",
         nullable=True,
     )
     tax_behavior = Column(
@@ -84,8 +85,8 @@ class Price(Base):
         nullable=True,
     )
     transform_quantity = Column(
-        TransformQuantity,
-        comment="Apply a transformation to the reported usage or set quantity before computing the amount billed. Cannot be combined with `tiers`",
+        transform_quantity,
+        comment="[[FK(transform_quantity)]] Apply a transformation to the reported usage or set quantity before computing the amount billed. Cannot be combined with `tiers`",
         nullable=True,
     )
     type = Column(

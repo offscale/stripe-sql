@@ -3,15 +3,15 @@ from sqlalchemy import Column, String
 
 class Source_Owner(Base):
     __tablename__ = "source_owner"
-    address = Column(Address, comment="Owner's address", nullable=True)
+    address = Column(address, comment="[[FK(address)]] Owner's address", nullable=True)
     email = Column(String, comment="Owner's email address", nullable=True)
     name = Column(String, comment="Owner's full name", nullable=True)
     phone = Column(
         String, comment="Owner's phone number (including extension)", nullable=True
     )
     verified_address = Column(
-        Address,
-        comment="Verified owner's address. Verified values are verified or provided by the payment method directly (and if supported) at the time of authorization or settlement. They cannot be set or mutated",
+        address,
+        comment="[[FK(address)]] Verified owner's address. Verified values are verified or provided by the payment method directly (and if supported) at the time of authorization or settlement. They cannot be set or mutated",
         nullable=True,
     )
     verified_email = Column(

@@ -4,23 +4,23 @@ from sqlalchemy import Column, Integer
 class Payment_Intent_Next_Action_Konbini_Stores(Base):
     __tablename__ = "payment_intent_next_action_konbini_stores"
     familymart = Column(
-        PaymentIntentNextActionKonbiniFamilymart,
-        comment="FamilyMart instruction details",
+        payment_intent_next_action_konbini_familymart,
+        comment="[[FK(payment_intent_next_action_konbini_familymart)]] FamilyMart instruction details",
         nullable=True,
     )
     lawson = Column(
-        PaymentIntentNextActionKonbiniLawson,
-        comment="Lawson instruction details",
+        payment_intent_next_action_konbini_lawson,
+        comment="[[FK(payment_intent_next_action_konbini_lawson)]] Lawson instruction details",
         nullable=True,
     )
     ministop = Column(
-        PaymentIntentNextActionKonbiniMinistop,
-        comment="Ministop instruction details",
+        payment_intent_next_action_konbini_ministop,
+        comment="[[FK(payment_intent_next_action_konbini_ministop)]] Ministop instruction details",
         nullable=True,
     )
     seicomart = Column(
-        PaymentIntentNextActionKonbiniSeicomart,
-        comment="Seicomart instruction details",
+        payment_intent_next_action_konbini_seicomart,
+        comment="[[FK(payment_intent_next_action_konbini_seicomart)]] Seicomart instruction details",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

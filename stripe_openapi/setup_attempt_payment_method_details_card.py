@@ -4,8 +4,8 @@ from sqlalchemy import Column, Integer
 class Setup_Attempt_Payment_Method_Details_Card(Base):
     __tablename__ = "setup_attempt_payment_method_details_card"
     three_d_secure = Column(
-        ThreeDSecureDetails,
-        comment="Populated if this authorization used 3D Secure authentication",
+        three_d_secure_details,
+        comment="[[FK(three_d_secure_details)]] Populated if this authorization used 3D Secure authentication",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

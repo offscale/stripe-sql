@@ -7,7 +7,11 @@ class Treasury_Financial_Accounts_Resource_Inbound_Transfers(Base):
     """
 
     __tablename__ = "treasury_financial_accounts_resource_inbound_transfers"
-    ach = Column(TreasuryFinancialAccountsResourceAchToggleSettings, nullable=True)
+    ach = Column(
+        treasury_financial_accounts_resource_ach_toggle_settings,
+        ForeignKey("treasury_financial_accounts_resource_ach_toggle_settings"),
+        nullable=True,
+    )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

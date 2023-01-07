@@ -15,8 +15,8 @@ class Account_Business_Profile(Base):
         nullable=True,
     )
     support_address = Column(
-        Address,
-        comment="A publicly available mailing address for sending support issues to",
+        address,
+        comment="[[FK(address)]] A publicly available mailing address for sending support issues to",
         nullable=True,
     )
     support_email = Column(

@@ -15,8 +15,8 @@ class Bank_Account(Base):
 
     __tablename__ = "bank_account"
     account = Column(
-        Account,
-        comment="The ID of the account that the bank account is associated with",
+        account,
+        comment="[[FK(account)]] The ID of the account that the bank account is associated with",
         nullable=True,
     )
     account_holder_name = Column(
@@ -53,8 +53,8 @@ class Bank_Account(Base):
         comment="Three-letter [ISO code for the currency](https://stripe.com/docs/payouts) paid out to the bank account",
     )
     customer = Column(
-        string | Customer,
-        comment="The ID of the customer that the bank account is associated with",
+        string | customer,
+        comment="[[FK(deleted_customer)]] The ID of the customer that the bank account is associated with",
         nullable=True,
     )
     default_for_currency = Column(

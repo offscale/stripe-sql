@@ -4,27 +4,55 @@ from sqlalchemy import Column, String
 class Payment_Intent_Next_Action(Base):
     __tablename__ = "payment_intent_next_action"
     alipay_handle_redirect = Column(
-        PaymentIntentNextActionAlipayHandleRedirect, nullable=True
+        payment_intent_next_action_alipay_handle_redirect,
+        ForeignKey("payment_intent_next_action_alipay_handle_redirect"),
+        nullable=True,
     )
-    boleto_display_details = Column(PaymentIntentNextActionBoleto, nullable=True)
+    boleto_display_details = Column(
+        payment_intent_next_action_boleto,
+        ForeignKey("payment_intent_next_action_boleto"),
+        nullable=True,
+    )
     card_await_notification = Column(
-        PaymentIntentNextActionCardAwaitNotification, nullable=True
+        payment_intent_next_action_card_await_notification,
+        ForeignKey("payment_intent_next_action_card_await_notification"),
+        nullable=True,
     )
     display_bank_transfer_instructions = Column(
-        PaymentIntentNextActionDisplayBankTransferInstructions, nullable=True
+        payment_intent_next_action_display_bank_transfer_instructions,
+        ForeignKey("payment_intent_next_action_display_bank_transfer_instructions"),
+        nullable=True,
     )
-    konbini_display_details = Column(PaymentIntentNextActionKonbini, nullable=True)
+    konbini_display_details = Column(
+        payment_intent_next_action_konbini,
+        ForeignKey("payment_intent_next_action_konbini"),
+        nullable=True,
+    )
     oxxo_display_details = Column(
-        PaymentIntentNextActionDisplayOxxoDetails, nullable=True
+        payment_intent_next_action_display_oxxo_details,
+        ForeignKey("payment_intent_next_action_display_oxxo_details"),
+        nullable=True,
     )
     paynow_display_qr_code = Column(
-        PaymentIntentNextActionPaynowDisplayQrCode, nullable=True
+        payment_intent_next_action_paynow_display_qr_code,
+        ForeignKey("payment_intent_next_action_paynow_display_qr_code"),
+        nullable=True,
     )
-    pix_display_qr_code = Column(PaymentIntentNextActionPixDisplayQrCode, nullable=True)
+    pix_display_qr_code = Column(
+        payment_intent_next_action_pix_display_qr_code,
+        ForeignKey("payment_intent_next_action_pix_display_qr_code"),
+        nullable=True,
+    )
     promptpay_display_qr_code = Column(
-        PaymentIntentNextActionPromptpayDisplayQrCode, nullable=True
+        payment_intent_next_action_promptpay_display_qr_code,
+        ForeignKey("payment_intent_next_action_promptpay_display_qr_code"),
+        nullable=True,
     )
-    redirect_to_url = Column(PaymentIntentNextActionRedirectToUrl, nullable=True)
+    redirect_to_url = Column(
+        payment_intent_next_action_redirect_to_url,
+        ForeignKey("payment_intent_next_action_redirect_to_url"),
+        nullable=True,
+    )
     type = Column(
         String,
         comment="Type of the next action to perform, one of `redirect_to_url`, `use_stripe_sdk`, `alipay_handle_redirect`, `oxxo_display_details`, or `verify_with_microdeposits`",
@@ -35,18 +63,25 @@ class Payment_Intent_Next_Action(Base):
         nullable=True,
     )
     verify_with_microdeposits = Column(
-        PaymentIntentNextActionVerifyWithMicrodeposits, nullable=True
+        payment_intent_next_action_verify_with_microdeposits,
+        ForeignKey("payment_intent_next_action_verify_with_microdeposits"),
+        nullable=True,
     )
     wechat_pay_display_qr_code = Column(
-        PaymentIntentNextActionWechatPayDisplayQrCode, nullable=True
+        payment_intent_next_action_wechat_pay_display_qr_code,
+        ForeignKey("payment_intent_next_action_wechat_pay_display_qr_code"),
+        nullable=True,
     )
     wechat_pay_redirect_to_android_app = Column(
-        PaymentIntentNextActionWechatPayRedirectToAndroidApp,
+        payment_intent_next_action_wechat_pay_redirect_to_android_app,
+        comment="[FK(payment_intent_next_action_wechat_pay_redirect_to_android_app)]",
         nullable=True,
         primary_key=True,
     )
     wechat_pay_redirect_to_ios_app = Column(
-        PaymentIntentNextActionWechatPayRedirectToIosApp, nullable=True
+        payment_intent_next_action_wechat_pay_redirect_to_ios_app,
+        ForeignKey("payment_intent_next_action_wechat_pay_redirect_to_ios_app"),
+        nullable=True,
     )
 
     def __repr__(self):

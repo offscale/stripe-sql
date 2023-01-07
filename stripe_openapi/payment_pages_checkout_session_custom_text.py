@@ -4,13 +4,13 @@ from sqlalchemy import Column, Integer
 class Payment_Pages_Checkout_Session_Custom_Text(Base):
     __tablename__ = "payment_pages_checkout_session_custom_text"
     shipping_address = Column(
-        PaymentPagesCheckoutSessionCustomTextPosition,
-        comment="Custom text that should be displayed alongside shipping address collection",
+        payment_pages_checkout_session_custom_text_position,
+        comment="[[FK(payment_pages_checkout_session_custom_text_position)]] Custom text that should be displayed alongside shipping address collection",
         nullable=True,
     )
     submit = Column(
-        PaymentPagesCheckoutSessionCustomTextPosition,
-        comment="Custom text that should be displayed alongside the payment confirmation button",
+        payment_pages_checkout_session_custom_text_position,
+        comment="[[FK(payment_pages_checkout_session_custom_text_position)]] Custom text that should be displayed alongside the payment confirmation button",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

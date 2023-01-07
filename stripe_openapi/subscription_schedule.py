@@ -11,8 +11,8 @@ class Subscription_Schedule(Base):
 
     __tablename__ = "subscription_schedule"
     application = Column(
-        string | Application,
-        comment="ID of the Connect Application that created the schedule",
+        string | application,
+        comment="[[FK(deleted_application)]] ID of the Connect Application that created the schedule",
         nullable=True,
     )
     canceled_at = Column(
@@ -30,15 +30,18 @@ class Subscription_Schedule(Base):
         comment="Time at which the object was created. Measured in seconds since the Unix epoch",
     )
     current_phase = Column(
-        SubscriptionScheduleCurrentPhase,
-        comment="Object representing the start and end dates for the current phase of the subscription schedule, if it is `active`",
+        subscription_schedule_current_phase,
+        comment="[[FK(subscription_schedule_current_phase)]] Object representing the start and end dates for the current phase of the subscription schedule, if it is `active`",
         nullable=True,
     )
     customer = Column(
-        string | Customer,
-        comment="ID of the customer who owns the subscription schedule",
+        string | customer,
+        comment="[[FK(deleted_customer)]] ID of the customer who owns the subscription schedule",
     )
-    default_settings = Column(SubscriptionSchedulesResourceDefaultSettings)
+    default_settings = Column(
+        subscription_schedules_resource_default_settings,
+        ForeignKey("subscription_schedules_resource_default_settings"),
+    )
     end_behavior = Column(
         String,
         comment="Behavior of the subscription schedule and underlying subscription when it ends. Possible values are `release` or `cancel` with the default being `release`. `release` will end the subscription schedule and keep the underlying subscription running.`cancel` will end the subscription schedule and cancel the underlying subscription",
@@ -75,13 +78,13 @@ class Subscription_Schedule(Base):
         comment="The present status of the subscription schedule. Possible values are `not_started`, `active`, `completed`, `released`, and `canceled`. You can read more about the different states in our [behavior guide](https://stripe.com/docs/billing/subscriptions/subscription-schedules)",
     )
     subscription = Column(
-        Subscription,
-        comment="ID of the subscription managed by the subscription schedule",
+        subscription,
+        comment="[[FK(subscription)]] ID of the subscription managed by the subscription schedule",
         nullable=True,
     )
     test_clock = Column(
-        TestHelpers.TestClock,
-        comment="ID of the test clock this subscription schedule belongs to",
+        test_helpers.test_clock,
+        comment="[[FK(test_helpers.test_clock)]] ID of the test clock this subscription schedule belongs to",
         nullable=True,
     )
 

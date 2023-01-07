@@ -9,15 +9,17 @@ class Subscription_Schedules_Resource_Default_Settings(Base):
         nullable=True,
     )
     automatic_tax = Column(
-        SubscriptionSchedulesResourceDefaultSettingsAutomaticTax, nullable=True
+        subscription_schedules_resource_default_settings_automatic_tax,
+        ForeignKey("subscription_schedules_resource_default_settings_automatic_tax"),
+        nullable=True,
     )
     billing_cycle_anchor = Column(
         String,
         comment="Possible values are `phase_start` or `automatic`. If `phase_start` then billing cycle anchor of the subscription is set to the start of the phase when entering the phase. If `automatic` then the billing cycle anchor is automatically modified as needed when entering the phase. For more information, see the billing cycle [documentation](https://stripe.com/docs/billing/subscriptions/billing-cycle)",
     )
     billing_thresholds = Column(
-        SubscriptionBillingThresholds,
-        comment="Define thresholds at which an invoice will be sent, and the subscription advanced to a new billing period",
+        subscription_billing_thresholds,
+        comment="[[FK(subscription_billing_thresholds)]] Define thresholds at which an invoice will be sent, and the subscription advanced to a new billing period",
         nullable=True,
     )
     collection_method = Column(
@@ -26,8 +28,8 @@ class Subscription_Schedules_Resource_Default_Settings(Base):
         nullable=True,
     )
     default_payment_method = Column(
-        PaymentMethod,
-        comment="ID of the default payment method for the subscription schedule. If not set, invoices will use the default payment method in the customer's invoice settings",
+        payment_method,
+        comment="[[FK(payment_method)]] ID of the default payment method for the subscription schedule. If not set, invoices will use the default payment method in the customer's invoice settings",
         nullable=True,
     )
     description = Column(
@@ -36,18 +38,18 @@ class Subscription_Schedules_Resource_Default_Settings(Base):
         nullable=True,
     )
     invoice_settings = Column(
-        InvoiceSettingSubscriptionScheduleSetting,
-        comment="The subscription schedule's default invoice settings",
+        invoice_setting_subscription_schedule_setting,
+        comment="[[FK(invoice_setting_subscription_schedule_setting)]] The subscription schedule's default invoice settings",
         nullable=True,
     )
     on_behalf_of = Column(
-        Account,
-        comment="The account (if any) the charge was made on behalf of for charges associated with the schedule's subscription. See the Connect documentation for details",
+        account,
+        comment="[[FK(account)]] The account (if any) the charge was made on behalf of for charges associated with the schedule's subscription. See the Connect documentation for details",
         nullable=True,
     )
     transfer_data = Column(
-        SubscriptionTransferData,
-        comment="The account (if any) the associated subscription's payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the subscription's invoices",
+        subscription_transfer_data,
+        comment="[[FK(subscription_transfer_data)]] The account (if any) the associated subscription's payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the subscription's invoices",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

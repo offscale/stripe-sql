@@ -4,7 +4,9 @@ from sqlalchemy import Column, Integer, String
 class Invoice_Payment_Method_Options_Acss_Debit(Base):
     __tablename__ = "invoice_payment_method_options_acss_debit"
     mandate_options = Column(
-        InvoicePaymentMethodOptionsAcssDebitMandateOptions, nullable=True
+        invoice_payment_method_options_acss_debit_mandate_options,
+        ForeignKey("invoice_payment_method_options_acss_debit_mandate_options"),
+        nullable=True,
     )
     verification_method = Column(
         String, comment="Bank account verification method", nullable=True

@@ -14,8 +14,8 @@ class Card(Base):
 
     __tablename__ = "card"
     account = Column(
-        Account,
-        comment="The account this card belongs to. This attribute will not be in the card object if the card belongs to a customer or recipient instead",
+        account,
+        comment="[[FK(account)]] The account this card belongs to. This attribute will not be in the card object if the card belongs to a customer or recipient instead",
         nullable=True,
     )
     address_city = Column(
@@ -68,8 +68,8 @@ class Card(Base):
         nullable=True,
     )
     customer = Column(
-        string | Customer,
-        comment="The customer that this card belongs to. This attribute will not be in the card object if the card belongs to an account or recipient instead",
+        string | customer,
+        comment="[[FK(deleted_customer)]] The customer that this card belongs to. This attribute will not be in the card object if the card belongs to an account or recipient instead",
         nullable=True,
     )
     cvc_check = Column(

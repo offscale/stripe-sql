@@ -13,8 +13,8 @@ class Gelato_Selfie_Report(Base):
         nullable=True,
     )
     error = Column(
-        GelatoSelfieReportError,
-        comment="Details on the verification error. Present when status is `unverified`",
+        gelato_selfie_report_error,
+        comment="[[FK(gelato_selfie_report_error)]] Details on the verification error. Present when status is `unverified`",
         nullable=True,
     )
     selfie = Column(

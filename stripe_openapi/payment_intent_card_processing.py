@@ -4,7 +4,9 @@ from sqlalchemy import Column, Integer
 class Payment_Intent_Card_Processing(Base):
     __tablename__ = "payment_intent_card_processing"
     customer_notification = Column(
-        PaymentIntentProcessingCustomerNotification, nullable=True
+        payment_intent_processing_customer_notification,
+        ForeignKey("payment_intent_processing_customer_notification"),
+        nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

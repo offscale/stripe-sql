@@ -13,8 +13,8 @@ class Customer_Tax(Base):
         nullable=True,
     )
     location = Column(
-        CustomerTaxLocation,
-        comment="The customer's location as identified by Stripe Tax",
+        customer_tax_location,
+        comment="[[FK(customer_tax_location)]] The customer's location as identified by Stripe Tax",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

@@ -4,8 +4,8 @@ from sqlalchemy import Column, Integer
 class Payment_Method_Details_Card_Installments(Base):
     __tablename__ = "payment_method_details_card_installments"
     plan = Column(
-        PaymentMethodDetailsCardInstallmentsPlan,
-        comment="Installment plan selected for the payment",
+        payment_method_details_card_installments_plan,
+        comment="[[FK(payment_method_details_card_installments_plan)]] Installment plan selected for the payment",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

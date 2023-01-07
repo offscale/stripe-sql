@@ -20,10 +20,14 @@ class Scheduled_Query_Run(Base):
         Integer,
         comment="When the query was run, Sigma contained a snapshot of your Stripe data at this time",
     )
-    error = Column(SigmaScheduledQueryRunError, nullable=True)
+    error = Column(
+        sigma_scheduled_query_run_error,
+        ForeignKey("sigma_scheduled_query_run_error"),
+        nullable=True,
+    )
     file = Column(
-        File,
-        comment="The file object representing the results of the query",
+        file,
+        comment="[[FK(file)]] The file object representing the results of the query",
         nullable=True,
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)

@@ -3,7 +3,11 @@ from sqlalchemy import Column, Integer, String
 
 class Subscription_Payment_Method_Options_Card(Base):
     __tablename__ = "subscription_payment_method_options_card"
-    mandate_options = Column(InvoiceMandateOptionsCard, nullable=True)
+    mandate_options = Column(
+        invoice_mandate_options_card,
+        ForeignKey("invoice_mandate_options_card"),
+        nullable=True,
+    )
     network = Column(
         String,
         comment="Selected network to process this Subscription on. Depends on the available networks of the card attached to the Subscription. Can be only set confirm-time",

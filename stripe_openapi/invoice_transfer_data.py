@@ -9,8 +9,8 @@ class Invoice_Transfer_Data(Base):
         nullable=True,
     )
     destination = Column(
-        Account,
-        comment="The account where funds from the payment will be transferred to upon payment success",
+        account,
+        comment="[[FK(account)]] The account where funds from the payment will be transferred to upon payment success",
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

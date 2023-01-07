@@ -13,38 +13,88 @@ class Payment_Method(Base):
     """
 
     __tablename__ = "payment_method"
-    acss_debit = Column(PaymentMethodAcssDebit, nullable=True)
-    affirm = Column(PaymentMethodAffirm, nullable=True)
-    afterpay_clearpay = Column(PaymentMethodAfterpayClearpay, nullable=True)
-    alipay = Column(PaymentFlowsPrivatePaymentMethodsAlipay, nullable=True)
-    au_becs_debit = Column(PaymentMethodAuBecsDebit, nullable=True)
-    bacs_debit = Column(PaymentMethodBacsDebit, nullable=True)
-    bancontact = Column(PaymentMethodBancontact, nullable=True)
-    billing_details = Column(BillingDetails)
-    blik = Column(PaymentMethodBlik, nullable=True)
-    boleto = Column(PaymentMethodBoleto, nullable=True)
-    card = Column(PaymentMethodCard, nullable=True)
-    card_present = Column(PaymentMethodCardPresent, nullable=True)
+    acss_debit = Column(
+        payment_method_acss_debit,
+        ForeignKey("payment_method_acss_debit"),
+        nullable=True,
+    )
+    affirm = Column(
+        payment_method_affirm, ForeignKey("payment_method_affirm"), nullable=True
+    )
+    afterpay_clearpay = Column(
+        payment_method_afterpay_clearpay,
+        ForeignKey("payment_method_afterpay_clearpay"),
+        nullable=True,
+    )
+    alipay = Column(
+        payment_flows_private_payment_methods_alipay,
+        ForeignKey("payment_flows_private_payment_methods_alipay"),
+        nullable=True,
+    )
+    au_becs_debit = Column(
+        payment_method_au_becs_debit,
+        ForeignKey("payment_method_au_becs_debit"),
+        nullable=True,
+    )
+    bacs_debit = Column(
+        payment_method_bacs_debit,
+        ForeignKey("payment_method_bacs_debit"),
+        nullable=True,
+    )
+    bancontact = Column(
+        payment_method_bancontact,
+        ForeignKey("payment_method_bancontact"),
+        nullable=True,
+    )
+    billing_details = Column(billing_details, ForeignKey("billing_details"))
+    blik = Column(payment_method_blik, ForeignKey("payment_method_blik"), nullable=True)
+    boleto = Column(
+        payment_method_boleto, ForeignKey("payment_method_boleto"), nullable=True
+    )
+    card = Column(payment_method_card, ForeignKey("payment_method_card"), nullable=True)
+    card_present = Column(
+        payment_method_card_present,
+        ForeignKey("payment_method_card_present"),
+        nullable=True,
+    )
     created = Column(
         Integer,
         comment="Time at which the object was created. Measured in seconds since the Unix epoch",
     )
     customer = Column(
-        Customer,
-        comment="The ID of the Customer to which this PaymentMethod is saved. This will not be set when the PaymentMethod has not been saved to a Customer",
+        customer,
+        comment="[[FK(customer)]] The ID of the Customer to which this PaymentMethod is saved. This will not be set when the PaymentMethod has not been saved to a Customer",
         nullable=True,
     )
-    customer_balance = Column(PaymentMethodCustomerBalance, nullable=True)
-    eps = Column(PaymentMethodEps, nullable=True)
-    fpx = Column(PaymentMethodFpx, nullable=True)
-    giropay = Column(PaymentMethodGiropay, nullable=True)
-    grabpay = Column(PaymentMethodGrabpay, nullable=True)
+    customer_balance = Column(
+        payment_method_customer_balance,
+        ForeignKey("payment_method_customer_balance"),
+        nullable=True,
+    )
+    eps = Column(payment_method_eps, ForeignKey("payment_method_eps"), nullable=True)
+    fpx = Column(payment_method_fpx, ForeignKey("payment_method_fpx"), nullable=True)
+    giropay = Column(
+        payment_method_giropay, ForeignKey("payment_method_giropay"), nullable=True
+    )
+    grabpay = Column(
+        payment_method_grabpay, ForeignKey("payment_method_grabpay"), nullable=True
+    )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
-    ideal = Column(PaymentMethodIdeal, nullable=True)
-    interac_present = Column(PaymentMethodInteracPresent, nullable=True)
-    klarna = Column(PaymentMethodKlarna, nullable=True)
-    konbini = Column(PaymentMethodKonbini, nullable=True)
-    link = Column(PaymentMethodLink, nullable=True)
+    ideal = Column(
+        payment_method_ideal, ForeignKey("payment_method_ideal"), nullable=True
+    )
+    interac_present = Column(
+        payment_method_interac_present,
+        ForeignKey("payment_method_interac_present"),
+        nullable=True,
+    )
+    klarna = Column(
+        payment_method_klarna, ForeignKey("payment_method_klarna"), nullable=True
+    )
+    konbini = Column(
+        payment_method_konbini, ForeignKey("payment_method_konbini"), nullable=True
+    )
+    link = Column(payment_method_link, ForeignKey("payment_method_link"), nullable=True)
     livemode = Column(
         Boolean,
         comment="Has the value `true` if the object exists in live mode or the value `false` if the object exists in test mode",
@@ -58,20 +108,40 @@ class Payment_Method(Base):
         String,
         comment="String representing the object's type. Objects of the same type share the same value",
     )
-    oxxo = Column(PaymentMethodOxxo, nullable=True)
-    p24 = Column(PaymentMethodP24, nullable=True)
-    paynow = Column(PaymentMethodPaynow, nullable=True)
-    pix = Column(PaymentMethodPix, nullable=True)
-    promptpay = Column(PaymentMethodPromptpay, nullable=True)
-    radar_options = Column(RadarRadarOptions, nullable=True)
-    sepa_debit = Column(PaymentMethodSepaDebit, nullable=True)
-    sofort = Column(PaymentMethodSofort, nullable=True)
+    oxxo = Column(payment_method_oxxo, ForeignKey("payment_method_oxxo"), nullable=True)
+    p24 = Column(payment_method_p24, ForeignKey("payment_method_p24"), nullable=True)
+    paynow = Column(
+        payment_method_paynow, ForeignKey("payment_method_paynow"), nullable=True
+    )
+    pix = Column(payment_method_pix, ForeignKey("payment_method_pix"), nullable=True)
+    promptpay = Column(
+        payment_method_promptpay, ForeignKey("payment_method_promptpay"), nullable=True
+    )
+    radar_options = Column(
+        radar_radar_options, ForeignKey("radar_radar_options"), nullable=True
+    )
+    sepa_debit = Column(
+        payment_method_sepa_debit,
+        ForeignKey("payment_method_sepa_debit"),
+        nullable=True,
+    )
+    sofort = Column(
+        payment_method_sofort, ForeignKey("payment_method_sofort"), nullable=True
+    )
     type = Column(
         String,
         comment="The type of the PaymentMethod. An additional hash is included on the PaymentMethod with a name matching this value. It contains additional information specific to the PaymentMethod type",
     )
-    us_bank_account = Column(PaymentMethodUsBankAccount, nullable=True)
-    wechat_pay = Column(PaymentMethodWechatPay, nullable=True)
+    us_bank_account = Column(
+        payment_method_us_bank_account,
+        ForeignKey("payment_method_us_bank_account"),
+        nullable=True,
+    )
+    wechat_pay = Column(
+        payment_method_wechat_pay,
+        ForeignKey("payment_method_wechat_pay"),
+        nullable=True,
+    )
 
     def __repr__(self):
         """

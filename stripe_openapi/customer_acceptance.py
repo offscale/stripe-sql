@@ -8,8 +8,10 @@ class Customer_Acceptance(Base):
         comment="The time at which the customer accepted the Mandate",
         nullable=True,
     )
-    offline = Column(OfflineAcceptance, nullable=True)
-    online = Column(OnlineAcceptance, nullable=True)
+    offline = Column(
+        offline_acceptance, ForeignKey("offline_acceptance"), nullable=True
+    )
+    online = Column(online_acceptance, ForeignKey("online_acceptance"), nullable=True)
     type = Column(
         String,
         comment="The type of customer acceptance information included with the Mandate. One of `online` or `offline`",

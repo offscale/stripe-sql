@@ -30,8 +30,8 @@ class Token(Base):
     """
 
     __tablename__ = "token"
-    bank_account = Column(BankAccount, nullable=True)
-    card = Column(Card, nullable=True)
+    bank_account = Column(bank_account, ForeignKey("bank_account"), nullable=True)
+    card = Column(card, ForeignKey("card"), nullable=True)
     client_ip = Column(
         String,
         comment="IP address of the client that generated the token",

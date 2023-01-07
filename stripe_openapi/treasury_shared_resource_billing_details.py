@@ -3,7 +3,7 @@ from sqlalchemy import Column, Integer, String
 
 class Treasury_Shared_Resource_Billing_Details(Base):
     __tablename__ = "treasury_shared_resource_billing_details"
-    address = Column(Address)
+    address = Column(address, ForeignKey("address"))
     email = Column(String, comment="Email address", nullable=True)
     name = Column(String, comment="Full name", nullable=True)
     id = Column(Integer, primary_key=True, server_default=Identity())

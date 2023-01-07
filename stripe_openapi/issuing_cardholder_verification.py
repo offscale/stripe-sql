@@ -4,8 +4,8 @@ from sqlalchemy import Column, Integer
 class Issuing_Cardholder_Verification(Base):
     __tablename__ = "issuing_cardholder_verification"
     document = Column(
-        IssuingCardholderIdDocument,
-        comment="An identifying document, either a passport or local ID card",
+        issuing_cardholder_id_document,
+        comment="[[FK(issuing_cardholder_id_document)]] An identifying document, either a passport or local ID card",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

@@ -3,7 +3,11 @@ from sqlalchemy import Column, Integer, String
 
 class Payment_Intent_Processing(Base):
     __tablename__ = "payment_intent_processing"
-    card = Column(PaymentIntentCardProcessing, nullable=True)
+    card = Column(
+        payment_intent_card_processing,
+        ForeignKey("payment_intent_card_processing"),
+        nullable=True,
+    )
     type = Column(
         String,
         comment="Type of the payment method for which payment is in `processing` state, one of `card`",

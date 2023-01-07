@@ -3,8 +3,8 @@ from sqlalchemy import Column, String
 
 class Issuing_Card_Wallets(Base):
     __tablename__ = "issuing_card_wallets"
-    apple_pay = Column(IssuingCardApplePay)
-    google_pay = Column(IssuingCardGooglePay)
+    apple_pay = Column(issuing_card_apple_pay, ForeignKey("issuing_card_apple_pay"))
+    google_pay = Column(issuing_card_google_pay, ForeignKey("issuing_card_google_pay"))
     primary_account_identifier = Column(
         String,
         comment="Unique identifier for a card used with digital wallets",

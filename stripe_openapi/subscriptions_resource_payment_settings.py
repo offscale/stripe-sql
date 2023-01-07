@@ -4,8 +4,8 @@ from sqlalchemy import Column, Integer, String
 class Subscriptions_Resource_Payment_Settings(Base):
     __tablename__ = "subscriptions_resource_payment_settings"
     payment_method_options = Column(
-        SubscriptionsResourcePaymentMethodOptions,
-        comment="Payment-method-specific configuration to provide to invoices created by the subscription",
+        subscriptions_resource_payment_method_options,
+        comment="[[FK(subscriptions_resource_payment_method_options)]] Payment-method-specific configuration to provide to invoices created by the subscription",
         nullable=True,
     )
     payment_method_types = Column(

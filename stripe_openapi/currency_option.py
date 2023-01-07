@@ -4,8 +4,8 @@ from sqlalchemy import Column, Integer, String
 class Currency_Option(Base):
     __tablename__ = "currency_option"
     custom_unit_amount = Column(
-        CustomUnitAmount,
-        comment="When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links",
+        custom_unit_amount,
+        comment="[[FK(custom_unit_amount)]] When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links",
         nullable=True,
     )
     tax_behavior = Column(

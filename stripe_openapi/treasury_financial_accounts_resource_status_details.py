@@ -4,8 +4,8 @@ from sqlalchemy import Column, Integer
 class Treasury_Financial_Accounts_Resource_Status_Details(Base):
     __tablename__ = "treasury_financial_accounts_resource_status_details"
     closed = Column(
-        TreasuryFinancialAccountsResourceClosedStatusDetails,
-        comment="Details related to the closure of this FinancialAccount",
+        treasury_financial_accounts_resource_closed_status_details,
+        comment="[[FK(treasury_financial_accounts_resource_closed_status_details)]] Details related to the closure of this FinancialAccount",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

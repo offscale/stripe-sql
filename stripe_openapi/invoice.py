@@ -64,8 +64,8 @@ class Invoice(Base):
         Integer, comment="The difference between amount_due and amount_paid, in %s"
     )
     application = Column(
-        string | Application,
-        comment="ID of the Connect Application that created the invoice",
+        string | application,
+        comment="[[FK(deleted_application)]] ID of the Connect Application that created the invoice",
         nullable=True,
     )
     application_fee_amount = Column(
@@ -86,15 +86,15 @@ class Invoice(Base):
         comment="Controls whether Stripe will perform [automatic collection](https://stripe.com/docs/billing/invoices/workflow/#auto_advance) of the invoice. When `false`, the invoice's state will not automatically advance without an explicit action",
         nullable=True,
     )
-    automatic_tax = Column(AutomaticTax)
+    automatic_tax = Column(automatic_tax, ForeignKey("automatic_tax"))
     billing_reason = Column(
         String,
         comment="Indicates the reason why the invoice was created. `subscription_cycle` indicates an invoice created by a subscription advancing into a new period. `subscription_create` indicates an invoice created due to creating a subscription. `subscription_update` indicates an invoice created due to updating a subscription. `subscription` is set for all old invoices to indicate either a change to a subscription or a period advancement. `manual` is set for all invoices unrelated to a subscription (for example: created via the invoice editor). The `upcoming` value is reserved for simulated invoices per the upcoming invoice endpoint. `subscription_threshold` indicates an invoice created due to a billing threshold being reached",
         nullable=True,
     )
     charge = Column(
-        Charge,
-        comment="ID of the latest charge generated for this invoice, if any",
+        charge,
+        comment="[[FK(charge)]] ID of the latest charge generated for this invoice, if any",
         nullable=True,
     )
     collection_method = Column(
@@ -113,13 +113,13 @@ class Invoice(Base):
         list, comment="Custom fields displayed on the invoice", nullable=True
     )
     customer = Column(
-        string | Customer,
-        comment="The ID of the customer who will be billed",
+        string | customer,
+        comment="[[FK(deleted_customer)]] The ID of the customer who will be billed",
         nullable=True,
     )
     customer_address = Column(
-        Address,
-        comment="The customer's address. Until the invoice is finalized, this field will equal `customer.address`. Once the invoice is finalized, this field will no longer be updated",
+        address,
+        comment="[[FK(address)]] The customer's address. Until the invoice is finalized, this field will equal `customer.address`. Once the invoice is finalized, this field will no longer be updated",
         nullable=True,
     )
     customer_email = Column(
@@ -138,8 +138,8 @@ class Invoice(Base):
         nullable=True,
     )
     customer_shipping = Column(
-        Shipping,
-        comment="The customer's shipping information. Until the invoice is finalized, this field will equal `customer.shipping`. Once the invoice is finalized, this field will no longer be updated",
+        shipping,
+        comment="[[FK(shipping)]] The customer's shipping information. Until the invoice is finalized, this field will equal `customer.shipping`. Once the invoice is finalized, this field will no longer be updated",
         nullable=True,
     )
     customer_tax_exempt = Column(
@@ -153,13 +153,13 @@ class Invoice(Base):
         nullable=True,
     )
     default_payment_method = Column(
-        PaymentMethod,
-        comment="ID of the default payment method for the invoice. It must belong to the customer associated with the invoice. If not set, defaults to the subscription's default payment method, if any, or to the default payment method in the customer's invoice settings",
+        payment_method,
+        comment="[[FK(payment_method)]] ID of the default payment method for the invoice. It must belong to the customer associated with the invoice. If not set, defaults to the subscription's default payment method, if any, or to the default payment method in the customer's invoice settings",
         nullable=True,
     )
     default_source = Column(
-        PaymentSource,
-        comment="ID of the default payment source for the invoice. It must belong to the customer associated with the invoice and be in a chargeable state. If not set, defaults to the subscription's default source, if any, or to the customer's default source",
+        payment_source,
+        comment="[[FK(payment_source)]] ID of the default payment source for the invoice. It must belong to the customer associated with the invoice and be in a chargeable state. If not set, defaults to the subscription's default source, if any, or to the customer's default source",
         nullable=True,
     )
     default_tax_rates = Column(
@@ -171,8 +171,8 @@ class Invoice(Base):
         nullable=True,
     )
     discount = Column(
-        Discount,
-        comment="Describes the current discount applied to this invoice, if there is one. Not populated if there are multiple discounts",
+        discount,
+        comment="[[FK(discount)]] Describes the current discount applied to this invoice, if there is one. Not populated if there are multiple discounts",
         nullable=True,
     )
     discounts = Column(
@@ -192,8 +192,8 @@ class Invoice(Base):
     )
     footer = Column(String, comment="Footer displayed on the invoice", nullable=True)
     from_invoice = Column(
-        InvoicesFromInvoice,
-        comment="Details of the invoice that was cloned. See the [revision documentation](https://stripe.com/docs/invoicing/invoice-revisions) for more details",
+        invoices_from_invoice,
+        comment="[[FK(invoices_from_invoice)]] Details of the invoice that was cloned. See the [revision documentation](https://stripe.com/docs/invoicing/invoice-revisions) for more details",
         nullable=True,
     )
     hosted_invoice_url = Column(
@@ -213,13 +213,13 @@ class Invoice(Base):
         nullable=True,
     )
     last_finalization_error = Column(
-        ApiErrors,
-        comment="The error encountered during the previous attempt to finalize the invoice. This field is cleared when the invoice is successfully finalized",
+        api_errors,
+        comment="[[FK(api_errors)]] The error encountered during the previous attempt to finalize the invoice. This field is cleared when the invoice is successfully finalized",
         nullable=True,
     )
     latest_revision = Column(
-        Invoice,
-        comment="The ID of the most recent non-draft revision of this invoice",
+        invoice,
+        comment="[[FK(invoice)]] The ID of the most recent non-draft revision of this invoice",
         nullable=True,
     )
     lines = Column(
@@ -250,8 +250,8 @@ class Invoice(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     on_behalf_of = Column(
-        Account,
-        comment="The account (if any) for which the funds of the invoice payment are intended. If set, the invoice will be presented with the branding and support information of the specified account. See the [Invoices with Connect](https://stripe.com/docs/billing/invoices/connect) documentation for details",
+        account,
+        comment="[[FK(account)]] The account (if any) for which the funds of the invoice payment are intended. If set, the invoice will be presented with the branding and support information of the specified account. See the [Invoices with Connect](https://stripe.com/docs/billing/invoices/connect) documentation for details",
         nullable=True,
     )
     paid = Column(
@@ -263,11 +263,13 @@ class Invoice(Base):
         comment="Returns true if the invoice was manually marked paid, returns false if the invoice hasn't been paid yet or was paid on Stripe",
     )
     payment_intent = Column(
-        PaymentIntent,
-        comment="The PaymentIntent associated with this invoice. The PaymentIntent is generated when the invoice is finalized, and can then be used to pay the invoice. Note that voiding an invoice will cancel the PaymentIntent",
+        payment_intent,
+        comment="[[FK(payment_intent)]] The PaymentIntent associated with this invoice. The PaymentIntent is generated when the invoice is finalized, and can then be used to pay the invoice. Note that voiding an invoice will cancel the PaymentIntent",
         nullable=True,
     )
-    payment_settings = Column(InvoicesPaymentSettings)
+    payment_settings = Column(
+        invoices_payment_settings, ForeignKey("invoices_payment_settings")
+    )
     period_end = Column(
         Integer,
         comment="End of the usage period during which invoice items were added to this invoice",
@@ -285,7 +287,9 @@ class Invoice(Base):
         comment="Total amount of all pre-payment credit notes issued for this invoice",
     )
     quote = Column(
-        Quote, comment="The quote this invoice was generated from", nullable=True
+        quote,
+        comment="[[FK(quote)]] The quote this invoice was generated from",
+        nullable=True,
     )
     receipt_number = Column(
         String,
@@ -293,8 +297,8 @@ class Invoice(Base):
         nullable=True,
     )
     rendering_options = Column(
-        InvoiceSettingRenderingOptions,
-        comment="Options for invoice PDF rendering",
+        invoice_setting_rendering_options,
+        comment="[[FK(invoice_setting_rendering_options)]] Options for invoice PDF rendering",
         nullable=True,
     )
     starting_balance = Column(
@@ -311,10 +315,12 @@ class Invoice(Base):
         comment="The status of the invoice, one of `draft`, `open`, `paid`, `uncollectible`, or `void`. [Learn more](https://stripe.com/docs/billing/invoices/workflow#workflow-overview)",
         nullable=True,
     )
-    status_transitions = Column(InvoicesStatusTransitions)
+    status_transitions = Column(
+        invoices_status_transitions, ForeignKey("invoices_status_transitions")
+    )
     subscription = Column(
-        Subscription,
-        comment="The subscription that this invoice was prepared for, if any",
+        subscription,
+        comment="[[FK(subscription)]] The subscription that this invoice was prepared for, if any",
         nullable=True,
     )
     subscription_proration_date = Column(
@@ -337,11 +343,13 @@ class Invoice(Base):
         nullable=True,
     )
     test_clock = Column(
-        TestHelpers.TestClock,
-        comment="ID of the test clock this invoice belongs to",
+        test_helpers.test_clock,
+        comment="[[FK(test_helpers.test_clock)]] ID of the test clock this invoice belongs to",
         nullable=True,
     )
-    threshold_reason = Column(InvoiceThresholdReason, nullable=True)
+    threshold_reason = Column(
+        invoice_threshold_reason, ForeignKey("invoice_threshold_reason"), nullable=True
+    )
     total = Column(Integer, comment="Total after discounts and taxes")
     total_discount_amounts = Column(
         list,
@@ -357,8 +365,8 @@ class Invoice(Base):
         list, comment="The aggregate amounts calculated per tax rate for all line items"
     )
     transfer_data = Column(
-        InvoiceTransferData,
-        comment="The account (if any) the payment will be attributed to for tax reporting, and where funds from the payment will be transferred to for the invoice",
+        invoice_transfer_data,
+        comment="[[FK(invoice_transfer_data)]] The account (if any) the payment will be attributed to for tax reporting, and where funds from the payment will be transferred to for the invoice",
         nullable=True,
     )
     webhooks_delivered_at = Column(

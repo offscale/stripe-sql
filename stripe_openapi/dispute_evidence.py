@@ -12,8 +12,8 @@ class Dispute_Evidence(Base):
         String, comment="The billing address provided by the customer", nullable=True
     )
     cancellation_policy = Column(
-        File,
-        comment="(ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Your subscription cancellation policy, as shown to the customer",
+        file,
+        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Your subscription cancellation policy, as shown to the customer",
         nullable=True,
     )
     cancellation_policy_disclosure = Column(
@@ -27,8 +27,8 @@ class Dispute_Evidence(Base):
         nullable=True,
     )
     customer_communication = Column(
-        File,
-        comment="(ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Any communication with the customer that you feel is relevant to your case. Examples include emails proving that the customer received the product or service, or demonstrating their use of or satisfaction with the product or service",
+        file,
+        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Any communication with the customer that you feel is relevant to your case. Examples include emails proving that the customer received the product or service, or demonstrating their use of or satisfaction with the product or service",
         nullable=True,
     )
     customer_email_address = Column(
@@ -41,13 +41,13 @@ class Dispute_Evidence(Base):
         nullable=True,
     )
     customer_signature = Column(
-        File,
-        comment="(ID of a [file upload](https://stripe.com/docs/guides/file-upload)) A relevant document or contract showing the customer's signature",
+        file,
+        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) A relevant document or contract showing the customer's signature",
         nullable=True,
     )
     duplicate_charge_documentation = Column(
-        File,
-        comment="(ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Documentation for the prior charge that can uniquely identify the charge, such as a receipt, shipping label, work order, etc. This document should be paired with a similar document from the disputed payment that proves the two payments are separate",
+        file,
+        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Documentation for the prior charge that can uniquely identify the charge, such as a receipt, shipping label, work order, etc. This document should be paired with a similar document from the disputed payment that proves the two payments are separate",
         nullable=True,
     )
     duplicate_charge_explanation = Column(
@@ -66,13 +66,13 @@ class Dispute_Evidence(Base):
         nullable=True,
     )
     receipt = Column(
-        File,
-        comment="(ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Any receipt or message sent to the customer notifying them of the charge",
+        file,
+        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Any receipt or message sent to the customer notifying them of the charge",
         nullable=True,
     )
     refund_policy = Column(
-        File,
-        comment="(ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Your refund policy, as shown to the customer",
+        file,
+        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Your refund policy, as shown to the customer",
         nullable=True,
     )
     refund_policy_disclosure = Column(
@@ -91,8 +91,8 @@ class Dispute_Evidence(Base):
         nullable=True,
     )
     service_documentation = Column(
-        File,
-        comment="(ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Documentation showing proof that a service was provided to the customer. This could include a copy of a signed contract, work order, or other form of written agreement",
+        file,
+        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Documentation showing proof that a service was provided to the customer. This could include a copy of a signed contract, work order, or other form of written agreement",
         nullable=True,
     )
     shipping_address = Column(
@@ -111,8 +111,8 @@ class Dispute_Evidence(Base):
         nullable=True,
     )
     shipping_documentation = Column(
-        File,
-        comment="(ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Documentation showing proof that a product was shipped to the customer at the same address the customer provided to you. This could include a copy of the shipment receipt, shipping label, etc. It should show the customer's full shipping address, if possible",
+        file,
+        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Documentation showing proof that a product was shipped to the customer at the same address the customer provided to you. This could include a copy of the shipment receipt, shipping label, etc. It should show the customer's full shipping address, if possible",
         nullable=True,
     )
     shipping_tracking_number = Column(
@@ -121,8 +121,8 @@ class Dispute_Evidence(Base):
         nullable=True,
     )
     uncategorized_file = Column(
-        File,
-        comment="(ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Any additional evidence or statements",
+        file,
+        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Any additional evidence or statements",
         nullable=True,
     )
     uncategorized_text = Column(

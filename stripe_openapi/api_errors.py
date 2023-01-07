@@ -31,8 +31,8 @@ class Api_Errors(Base):
         comment="If the error is parameter-specific, the parameter related to the error. For example, you can use this to display a message near the correct form field",
         nullable=True,
     )
-    payment_intent = Column(PaymentIntent, nullable=True)
-    payment_method = Column(PaymentMethod, nullable=True)
+    payment_intent = Column(payment_intent, ForeignKey("payment_intent"), nullable=True)
+    payment_method = Column(payment_method, ForeignKey("payment_method"), nullable=True)
     payment_method_type = Column(
         String,
         comment="If the error is specific to the type of payment method, the payment method type that had a problem. This field is only populated for invoice-related errors",
@@ -43,8 +43,8 @@ class Api_Errors(Base):
         comment="A URL to the request log entry in your dashboard",
         nullable=True,
     )
-    setup_intent = Column(SetupIntent, nullable=True)
-    source = Column(PaymentSource, nullable=True)
+    setup_intent = Column(setup_intent, ForeignKey("setup_intent"), nullable=True)
+    source = Column(payment_source, ForeignKey("payment_source"), nullable=True)
     type = Column(
         String,
         comment="The type of error returned. One of `api_error`, `card_error`, `idempotency_error`, or `invalid_request_error`",

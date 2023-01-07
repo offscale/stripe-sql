@@ -3,7 +3,11 @@ from sqlalchemy import Column, Integer
 
 class Account_Card_Issuing_Settings(Base):
     __tablename__ = "account_card_issuing_settings"
-    tos_acceptance = Column(CardIssuingAccountTermsOfService, nullable=True)
+    tos_acceptance = Column(
+        card_issuing_account_terms_of_service,
+        ForeignKey("card_issuing_account_terms_of_service"),
+        nullable=True,
+    )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

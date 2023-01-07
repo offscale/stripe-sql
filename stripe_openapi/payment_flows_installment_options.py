@@ -4,7 +4,11 @@ from sqlalchemy import Boolean, Column, Integer
 class Payment_Flows_Installment_Options(Base):
     __tablename__ = "payment_flows_installment_options"
     enabled = Column(Boolean)
-    plan = Column(PaymentMethodDetailsCardInstallmentsPlan, nullable=True)
+    plan = Column(
+        payment_method_details_card_installments_plan,
+        ForeignKey("payment_method_details_card_installments_plan"),
+        nullable=True,
+    )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

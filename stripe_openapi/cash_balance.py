@@ -24,7 +24,10 @@ class Cash_Balance(Base):
         String,
         comment="String representing the object's type. Objects of the same type share the same value",
     )
-    settings = Column(CustomerBalanceCustomerBalanceSettings)
+    settings = Column(
+        customer_balance_customer_balance_settings,
+        ForeignKey("customer_balance_customer_balance_settings"),
+    )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

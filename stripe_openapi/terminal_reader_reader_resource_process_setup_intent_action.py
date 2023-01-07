@@ -13,7 +13,8 @@ class Terminal_Reader_Reader_Resource_Process_Setup_Intent_Action(Base):
         nullable=True,
     )
     setup_intent = Column(
-        SetupIntent, comment="Most recent SetupIntent processed by the reader"
+        setup_intent,
+        comment="[[FK(setup_intent)]] Most recent SetupIntent processed by the reader",
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

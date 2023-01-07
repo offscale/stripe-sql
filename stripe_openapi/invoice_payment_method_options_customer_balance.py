@@ -4,7 +4,9 @@ from sqlalchemy import Column, Integer, String
 class Invoice_Payment_Method_Options_Customer_Balance(Base):
     __tablename__ = "invoice_payment_method_options_customer_balance"
     bank_transfer = Column(
-        InvoicePaymentMethodOptionsCustomerBalanceBankTransfer, nullable=True
+        invoice_payment_method_options_customer_balance_bank_transfer,
+        ForeignKey("invoice_payment_method_options_customer_balance_bank_transfer"),
+        nullable=True,
     )
     funding_type = Column(
         String,

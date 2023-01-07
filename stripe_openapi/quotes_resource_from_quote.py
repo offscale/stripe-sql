@@ -6,7 +6,7 @@ class Quotes_Resource_From_Quote(Base):
     is_revision = Column(
         Boolean, comment="Whether this quote is a revision of a different quote"
     )
-    quote = Column(Quote, comment="The quote that was cloned")
+    quote = Column(quote, comment="[[FK(quote)]] The quote that was cloned")
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

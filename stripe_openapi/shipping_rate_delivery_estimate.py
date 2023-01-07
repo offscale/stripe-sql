@@ -4,13 +4,13 @@ from sqlalchemy import Column, Integer
 class Shipping_Rate_Delivery_Estimate(Base):
     __tablename__ = "shipping_rate_delivery_estimate"
     maximum = Column(
-        ShippingRateDeliveryEstimateBound,
-        comment="The upper bound of the estimated range. If empty, represents no upper bound i.e., infinite",
+        shipping_rate_delivery_estimate_bound,
+        comment="[[FK(shipping_rate_delivery_estimate_bound)]] The upper bound of the estimated range. If empty, represents no upper bound i.e., infinite",
         nullable=True,
     )
     minimum = Column(
-        ShippingRateDeliveryEstimateBound,
-        comment="The lower bound of the estimated range. If empty, represents no lower bound",
+        shipping_rate_delivery_estimate_bound,
+        comment="[[FK(shipping_rate_delivery_estimate_bound)]] The lower bound of the estimated range. If empty, represents no lower bound",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

@@ -4,8 +4,8 @@ from sqlalchemy import Column, Integer, String
 class Setup_Intent_Payment_Method_Options_Card(Base):
     __tablename__ = "setup_intent_payment_method_options_card"
     mandate_options = Column(
-        SetupIntentPaymentMethodOptionsCardMandateOptions,
-        comment="Configuration options for setting up an eMandate for cards issued in India",
+        setup_intent_payment_method_options_card_mandate_options,
+        comment="[[FK(setup_intent_payment_method_options_card_mandate_options)]] Configuration options for setting up an eMandate for cards issued in India",
         nullable=True,
     )
     network = Column(

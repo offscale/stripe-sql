@@ -8,8 +8,8 @@ class Subscription_Schedule_Configuration_Item(Base):
 
     __tablename__ = "subscription_schedule_configuration_item"
     billing_thresholds = Column(
-        SubscriptionItemBillingThresholds,
-        comment="Define thresholds at which an invoice will be sent, and the related subscription advanced to a new billing period",
+        subscription_item_billing_thresholds,
+        comment="[[FK(subscription_item_billing_thresholds)]] Define thresholds at which an invoice will be sent, and the related subscription advanced to a new billing period",
         nullable=True,
     )
     metadata = Column(
@@ -18,12 +18,12 @@ class Subscription_Schedule_Configuration_Item(Base):
         nullable=True,
     )
     plan = Column(
-        string | Plan,
-        comment="ID of the plan to which the customer should be subscribed",
+        string | plan,
+        comment="[[FK(deleted_plan)]] ID of the plan to which the customer should be subscribed",
     )
     price = Column(
-        string | Price,
-        comment="ID of the price to which the customer should be subscribed",
+        string | price,
+        comment="[[FK(deleted_price)]] ID of the price to which the customer should be subscribed",
     )
     quantity = Column(
         Integer,

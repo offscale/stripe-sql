@@ -4,18 +4,18 @@ from sqlalchemy import Column, Integer, String
 class Issuing_Transaction_Purchase_Details(Base):
     __tablename__ = "issuing_transaction_purchase_details"
     flight = Column(
-        IssuingTransactionFlightData,
-        comment="Information about the flight that was purchased with this transaction",
+        issuing_transaction_flight_data,
+        comment="[[FK(issuing_transaction_flight_data)]] Information about the flight that was purchased with this transaction",
         nullable=True,
     )
     fuel = Column(
-        IssuingTransactionFuelData,
-        comment="Information about fuel that was purchased with this transaction",
+        issuing_transaction_fuel_data,
+        comment="[[FK(issuing_transaction_fuel_data)]] Information about fuel that was purchased with this transaction",
         nullable=True,
     )
     lodging = Column(
-        IssuingTransactionLodgingData,
-        comment="Information about lodging that was purchased with this transaction",
+        issuing_transaction_lodging_data,
+        comment="[[FK(issuing_transaction_lodging_data)]] Information about lodging that was purchased with this transaction",
         nullable=True,
     )
     receipt = Column(list, comment="The line items in the purchase", nullable=True)

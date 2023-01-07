@@ -23,8 +23,8 @@ class Transfer_Reversal(Base):
     __tablename__ = "transfer_reversal"
     amount = Column(Integer, comment="Amount, in %s")
     balance_transaction = Column(
-        BalanceTransaction,
-        comment="Balance transaction that describes the impact on your account balance",
+        balance_transaction,
+        comment="[[FK(balance_transaction)]] Balance transaction that describes the impact on your account balance",
         nullable=True,
     )
     created = Column(
@@ -36,7 +36,9 @@ class Transfer_Reversal(Base):
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",
     )
     destination_payment_refund = Column(
-        Refund, comment="Linked payment refund for the transfer reversal", nullable=True
+        refund,
+        comment="[[FK(refund)]] Linked payment refund for the transfer reversal",
+        nullable=True,
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     metadata = Column(
@@ -49,11 +51,13 @@ class Transfer_Reversal(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     source_refund = Column(
-        Refund,
-        comment="ID of the refund responsible for the transfer reversal",
+        refund,
+        comment="[[FK(refund)]] ID of the refund responsible for the transfer reversal",
         nullable=True,
     )
-    transfer = Column(Transfer, comment="ID of the transfer that was reversed")
+    transfer = Column(
+        transfer, comment="[[FK(transfer)]] ID of the transfer that was reversed"
+    )
 
     def __repr__(self):
         """

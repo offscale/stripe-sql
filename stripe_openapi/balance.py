@@ -31,7 +31,7 @@ class Balance(Base):
     instant_available = Column(
         list, comment="Funds that can be paid out using Instant Payouts", nullable=True
     )
-    issuing = Column(BalanceDetail, nullable=True)
+    issuing = Column(balance_detail, ForeignKey("balance_detail"), nullable=True)
     livemode = Column(
         Boolean,
         comment="Has the value `true` if the object exists in live mode or the value `false` if the object exists in test mode",

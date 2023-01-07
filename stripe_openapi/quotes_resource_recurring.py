@@ -17,7 +17,9 @@ class Quotes_Resource_Recurring(Base):
         Integer,
         comment="The number of intervals (specified in the `interval` attribute) between subscription billings. For example, `interval=month` and `interval_count=3` bills every 3 months",
     )
-    total_details = Column(QuotesResourceTotalDetails)
+    total_details = Column(
+        quotes_resource_total_details, ForeignKey("quotes_resource_total_details")
+    )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

@@ -4,22 +4,44 @@ from sqlalchemy import Column, Integer, String
 class Payment_Method_Details_Card_Wallet(Base):
     __tablename__ = "payment_method_details_card_wallet"
     amex_express_checkout = Column(
-        PaymentMethodDetailsCardWalletAmexExpressCheckout, nullable=True
+        payment_method_details_card_wallet_amex_express_checkout,
+        ForeignKey("payment_method_details_card_wallet_amex_express_checkout"),
+        nullable=True,
     )
-    apple_pay = Column(PaymentMethodDetailsCardWalletApplePay, nullable=True)
+    apple_pay = Column(
+        payment_method_details_card_wallet_apple_pay,
+        ForeignKey("payment_method_details_card_wallet_apple_pay"),
+        nullable=True,
+    )
     dynamic_last4 = Column(
         String,
         comment="(For tokenized numbers only.) The last four digits of the device account number",
         nullable=True,
     )
-    google_pay = Column(PaymentMethodDetailsCardWalletGooglePay, nullable=True)
-    masterpass = Column(PaymentMethodDetailsCardWalletMasterpass, nullable=True)
-    samsung_pay = Column(PaymentMethodDetailsCardWalletSamsungPay, nullable=True)
+    google_pay = Column(
+        payment_method_details_card_wallet_google_pay,
+        ForeignKey("payment_method_details_card_wallet_google_pay"),
+        nullable=True,
+    )
+    masterpass = Column(
+        payment_method_details_card_wallet_masterpass,
+        ForeignKey("payment_method_details_card_wallet_masterpass"),
+        nullable=True,
+    )
+    samsung_pay = Column(
+        payment_method_details_card_wallet_samsung_pay,
+        ForeignKey("payment_method_details_card_wallet_samsung_pay"),
+        nullable=True,
+    )
     type = Column(
         String,
         comment="The type of the card wallet, one of `amex_express_checkout`, `apple_pay`, `google_pay`, `masterpass`, `samsung_pay`, or `visa_checkout`. An additional hash is included on the Wallet subhash with a name matching this value. It contains additional information specific to the card wallet type",
     )
-    visa_checkout = Column(PaymentMethodDetailsCardWalletVisaCheckout, nullable=True)
+    visa_checkout = Column(
+        payment_method_details_card_wallet_visa_checkout,
+        ForeignKey("payment_method_details_card_wallet_visa_checkout"),
+        nullable=True,
+    )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

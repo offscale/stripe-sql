@@ -15,8 +15,8 @@ class Fee_Refund(Base):
     __tablename__ = "fee_refund"
     amount = Column(Integer, comment="Amount, in %s")
     balance_transaction = Column(
-        BalanceTransaction,
-        comment="Balance transaction that describes the impact on your account balance",
+        balance_transaction,
+        comment="[[FK(balance_transaction)]] Balance transaction that describes the impact on your account balance",
         nullable=True,
     )
     created = Column(
@@ -27,7 +27,10 @@ class Fee_Refund(Base):
         String,
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",
     )
-    fee = Column(ApplicationFee, comment="ID of the application fee that was refunded")
+    fee = Column(
+        application_fee,
+        comment="[[FK(application_fee)]] ID of the application fee that was refunded",
+    )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     metadata = Column(
         JSON,

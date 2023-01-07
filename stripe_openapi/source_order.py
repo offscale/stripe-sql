@@ -17,7 +17,7 @@ class Source_Order(Base):
         nullable=True,
     )
     items = Column(list, comment="List of items constituting the order", nullable=True)
-    shipping = Column(Shipping, nullable=True)
+    shipping = Column(shipping, ForeignKey("shipping"), nullable=True)
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

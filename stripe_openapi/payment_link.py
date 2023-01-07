@@ -16,7 +16,10 @@ class Payment_Link(Base):
         Boolean,
         comment="Whether the payment link's `url` is active. If `false`, customers visiting the URL will be shown a page saying that the link has been deactivated",
     )
-    after_completion = Column(PaymentLinksResourceAfterCompletion)
+    after_completion = Column(
+        payment_links_resource_after_completion,
+        ForeignKey("payment_links_resource_after_completion"),
+    )
     allow_promotion_codes = Column(
         Boolean, comment="Whether user redeemable promotion codes are enabled"
     )
@@ -30,20 +33,26 @@ class Payment_Link(Base):
         comment="This represents the percentage of the subscription invoice subtotal that will be transferred to the application owner's Stripe account",
         nullable=True,
     )
-    automatic_tax = Column(PaymentLinksResourceAutomaticTax)
+    automatic_tax = Column(
+        payment_links_resource_automatic_tax,
+        ForeignKey("payment_links_resource_automatic_tax"),
+    )
     billing_address_collection = Column(
         String, comment="Configuration for collecting the customer's billing address"
     )
     consent_collection = Column(
-        PaymentLinksResourceConsentCollection,
-        comment="When set, provides configuration to gather active consent from customers",
+        payment_links_resource_consent_collection,
+        comment="[[FK(payment_links_resource_consent_collection)]] When set, provides configuration to gather active consent from customers",
         nullable=True,
     )
     currency = Column(
         String,
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",
     )
-    custom_text = Column(PaymentLinksResourceCustomText)
+    custom_text = Column(
+        payment_links_resource_custom_text,
+        ForeignKey("payment_links_resource_custom_text"),
+    )
     customer_creation = Column(
         String, comment="Configuration for Customer creation during checkout"
     )
@@ -64,13 +73,13 @@ class Payment_Link(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     on_behalf_of = Column(
-        Account,
-        comment="The account on behalf of which to charge. See the [Connect documentation](https://support.stripe.com/questions/sending-invoices-on-behalf-of-connected-accounts) for details",
+        account,
+        comment="[[FK(account)]] The account on behalf of which to charge. See the [Connect documentation](https://support.stripe.com/questions/sending-invoices-on-behalf-of-connected-accounts) for details",
         nullable=True,
     )
     payment_intent_data = Column(
-        PaymentLinksResourcePaymentIntentData,
-        comment="Indicates the parameters to be passed to PaymentIntent creation during checkout",
+        payment_links_resource_payment_intent_data,
+        comment="[[FK(payment_links_resource_payment_intent_data)]] Indicates the parameters to be passed to PaymentIntent creation during checkout",
         nullable=True,
     )
     payment_method_collection = Column(
@@ -81,10 +90,13 @@ class Payment_Link(Base):
         comment="The list of payment method types that customers can use. When `null`, Stripe will dynamically show relevant payment methods you've enabled in your [payment method settings](https://dashboard.stripe.com/settings/payment_methods)",
         nullable=True,
     )
-    phone_number_collection = Column(PaymentLinksResourcePhoneNumberCollection)
+    phone_number_collection = Column(
+        payment_links_resource_phone_number_collection,
+        ForeignKey("payment_links_resource_phone_number_collection"),
+    )
     shipping_address_collection = Column(
-        PaymentLinksResourceShippingAddressCollection,
-        comment="Configuration for collecting the customer's shipping address",
+        payment_links_resource_shipping_address_collection,
+        comment="[[FK(payment_links_resource_shipping_address_collection)]] Configuration for collecting the customer's shipping address",
         nullable=True,
     )
     shipping_options = Column(
@@ -95,14 +107,17 @@ class Payment_Link(Base):
         comment="Indicates the type of transaction being performed which customizes relevant text on the page, such as the submit button",
     )
     subscription_data = Column(
-        PaymentLinksResourceSubscriptionData,
-        comment="When creating a subscription, the specified configuration data will be used. There must be at least one line item with a recurring price to use `subscription_data`",
+        payment_links_resource_subscription_data,
+        comment="[[FK(payment_links_resource_subscription_data)]] When creating a subscription, the specified configuration data will be used. There must be at least one line item with a recurring price to use `subscription_data`",
         nullable=True,
     )
-    tax_id_collection = Column(PaymentLinksResourceTaxIdCollection)
+    tax_id_collection = Column(
+        payment_links_resource_tax_id_collection,
+        ForeignKey("payment_links_resource_tax_id_collection"),
+    )
     transfer_data = Column(
-        PaymentLinksResourceTransferData,
-        comment="The account (if any) the payments will be attributed to for tax reporting, and where funds from each payment will be transferred to",
+        payment_links_resource_transfer_data,
+        comment="[[FK(payment_links_resource_transfer_data)]] The account (if any) the payments will be attributed to for tax reporting, and where funds from each payment will be transferred to",
         nullable=True,
     )
     url = Column(String, comment="The public URL that can be shared with customers")

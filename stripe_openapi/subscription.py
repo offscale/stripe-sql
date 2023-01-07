@@ -11,8 +11,8 @@ class Subscription(Base):
 
     __tablename__ = "subscription"
     application = Column(
-        string | Application,
-        comment="ID of the Connect Application that created the subscription",
+        string | application,
+        comment="[[FK(deleted_application)]] ID of the Connect Application that created the subscription",
         nullable=True,
     )
     application_fee_percent = Column(
@@ -20,14 +20,16 @@ class Subscription(Base):
         comment="A non-negative decimal between 0 and 100, with at most two decimal places. This represents the percentage of the subscription invoice subtotal that will be transferred to the application owner's Stripe account",
         nullable=True,
     )
-    automatic_tax = Column(SubscriptionAutomaticTax)
+    automatic_tax = Column(
+        subscription_automatic_tax, ForeignKey("subscription_automatic_tax")
+    )
     billing_cycle_anchor = Column(
         Integer,
         comment="Determines the date of the first full invoice, and, for plans with `month` or `year` intervals, the day of the month for subsequent invoices. The timestamp is in UTC format",
     )
     billing_thresholds = Column(
-        SubscriptionBillingThresholds,
-        comment="Define thresholds at which an invoice will be sent, and the subscription advanced to a new billing period",
+        subscription_billing_thresholds,
+        comment="[[FK(subscription_billing_thresholds)]] Define thresholds at which an invoice will be sent, and the subscription advanced to a new billing period",
         nullable=True,
     )
     cancel_at = Column(
@@ -65,7 +67,8 @@ class Subscription(Base):
         comment="Start of the current period that the subscription has been invoiced for",
     )
     customer = Column(
-        string | Customer, comment="ID of the customer who owns the subscription"
+        string | customer,
+        comment="[[FK(deleted_customer)]] ID of the customer who owns the subscription",
     )
     days_until_due = Column(
         Integer,
@@ -73,13 +76,13 @@ class Subscription(Base):
         nullable=True,
     )
     default_payment_method = Column(
-        PaymentMethod,
-        comment="ID of the default payment method for the subscription. It must belong to the customer associated with the subscription. This takes precedence over `default_source`. If neither are set, invoices will use the customer's [invoice_settings.default_payment_method](https://stripe.com/docs/api/customers/object#customer_object-invoice_settings-default_payment_method) or [default_source](https://stripe.com/docs/api/customers/object#customer_object-default_source)",
+        payment_method,
+        comment="[[FK(payment_method)]] ID of the default payment method for the subscription. It must belong to the customer associated with the subscription. This takes precedence over `default_source`. If neither are set, invoices will use the customer's [invoice_settings.default_payment_method](https://stripe.com/docs/api/customers/object#customer_object-invoice_settings-default_payment_method) or [default_source](https://stripe.com/docs/api/customers/object#customer_object-default_source)",
         nullable=True,
     )
     default_source = Column(
-        PaymentSource,
-        comment="ID of the default payment source for the subscription. It must belong to the customer associated with the subscription and be in a chargeable state. If `default_payment_method` is also set, `default_payment_method` will take precedence. If neither are set, invoices will use the customer's [invoice_settings.default_payment_method](https://stripe.com/docs/api/customers/object#customer_object-invoice_settings-default_payment_method) or [default_source](https://stripe.com/docs/api/customers/object#customer_object-default_source)",
+        payment_source,
+        comment="[[FK(payment_source)]] ID of the default payment source for the subscription. It must belong to the customer associated with the subscription and be in a chargeable state. If `default_payment_method` is also set, `default_payment_method` will take precedence. If neither are set, invoices will use the customer's [invoice_settings.default_payment_method](https://stripe.com/docs/api/customers/object#customer_object-invoice_settings-default_payment_method) or [default_source](https://stripe.com/docs/api/customers/object#customer_object-default_source)",
         nullable=True,
     )
     default_tax_rates = Column(
@@ -93,8 +96,8 @@ class Subscription(Base):
         nullable=True,
     )
     discount = Column(
-        Discount,
-        comment="Describes the current discount applied to this subscription, if there is one. When billing, a discount applied to a subscription overrides a discount applied on a customer-wide basis",
+        discount,
+        comment="[[FK(discount)]] Describes the current discount applied to this subscription, if there is one. When billing, a discount applied to a subscription overrides a discount applied on a customer-wide basis",
         nullable=True,
     )
     ended_at = Column(
@@ -107,8 +110,8 @@ class Subscription(Base):
         JSON, comment="List of subscription items, each with an attached price"
     )
     latest_invoice = Column(
-        Invoice,
-        comment="The most recent invoice this subscription has generated",
+        invoice,
+        comment="[[FK(invoice)]] The most recent invoice this subscription has generated",
         nullable=True,
     )
     livemode = Column(
@@ -129,38 +132,38 @@ class Subscription(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     on_behalf_of = Column(
-        Account,
-        comment="The account (if any) the charge was made on behalf of for charges associated with this subscription. See the Connect documentation for details",
+        account,
+        comment="[[FK(account)]] The account (if any) the charge was made on behalf of for charges associated with this subscription. See the Connect documentation for details",
         nullable=True,
     )
     pause_collection = Column(
-        SubscriptionsResourcePauseCollection,
-        comment="If specified, payment collection for this subscription will be paused",
+        subscriptions_resource_pause_collection,
+        comment="[[FK(subscriptions_resource_pause_collection)]] If specified, payment collection for this subscription will be paused",
         nullable=True,
     )
     payment_settings = Column(
-        SubscriptionsResourcePaymentSettings,
-        comment="Payment settings passed on to invoices created by the subscription",
+        subscriptions_resource_payment_settings,
+        comment="[[FK(subscriptions_resource_payment_settings)]] Payment settings passed on to invoices created by the subscription",
         nullable=True,
     )
     pending_invoice_item_interval = Column(
-        SubscriptionPendingInvoiceItemInterval,
-        comment="Specifies an interval for how often to bill for any pending invoice items. It is analogous to calling [Create an invoice](https://stripe.com/docs/api#create_invoice) for the given subscription at the specified interval",
+        subscription_pending_invoice_item_interval,
+        comment="[[FK(subscription_pending_invoice_item_interval)]] Specifies an interval for how often to bill for any pending invoice items. It is analogous to calling [Create an invoice](https://stripe.com/docs/api#create_invoice) for the given subscription at the specified interval",
         nullable=True,
     )
     pending_setup_intent = Column(
-        SetupIntent,
-        comment="You can use this [SetupIntent](https://stripe.com/docs/api/setup_intents) to collect user authentication when creating a subscription without immediate payment or updating a subscription's payment method, allowing you to optimize for off-session payments. Learn more in the [SCA Migration Guide](https://stripe.com/docs/billing/migration/strong-customer-authentication#scenario-2)",
+        setup_intent,
+        comment="[[FK(setup_intent)]] You can use this [SetupIntent](https://stripe.com/docs/api/setup_intents) to collect user authentication when creating a subscription without immediate payment or updating a subscription's payment method, allowing you to optimize for off-session payments. Learn more in the [SCA Migration Guide](https://stripe.com/docs/billing/migration/strong-customer-authentication#scenario-2)",
         nullable=True,
     )
     pending_update = Column(
-        SubscriptionsResourcePendingUpdate,
-        comment="If specified, [pending updates](https://stripe.com/docs/billing/subscriptions/pending-updates) that will be applied to the subscription once the `latest_invoice` has been paid",
+        subscriptions_resource_pending_update,
+        comment="[[FK(subscriptions_resource_pending_update)]] If specified, [pending updates](https://stripe.com/docs/billing/subscriptions/pending-updates) that will be applied to the subscription once the `latest_invoice` has been paid",
         nullable=True,
     )
     schedule = Column(
-        SubscriptionSchedule,
-        comment="The schedule attached to the subscription",
+        subscription_schedule,
+        comment="[[FK(subscription_schedule)]] The schedule attached to the subscription",
         nullable=True,
     )
     start_date = Column(
@@ -172,13 +175,13 @@ class Subscription(Base):
         comment="Possible values are `incomplete`, `incomplete_expired`, `trialing`, `active`, `past_due`, `canceled`, or `unpaid`. \n\nFor `collection_method=charge_automatically` a subscription moves into `incomplete` if the initial payment attempt fails. A subscription in this state can only have metadata and default_source updated. Once the first invoice is paid, the subscription moves into an `active` state. If the first invoice is not paid within 23 hours, the subscription transitions to `incomplete_expired`. This is a terminal state, the open invoice will be voided and no further invoices will be generated. \n\nA subscription that is currently in a trial period is `trialing` and moves to `active` when the trial period is over. \n\nIf subscription `collection_method=charge_automatically` it becomes `past_due` when payment to renew it fails and `canceled` or `unpaid` (depending on your subscriptions settings) when Stripe has exhausted all payment retry attempts. \n\nIf subscription `collection_method=send_invoice` it becomes `past_due` when its invoice is not paid by the due date, and `canceled` or `unpaid` if it is still not paid by an additional deadline after that. Note that when a subscription has a status of `unpaid`, no subsequent invoices will be attempted (invoices will be created, but then immediately automatically closed). After receiving updated payment information from a customer, you may choose to reopen and pay their closed invoices",
     )
     test_clock = Column(
-        TestHelpers.TestClock,
-        comment="ID of the test clock this subscription belongs to",
+        test_helpers.test_clock,
+        comment="[[FK(test_helpers.test_clock)]] ID of the test clock this subscription belongs to",
         nullable=True,
     )
     transfer_data = Column(
-        SubscriptionTransferData,
-        comment="The account (if any) the subscription's payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the subscription's invoices",
+        subscription_transfer_data,
+        comment="[[FK(subscription_transfer_data)]] The account (if any) the subscription's payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the subscription's invoices",
         nullable=True,
     )
     trial_end = Column(

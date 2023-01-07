@@ -11,9 +11,14 @@ class Capability(Base):
 
     __tablename__ = "capability"
     account = Column(
-        Account, comment="The account for which the capability enables functionality"
+        account,
+        comment="[[FK(account)]] The account for which the capability enables functionality",
     )
-    future_requirements = Column(AccountCapabilityFutureRequirements, nullable=True)
+    future_requirements = Column(
+        account_capability_future_requirements,
+        ForeignKey("account_capability_future_requirements"),
+        nullable=True,
+    )
     id = Column(String, comment="The identifier for the capability", primary_key=True)
     object = Column(
         String,
@@ -25,7 +30,11 @@ class Capability(Base):
         comment="Time at which the capability was requested. Measured in seconds since the Unix epoch",
         nullable=True,
     )
-    requirements = Column(AccountCapabilityRequirements, nullable=True)
+    requirements = Column(
+        account_capability_requirements,
+        ForeignKey("account_capability_requirements"),
+        nullable=True,
+    )
     status = Column(
         String,
         comment="The status of the capability. Can be `active`, `inactive`, `pending`, or `unrequested`",

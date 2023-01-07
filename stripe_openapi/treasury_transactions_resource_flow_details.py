@@ -3,14 +3,36 @@ from sqlalchemy import Column, Integer, String
 
 class Treasury_Transactions_Resource_Flow_Details(Base):
     __tablename__ = "treasury_transactions_resource_flow_details"
-    credit_reversal = Column(Treasury.CreditReversal, nullable=True)
-    debit_reversal = Column(Treasury.DebitReversal, nullable=True)
-    inbound_transfer = Column(Treasury.InboundTransfer, nullable=True)
-    issuing_authorization = Column(Issuing.Authorization, nullable=True)
-    outbound_payment = Column(Treasury.OutboundPayment, nullable=True)
-    outbound_transfer = Column(Treasury.OutboundTransfer, nullable=True)
-    received_credit = Column(Treasury.ReceivedCredit, nullable=True)
-    received_debit = Column(Treasury.ReceivedDebit, nullable=True)
+    credit_reversal = Column(
+        treasury.credit_reversal, ForeignKey("treasury.credit_reversal"), nullable=True
+    )
+    debit_reversal = Column(
+        treasury.debit_reversal, ForeignKey("treasury.debit_reversal"), nullable=True
+    )
+    inbound_transfer = Column(
+        treasury.inbound_transfer,
+        ForeignKey("treasury.inbound_transfer"),
+        nullable=True,
+    )
+    issuing_authorization = Column(
+        issuing.authorization, ForeignKey("issuing.authorization"), nullable=True
+    )
+    outbound_payment = Column(
+        treasury.outbound_payment,
+        ForeignKey("treasury.outbound_payment"),
+        nullable=True,
+    )
+    outbound_transfer = Column(
+        treasury.outbound_transfer,
+        ForeignKey("treasury.outbound_transfer"),
+        nullable=True,
+    )
+    received_credit = Column(
+        treasury.received_credit, ForeignKey("treasury.received_credit"), nullable=True
+    )
+    received_debit = Column(
+        treasury.received_debit, ForeignKey("treasury.received_debit"), nullable=True
+    )
     type = Column(
         String,
         comment="Type of the flow that created the Transaction. Set to the same value as `flow_type`",

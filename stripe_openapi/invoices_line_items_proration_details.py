@@ -4,8 +4,8 @@ from sqlalchemy import Column, Integer
 class Invoices_Line_Items_Proration_Details(Base):
     __tablename__ = "invoices_line_items_proration_details"
     credited_items = Column(
-        InvoicesLineItemsCreditedItems,
-        comment="For a credit proration `line_item`, the original debit line_items to which the credit proration applies",
+        invoices_line_items_credited_items,
+        comment="[[FK(invoices_line_items_credited_items)]] For a credit proration `line_item`, the original debit line_items to which the credit proration applies",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

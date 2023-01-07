@@ -4,8 +4,8 @@ from sqlalchemy import Column, Integer, String
 class Issuing_Dispute_Service_Not_As_Described_Evidence(Base):
     __tablename__ = "issuing_dispute_service_not_as_described_evidence"
     additional_documentation = Column(
-        File,
-        comment="(ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Additional documentation supporting the dispute",
+        file,
+        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Additional documentation supporting the dispute",
         nullable=True,
     )
     canceled_at = Column(Integer, comment="Date when order was canceled", nullable=True)

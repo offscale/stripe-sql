@@ -3,12 +3,17 @@ from sqlalchemy import Column, Integer, String
 
 class Inbound_Transfers(Base):
     __tablename__ = "inbound_transfers"
-    billing_details = Column(TreasurySharedResourceBillingDetails)
+    billing_details = Column(
+        treasury_shared_resource_billing_details,
+        ForeignKey("treasury_shared_resource_billing_details"),
+    )
     type = Column(
         String, comment="The type of the payment method used in the InboundTransfer"
     )
     us_bank_account = Column(
-        InboundTransfersPaymentMethodDetailsUsBankAccount, nullable=True
+        inbound_transfers_payment_method_details_us_bank_account,
+        ForeignKey("inbound_transfers_payment_method_details_us_bank_account"),
+        nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

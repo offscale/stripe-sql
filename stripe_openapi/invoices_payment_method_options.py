@@ -4,33 +4,33 @@ from sqlalchemy import Column, Integer
 class Invoices_Payment_Method_Options(Base):
     __tablename__ = "invoices_payment_method_options"
     acss_debit = Column(
-        InvoicePaymentMethodOptionsAcssDebit,
-        comment="If paying by `acss_debit`, this sub-hash contains details about the Canadian pre-authorized debit payment method options to pass to the invoice’s PaymentIntent",
+        invoice_payment_method_options_acss_debit,
+        comment="[[FK(invoice_payment_method_options_acss_debit)]] If paying by `acss_debit`, this sub-hash contains details about the Canadian pre-authorized debit payment method options to pass to the invoice’s PaymentIntent",
         nullable=True,
     )
     bancontact = Column(
-        InvoicePaymentMethodOptionsBancontact,
-        comment="If paying by `bancontact`, this sub-hash contains details about the Bancontact payment method options to pass to the invoice’s PaymentIntent",
+        invoice_payment_method_options_bancontact,
+        comment="[[FK(invoice_payment_method_options_bancontact)]] If paying by `bancontact`, this sub-hash contains details about the Bancontact payment method options to pass to the invoice’s PaymentIntent",
         nullable=True,
     )
     card = Column(
-        InvoicePaymentMethodOptionsCard,
-        comment="If paying by `card`, this sub-hash contains details about the Card payment method options to pass to the invoice’s PaymentIntent",
+        invoice_payment_method_options_card,
+        comment="[[FK(invoice_payment_method_options_card)]] If paying by `card`, this sub-hash contains details about the Card payment method options to pass to the invoice’s PaymentIntent",
         nullable=True,
     )
     customer_balance = Column(
-        InvoicePaymentMethodOptionsCustomerBalance,
-        comment="If paying by `customer_balance`, this sub-hash contains details about the Bank transfer payment method options to pass to the invoice’s PaymentIntent",
+        invoice_payment_method_options_customer_balance,
+        comment="[[FK(invoice_payment_method_options_customer_balance)]] If paying by `customer_balance`, this sub-hash contains details about the Bank transfer payment method options to pass to the invoice’s PaymentIntent",
         nullable=True,
     )
     konbini = Column(
-        InvoicePaymentMethodOptionsKonbini,
-        comment="If paying by `konbini`, this sub-hash contains details about the Konbini payment method options to pass to the invoice’s PaymentIntent",
+        invoice_payment_method_options_konbini,
+        comment="[[FK(invoice_payment_method_options_konbini)]] If paying by `konbini`, this sub-hash contains details about the Konbini payment method options to pass to the invoice’s PaymentIntent",
         nullable=True,
     )
     us_bank_account = Column(
-        InvoicePaymentMethodOptionsUsBankAccount,
-        comment="If paying by `us_bank_account`, this sub-hash contains details about the ACH direct debit payment method options to pass to the invoice’s PaymentIntent",
+        invoice_payment_method_options_us_bank_account,
+        comment="[[FK(invoice_payment_method_options_us_bank_account)]] If paying by `us_bank_account`, this sub-hash contains details about the ACH direct debit payment method options to pass to the invoice’s PaymentIntent",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

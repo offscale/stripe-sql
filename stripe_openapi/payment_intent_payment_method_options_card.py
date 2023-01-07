@@ -9,13 +9,13 @@ class Payment_Intent_Payment_Method_Options_Card(Base):
         nullable=True,
     )
     installments = Column(
-        PaymentMethodOptionsCardInstallments,
-        comment="Installment details for this payment (Mexico only).\n\nFor more information, see the [installments integration guide](https://stripe.com/docs/payments/installments)",
+        payment_method_options_card_installments,
+        comment="[[FK(payment_method_options_card_installments)]] Installment details for this payment (Mexico only).\n\nFor more information, see the [installments integration guide](https://stripe.com/docs/payments/installments)",
         nullable=True,
     )
     mandate_options = Column(
-        PaymentMethodOptionsCardMandateOptions,
-        comment="Configuration options for setting up an eMandate for cards issued in India",
+        payment_method_options_card_mandate_options,
+        comment="[[FK(payment_method_options_card_mandate_options)]] Configuration options for setting up an eMandate for cards issued in India",
         nullable=True,
     )
     network = Column(

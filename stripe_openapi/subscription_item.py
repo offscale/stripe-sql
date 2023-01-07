@@ -11,8 +11,8 @@ class Subscription_Item(Base):
 
     __tablename__ = "subscription_item"
     billing_thresholds = Column(
-        SubscriptionItemBillingThresholds,
-        comment="Define thresholds at which an invoice will be sent, and the related subscription advanced to a new billing period",
+        subscription_item_billing_thresholds,
+        comment="[[FK(subscription_item_billing_thresholds)]] Define thresholds at which an invoice will be sent, and the related subscription advanced to a new billing period",
         nullable=True,
     )
     created = Column(
@@ -28,8 +28,8 @@ class Subscription_Item(Base):
         String,
         comment="String representing the object's type. Objects of the same type share the same value",
     )
-    plan = Column(Plan)
-    price = Column(Price)
+    plan = Column(plan, ForeignKey("plan"))
+    price = Column(price, ForeignKey("price"))
     quantity = Column(
         Integer,
         comment="The [quantity](https://stripe.com/docs/subscriptions/quantities) of the plan to which the customer should be subscribed",

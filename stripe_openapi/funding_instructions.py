@@ -13,7 +13,10 @@ class Funding_Instructions(Base):
     """
 
     __tablename__ = "funding_instructions"
-    bank_transfer = Column(FundingInstructionsBankTransfer)
+    bank_transfer = Column(
+        funding_instructions_bank_transfer,
+        ForeignKey("funding_instructions_bank_transfer"),
+    )
     currency = Column(
         String,
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",

@@ -3,13 +3,13 @@ from sqlalchemy import Boolean, Column, Integer, String
 
 class Issuing_Card_Shipping(Base):
     __tablename__ = "issuing_card_shipping"
-    address = Column(Address)
+    address = Column(address, ForeignKey("address"))
     carrier = Column(
         String, comment="The delivery company that shipped a card", nullable=True
     )
     customs = Column(
-        IssuingCardShippingCustoms,
-        comment="Additional information that may be required for clearing customs",
+        issuing_card_shipping_customs,
+        comment="[[FK(issuing_card_shipping_customs)]] Additional information that may be required for clearing customs",
         nullable=True,
     )
     eta = Column(

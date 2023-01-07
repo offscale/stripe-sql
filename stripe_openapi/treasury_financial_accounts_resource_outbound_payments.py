@@ -7,9 +7,15 @@ class Treasury_Financial_Accounts_Resource_Outbound_Payments(Base):
     """
 
     __tablename__ = "treasury_financial_accounts_resource_outbound_payments"
-    ach = Column(TreasuryFinancialAccountsResourceAchToggleSettings, nullable=True)
+    ach = Column(
+        treasury_financial_accounts_resource_ach_toggle_settings,
+        ForeignKey("treasury_financial_accounts_resource_ach_toggle_settings"),
+        nullable=True,
+    )
     us_domestic_wire = Column(
-        TreasuryFinancialAccountsResourceToggleSettings, nullable=True
+        treasury_financial_accounts_resource_toggle_settings,
+        ForeignKey("treasury_financial_accounts_resource_toggle_settings"),
+        nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

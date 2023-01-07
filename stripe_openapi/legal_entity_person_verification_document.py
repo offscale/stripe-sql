@@ -4,8 +4,8 @@ from sqlalchemy import Column, Integer, String
 class Legal_Entity_Person_Verification_Document(Base):
     __tablename__ = "legal_entity_person_verification_document"
     back = Column(
-        File,
-        comment="The back of an ID returned by a [file upload](https://stripe.com/docs/api#create_file) with a `purpose` value of `identity_document`",
+        file,
+        comment="[[FK(file)]] The back of an ID returned by a [file upload](https://stripe.com/docs/api#create_file) with a `purpose` value of `identity_document`",
         nullable=True,
     )
     details = Column(
@@ -19,8 +19,8 @@ class Legal_Entity_Person_Verification_Document(Base):
         nullable=True,
     )
     front = Column(
-        File,
-        comment="The front of an ID returned by a [file upload](https://stripe.com/docs/api#create_file) with a `purpose` value of `identity_document`",
+        file,
+        comment="[[FK(file)]] The front of an ID returned by a [file upload](https://stripe.com/docs/api#create_file) with a `purpose` value of `identity_document`",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

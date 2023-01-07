@@ -24,8 +24,8 @@ class Charge_Outcome(Base):
         nullable=True,
     )
     rule = Column(
-        Rule,
-        comment="The ID of the Radar rule that matched the payment, if applicable",
+        rule,
+        comment="[[FK(rule)]] The ID of the Radar rule that matched the payment, if applicable",
         nullable=True,
     )
     seller_message = Column(

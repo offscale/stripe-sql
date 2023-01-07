@@ -4,7 +4,9 @@ from sqlalchemy import Column, Integer
 class Setup_Intent_Payment_Method_Options_Blik(Base):
     __tablename__ = "setup_intent_payment_method_options_blik"
     mandate_options = Column(
-        SetupIntentPaymentMethodOptionsMandateOptionsBlik, nullable=True
+        setup_intent_payment_method_options_mandate_options_blik,
+        ForeignKey("setup_intent_payment_method_options_mandate_options_blik"),
+        nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

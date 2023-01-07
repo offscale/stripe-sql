@@ -16,13 +16,19 @@ class Terminal_Reader_Reader_Resource_Reader_Action(Base):
         nullable=True,
     )
     process_payment_intent = Column(
-        TerminalReaderReaderResourceProcessPaymentIntentAction, nullable=True
+        terminal_reader_reader_resource_process_payment_intent_action,
+        ForeignKey("terminal_reader_reader_resource_process_payment_intent_action"),
+        nullable=True,
     )
     process_setup_intent = Column(
-        TerminalReaderReaderResourceProcessSetupIntentAction, nullable=True
+        terminal_reader_reader_resource_process_setup_intent_action,
+        ForeignKey("terminal_reader_reader_resource_process_setup_intent_action"),
+        nullable=True,
     )
     set_reader_display = Column(
-        TerminalReaderReaderResourceSetReaderDisplayAction, nullable=True
+        terminal_reader_reader_resource_set_reader_display_action,
+        ForeignKey("terminal_reader_reader_resource_set_reader_display_action"),
+        nullable=True,
     )
     status = Column(String, comment="Status of the action performed by the reader")
     type = Column(String, comment="Type of action performed by the reader")

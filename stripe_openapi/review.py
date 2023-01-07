@@ -17,7 +17,9 @@ class Review(Base):
         nullable=True,
     )
     charge = Column(
-        Charge, comment="The charge associated with this review", nullable=True
+        charge,
+        comment="[[FK(charge)]] The charge associated with this review",
+        nullable=True,
     )
     closed_reason = Column(
         String,
@@ -33,8 +35,8 @@ class Review(Base):
         String, comment="The IP address where the payment originated", nullable=True
     )
     ip_address_location = Column(
-        RadarReviewResourceLocation,
-        comment="Information related to the location of the payment. Note that this information is an approximation and attempts to locate the nearest population center - it should not be used to determine a specific address",
+        radar_review_resource_location,
+        comment="[[FK(radar_review_resource_location)]] Information related to the location of the payment. Note that this information is an approximation and attempts to locate the nearest population center - it should not be used to determine a specific address",
         nullable=True,
     )
     livemode = Column(
@@ -50,8 +52,8 @@ class Review(Base):
         String, comment="The reason the review was opened. One of `rule` or `manual`"
     )
     payment_intent = Column(
-        PaymentIntent,
-        comment="The PaymentIntent ID associated with this review, if one exists",
+        payment_intent,
+        comment="[[FK(payment_intent)]] The PaymentIntent ID associated with this review, if one exists",
         nullable=True,
     )
     reason = Column(
@@ -59,8 +61,8 @@ class Review(Base):
         comment="The reason the review is currently open or closed. One of `rule`, `manual`, `approved`, `refunded`, `refunded_as_fraud`, `disputed`, or `redacted`",
     )
     session = Column(
-        RadarReviewResourceSession,
-        comment="Information related to the browsing session of the user who initiated the payment",
+        radar_review_resource_session,
+        comment="[[FK(radar_review_resource_session)]] Information related to the browsing session of the user who initiated the payment",
         nullable=True,
     )
 

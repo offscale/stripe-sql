@@ -50,8 +50,8 @@ class Balance_Transaction(Base):
         comment="[Learn more](https://stripe.com/docs/reports/reporting-categories) about how reporting categories can help you understand balance transactions from an accounting perspective",
     )
     source = Column(
-        BalanceTransactionSource,
-        comment="The Stripe object to which this transaction is related",
+        balance_transaction_source,
+        comment="[[FK(balance_transaction_source)]] The Stripe object to which this transaction is related",
         nullable=True,
     )
     status = Column(

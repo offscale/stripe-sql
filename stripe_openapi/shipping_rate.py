@@ -20,8 +20,8 @@ class Shipping_Rate(Base):
         comment="Time at which the object was created. Measured in seconds since the Unix epoch",
     )
     delivery_estimate = Column(
-        ShippingRateDeliveryEstimate,
-        comment="The estimated range for how long shipping will take, meant to be displayable to the customer. This will appear on CheckoutSessions",
+        shipping_rate_delivery_estimate,
+        comment="[[FK(shipping_rate_delivery_estimate)]] The estimated range for how long shipping will take, meant to be displayable to the customer. This will appear on CheckoutSessions",
         nullable=True,
     )
     display_name = Column(
@@ -29,7 +29,11 @@ class Shipping_Rate(Base):
         comment="The name of the shipping rate, meant to be displayable to the customer. This will appear on CheckoutSessions",
         nullable=True,
     )
-    fixed_amount = Column(ShippingRateFixedAmount, nullable=True)
+    fixed_amount = Column(
+        shipping_rate_fixed_amount,
+        ForeignKey("shipping_rate_fixed_amount"),
+        nullable=True,
+    )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     livemode = Column(
         Boolean,
@@ -49,8 +53,8 @@ class Shipping_Rate(Base):
         nullable=True,
     )
     tax_code = Column(
-        TaxCode,
-        comment="A [tax code](https://stripe.com/docs/tax/tax-categories) ID. The Shipping tax code is `txcd_92010001`",
+        tax_code,
+        comment="[[FK(tax_code)]] A [tax code](https://stripe.com/docs/tax/tax-categories) ID. The Shipping tax code is `txcd_92010001`",
         nullable=True,
     )
     type = Column(

@@ -9,7 +9,8 @@ class Connect_Collection_Transfer(Base):
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",
     )
     destination = Column(
-        Account, comment="ID of the account that funds are being collected for"
+        account,
+        comment="[[FK(account)]] ID of the account that funds are being collected for",
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     livemode = Column(

@@ -5,8 +5,8 @@ class Discounts_Resource_Discount_Amount(Base):
     __tablename__ = "discounts_resource_discount_amount"
     amount = Column(Integer, comment="The amount, in %s, of the discount")
     discount = Column(
-        string | Discount,
-        comment="The discount that was applied to get this discount amount",
+        string | discount,
+        comment="[[FK(deleted_discount)]] The discount that was applied to get this discount amount",
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

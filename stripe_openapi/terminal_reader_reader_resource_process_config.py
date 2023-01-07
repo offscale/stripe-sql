@@ -12,7 +12,11 @@ class Terminal_Reader_Reader_Resource_Process_Config(Base):
         comment="Override showing a tipping selection screen on this transaction",
         nullable=True,
     )
-    tipping = Column(TerminalReaderReaderResourceTippingConfig, nullable=True)
+    tipping = Column(
+        terminal_reader_reader_resource_tipping_config,
+        ForeignKey("terminal_reader_reader_resource_tipping_config"),
+        nullable=True,
+    )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

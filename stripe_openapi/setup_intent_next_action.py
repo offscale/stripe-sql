@@ -3,7 +3,11 @@ from sqlalchemy import Column, Integer, String
 
 class Setup_Intent_Next_Action(Base):
     __tablename__ = "setup_intent_next_action"
-    redirect_to_url = Column(SetupIntentNextActionRedirectToUrl, nullable=True)
+    redirect_to_url = Column(
+        setup_intent_next_action_redirect_to_url,
+        ForeignKey("setup_intent_next_action_redirect_to_url"),
+        nullable=True,
+    )
     type = Column(
         String,
         comment="Type of the next action to perform, one of `redirect_to_url`, `use_stripe_sdk`, `alipay_handle_redirect`, `oxxo_display_details`, or `verify_with_microdeposits`",
@@ -14,7 +18,9 @@ class Setup_Intent_Next_Action(Base):
         nullable=True,
     )
     verify_with_microdeposits = Column(
-        SetupIntentNextActionVerifyWithMicrodeposits, nullable=True
+        setup_intent_next_action_verify_with_microdeposits,
+        ForeignKey("setup_intent_next_action_verify_with_microdeposits"),
+        nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

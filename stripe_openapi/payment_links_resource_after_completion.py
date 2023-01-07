@@ -4,9 +4,15 @@ from sqlalchemy import Column, Integer, String
 class Payment_Links_Resource_After_Completion(Base):
     __tablename__ = "payment_links_resource_after_completion"
     hosted_confirmation = Column(
-        PaymentLinksResourceCompletionBehaviorConfirmationPage, nullable=True
+        payment_links_resource_completion_behavior_confirmation_page,
+        ForeignKey("payment_links_resource_completion_behavior_confirmation_page"),
+        nullable=True,
     )
-    redirect = Column(PaymentLinksResourceCompletionBehaviorRedirect, nullable=True)
+    redirect = Column(
+        payment_links_resource_completion_behavior_redirect,
+        ForeignKey("payment_links_resource_completion_behavior_redirect"),
+        nullable=True,
+    )
     type = Column(
         String, comment="The specified behavior after the purchase is complete"
     )

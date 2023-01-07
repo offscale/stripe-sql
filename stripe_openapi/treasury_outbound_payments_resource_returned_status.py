@@ -5,7 +5,8 @@ class Treasury_Outbound_Payments_Resource_Returned_Status(Base):
     __tablename__ = "treasury_outbound_payments_resource_returned_status"
     code = Column(String, comment="Reason for the return")
     transaction = Column(
-        Treasury.Transaction, comment="The Transaction associated with this object"
+        treasury.transaction,
+        comment="[[FK(treasury.transaction)]] The Transaction associated with this object",
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

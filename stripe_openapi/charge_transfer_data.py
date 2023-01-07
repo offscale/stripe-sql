@@ -9,8 +9,8 @@ class Charge_Transfer_Data(Base):
         nullable=True,
     )
     destination = Column(
-        Account,
-        comment="ID of an existing, connected Stripe account to transfer funds to if `transfer_data` was specified in the charge request",
+        account,
+        comment="[[FK(account)]] ID of an existing, connected Stripe account to transfer funds to if `transfer_data` was specified in the charge request",
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

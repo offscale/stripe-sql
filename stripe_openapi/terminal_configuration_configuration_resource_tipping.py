@@ -4,46 +4,102 @@ from sqlalchemy import Column, Integer
 class Terminal_Configuration_Configuration_Resource_Tipping(Base):
     __tablename__ = "terminal_configuration_configuration_resource_tipping"
     aud = Column(
-        TerminalConfigurationConfigurationResourceCurrencySpecificConfig, nullable=True
+        terminal_configuration_configuration_resource_currency_specific_config,
+        ForeignKey(
+            "terminal_configuration_configuration_resource_currency_specific_config"
+        ),
+        nullable=True,
     )
     cad = Column(
-        TerminalConfigurationConfigurationResourceCurrencySpecificConfig, nullable=True
+        terminal_configuration_configuration_resource_currency_specific_config,
+        ForeignKey(
+            "terminal_configuration_configuration_resource_currency_specific_config"
+        ),
+        nullable=True,
     )
     chf = Column(
-        TerminalConfigurationConfigurationResourceCurrencySpecificConfig, nullable=True
+        terminal_configuration_configuration_resource_currency_specific_config,
+        ForeignKey(
+            "terminal_configuration_configuration_resource_currency_specific_config"
+        ),
+        nullable=True,
     )
     czk = Column(
-        TerminalConfigurationConfigurationResourceCurrencySpecificConfig, nullable=True
+        terminal_configuration_configuration_resource_currency_specific_config,
+        ForeignKey(
+            "terminal_configuration_configuration_resource_currency_specific_config"
+        ),
+        nullable=True,
     )
     dkk = Column(
-        TerminalConfigurationConfigurationResourceCurrencySpecificConfig, nullable=True
+        terminal_configuration_configuration_resource_currency_specific_config,
+        ForeignKey(
+            "terminal_configuration_configuration_resource_currency_specific_config"
+        ),
+        nullable=True,
     )
     eur = Column(
-        TerminalConfigurationConfigurationResourceCurrencySpecificConfig, nullable=True
+        terminal_configuration_configuration_resource_currency_specific_config,
+        ForeignKey(
+            "terminal_configuration_configuration_resource_currency_specific_config"
+        ),
+        nullable=True,
     )
     gbp = Column(
-        TerminalConfigurationConfigurationResourceCurrencySpecificConfig, nullable=True
+        terminal_configuration_configuration_resource_currency_specific_config,
+        ForeignKey(
+            "terminal_configuration_configuration_resource_currency_specific_config"
+        ),
+        nullable=True,
     )
     hkd = Column(
-        TerminalConfigurationConfigurationResourceCurrencySpecificConfig, nullable=True
+        terminal_configuration_configuration_resource_currency_specific_config,
+        ForeignKey(
+            "terminal_configuration_configuration_resource_currency_specific_config"
+        ),
+        nullable=True,
     )
     myr = Column(
-        TerminalConfigurationConfigurationResourceCurrencySpecificConfig, nullable=True
+        terminal_configuration_configuration_resource_currency_specific_config,
+        ForeignKey(
+            "terminal_configuration_configuration_resource_currency_specific_config"
+        ),
+        nullable=True,
     )
     nok = Column(
-        TerminalConfigurationConfigurationResourceCurrencySpecificConfig, nullable=True
+        terminal_configuration_configuration_resource_currency_specific_config,
+        ForeignKey(
+            "terminal_configuration_configuration_resource_currency_specific_config"
+        ),
+        nullable=True,
     )
     nzd = Column(
-        TerminalConfigurationConfigurationResourceCurrencySpecificConfig, nullable=True
+        terminal_configuration_configuration_resource_currency_specific_config,
+        ForeignKey(
+            "terminal_configuration_configuration_resource_currency_specific_config"
+        ),
+        nullable=True,
     )
     sek = Column(
-        TerminalConfigurationConfigurationResourceCurrencySpecificConfig, nullable=True
+        terminal_configuration_configuration_resource_currency_specific_config,
+        ForeignKey(
+            "terminal_configuration_configuration_resource_currency_specific_config"
+        ),
+        nullable=True,
     )
     sgd = Column(
-        TerminalConfigurationConfigurationResourceCurrencySpecificConfig, nullable=True
+        terminal_configuration_configuration_resource_currency_specific_config,
+        ForeignKey(
+            "terminal_configuration_configuration_resource_currency_specific_config"
+        ),
+        nullable=True,
     )
     usd = Column(
-        TerminalConfigurationConfigurationResourceCurrencySpecificConfig, nullable=True
+        terminal_configuration_configuration_resource_currency_specific_config,
+        ForeignKey(
+            "terminal_configuration_configuration_resource_currency_specific_config"
+        ),
+        nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

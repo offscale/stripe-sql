@@ -14,7 +14,9 @@ class Quotes_Resource_Upfront(Base):
         comment="The line items that will appear on the next invoice after this quote is accepted. This does not include pending invoice items that exist on the customer but may still be included in the next invoice",
         nullable=True,
     )
-    total_details = Column(QuotesResourceTotalDetails)
+    total_details = Column(
+        quotes_resource_total_details, ForeignKey("quotes_resource_total_details")
+    )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

@@ -3,7 +3,7 @@ from sqlalchemy import Column, Integer, String
 
 class Shipping(Base):
     __tablename__ = "shipping"
-    address = Column(Address, nullable=True)
+    address = Column(address, ForeignKey("address"), nullable=True)
     carrier = Column(
         String,
         comment="The delivery service that shipped a physical product, such as Fedex, UPS, USPS, etc",

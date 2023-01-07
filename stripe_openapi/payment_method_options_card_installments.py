@@ -12,8 +12,8 @@ class Payment_Method_Options_Card_Installments(Base):
         Boolean, comment="Whether Installments are enabled for this PaymentIntent"
     )
     plan = Column(
-        PaymentMethodDetailsCardInstallmentsPlan,
-        comment="Installment plan selected for this PaymentIntent",
+        payment_method_details_card_installments_plan,
+        comment="[[FK(payment_method_details_card_installments_plan)]] Installment plan selected for this PaymentIntent",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

@@ -24,8 +24,8 @@ class Payment_Pages_Checkout_Session_Invoice_Settings(Base):
         nullable=True,
     )
     rendering_options = Column(
-        InvoiceSettingRenderingOptions,
-        comment="Options for invoice PDF rendering",
+        invoice_setting_rendering_options,
+        comment="[[FK(invoice_setting_rendering_options)]] Options for invoice PDF rendering",
         nullable=True,
     )
 

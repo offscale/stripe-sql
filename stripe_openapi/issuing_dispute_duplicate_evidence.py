@@ -4,23 +4,23 @@ from sqlalchemy import Column, Integer, String
 class Issuing_Dispute_Duplicate_Evidence(Base):
     __tablename__ = "issuing_dispute_duplicate_evidence"
     additional_documentation = Column(
-        File,
-        comment="(ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Additional documentation supporting the dispute",
+        file,
+        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Additional documentation supporting the dispute",
         nullable=True,
     )
     card_statement = Column(
-        File,
-        comment="(ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Copy of the card statement showing that the product had already been paid for",
+        file,
+        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Copy of the card statement showing that the product had already been paid for",
         nullable=True,
     )
     cash_receipt = Column(
-        File,
-        comment="(ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Copy of the receipt showing that the product had been paid for in cash",
+        file,
+        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Copy of the receipt showing that the product had been paid for in cash",
         nullable=True,
     )
     check_image = Column(
-        File,
-        comment="(ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Image of the front and back of the check that was used to pay for the product",
+        file,
+        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Image of the front and back of the check that was used to pay for the product",
         nullable=True,
     )
     explanation = Column(

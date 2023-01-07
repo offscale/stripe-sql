@@ -4,8 +4,8 @@ from sqlalchemy import Column, Integer, String
 class Refund_Next_Action(Base):
     __tablename__ = "refund_next_action"
     display_details = Column(
-        RefundNextActionDisplayDetails,
-        comment="Contains the refund details",
+        refund_next_action_display_details,
+        comment="[[FK(refund_next_action_display_details)]] Contains the refund details",
         nullable=True,
     )
     type = Column(String, comment="Type of the next action to perform")

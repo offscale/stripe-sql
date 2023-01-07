@@ -7,16 +7,32 @@ class Funding_Instructions_Bank_Transfer_Financial_Address(Base):
     """
 
     __tablename__ = "funding_instructions_bank_transfer_financial_address"
-    iban = Column(FundingInstructionsBankTransferIbanRecord, nullable=True)
-    sort_code = Column(FundingInstructionsBankTransferSortCodeRecord, nullable=True)
-    spei = Column(FundingInstructionsBankTransferSpeiRecord, nullable=True)
+    iban = Column(
+        funding_instructions_bank_transfer_iban_record,
+        ForeignKey("funding_instructions_bank_transfer_iban_record"),
+        nullable=True,
+    )
+    sort_code = Column(
+        funding_instructions_bank_transfer_sort_code_record,
+        ForeignKey("funding_instructions_bank_transfer_sort_code_record"),
+        nullable=True,
+    )
+    spei = Column(
+        funding_instructions_bank_transfer_spei_record,
+        ForeignKey("funding_instructions_bank_transfer_spei_record"),
+        nullable=True,
+    )
     supported_networks = Column(
         ARRAY(String),
         comment="The payment networks supported by this FinancialAddress",
         nullable=True,
     )
     type = Column(String, comment="The type of financial address")
-    zengin = Column(FundingInstructionsBankTransferZenginRecord, nullable=True)
+    zengin = Column(
+        funding_instructions_bank_transfer_zengin_record,
+        ForeignKey("funding_instructions_bank_transfer_zengin_record"),
+        nullable=True,
+    )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

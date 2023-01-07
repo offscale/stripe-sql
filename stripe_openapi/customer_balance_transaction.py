@@ -23,8 +23,8 @@ class Customer_Balance_Transaction(Base):
         comment="Time at which the object was created. Measured in seconds since the Unix epoch",
     )
     credit_note = Column(
-        CreditNote,
-        comment="The ID of the credit note (if any) related to the transaction",
+        credit_note,
+        comment="[[FK(credit_note)]] The ID of the credit note (if any) related to the transaction",
         nullable=True,
     )
     currency = Column(
@@ -32,7 +32,8 @@ class Customer_Balance_Transaction(Base):
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",
     )
     customer = Column(
-        Customer, comment="The ID of the customer the transaction belongs to"
+        customer,
+        comment="[[FK(customer)]] The ID of the customer the transaction belongs to",
     )
     description = Column(
         String,
@@ -45,8 +46,8 @@ class Customer_Balance_Transaction(Base):
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     invoice = Column(
-        Invoice,
-        comment="The ID of the invoice (if any) related to the transaction",
+        invoice,
+        comment="[[FK(invoice)]] The ID of the invoice (if any) related to the transaction",
         nullable=True,
     )
     livemode = Column(

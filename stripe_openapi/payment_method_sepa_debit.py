@@ -24,8 +24,8 @@ class Payment_Method_Sepa_Debit(Base):
         nullable=True,
     )
     generated_from = Column(
-        SepaDebitGeneratedFrom,
-        comment="Information about the object that generated this PaymentMethod",
+        sepa_debit_generated_from,
+        comment="[[FK(sepa_debit_generated_from)]] Information about the object that generated this PaymentMethod",
         nullable=True,
     )
     last4 = Column(String, comment="Last four characters of the IBAN", nullable=True)

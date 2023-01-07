@@ -24,8 +24,8 @@ class Treasury_Received_Credits_Resource_Linked_Flows(Base):
         nullable=True,
     )
     source_flow_details = Column(
-        TreasuryReceivedCreditsResourceSourceFlowsDetails,
-        comment="The expandable object of the source flow",
+        treasury_received_credits_resource_source_flows_details,
+        comment="[[FK(treasury_received_credits_resource_source_flows_details)]] The expandable object of the source flow",
         nullable=True,
     )
     source_flow_type = Column(

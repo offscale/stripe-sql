@@ -29,8 +29,8 @@ class Payout(Base):
         comment="Returns `true` if the payout was created by an [automated payout schedule](https://stripe.com/docs/payouts#payout-schedule), and `false` if it was [requested manually](https://stripe.com/docs/payouts#manual-payouts)",
     )
     balance_transaction = Column(
-        BalanceTransaction,
-        comment="ID of the balance transaction that describes the impact of this payout on your account balance",
+        balance_transaction,
+        comment="[[FK(balance_transaction)]] ID of the balance transaction that describes the impact of this payout on your account balance",
         nullable=True,
     )
     created = Column(
@@ -47,13 +47,13 @@ class Payout(Base):
         nullable=True,
     )
     destination = Column(
-        string | ExternalAccount,
-        comment="ID of the bank account or card the payout was sent to",
+        string | external_account,
+        comment="[[FK(deleted_external_account)]] ID of the bank account or card the payout was sent to",
         nullable=True,
     )
     failure_balance_transaction = Column(
-        BalanceTransaction,
-        comment="If the payout failed or was canceled, this will be the ID of the balance transaction that reversed the initial balance transaction, and puts the funds from the failed payout back in your balance",
+        balance_transaction,
+        comment="[[FK(balance_transaction)]] If the payout failed or was canceled, this will be the ID of the balance transaction that reversed the initial balance transaction, and puts the funds from the failed payout back in your balance",
         nullable=True,
     )
     failure_code = Column(
@@ -85,13 +85,13 @@ class Payout(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     original_payout = Column(
-        Payout,
-        comment="If the payout reverses another, this is the ID of the original payout",
+        payout,
+        comment="[[FK(payout)]] If the payout reverses another, this is the ID of the original payout",
         nullable=True,
     )
     reversed_by = Column(
-        Payout,
-        comment="If the payout was reversed, this is the ID of the payout that reverses this payout",
+        payout,
+        comment="[[FK(payout)]] If the payout was reversed, this is the ID of the payout that reverses this payout",
         nullable=True,
     )
     source_type = Column(

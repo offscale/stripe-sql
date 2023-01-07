@@ -3,10 +3,12 @@ from sqlalchemy import Column, Integer, String
 
 class Gelato_Verified_Outputs(Base):
     __tablename__ = "gelato_verified_outputs"
-    address = Column(Address, comment="The user's verified address", nullable=True)
+    address = Column(
+        address, comment="[[FK(address)]] The user's verified address", nullable=True
+    )
     dob = Column(
-        GelatoDataVerifiedOutputsDate,
-        comment="The user’s verified date of birth",
+        gelato_data_verified_outputs_date,
+        comment="[[FK(gelato_data_verified_outputs_date)]] The user’s verified date of birth",
         nullable=True,
     )
     first_name = Column(String, comment="The user's verified first name", nullable=True)

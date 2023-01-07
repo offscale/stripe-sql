@@ -7,22 +7,29 @@ class Mandate(Base):
     """
 
     __tablename__ = "mandate"
-    customer_acceptance = Column(CustomerAcceptance)
+    customer_acceptance = Column(customer_acceptance, ForeignKey("customer_acceptance"))
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     livemode = Column(
         Boolean,
         comment="Has the value `true` if the object exists in live mode or the value `false` if the object exists in test mode",
     )
-    multi_use = Column(MandateMultiUse, nullable=True)
+    multi_use = Column(
+        mandate_multi_use, ForeignKey("mandate_multi_use"), nullable=True
+    )
     object = Column(
         String,
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     payment_method = Column(
-        PaymentMethod, comment="ID of the payment method associated with this mandate"
+        payment_method,
+        comment="[[FK(payment_method)]] ID of the payment method associated with this mandate",
     )
-    payment_method_details = Column(MandatePaymentMethodDetails)
-    single_use = Column(MandateSingleUse, nullable=True)
+    payment_method_details = Column(
+        mandate_payment_method_details, ForeignKey("mandate_payment_method_details")
+    )
+    single_use = Column(
+        mandate_single_use, ForeignKey("mandate_single_use"), nullable=True
+    )
     status = Column(
         String,
         comment="The status of the mandate, which indicates whether it can be used to initiate a payment",

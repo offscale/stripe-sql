@@ -8,8 +8,8 @@ class Terminal_Reader_Reader_Resource_Set_Reader_Display_Action(Base):
 
     __tablename__ = "terminal_reader_reader_resource_set_reader_display_action"
     cart = Column(
-        TerminalReaderReaderResourceCart,
-        comment="Cart object to be displayed by the reader",
+        terminal_reader_reader_resource_cart,
+        comment="[[FK(terminal_reader_reader_resource_cart)]] Cart object to be displayed by the reader",
         nullable=True,
     )
     type = Column(String, comment="Type of information to be displayed by the reader")

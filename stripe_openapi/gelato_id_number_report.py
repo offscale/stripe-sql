@@ -7,10 +7,14 @@ class Gelato_Id_Number_Report(Base):
     """
 
     __tablename__ = "gelato_id_number_report"
-    dob = Column(GelatoDataIdNumberReportDate, comment="Date of birth", nullable=True)
+    dob = Column(
+        gelato_data_id_number_report_date,
+        comment="[[FK(gelato_data_id_number_report_date)]] Date of birth",
+        nullable=True,
+    )
     error = Column(
-        GelatoIdNumberReportError,
-        comment="Details on the verification error. Present when status is `unverified`",
+        gelato_id_number_report_error,
+        comment="[[FK(gelato_id_number_report_error)]] Details on the verification error. Present when status is `unverified`",
         nullable=True,
     )
     first_name = Column(String, comment="First name", nullable=True)

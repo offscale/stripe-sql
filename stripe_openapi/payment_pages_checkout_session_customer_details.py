@@ -4,8 +4,8 @@ from sqlalchemy import Column, String
 class Payment_Pages_Checkout_Session_Customer_Details(Base):
     __tablename__ = "payment_pages_checkout_session_customer_details"
     address = Column(
-        Address,
-        comment="The customer's address after a completed Checkout Session. Note: This property is populated only for sessions on or after March 30, 2022",
+        address,
+        comment="[[FK(address)]] The customer's address after a completed Checkout Session. Note: This property is populated only for sessions on or after March 30, 2022",
         nullable=True,
     )
     email = Column(

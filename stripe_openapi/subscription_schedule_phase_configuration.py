@@ -16,15 +16,19 @@ class Subscription_Schedule_Phase_Configuration(Base):
         comment="A non-negative decimal between 0 and 100, with at most two decimal places. This represents the percentage of the subscription invoice subtotal that will be transferred to the application owner's Stripe account during this phase of the schedule",
         nullable=True,
     )
-    automatic_tax = Column(SchedulesPhaseAutomaticTax, nullable=True)
+    automatic_tax = Column(
+        schedules_phase_automatic_tax,
+        ForeignKey("schedules_phase_automatic_tax"),
+        nullable=True,
+    )
     billing_cycle_anchor = Column(
         String,
         comment="Possible values are `phase_start` or `automatic`. If `phase_start` then billing cycle anchor of the subscription is set to the start of the phase when entering the phase. If `automatic` then the billing cycle anchor is automatically modified as needed when entering the phase. For more information, see the billing cycle [documentation](https://stripe.com/docs/billing/subscriptions/billing-cycle)",
         nullable=True,
     )
     billing_thresholds = Column(
-        SubscriptionBillingThresholds,
-        comment="Define thresholds at which an invoice will be sent, and the subscription advanced to a new billing period",
+        subscription_billing_thresholds,
+        comment="[[FK(subscription_billing_thresholds)]] Define thresholds at which an invoice will be sent, and the subscription advanced to a new billing period",
         nullable=True,
     )
     collection_method = Column(
@@ -33,8 +37,8 @@ class Subscription_Schedule_Phase_Configuration(Base):
         nullable=True,
     )
     coupon = Column(
-        string | Coupon,
-        comment="ID of the coupon to use during this phase of the subscription schedule",
+        string | coupon,
+        comment="[[FK(deleted_coupon)]] ID of the coupon to use during this phase of the subscription schedule",
         nullable=True,
     )
     currency = Column(
@@ -42,8 +46,8 @@ class Subscription_Schedule_Phase_Configuration(Base):
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",
     )
     default_payment_method = Column(
-        PaymentMethod,
-        comment="ID of the default payment method for the subscription schedule. It must belong to the customer associated with the subscription schedule. If not set, invoices will use the default payment method in the customer's invoice settings",
+        payment_method,
+        comment="[[FK(payment_method)]] ID of the default payment method for the subscription schedule. It must belong to the customer associated with the subscription schedule. If not set, invoices will use the default payment method in the customer's invoice settings",
         nullable=True,
     )
     default_tax_rates = Column(
@@ -60,8 +64,8 @@ class Subscription_Schedule_Phase_Configuration(Base):
         Integer, comment="The end of this phase of the subscription schedule"
     )
     invoice_settings = Column(
-        InvoiceSettingSubscriptionScheduleSetting,
-        comment="The invoice settings applicable during this phase",
+        invoice_setting_subscription_schedule_setting,
+        comment="[[FK(invoice_setting_subscription_schedule_setting)]] The invoice settings applicable during this phase",
         nullable=True,
     )
     items = Column(
@@ -74,8 +78,8 @@ class Subscription_Schedule_Phase_Configuration(Base):
         nullable=True,
     )
     on_behalf_of = Column(
-        Account,
-        comment="The account (if any) the charge was made on behalf of for charges associated with the schedule's subscription. See the Connect documentation for details",
+        account,
+        comment="[[FK(account)]] The account (if any) the charge was made on behalf of for charges associated with the schedule's subscription. See the Connect documentation for details",
         nullable=True,
     )
     proration_behavior = Column(
@@ -86,8 +90,8 @@ class Subscription_Schedule_Phase_Configuration(Base):
         Integer, comment="The start of this phase of the subscription schedule"
     )
     transfer_data = Column(
-        SubscriptionTransferData,
-        comment="The account (if any) the associated subscription's payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the subscription's invoices",
+        subscription_transfer_data,
+        comment="[[FK(subscription_transfer_data)]] The account (if any) the associated subscription's payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the subscription's invoices",
         nullable=True,
     )
     trial_end = Column(

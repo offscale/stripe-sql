@@ -43,7 +43,9 @@ class Country_Spec(Base):
         ARRAY(String),
         comment="Countries that can accept transfers from the specified country",
     )
-    verification_fields = Column(CountrySpecVerificationFields)
+    verification_fields = Column(
+        country_spec_verification_fields, ForeignKey("country_spec_verification_fields")
+    )
 
     def __repr__(self):
         """

@@ -4,13 +4,13 @@ from sqlalchemy import Column, Integer
 class Payment_Links_Resource_Custom_Text(Base):
     __tablename__ = "payment_links_resource_custom_text"
     shipping_address = Column(
-        PaymentLinksResourceCustomTextPosition,
-        comment="Custom text that should be displayed alongside shipping address collection",
+        payment_links_resource_custom_text_position,
+        comment="[[FK(payment_links_resource_custom_text_position)]] Custom text that should be displayed alongside shipping address collection",
         nullable=True,
     )
     submit = Column(
-        PaymentLinksResourceCustomTextPosition,
-        comment="Custom text that should be displayed alongside the payment confirmation button",
+        payment_links_resource_custom_text_position,
+        comment="[[FK(payment_links_resource_custom_text_position)]] Custom text that should be displayed alongside the payment confirmation button",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

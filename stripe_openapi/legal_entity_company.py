@@ -3,15 +3,15 @@ from sqlalchemy import Boolean, Column, Integer, String
 
 class Legal_Entity_Company(Base):
     __tablename__ = "legal_entity_company"
-    address = Column(Address, nullable=True)
+    address = Column(address, ForeignKey("address"), nullable=True)
     address_kana = Column(
-        LegalEntityJapanAddress,
-        comment="The Kana variation of the company's primary address (Japan only)",
+        legal_entity_japan_address,
+        comment="[[FK(legal_entity_japan_address)]] The Kana variation of the company's primary address (Japan only)",
         nullable=True,
     )
     address_kanji = Column(
-        LegalEntityJapanAddress,
-        comment="The Kanji variation of the company's primary address (Japan only)",
+        legal_entity_japan_address,
+        comment="[[FK(legal_entity_japan_address)]] The Kanji variation of the company's primary address (Japan only)",
         nullable=True,
     )
     directors_provided = Column(
@@ -41,8 +41,8 @@ class Legal_Entity_Company(Base):
         nullable=True,
     )
     ownership_declaration = Column(
-        LegalEntityUboDeclaration,
-        comment="This hash is used to attest that the beneficial owner information provided to Stripe is both current and correct",
+        legal_entity_ubo_declaration,
+        comment="[[FK(legal_entity_ubo_declaration)]] This hash is used to attest that the beneficial owner information provided to Stripe is both current and correct",
         nullable=True,
     )
     phone = Column(
@@ -71,8 +71,8 @@ class Legal_Entity_Company(Base):
         nullable=True,
     )
     verification = Column(
-        LegalEntityCompanyVerification,
-        comment="Information on the verification state of the company",
+        legal_entity_company_verification,
+        comment="[[FK(legal_entity_company_verification)]] Information on the verification state of the company",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

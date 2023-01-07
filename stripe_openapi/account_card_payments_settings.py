@@ -3,7 +3,11 @@ from sqlalchemy import Column, Integer, String
 
 class Account_Card_Payments_Settings(Base):
     __tablename__ = "account_card_payments_settings"
-    decline_on = Column(AccountDeclineChargeOn, nullable=True)
+    decline_on = Column(
+        account_decline_charge_on,
+        ForeignKey("account_decline_charge_on"),
+        nullable=True,
+    )
     statement_descriptor_prefix = Column(
         String,
         comment="The default text that appears on credit card statements when a charge is made. This field prefixes any dynamic `statement_descriptor` specified on the charge. `statement_descriptor_prefix` is useful for maximizing descriptor space for the dynamic portion",

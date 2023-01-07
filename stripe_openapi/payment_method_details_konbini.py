@@ -4,8 +4,8 @@ from sqlalchemy import Column, Integer
 class Payment_Method_Details_Konbini(Base):
     __tablename__ = "payment_method_details_konbini"
     store = Column(
-        PaymentMethodDetailsKonbiniStore,
-        comment="If the payment succeeded, this contains the details of the convenience store where the payment was completed",
+        payment_method_details_konbini_store,
+        comment="[[FK(payment_method_details_konbini_store)]] If the payment succeeded, this contains the details of the convenience store where the payment was completed",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

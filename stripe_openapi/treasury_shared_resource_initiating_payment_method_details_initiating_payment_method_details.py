@@ -6,9 +6,14 @@ class Treasury_Shared_Resource_Initiating_Payment_Method_Details_Initiating_Paym
 ):
     __tablename__ = "treasury_shared_resource_initiating_payment_method_details_initiating_payment_method_details"
     balance = Column(String, comment="Set when `type` is `balance`", nullable=True)
-    billing_details = Column(TreasurySharedResourceBillingDetails)
+    billing_details = Column(
+        treasury_shared_resource_billing_details,
+        ForeignKey("treasury_shared_resource_billing_details"),
+    )
     financial_account = Column(
-        ReceivedPaymentMethodDetailsFinancialAccount, nullable=True
+        received_payment_method_details_financial_account,
+        ForeignKey("received_payment_method_details_financial_account"),
+        nullable=True,
     )
     issuing_card = Column(
         String,
@@ -20,7 +25,11 @@ class Treasury_Shared_Resource_Initiating_Payment_Method_Details_Initiating_Paym
         comment="Polymorphic type matching the originating money movement's source. This can be an external account, a Stripe balance, or a FinancialAccount",
     )
     us_bank_account = Column(
-        TreasurySharedResourceInitiatingPaymentMethodDetailsUsBankAccount, nullable=True
+        treasury_shared_resource_initiating_payment_method_details_us_bank_account,
+        ForeignKey(
+            "treasury_shared_resource_initiating_payment_method_details_us_bank_account"
+        ),
+        nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

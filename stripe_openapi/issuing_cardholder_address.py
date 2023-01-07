@@ -3,7 +3,7 @@ from sqlalchemy import Column, Integer
 
 class Issuing_Cardholder_Address(Base):
     __tablename__ = "issuing_cardholder_address"
-    address = Column(Address)
+    address = Column(address, ForeignKey("address"))
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

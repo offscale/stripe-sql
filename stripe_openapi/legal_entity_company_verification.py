@@ -3,7 +3,10 @@ from sqlalchemy import Column, Integer
 
 class Legal_Entity_Company_Verification(Base):
     __tablename__ = "legal_entity_company_verification"
-    document = Column(LegalEntityCompanyVerificationDocument)
+    document = Column(
+        legal_entity_company_verification_document,
+        ForeignKey("legal_entity_company_verification_document"),
+    )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

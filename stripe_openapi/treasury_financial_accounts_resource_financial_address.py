@@ -7,7 +7,11 @@ class Treasury_Financial_Accounts_Resource_Financial_Address(Base):
     """
 
     __tablename__ = "treasury_financial_accounts_resource_financial_address"
-    aba = Column(TreasuryFinancialAccountsResourceAbaRecord, nullable=True)
+    aba = Column(
+        treasury_financial_accounts_resource_aba_record,
+        ForeignKey("treasury_financial_accounts_resource_aba_record"),
+        nullable=True,
+    )
     supported_networks = Column(
         ARRAY(String),
         comment="The list of networks that the address supports",

@@ -9,8 +9,8 @@ class Invoices_Payment_Settings(Base):
         nullable=True,
     )
     payment_method_options = Column(
-        InvoicesPaymentMethodOptions,
-        comment="Payment-method-specific configuration to provide to the invoice’s PaymentIntent",
+        invoices_payment_method_options,
+        comment="[[FK(invoices_payment_method_options)]] Payment-method-specific configuration to provide to the invoice’s PaymentIntent",
         nullable=True,
     )
     payment_method_types = Column(

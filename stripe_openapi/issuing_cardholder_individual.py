@@ -4,15 +4,15 @@ from sqlalchemy import Column, Integer, String
 class Issuing_Cardholder_Individual(Base):
     __tablename__ = "issuing_cardholder_individual"
     dob = Column(
-        IssuingCardholderIndividualDob,
-        comment="The date of birth of this cardholder",
+        issuing_cardholder_individual_dob,
+        comment="[[FK(issuing_cardholder_individual_dob)]] The date of birth of this cardholder",
         nullable=True,
     )
     first_name = Column(String, comment="The first name of this cardholder")
     last_name = Column(String, comment="The last name of this cardholder")
     verification = Column(
-        IssuingCardholderVerification,
-        comment="Government-issued ID document for this cardholder",
+        issuing_cardholder_verification,
+        comment="[[FK(issuing_cardholder_verification)]] Government-issued ID document for this cardholder",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

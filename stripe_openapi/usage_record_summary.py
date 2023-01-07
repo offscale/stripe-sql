@@ -17,7 +17,7 @@ class Usage_Record_Summary(Base):
         String,
         comment="String representing the object's type. Objects of the same type share the same value",
     )
-    period = Column(Period)
+    period = Column(period, ForeignKey("period"))
     subscription_item = Column(
         String, comment="The ID of the subscription item this summary is describing"
     )

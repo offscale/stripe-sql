@@ -71,8 +71,8 @@ class Plan(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     product = Column(
-        string | Product,
-        comment="The product whose pricing this plan determines",
+        string | product,
+        comment="[[FK(deleted_product)]] The product whose pricing this plan determines",
         nullable=True,
     )
     tiers = Column(
@@ -86,8 +86,8 @@ class Plan(Base):
         nullable=True,
     )
     transform_usage = Column(
-        TransformUsage,
-        comment="Apply a transformation to the reported usage or set quantity before computing the amount billed. Cannot be combined with `tiers`",
+        transform_usage,
+        comment="[[FK(transform_usage)]] Apply a transformation to the reported usage or set quantity before computing the amount billed. Cannot be combined with `tiers`",
         nullable=True,
     )
     trial_period_days = Column(

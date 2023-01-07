@@ -7,7 +7,9 @@ class Payment_Pages_Checkout_Session_Shipping_Option(Base):
         Integer,
         comment="A non-negative integer in cents representing how much to charge",
     )
-    shipping_rate = Column(ShippingRate, comment="The shipping rate")
+    shipping_rate = Column(
+        shipping_rate, comment="[[FK(shipping_rate)]] The shipping rate"
+    )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

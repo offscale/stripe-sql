@@ -6,7 +6,7 @@ class Invoices_From_Invoice(Base):
     action = Column(
         String, comment="The relation between this invoice and the cloned invoice"
     )
-    invoice = Column(Invoice, comment="The invoice that was cloned")
+    invoice = Column(invoice, comment="[[FK(invoice)]] The invoice that was cloned")
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

@@ -8,8 +8,8 @@ class Payment_Links_Resource_Shipping_Option(Base):
         comment="A non-negative integer in cents representing how much to charge",
     )
     shipping_rate = Column(
-        ShippingRate,
-        comment="The ID of the Shipping Rate to use for this shipping option",
+        shipping_rate,
+        comment="[[FK(shipping_rate)]] The ID of the Shipping Rate to use for this shipping option",
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

@@ -18,14 +18,14 @@ class Promotion_Code(Base):
         String,
         comment="The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for each customer",
     )
-    coupon = Column(Coupon)
+    coupon = Column(coupon, ForeignKey("coupon"))
     created = Column(
         Integer,
         comment="Time at which the object was created. Measured in seconds since the Unix epoch",
     )
     customer = Column(
-        string | Customer,
-        comment="The customer that this promotion code can be used by",
+        string | customer,
+        comment="[[FK(deleted_customer)]] The customer that this promotion code can be used by",
         nullable=True,
     )
     expires_at = Column(
@@ -52,7 +52,10 @@ class Promotion_Code(Base):
         String,
         comment="String representing the object's type. Objects of the same type share the same value",
     )
-    restrictions = Column(PromotionCodesResourceRestrictions)
+    restrictions = Column(
+        promotion_codes_resource_restrictions,
+        ForeignKey("promotion_codes_resource_restrictions"),
+    )
     times_redeemed = Column(
         Integer, comment="Number of times this promotion code has been used"
     )

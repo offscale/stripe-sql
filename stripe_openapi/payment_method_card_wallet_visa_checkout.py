@@ -4,8 +4,8 @@ from sqlalchemy import Column, Integer, String
 class Payment_Method_Card_Wallet_Visa_Checkout(Base):
     __tablename__ = "payment_method_card_wallet_visa_checkout"
     billing_address = Column(
-        Address,
-        comment="Owner's verified billing address. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated",
+        address,
+        comment="[[FK(address)]] Owner's verified billing address. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated",
         nullable=True,
     )
     email = Column(
@@ -19,8 +19,8 @@ class Payment_Method_Card_Wallet_Visa_Checkout(Base):
         nullable=True,
     )
     shipping_address = Column(
-        Address,
-        comment="Owner's verified shipping address. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated",
+        address,
+        comment="[[FK(address)]] Owner's verified shipping address. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

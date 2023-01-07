@@ -8,21 +8,23 @@ class Gelato_Document_Report(Base):
 
     __tablename__ = "gelato_document_report"
     address = Column(
-        Address, comment="Address as it appears in the document", nullable=True
+        address,
+        comment="[[FK(address)]] Address as it appears in the document",
+        nullable=True,
     )
     dob = Column(
-        GelatoDataDocumentReportDateOfBirth,
-        comment="Date of birth as it appears in the document",
+        gelato_data_document_report_date_of_birth,
+        comment="[[FK(gelato_data_document_report_date_of_birth)]] Date of birth as it appears in the document",
         nullable=True,
     )
     error = Column(
-        GelatoDocumentReportError,
-        comment="Details on the verification error. Present when status is `unverified`",
+        gelato_document_report_error,
+        comment="[[FK(gelato_document_report_error)]] Details on the verification error. Present when status is `unverified`",
         nullable=True,
     )
     expiration_date = Column(
-        GelatoDataDocumentReportExpirationDate,
-        comment="Expiration date of the document",
+        gelato_data_document_report_expiration_date,
+        comment="[[FK(gelato_data_document_report_expiration_date)]] Expiration date of the document",
         nullable=True,
     )
     files = Column(
@@ -34,8 +36,8 @@ class Gelato_Document_Report(Base):
         String, comment="First name as it appears in the document", nullable=True
     )
     issued_date = Column(
-        GelatoDataDocumentReportIssuedDate,
-        comment="Issued date of the document",
+        gelato_data_document_report_issued_date,
+        comment="[[FK(gelato_data_document_report_issued_date)]] Issued date of the document",
         nullable=True,
     )
     issuing_country = Column(

@@ -4,8 +4,8 @@ from sqlalchemy import Column, Integer
 class Payment_Method_Klarna(Base):
     __tablename__ = "payment_method_klarna"
     dob = Column(
-        PaymentFlowsPrivatePaymentMethodsKlarnaDob,
-        comment="The customer's date of birth, if provided",
+        payment_flows_private_payment_methods_klarna_dob,
+        comment="[[FK(payment_flows_private_payment_methods_klarna_dob)]] The customer's date of birth, if provided",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

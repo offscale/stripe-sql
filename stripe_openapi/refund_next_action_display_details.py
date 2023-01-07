@@ -3,7 +3,7 @@ from sqlalchemy import Column, Integer
 
 class Refund_Next_Action_Display_Details(Base):
     __tablename__ = "refund_next_action_display_details"
-    email_sent = Column(EmailSent)
+    email_sent = Column(email_sent, ForeignKey("email_sent"))
     expires_at = Column(Integer, comment="The expiry timestamp")
     id = Column(Integer, primary_key=True, server_default=Identity())
 

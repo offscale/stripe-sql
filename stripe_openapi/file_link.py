@@ -19,7 +19,7 @@ class File_Link(Base):
     expires_at = Column(
         Integer, comment="Time at which the link expires", nullable=True
     )
-    file = Column(File, comment="The file object this link points to")
+    file = Column(file, comment="[[FK(file)]] The file object this link points to")
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     livemode = Column(
         Boolean,

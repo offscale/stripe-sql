@@ -3,12 +3,22 @@ from sqlalchemy import Column, Integer
 
 class Portal_Features(Base):
     __tablename__ = "portal_features"
-    customer_update = Column(PortalCustomerUpdate)
-    invoice_history = Column(PortalInvoiceList)
-    payment_method_update = Column(PortalPaymentMethodUpdate)
-    subscription_cancel = Column(PortalSubscriptionCancel)
-    subscription_pause = Column(PortalSubscriptionPause)
-    subscription_update = Column(PortalSubscriptionUpdate)
+    customer_update = Column(
+        portal_customer_update, ForeignKey("portal_customer_update")
+    )
+    invoice_history = Column(portal_invoice_list, ForeignKey("portal_invoice_list"))
+    payment_method_update = Column(
+        portal_payment_method_update, ForeignKey("portal_payment_method_update")
+    )
+    subscription_cancel = Column(
+        portal_subscription_cancel, ForeignKey("portal_subscription_cancel")
+    )
+    subscription_pause = Column(
+        portal_subscription_pause, ForeignKey("portal_subscription_pause")
+    )
+    subscription_update = Column(
+        portal_subscription_update, ForeignKey("portal_subscription_update")
+    )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

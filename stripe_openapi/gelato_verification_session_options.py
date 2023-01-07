@@ -3,8 +3,17 @@ from sqlalchemy import Column
 
 class Gelato_Verification_Session_Options(Base):
     __tablename__ = "gelato_verification_session_options"
-    document = Column(GelatoSessionDocumentOptions, nullable=True)
-    id_number = Column(GelatoSessionIdNumberOptions, nullable=True, primary_key=True)
+    document = Column(
+        gelato_session_document_options,
+        ForeignKey("gelato_session_document_options"),
+        nullable=True,
+    )
+    id_number = Column(
+        gelato_session_id_number_options,
+        comment="[FK(gelato_session_id_number_options)]",
+        nullable=True,
+        primary_key=True,
+    )
 
     def __repr__(self):
         """

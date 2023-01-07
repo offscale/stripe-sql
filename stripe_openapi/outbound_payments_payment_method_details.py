@@ -3,15 +3,22 @@ from sqlalchemy import Column, Integer, String
 
 class Outbound_Payments_Payment_Method_Details(Base):
     __tablename__ = "outbound_payments_payment_method_details"
-    billing_details = Column(TreasurySharedResourceBillingDetails)
+    billing_details = Column(
+        treasury_shared_resource_billing_details,
+        ForeignKey("treasury_shared_resource_billing_details"),
+    )
     financial_account = Column(
-        OutboundPaymentsPaymentMethodDetailsFinancialAccount, nullable=True
+        outbound_payments_payment_method_details_financial_account,
+        ForeignKey("outbound_payments_payment_method_details_financial_account"),
+        nullable=True,
     )
     type = Column(
         String, comment="The type of the payment method used in the OutboundPayment"
     )
     us_bank_account = Column(
-        OutboundPaymentsPaymentMethodDetailsUsBankAccount, nullable=True
+        outbound_payments_payment_method_details_us_bank_account,
+        ForeignKey("outbound_payments_payment_method_details_us_bank_account"),
+        nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

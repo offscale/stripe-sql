@@ -3,7 +3,11 @@ from sqlalchemy import Column, Integer, String
 
 class Setup_Intent_Payment_Method_Options_Us_Bank_Account(Base):
     __tablename__ = "setup_intent_payment_method_options_us_bank_account"
-    financial_connections = Column(LinkedAccountOptionsUsBankAccount, nullable=True)
+    financial_connections = Column(
+        linked_account_options_us_bank_account,
+        ForeignKey("linked_account_options_us_bank_account"),
+        nullable=True,
+    )
     verification_method = Column(
         String, comment="Bank account verification method", nullable=True
     )

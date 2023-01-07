@@ -4,13 +4,13 @@ from sqlalchemy import Column, Integer
 class Sepa_Debit_Generated_From(Base):
     __tablename__ = "sepa_debit_generated_from"
     charge = Column(
-        Charge,
-        comment="The ID of the Charge that generated this PaymentMethod, if any",
+        charge,
+        comment="[[FK(charge)]] The ID of the Charge that generated this PaymentMethod, if any",
         nullable=True,
     )
     setup_attempt = Column(
-        SetupAttempt,
-        comment="The ID of the SetupAttempt that generated this PaymentMethod, if any",
+        setup_attempt,
+        comment="[[FK(setup_attempt)]] The ID of the SetupAttempt that generated this PaymentMethod, if any",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

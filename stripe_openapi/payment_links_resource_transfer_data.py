@@ -9,7 +9,7 @@ class Payment_Links_Resource_Transfer_Data(Base):
         nullable=True,
     )
     destination = Column(
-        Account, comment="The connected account receiving the transfer"
+        account, comment="[[FK(account)]] The connected account receiving the transfer"
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

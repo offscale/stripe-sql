@@ -3,8 +3,14 @@ from sqlalchemy import Column, Integer
 
 class Country_Spec_Verification_Fields(Base):
     __tablename__ = "country_spec_verification_fields"
-    company = Column(CountrySpecVerificationFieldDetails)
-    individual = Column(CountrySpecVerificationFieldDetails)
+    company = Column(
+        country_spec_verification_field_details,
+        ForeignKey("country_spec_verification_field_details"),
+    )
+    individual = Column(
+        country_spec_verification_field_details,
+        ForeignKey("country_spec_verification_field_details"),
+    )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

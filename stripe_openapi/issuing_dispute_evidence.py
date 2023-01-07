@@ -3,20 +3,44 @@ from sqlalchemy import Column, Integer, String
 
 class Issuing_Dispute_Evidence(Base):
     __tablename__ = "issuing_dispute_evidence"
-    canceled = Column(IssuingDisputeCanceledEvidence, nullable=True)
-    duplicate = Column(IssuingDisputeDuplicateEvidence, nullable=True)
-    fraudulent = Column(IssuingDisputeFraudulentEvidence, nullable=True)
-    merchandise_not_as_described = Column(
-        IssuingDisputeMerchandiseNotAsDescribedEvidence, nullable=True
+    canceled = Column(
+        issuing_dispute_canceled_evidence,
+        ForeignKey("issuing_dispute_canceled_evidence"),
+        nullable=True,
     )
-    not_received = Column(IssuingDisputeNotReceivedEvidence, nullable=True)
-    other = Column(IssuingDisputeOtherEvidence, nullable=True)
+    duplicate = Column(
+        issuing_dispute_duplicate_evidence,
+        ForeignKey("issuing_dispute_duplicate_evidence"),
+        nullable=True,
+    )
+    fraudulent = Column(
+        issuing_dispute_fraudulent_evidence,
+        ForeignKey("issuing_dispute_fraudulent_evidence"),
+        nullable=True,
+    )
+    merchandise_not_as_described = Column(
+        issuing_dispute_merchandise_not_as_described_evidence,
+        ForeignKey("issuing_dispute_merchandise_not_as_described_evidence"),
+        nullable=True,
+    )
+    not_received = Column(
+        issuing_dispute_not_received_evidence,
+        ForeignKey("issuing_dispute_not_received_evidence"),
+        nullable=True,
+    )
+    other = Column(
+        issuing_dispute_other_evidence,
+        ForeignKey("issuing_dispute_other_evidence"),
+        nullable=True,
+    )
     reason = Column(
         String,
         comment="The reason for filing the dispute. Its value will match the field containing the evidence",
     )
     service_not_as_described = Column(
-        IssuingDisputeServiceNotAsDescribedEvidence, nullable=True
+        issuing_dispute_service_not_as_described_evidence,
+        ForeignKey("issuing_dispute_service_not_as_described_evidence"),
+        nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

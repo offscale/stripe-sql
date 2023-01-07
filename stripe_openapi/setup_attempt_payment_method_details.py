@@ -3,25 +3,79 @@ from sqlalchemy import Column, Integer, String
 
 class Setup_Attempt_Payment_Method_Details(Base):
     __tablename__ = "setup_attempt_payment_method_details"
-    acss_debit = Column(SetupAttemptPaymentMethodDetailsAcssDebit, nullable=True)
-    au_becs_debit = Column(SetupAttemptPaymentMethodDetailsAuBecsDebit, nullable=True)
-    bacs_debit = Column(SetupAttemptPaymentMethodDetailsBacsDebit, nullable=True)
-    bancontact = Column(SetupAttemptPaymentMethodDetailsBancontact, nullable=True)
-    blik = Column(SetupAttemptPaymentMethodDetailsBlik, nullable=True)
-    boleto = Column(SetupAttemptPaymentMethodDetailsBoleto, nullable=True)
-    card = Column(SetupAttemptPaymentMethodDetailsCard, nullable=True)
-    card_present = Column(SetupAttemptPaymentMethodDetailsCardPresent, nullable=True)
-    ideal = Column(SetupAttemptPaymentMethodDetailsIdeal, nullable=True)
-    klarna = Column(SetupAttemptPaymentMethodDetailsKlarna, nullable=True)
-    link = Column(SetupAttemptPaymentMethodDetailsLink, nullable=True)
-    sepa_debit = Column(SetupAttemptPaymentMethodDetailsSepaDebit, nullable=True)
-    sofort = Column(SetupAttemptPaymentMethodDetailsSofort, nullable=True)
+    acss_debit = Column(
+        setup_attempt_payment_method_details_acss_debit,
+        ForeignKey("setup_attempt_payment_method_details_acss_debit"),
+        nullable=True,
+    )
+    au_becs_debit = Column(
+        setup_attempt_payment_method_details_au_becs_debit,
+        ForeignKey("setup_attempt_payment_method_details_au_becs_debit"),
+        nullable=True,
+    )
+    bacs_debit = Column(
+        setup_attempt_payment_method_details_bacs_debit,
+        ForeignKey("setup_attempt_payment_method_details_bacs_debit"),
+        nullable=True,
+    )
+    bancontact = Column(
+        setup_attempt_payment_method_details_bancontact,
+        ForeignKey("setup_attempt_payment_method_details_bancontact"),
+        nullable=True,
+    )
+    blik = Column(
+        setup_attempt_payment_method_details_blik,
+        ForeignKey("setup_attempt_payment_method_details_blik"),
+        nullable=True,
+    )
+    boleto = Column(
+        setup_attempt_payment_method_details_boleto,
+        ForeignKey("setup_attempt_payment_method_details_boleto"),
+        nullable=True,
+    )
+    card = Column(
+        setup_attempt_payment_method_details_card,
+        ForeignKey("setup_attempt_payment_method_details_card"),
+        nullable=True,
+    )
+    card_present = Column(
+        setup_attempt_payment_method_details_card_present,
+        ForeignKey("setup_attempt_payment_method_details_card_present"),
+        nullable=True,
+    )
+    ideal = Column(
+        setup_attempt_payment_method_details_ideal,
+        ForeignKey("setup_attempt_payment_method_details_ideal"),
+        nullable=True,
+    )
+    klarna = Column(
+        setup_attempt_payment_method_details_klarna,
+        ForeignKey("setup_attempt_payment_method_details_klarna"),
+        nullable=True,
+    )
+    link = Column(
+        setup_attempt_payment_method_details_link,
+        ForeignKey("setup_attempt_payment_method_details_link"),
+        nullable=True,
+    )
+    sepa_debit = Column(
+        setup_attempt_payment_method_details_sepa_debit,
+        ForeignKey("setup_attempt_payment_method_details_sepa_debit"),
+        nullable=True,
+    )
+    sofort = Column(
+        setup_attempt_payment_method_details_sofort,
+        ForeignKey("setup_attempt_payment_method_details_sofort"),
+        nullable=True,
+    )
     type = Column(
         String,
         comment="The type of the payment method used in the SetupIntent (e.g., `card`). An additional hash is included on `payment_method_details` with a name matching this value. It contains confirmation-specific information for the payment method",
     )
     us_bank_account = Column(
-        SetupAttemptPaymentMethodDetailsUsBankAccount, nullable=True
+        setup_attempt_payment_method_details_us_bank_account,
+        ForeignKey("setup_attempt_payment_method_details_us_bank_account"),
+        nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

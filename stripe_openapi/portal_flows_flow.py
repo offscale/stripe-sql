@@ -3,10 +3,13 @@ from sqlalchemy import Column, Integer, String
 
 class Portal_Flows_Flow(Base):
     __tablename__ = "portal_flows_flow"
-    after_completion = Column(PortalFlowsFlowAfterCompletion)
+    after_completion = Column(
+        portal_flows_flow_after_completion,
+        ForeignKey("portal_flows_flow_after_completion"),
+    )
     subscription_cancel = Column(
-        PortalFlowsFlowSubscriptionCancel,
-        comment="Configuration when `flow.type=subscription_cancel`",
+        portal_flows_flow_subscription_cancel,
+        comment="[[FK(portal_flows_flow_subscription_cancel)]] Configuration when `flow.type=subscription_cancel`",
         nullable=True,
     )
     type = Column(String, comment="Type of flow that the customer will go through")

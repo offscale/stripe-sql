@@ -11,7 +11,10 @@ class Payment_Intent_Next_Action_Konbini(Base):
         comment="The URL for the Konbini payment instructions page, which allows customers to view and print a Konbini voucher",
         nullable=True,
     )
-    stores = Column(PaymentIntentNextActionKonbiniStores)
+    stores = Column(
+        payment_intent_next_action_konbini_stores,
+        ForeignKey("payment_intent_next_action_konbini_stores"),
+    )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

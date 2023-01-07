@@ -4,7 +4,9 @@ from sqlalchemy import Column, Integer, String
 class Payment_Method_Options_Customer_Balance_Bank_Transfer(Base):
     __tablename__ = "payment_method_options_customer_balance_bank_transfer"
     eu_bank_transfer = Column(
-        PaymentMethodOptionsCustomerBalanceEuBankAccount, nullable=True
+        payment_method_options_customer_balance_eu_bank_account,
+        ForeignKey("payment_method_options_customer_balance_eu_bank_account"),
+        nullable=True,
     )
     requested_address_types = Column(
         ARRAY(String),

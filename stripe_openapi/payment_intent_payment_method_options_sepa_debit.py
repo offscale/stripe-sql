@@ -4,7 +4,9 @@ from sqlalchemy import Column, Integer, String
 class Payment_Intent_Payment_Method_Options_Sepa_Debit(Base):
     __tablename__ = "payment_intent_payment_method_options_sepa_debit"
     mandate_options = Column(
-        PaymentIntentPaymentMethodOptionsMandateOptionsSepaDebit, nullable=True
+        payment_intent_payment_method_options_mandate_options_sepa_debit,
+        ForeignKey("payment_intent_payment_method_options_mandate_options_sepa_debit"),
+        nullable=True,
     )
     setup_future_usage = Column(
         String,

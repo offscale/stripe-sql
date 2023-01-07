@@ -7,7 +7,7 @@ class Error(Base):
     """
 
     __tablename__ = "error"
-    error = Column(ApiErrors)
+    error = Column(api_errors, ForeignKey("api_errors"))
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

@@ -3,7 +3,7 @@ from sqlalchemy import Column, Integer, String
 
 class Billing_Details(Base):
     __tablename__ = "billing_details"
-    address = Column(Address, comment="Billing address", nullable=True)
+    address = Column(address, comment="[[FK(address)]] Billing address", nullable=True)
     email = Column(String, comment="Email address", nullable=True)
     name = Column(String, comment="Full name", nullable=True)
     phone = Column(

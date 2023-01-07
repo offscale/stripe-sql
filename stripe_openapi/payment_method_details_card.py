@@ -9,8 +9,8 @@ class Payment_Method_Details_Card(Base):
         nullable=True,
     )
     checks = Column(
-        PaymentMethodDetailsCardChecks,
-        comment="Check results by Card networks on Card address and CVC at time of payment",
+        payment_method_details_card_checks,
+        comment="[[FK(payment_method_details_card_checks)]] Check results by Card networks on Card address and CVC at time of payment",
         nullable=True,
     )
     country = Column(
@@ -45,8 +45,8 @@ class Payment_Method_Details_Card(Base):
         nullable=True,
     )
     installments = Column(
-        PaymentMethodDetailsCardInstallments,
-        comment="Installment details for this payment (Mexico only).\n\nFor more information, see the [installments integration guide](https://stripe.com/docs/payments/installments)",
+        payment_method_details_card_installments,
+        comment="[[FK(payment_method_details_card_installments)]] Installment details for this payment (Mexico only).\n\nFor more information, see the [installments integration guide](https://stripe.com/docs/payments/installments)",
         nullable=True,
     )
     issuer = Column(
@@ -71,13 +71,13 @@ class Payment_Method_Details_Card(Base):
         nullable=True,
     )
     three_d_secure = Column(
-        ThreeDSecureDetails,
-        comment="Populated if this transaction used 3D Secure authentication",
+        three_d_secure_details,
+        comment="[[FK(three_d_secure_details)]] Populated if this transaction used 3D Secure authentication",
         nullable=True,
     )
     wallet = Column(
-        PaymentMethodDetailsCardWallet,
-        comment="If this Card is part of a card wallet, this contains the details of the card wallet",
+        payment_method_details_card_wallet,
+        comment="[[FK(payment_method_details_card_wallet)]] If this Card is part of a card wallet, this contains the details of the card wallet",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

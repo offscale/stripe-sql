@@ -8,8 +8,8 @@ class Payment_Method_Card(Base):
         comment="Card brand. Can be `amex`, `diners`, `discover`, `jcb`, `mastercard`, `unionpay`, `visa`, or `unknown`",
     )
     checks = Column(
-        PaymentMethodCardChecks,
-        comment="Checks on Card address and CVC if provided",
+        payment_method_card_checks,
+        comment="[[FK(payment_method_card_checks)]] Checks on Card address and CVC if provided",
         nullable=True,
     )
     country = Column(
@@ -49,18 +49,18 @@ class Payment_Method_Card(Base):
     )
     last4 = Column(String, comment="The last four digits of the card")
     networks = Column(
-        Networks,
-        comment="Contains information about card networks that can be used to process the payment",
+        networks,
+        comment="[[FK(networks)]] Contains information about card networks that can be used to process the payment",
         nullable=True,
     )
     three_d_secure_usage = Column(
-        ThreeDSecureUsage,
-        comment="Contains details on how this Card maybe be used for 3D Secure authentication",
+        three_d_secure_usage,
+        comment="[[FK(three_d_secure_usage)]] Contains details on how this Card maybe be used for 3D Secure authentication",
         nullable=True,
     )
     wallet = Column(
-        PaymentMethodCardWallet,
-        comment="If this Card is part of a card wallet, this contains the details of the card wallet",
+        payment_method_card_wallet,
+        comment="[[FK(payment_method_card_wallet)]] If this Card is part of a card wallet, this contains the details of the card wallet",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

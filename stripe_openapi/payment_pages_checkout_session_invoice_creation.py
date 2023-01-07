@@ -7,7 +7,10 @@ class Payment_Pages_Checkout_Session_Invoice_Creation(Base):
         Boolean,
         comment="Indicates whether invoice creation is enabled for the Checkout Session",
     )
-    invoice_data = Column(PaymentPagesCheckoutSessionInvoiceSettings)
+    invoice_data = Column(
+        payment_pages_checkout_session_invoice_settings,
+        ForeignKey("payment_pages_checkout_session_invoice_settings"),
+    )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

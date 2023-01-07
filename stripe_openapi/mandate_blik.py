@@ -6,7 +6,11 @@ class Mandate_Blik(Base):
     expires_after = Column(
         Integer, comment="Date at which the mandate expires", nullable=True
     )
-    off_session = Column(MandateOptionsOffSessionDetailsBlik, nullable=True)
+    off_session = Column(
+        mandate_options_off_session_details_blik,
+        ForeignKey("mandate_options_off_session_details_blik"),
+        nullable=True,
+    )
     type = Column(String, comment="Type of the mandate", nullable=True)
     id = Column(Integer, primary_key=True, server_default=Identity())
 

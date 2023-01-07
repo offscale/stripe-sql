@@ -9,8 +9,8 @@ class Invoice_Setting_Customer_Setting(Base):
         nullable=True,
     )
     default_payment_method = Column(
-        PaymentMethod,
-        comment="ID of a payment method that's attached to the customer, to be used as the customer's default payment method for subscriptions and invoices",
+        payment_method,
+        comment="[[FK(payment_method)]] ID of a payment method that's attached to the customer, to be used as the customer's default payment method for subscriptions and invoices",
         nullable=True,
     )
     footer = Column(
@@ -19,8 +19,8 @@ class Invoice_Setting_Customer_Setting(Base):
         nullable=True,
     )
     rendering_options = Column(
-        InvoiceSettingRenderingOptions,
-        comment="Default options for invoice PDF rendering for this customer",
+        invoice_setting_rendering_options,
+        comment="[[FK(invoice_setting_rendering_options)]] Default options for invoice PDF rendering for this customer",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

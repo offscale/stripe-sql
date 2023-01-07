@@ -6,8 +6,8 @@ class Customer_Balance_Resource_Cash_Balance_Transaction_Resource_Applied_To_Pay
 ):
     __tablename__ = "customer_balance_resource_cash_balance_transaction_resource_applied_to_payment_transaction"
     payment_intent = Column(
-        PaymentIntent,
-        comment="The [Payment Intent](https://stripe.com/docs/api/payment_intents/object) that funds were applied to",
+        payment_intent,
+        comment="[[FK(payment_intent)]] The [Payment Intent](https://stripe.com/docs/api/payment_intents/object) that funds were applied to",
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

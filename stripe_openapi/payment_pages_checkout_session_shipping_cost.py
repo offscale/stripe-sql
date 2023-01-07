@@ -14,7 +14,9 @@ class Payment_Pages_Checkout_Session_Shipping_Cost(Base):
         Integer, comment="Total shipping cost after discounts and taxes are applied"
     )
     shipping_rate = Column(
-        ShippingRate, comment="The ID of the ShippingRate for this order", nullable=True
+        shipping_rate,
+        comment="[[FK(shipping_rate)]] The ID of the ShippingRate for this order",
+        nullable=True,
     )
     taxes = Column(
         list, comment="The taxes applied to the shipping rate", nullable=True

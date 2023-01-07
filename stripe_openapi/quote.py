@@ -17,8 +17,8 @@ class Quote(Base):
         Integer, comment="Total after discounts and taxes are applied"
     )
     application = Column(
-        string | Application,
-        comment="ID of the Connect Application that created the quote",
+        string | application,
+        comment="[[FK(deleted_application)]] ID of the Connect Application that created the quote",
         nullable=True,
     )
     application_fee_amount = Column(
@@ -31,12 +31,14 @@ class Quote(Base):
         comment="A non-negative decimal between 0 and 100, with at most two decimal places. This represents the percentage of the subscription invoice subtotal that will be transferred to the application owner's Stripe account. Only applicable if there are line items with recurring prices on the quote",
         nullable=True,
     )
-    automatic_tax = Column(QuotesResourceAutomaticTax)
+    automatic_tax = Column(
+        quotes_resource_automatic_tax, ForeignKey("quotes_resource_automatic_tax")
+    )
     collection_method = Column(
         String,
         comment="Either `charge_automatically`, or `send_invoice`. When charging automatically, Stripe will attempt to pay invoices at the end of the subscription cycle or on finalization using the default payment method attached to the subscription or customer. When sending an invoice, Stripe will email your customer an invoice with payment instructions and mark the subscription as `active`. Defaults to `charge_automatically`",
     )
-    computed = Column(QuotesResourceComputed)
+    computed = Column(quotes_resource_computed, ForeignKey("quotes_resource_computed"))
     created = Column(
         Integer,
         comment="Time at which the object was created. Measured in seconds since the Unix epoch",
@@ -47,8 +49,8 @@ class Quote(Base):
         nullable=True,
     )
     customer = Column(
-        string | Customer,
-        comment="The customer which this quote belongs to. A customer is required before finalizing the quote. Once specified, it cannot be changed",
+        string | customer,
+        comment="[[FK(deleted_customer)]] The customer which this quote belongs to. A customer is required before finalizing the quote. Once specified, it cannot be changed",
         nullable=True,
     )
     default_tax_rates = Column(
@@ -70,8 +72,8 @@ class Quote(Base):
         nullable=True,
     )
     from_quote = Column(
-        QuotesResourceFromQuote,
-        comment="Details of the quote that was cloned. See the [cloning documentation](https://stripe.com/docs/quotes/clone) for more details",
+        quotes_resource_from_quote,
+        comment="[[FK(quotes_resource_from_quote)]] Details of the quote that was cloned. See the [cloning documentation](https://stripe.com/docs/quotes/clone) for more details",
         nullable=True,
     )
     header = Column(
@@ -81,13 +83,13 @@ class Quote(Base):
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     invoice = Column(
-        string | Invoice,
-        comment="The invoice that was created from this quote",
+        string | invoice,
+        comment="[[FK(deleted_invoice)]] The invoice that was created from this quote",
         nullable=True,
     )
     invoice_settings = Column(
-        InvoiceSettingQuoteSetting,
-        comment="All invoices will be billed using the specified settings",
+        invoice_setting_quote_setting,
+        comment="[[FK(invoice_setting_quote_setting)]] All invoices will be billed using the specified settings",
         nullable=True,
     )
     line_items = Column(
@@ -111,32 +113,40 @@ class Quote(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     on_behalf_of = Column(
-        Account,
-        comment="The account on behalf of which to charge. See the [Connect documentation](https://support.stripe.com/questions/sending-invoices-on-behalf-of-connected-accounts) for details",
+        account,
+        comment="[[FK(account)]] The account on behalf of which to charge. See the [Connect documentation](https://support.stripe.com/questions/sending-invoices-on-behalf-of-connected-accounts) for details",
         nullable=True,
     )
     status = Column(String, comment="The status of the quote")
-    status_transitions = Column(QuotesResourceStatusTransitions)
+    status_transitions = Column(
+        quotes_resource_status_transitions,
+        ForeignKey("quotes_resource_status_transitions"),
+    )
     subscription = Column(
-        Subscription,
-        comment="The subscription that was created or updated from this quote",
+        subscription,
+        comment="[[FK(subscription)]] The subscription that was created or updated from this quote",
         nullable=True,
     )
-    subscription_data = Column(QuotesResourceSubscriptionDataSubscriptionData)
+    subscription_data = Column(
+        quotes_resource_subscription_data_subscription_data,
+        ForeignKey("quotes_resource_subscription_data_subscription_data"),
+    )
     subscription_schedule = Column(
-        SubscriptionSchedule,
-        comment="The subscription schedule that was created or updated from this quote",
+        subscription_schedule,
+        comment="[[FK(subscription_schedule)]] The subscription schedule that was created or updated from this quote",
         nullable=True,
     )
     test_clock = Column(
-        TestHelpers.TestClock,
-        comment="ID of the test clock this quote belongs to",
+        test_helpers.test_clock,
+        comment="[[FK(test_helpers.test_clock)]] ID of the test clock this quote belongs to",
         nullable=True,
     )
-    total_details = Column(QuotesResourceTotalDetails)
+    total_details = Column(
+        quotes_resource_total_details, ForeignKey("quotes_resource_total_details")
+    )
     transfer_data = Column(
-        QuotesResourceTransferData,
-        comment="The account (if any) the payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the invoices",
+        quotes_resource_transfer_data,
+        comment="[[FK(quotes_resource_transfer_data)]] The account (if any) the payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the invoices",
         nullable=True,
     )
 

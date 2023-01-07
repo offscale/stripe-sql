@@ -4,8 +4,8 @@ from sqlalchemy import Column, Integer, String
 class Legal_Entity_Person_Verification(Base):
     __tablename__ = "legal_entity_person_verification"
     additional_document = Column(
-        LegalEntityPersonVerificationDocument,
-        comment="A document showing address, either a passport, local ID card, or utility bill from a well-known utility company",
+        legal_entity_person_verification_document,
+        comment="[[FK(legal_entity_person_verification_document)]] A document showing address, either a passport, local ID card, or utility bill from a well-known utility company",
         nullable=True,
     )
     details = Column(
@@ -18,7 +18,11 @@ class Legal_Entity_Person_Verification(Base):
         comment="One of `document_address_mismatch`, `document_dob_mismatch`, `document_duplicate_type`, `document_id_number_mismatch`, `document_name_mismatch`, `document_nationality_mismatch`, `failed_keyed_identity`, or `failed_other`. A machine-readable code specifying the verification state for the person",
         nullable=True,
     )
-    document = Column(LegalEntityPersonVerificationDocument, nullable=True)
+    document = Column(
+        legal_entity_person_verification_document,
+        ForeignKey("legal_entity_person_verification_document"),
+        nullable=True,
+    )
     status = Column(
         String,
         comment="The state of verification for the person. Possible values are `unverified`, `pending`, or `verified`",

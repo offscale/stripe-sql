@@ -4,7 +4,7 @@ from sqlalchemy import Column, Integer
 class Line_Items_Discount_Amount(Base):
     __tablename__ = "line_items_discount_amount"
     amount = Column(Integer, comment="The amount discounted")
-    discount = Column(Discount)
+    discount = Column(discount, ForeignKey("discount"))
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

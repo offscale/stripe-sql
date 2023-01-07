@@ -9,8 +9,8 @@ class Transfer_Data(Base):
         nullable=True,
     )
     destination = Column(
-        Account,
-        comment="The account (if any) the payment will be attributed to for tax\nreporting, and where funds from the payment will be transferred to upon\npayment success",
+        account,
+        comment="[[FK(account)]] The account (if any) the payment will be attributed to for tax\nreporting, and where funds from the payment will be transferred to upon\npayment success",
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

@@ -22,10 +22,12 @@ class Credit_Note(Base):
         String,
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",
     )
-    customer = Column(string | Customer, comment="ID of the customer")
+    customer = Column(
+        string | customer, comment="[[FK(deleted_customer)]] ID of the customer"
+    )
     customer_balance_transaction = Column(
-        CustomerBalanceTransaction,
-        comment="Customer balance transaction related to this credit note",
+        customer_balance_transaction,
+        comment="[[FK(customer_balance_transaction)]] Customer balance transaction related to this credit note",
         nullable=True,
     )
     discount_amount = Column(
@@ -36,7 +38,7 @@ class Credit_Note(Base):
         list, comment="The aggregate amounts calculated per discount for all line items"
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
-    invoice = Column(Invoice, comment="ID of the invoice")
+    invoice = Column(invoice, comment="[[FK(invoice)]] ID of the invoice")
     lines = Column(JSON, comment="Line items that make up the credit note")
     livemode = Column(
         Boolean,
@@ -69,7 +71,11 @@ class Credit_Note(Base):
         comment="Reason for issuing this credit note, one of `duplicate`, `fraudulent`, `order_change`, or `product_unsatisfactory`",
         nullable=True,
     )
-    refund = Column(Refund, comment="Refund related to this credit note", nullable=True)
+    refund = Column(
+        refund,
+        comment="[[FK(refund)]] Refund related to this credit note",
+        nullable=True,
+    )
     status = Column(
         String,
         comment="Status of this credit note, one of `issued` or `void`. Learn more about [voiding credit notes](https://stripe.com/docs/billing/invoices/credit-notes#voiding)",

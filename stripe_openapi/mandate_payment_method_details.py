@@ -3,18 +3,32 @@ from sqlalchemy import Column, Integer, String
 
 class Mandate_Payment_Method_Details(Base):
     __tablename__ = "mandate_payment_method_details"
-    acss_debit = Column(MandateAcssDebit, nullable=True)
-    au_becs_debit = Column(MandateAuBecsDebit, nullable=True)
-    bacs_debit = Column(MandateBacsDebit, nullable=True)
-    blik = Column(MandateBlik, nullable=True)
-    card = Column(CardMandatePaymentMethodDetails, nullable=True)
-    link = Column(MandateLink, nullable=True)
-    sepa_debit = Column(MandateSepaDebit, nullable=True)
+    acss_debit = Column(
+        mandate_acss_debit, ForeignKey("mandate_acss_debit"), nullable=True
+    )
+    au_becs_debit = Column(
+        mandate_au_becs_debit, ForeignKey("mandate_au_becs_debit"), nullable=True
+    )
+    bacs_debit = Column(
+        mandate_bacs_debit, ForeignKey("mandate_bacs_debit"), nullable=True
+    )
+    blik = Column(mandate_blik, ForeignKey("mandate_blik"), nullable=True)
+    card = Column(
+        card_mandate_payment_method_details,
+        ForeignKey("card_mandate_payment_method_details"),
+        nullable=True,
+    )
+    link = Column(mandate_link, ForeignKey("mandate_link"), nullable=True)
+    sepa_debit = Column(
+        mandate_sepa_debit, ForeignKey("mandate_sepa_debit"), nullable=True
+    )
     type = Column(
         String,
         comment="The type of the payment method associated with this mandate. An additional hash is included on `payment_method_details` with a name matching this value. It contains mandate information specific to the payment method",
     )
-    us_bank_account = Column(MandateUsBankAccount, nullable=True)
+    us_bank_account = Column(
+        mandate_us_bank_account, ForeignKey("mandate_us_bank_account"), nullable=True
+    )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

@@ -9,7 +9,9 @@ class Payment_Pages_Checkout_Session_Total_Details(Base):
     )
     amount_tax = Column(Integer, comment="This is the sum of all the tax amounts")
     breakdown = Column(
-        PaymentPagesCheckoutSessionTotalDetailsResourceBreakdown, nullable=True
+        payment_pages_checkout_session_total_details_resource_breakdown,
+        ForeignKey("payment_pages_checkout_session_total_details_resource_breakdown"),
+        nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

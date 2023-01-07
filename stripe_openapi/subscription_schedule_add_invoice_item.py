@@ -8,7 +8,8 @@ class Subscription_Schedule_Add_Invoice_Item(Base):
 
     __tablename__ = "subscription_schedule_add_invoice_item"
     price = Column(
-        string | Price, comment="ID of the price used to generate the invoice item"
+        string | price,
+        comment="[[FK(deleted_price)]] ID of the price used to generate the invoice item",
     )
     quantity = Column(
         Integer, comment="The quantity of the invoice item", nullable=True

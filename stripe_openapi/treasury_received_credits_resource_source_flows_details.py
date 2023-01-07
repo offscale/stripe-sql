@@ -3,9 +3,15 @@ from sqlalchemy import Column, Integer, String
 
 class Treasury_Received_Credits_Resource_Source_Flows_Details(Base):
     __tablename__ = "treasury_received_credits_resource_source_flows_details"
-    credit_reversal = Column(Treasury.CreditReversal, nullable=True)
-    outbound_payment = Column(Treasury.OutboundPayment, nullable=True)
-    payout = Column(Payout, nullable=True)
+    credit_reversal = Column(
+        treasury.credit_reversal, ForeignKey("treasury.credit_reversal"), nullable=True
+    )
+    outbound_payment = Column(
+        treasury.outbound_payment,
+        ForeignKey("treasury.outbound_payment"),
+        nullable=True,
+    )
+    payout = Column(payout, ForeignKey("payout"), nullable=True)
     type = Column(
         String, comment="The type of the source flow that originated the ReceivedCredit"
     )

@@ -24,8 +24,8 @@ class Invoiceitem(Base):
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",
     )
     customer = Column(
-        string | Customer,
-        comment="The ID of the customer who will be billed when this invoice item is billed",
+        string | customer,
+        comment="[[FK(deleted_customer)]] The ID of the customer who will be billed when this invoice item is billed",
     )
     date = Column(
         Integer,
@@ -47,8 +47,8 @@ class Invoiceitem(Base):
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     invoice = Column(
-        Invoice,
-        comment="The ID of the invoice this invoice item belongs to",
+        invoice,
+        comment="[[FK(invoice)]] The ID of the invoice this invoice item belongs to",
         nullable=True,
     )
     livemode = Column(
@@ -64,13 +64,15 @@ class Invoiceitem(Base):
         String,
         comment="String representing the object's type. Objects of the same type share the same value",
     )
-    period = Column(InvoiceLineItemPeriod)
+    period = Column(invoice_line_item_period, ForeignKey("invoice_line_item_period"))
     plan = Column(
-        Plan,
-        comment="If the invoice item is a proration, the plan of the subscription that the proration was computed for",
+        plan,
+        comment="[[FK(plan)]] If the invoice item is a proration, the plan of the subscription that the proration was computed for",
         nullable=True,
     )
-    price = Column(Price, comment="The price of the invoice item", nullable=True)
+    price = Column(
+        price, comment="[[FK(price)]] The price of the invoice item", nullable=True
+    )
     proration = Column(
         Boolean,
         comment="Whether the invoice item was created automatically as a proration adjustment when the customer switched plans",
@@ -80,8 +82,8 @@ class Invoiceitem(Base):
         comment="Quantity of units for the invoice item. If the invoice item is a proration, the quantity of the subscription that the proration was computed for",
     )
     subscription = Column(
-        Subscription,
-        comment="The subscription that this invoice item has been created for, if any",
+        subscription,
+        comment="[[FK(subscription)]] The subscription that this invoice item has been created for, if any",
         nullable=True,
     )
     subscription_item = Column(
@@ -95,8 +97,8 @@ class Invoiceitem(Base):
         nullable=True,
     )
     test_clock = Column(
-        TestHelpers.TestClock,
-        comment="ID of the test clock this invoice item belongs to",
+        test_helpers.test_clock,
+        comment="[[FK(test_helpers.test_clock)]] ID of the test clock this invoice item belongs to",
         nullable=True,
     )
     unit_amount = Column(

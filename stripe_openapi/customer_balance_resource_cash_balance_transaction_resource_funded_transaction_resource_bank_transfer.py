@@ -6,7 +6,10 @@ class Customer_Balance_Resource_Cash_Balance_Transaction_Resource_Funded_Transac
 ):
     __tablename__ = "customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer"
     eu_bank_transfer = Column(
-        CustomerBalanceResourceCashBalanceTransactionResourceFundedTransactionResourceBankTransferResourceEuBankTransfer,
+        customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_eu_bank_transfer,
+        ForeignKey(
+            "customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_eu_bank_transfer"
+        ),
         nullable=True,
     )
     reference = Column(

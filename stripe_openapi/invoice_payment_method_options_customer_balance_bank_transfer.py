@@ -4,7 +4,10 @@ from sqlalchemy import Column, Integer, String
 class Invoice_Payment_Method_Options_Customer_Balance_Bank_Transfer(Base):
     __tablename__ = "invoice_payment_method_options_customer_balance_bank_transfer"
     eu_bank_transfer = Column(
-        InvoicePaymentMethodOptionsCustomerBalanceBankTransferEuBankTransfer,
+        invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transfer,
+        ForeignKey(
+            "invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transfer"
+        ),
         nullable=True,
     )
     type = Column(

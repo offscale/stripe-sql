@@ -3,7 +3,9 @@ from sqlalchemy import Column, Integer
 
 class Account_Treasury_Settings(Base):
     __tablename__ = "account_treasury_settings"
-    tos_acceptance = Column(AccountTermsOfService, nullable=True)
+    tos_acceptance = Column(
+        account_terms_of_service, ForeignKey("account_terms_of_service"), nullable=True
+    )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

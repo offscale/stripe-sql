@@ -4,7 +4,8 @@ from sqlalchemy import Boolean, Column, Integer, String
 class Application_Fee(Base):
     __tablename__ = "application_fee"
     account = Column(
-        Account, comment="ID of the Stripe account this fee was taken from"
+        account,
+        comment="[[FK(account)]] ID of the Stripe account this fee was taken from",
     )
     amount = Column(Integer, comment="Amount earned, in %s")
     amount_refunded = Column(
@@ -12,15 +13,17 @@ class Application_Fee(Base):
         comment="Amount in %s refunded (can be less than the amount attribute on the fee if a partial refund was issued)",
     )
     application = Column(
-        Application, comment="ID of the Connect application that earned the fee"
+        application,
+        comment="[[FK(application)]] ID of the Connect application that earned the fee",
     )
     balance_transaction = Column(
-        BalanceTransaction,
-        comment="Balance transaction that describes the impact of this collected application fee on your account balance (not including refunds)",
+        balance_transaction,
+        comment="[[FK(balance_transaction)]] Balance transaction that describes the impact of this collected application fee on your account balance (not including refunds)",
         nullable=True,
     )
     charge = Column(
-        Charge, comment="ID of the charge that the application fee was taken from"
+        charge,
+        comment="[[FK(charge)]] ID of the charge that the application fee was taken from",
     )
     created = Column(
         Integer,
@@ -40,8 +43,8 @@ class Application_Fee(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     originating_transaction = Column(
-        Charge,
-        comment="ID of the corresponding charge on the platform account, if this fee was the result of a charge using the `destination` parameter",
+        charge,
+        comment="[[FK(charge)]] ID of the corresponding charge on the platform account, if this fee was the result of a charge using the `destination` parameter",
         nullable=True,
     )
     refunded = Column(

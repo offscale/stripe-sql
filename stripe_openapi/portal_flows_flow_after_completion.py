@@ -4,13 +4,13 @@ from sqlalchemy import Column, Integer, String
 class Portal_Flows_Flow_After_Completion(Base):
     __tablename__ = "portal_flows_flow_after_completion"
     hosted_confirmation = Column(
-        PortalFlowsAfterCompletionHostedConfirmation,
-        comment="Configuration when `after_completion.type=hosted_confirmation`",
+        portal_flows_after_completion_hosted_confirmation,
+        comment="[[FK(portal_flows_after_completion_hosted_confirmation)]] Configuration when `after_completion.type=hosted_confirmation`",
         nullable=True,
     )
     redirect = Column(
-        PortalFlowsAfterCompletionRedirect,
-        comment="Configuration when `after_completion.type=redirect`",
+        portal_flows_after_completion_redirect,
+        comment="[[FK(portal_flows_after_completion_redirect)]] Configuration when `after_completion.type=redirect`",
         nullable=True,
     )
     type = Column(

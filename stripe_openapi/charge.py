@@ -14,7 +14,9 @@ class Charge(Base):
 
     __tablename__ = "charge"
     alternate_statement_descriptors = Column(
-        AlternateStatementDescriptors, nullable=True
+        alternate_statement_descriptors,
+        ForeignKey("alternate_statement_descriptors"),
+        nullable=True,
     )
     amount = Column(
         Integer,
@@ -29,13 +31,13 @@ class Charge(Base):
         comment="Amount in %s refunded (can be less than the amount attribute on the charge if a partial refund was issued)",
     )
     application = Column(
-        Application,
-        comment="ID of the Connect application that created the charge",
+        application,
+        comment="[[FK(application)]] ID of the Connect application that created the charge",
         nullable=True,
     )
     application_fee = Column(
-        ApplicationFee,
-        comment="The application fee (if any) for the charge. [See the Connect documentation](https://stripe.com/docs/connect/direct-charges#collecting-fees) for details",
+        application_fee,
+        comment="[[FK(application_fee)]] The application fee (if any) for the charge. [See the Connect documentation](https://stripe.com/docs/connect/direct-charges#collecting-fees) for details",
         nullable=True,
     )
     application_fee_amount = Column(
@@ -47,11 +49,11 @@ class Charge(Base):
         String, comment="Authorization code on the charge", nullable=True
     )
     balance_transaction = Column(
-        BalanceTransaction,
-        comment="ID of the balance transaction that describes the impact of this charge on your account balance (not including refunds or disputes)",
+        balance_transaction,
+        comment="[[FK(balance_transaction)]] ID of the balance transaction that describes the impact of this charge on your account balance (not including refunds or disputes)",
         nullable=True,
     )
-    billing_details = Column(BillingDetails)
+    billing_details = Column(billing_details, ForeignKey("billing_details"))
     calculated_statement_descriptor = Column(
         String,
         comment="The full statement descriptor that is passed to card networks, and that is displayed on your customers' credit card and bank statements. Allows you to see what the statement descriptor looks like after the static and dynamic portions are combined",
@@ -70,8 +72,8 @@ class Charge(Base):
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",
     )
     customer = Column(
-        string | Customer,
-        comment="ID of the customer this charge is for if one exists",
+        string | customer,
+        comment="[[FK(deleted_customer)]] ID of the customer this charge is for if one exists",
         nullable=True,
     )
     description = Column(
@@ -80,19 +82,19 @@ class Charge(Base):
         nullable=True,
     )
     destination = Column(
-        Account,
-        comment="ID of an existing, connected Stripe account to transfer funds to if `transfer_data` was specified in the charge request",
+        account,
+        comment="[[FK(account)]] ID of an existing, connected Stripe account to transfer funds to if `transfer_data` was specified in the charge request",
         nullable=True,
     )
     dispute = Column(
-        Dispute,
-        comment="Details about the dispute if the charge has been disputed",
+        dispute,
+        comment="[[FK(dispute)]] Details about the dispute if the charge has been disputed",
         nullable=True,
     )
     disputed = Column(Boolean, comment="Whether the charge has been disputed")
     failure_balance_transaction = Column(
-        BalanceTransaction,
-        comment="ID of the balance transaction that describes the reversal of the balance on your account due to payment failure",
+        balance_transaction,
+        comment="[[FK(balance_transaction)]] ID of the balance transaction that describes the reversal of the balance on your account due to payment failure",
         nullable=True,
     )
     failure_code = Column(
@@ -106,17 +108,17 @@ class Charge(Base):
         nullable=True,
     )
     fraud_details = Column(
-        ChargeFraudDetails,
-        comment="Information on fraud assessments for the charge",
+        charge_fraud_details,
+        comment="[[FK(charge_fraud_details)]] Information on fraud assessments for the charge",
         nullable=True,
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     invoice = Column(
-        Invoice,
-        comment="ID of the invoice this charge is for if one exists",
+        invoice,
+        comment="[[FK(invoice)]] ID of the invoice this charge is for if one exists",
         nullable=True,
     )
-    level3 = Column(Level3, nullable=True)
+    level3 = Column(level3, ForeignKey("level3"), nullable=True)
     livemode = Column(
         Boolean,
         comment="Has the value `true` if the object exists in live mode or the value `false` if the object exists in test mode",
@@ -130,13 +132,13 @@ class Charge(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     on_behalf_of = Column(
-        Account,
-        comment="The account (if any) the charge was made on behalf of without triggering an automatic transfer. See the [Connect documentation](https://stripe.com/docs/connect/charges-transfers) for details",
+        account,
+        comment="[[FK(account)]] The account (if any) the charge was made on behalf of without triggering an automatic transfer. See the [Connect documentation](https://stripe.com/docs/connect/charges-transfers) for details",
         nullable=True,
     )
     outcome = Column(
-        ChargeOutcome,
-        comment="Details about whether the payment was accepted, and why. See [understanding declines](https://stripe.com/docs/declines) for details",
+        charge_outcome,
+        comment="[[FK(charge_outcome)]] Details about whether the payment was accepted, and why. See [understanding declines](https://stripe.com/docs/declines) for details",
         nullable=True,
     )
     paid = Column(
@@ -144,19 +146,21 @@ class Charge(Base):
         comment="`true` if the charge succeeded, or was successfully authorized for later capture",
     )
     payment_intent = Column(
-        PaymentIntent,
-        comment="ID of the PaymentIntent associated with this charge, if one exists",
+        payment_intent,
+        comment="[[FK(payment_intent)]] ID of the PaymentIntent associated with this charge, if one exists",
         nullable=True,
     )
     payment_method = Column(
         String, comment="ID of the payment method used in this charge", nullable=True
     )
     payment_method_details = Column(
-        PaymentMethodDetails,
-        comment="Details about the payment method at the time of the transaction",
+        payment_method_details,
+        comment="[[FK(payment_method_details)]] Details about the payment method at the time of the transaction",
         nullable=True,
     )
-    radar_options = Column(RadarRadarOptions, nullable=True)
+    radar_options = Column(
+        radar_radar_options, ForeignKey("radar_radar_options"), nullable=True
+    )
     receipt_email = Column(
         String,
         comment="This is the email address that the receipt for this charge was sent to",
@@ -182,21 +186,23 @@ class Charge(Base):
         nullable=True,
     )
     review = Column(
-        Review,
-        comment="ID of the review associated with this charge if one exists",
+        review,
+        comment="[[FK(review)]] ID of the review associated with this charge if one exists",
         nullable=True,
     )
     shipping = Column(
-        Shipping, comment="Shipping information for the charge", nullable=True
+        shipping,
+        comment="[[FK(shipping)]] Shipping information for the charge",
+        nullable=True,
     )
     source = Column(
-        PaymentSource,
-        comment="This is a legacy field that will be removed in the future. It contains the Source, Card, or BankAccount object used for the charge. For details about the payment method used for this charge, refer to `payment_method` or `payment_method_details` instead",
+        payment_source,
+        comment="[[FK(payment_source)]] This is a legacy field that will be removed in the future. It contains the Source, Card, or BankAccount object used for the charge. For details about the payment method used for this charge, refer to `payment_method` or `payment_method_details` instead",
         nullable=True,
     )
     source_transfer = Column(
-        Transfer,
-        comment="The transfer ID which created this charge. Only present if the charge came from another Stripe account. [See the Connect documentation](https://stripe.com/docs/connect/destination-charges) for details",
+        transfer,
+        comment="[[FK(transfer)]] The transfer ID which created this charge. Only present if the charge came from another Stripe account. [See the Connect documentation](https://stripe.com/docs/connect/destination-charges) for details",
         nullable=True,
     )
     statement_descriptor = Column(
@@ -214,13 +220,13 @@ class Charge(Base):
         comment="The status of the payment is either `succeeded`, `pending`, or `failed`",
     )
     transfer = Column(
-        Transfer,
-        comment="ID of the transfer to the `destination` account (only applicable if the charge was created using the `destination` parameter)",
+        transfer,
+        comment="[[FK(transfer)]] ID of the transfer to the `destination` account (only applicable if the charge was created using the `destination` parameter)",
         nullable=True,
     )
     transfer_data = Column(
-        ChargeTransferData,
-        comment="An optional dictionary including the account to automatically transfer to as part of a destination charge. [See the Connect documentation](https://stripe.com/docs/connect/destination-charges) for details",
+        charge_transfer_data,
+        comment="[[FK(charge_transfer_data)]] An optional dictionary including the account to automatically transfer to as part of a destination charge. [See the Connect documentation](https://stripe.com/docs/connect/destination-charges) for details",
         nullable=True,
     )
     transfer_group = Column(

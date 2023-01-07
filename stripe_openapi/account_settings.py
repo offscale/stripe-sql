@@ -3,15 +3,41 @@ from sqlalchemy import Column, Integer
 
 class Account_Settings(Base):
     __tablename__ = "account_settings"
-    bacs_debit_payments = Column(AccountBacsDebitPaymentsSettings, nullable=True)
-    branding = Column(AccountBrandingSettings)
-    card_issuing = Column(AccountCardIssuingSettings, nullable=True)
-    card_payments = Column(AccountCardPaymentsSettings)
-    dashboard = Column(AccountDashboardSettings)
-    payments = Column(AccountPaymentsSettings)
-    payouts = Column(AccountPayoutSettings, nullable=True)
-    sepa_debit_payments = Column(AccountSepaDebitPaymentsSettings, nullable=True)
-    treasury = Column(AccountTreasurySettings, nullable=True)
+    bacs_debit_payments = Column(
+        account_bacs_debit_payments_settings,
+        ForeignKey("account_bacs_debit_payments_settings"),
+        nullable=True,
+    )
+    branding = Column(
+        account_branding_settings, ForeignKey("account_branding_settings")
+    )
+    card_issuing = Column(
+        account_card_issuing_settings,
+        ForeignKey("account_card_issuing_settings"),
+        nullable=True,
+    )
+    card_payments = Column(
+        account_card_payments_settings, ForeignKey("account_card_payments_settings")
+    )
+    dashboard = Column(
+        account_dashboard_settings, ForeignKey("account_dashboard_settings")
+    )
+    payments = Column(
+        account_payments_settings, ForeignKey("account_payments_settings")
+    )
+    payouts = Column(
+        account_payout_settings, ForeignKey("account_payout_settings"), nullable=True
+    )
+    sepa_debit_payments = Column(
+        account_sepa_debit_payments_settings,
+        ForeignKey("account_sepa_debit_payments_settings"),
+        nullable=True,
+    )
+    treasury = Column(
+        account_treasury_settings,
+        ForeignKey("account_treasury_settings"),
+        nullable=True,
+    )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

@@ -36,7 +36,9 @@ class Item(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     price = Column(
-        Price, comment="The price used to generate the line item", nullable=True
+        price,
+        comment="[[FK(price)]] The price used to generate the line item",
+        nullable=True,
     )
     quantity = Column(
         Integer, comment="The quantity of products being purchased", nullable=True

@@ -4,8 +4,8 @@ from sqlalchemy import Column, Integer, String
 class Issuing_Dispute_Other_Evidence(Base):
     __tablename__ = "issuing_dispute_other_evidence"
     additional_documentation = Column(
-        File,
-        comment="(ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Additional documentation supporting the dispute",
+        file,
+        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Additional documentation supporting the dispute",
         nullable=True,
     )
     explanation = Column(

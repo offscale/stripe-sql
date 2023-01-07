@@ -7,7 +7,11 @@ class Treasury_Financial_Accounts_Resource_Financial_Addresses_Features(Base):
     """
 
     __tablename__ = "treasury_financial_accounts_resource_financial_addresses_features"
-    aba = Column(TreasuryFinancialAccountsResourceToggleSettings, nullable=True)
+    aba = Column(
+        treasury_financial_accounts_resource_toggle_settings,
+        ForeignKey("treasury_financial_accounts_resource_toggle_settings"),
+        nullable=True,
+    )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

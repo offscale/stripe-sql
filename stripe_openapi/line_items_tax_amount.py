@@ -4,7 +4,7 @@ from sqlalchemy import Column, Integer
 class Line_Items_Tax_Amount(Base):
     __tablename__ = "line_items_tax_amount"
     amount = Column(Integer, comment="Amount of tax applied for this rate")
-    rate = Column(TaxRate)
+    rate = Column(tax_rate, ForeignKey("tax_rate"))
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

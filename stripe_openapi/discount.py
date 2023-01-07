@@ -17,10 +17,10 @@ class Discount(Base):
         comment="The Checkout session that this coupon is applied to, if it is applied to a particular session in payment mode. Will not be present for subscription mode",
         nullable=True,
     )
-    coupon = Column(Coupon)
+    coupon = Column(coupon, ForeignKey("coupon"))
     customer = Column(
-        string | Customer,
-        comment="The ID of the customer associated with this discount",
+        string | customer,
+        comment="[[FK(deleted_customer)]] The ID of the customer associated with this discount",
         nullable=True,
     )
     end = Column(
@@ -48,8 +48,8 @@ class Discount(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     promotion_code = Column(
-        PromotionCode,
-        comment="The promotion code applied to create this discount",
+        promotion_code,
+        comment="[[FK(promotion_code)]] The promotion code applied to create this discount",
         nullable=True,
     )
     start = Column(Integer, comment="Date that the coupon was applied")

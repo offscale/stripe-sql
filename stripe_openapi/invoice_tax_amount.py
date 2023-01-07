@@ -8,7 +8,8 @@ class Invoice_Tax_Amount(Base):
         Boolean, comment="Whether this tax amount is inclusive or exclusive"
     )
     tax_rate = Column(
-        TaxRate, comment="The tax rate that was applied to get this tax amount"
+        tax_rate,
+        comment="[[FK(tax_rate)]] The tax rate that was applied to get this tax amount",
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

@@ -4,7 +4,11 @@ from sqlalchemy import Column, Integer, String
 class Invoice_Payment_Method_Options_Us_Bank_Account(Base):
     __tablename__ = "invoice_payment_method_options_us_bank_account"
     financial_connections = Column(
-        InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptions, nullable=True
+        invoice_payment_method_options_us_bank_account_linked_account_options,
+        ForeignKey(
+            "invoice_payment_method_options_us_bank_account_linked_account_options"
+        ),
+        nullable=True,
     )
     verification_method = Column(
         String, comment="Bank account verification method", nullable=True

@@ -6,8 +6,8 @@ class Customer_Balance_Resource_Cash_Balance_Transaction_Resource_Refunded_From_
 ):
     __tablename__ = "customer_balance_resource_cash_balance_transaction_resource_refunded_from_payment_transaction"
     refund = Column(
-        Refund,
-        comment="The [Refund](https://stripe.com/docs/api/refunds/object) that moved these funds into the customer's cash balance",
+        refund,
+        comment="[[FK(refund)]] The [Refund](https://stripe.com/docs/api/refunds/object) that moved these funds into the customer's cash balance",
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

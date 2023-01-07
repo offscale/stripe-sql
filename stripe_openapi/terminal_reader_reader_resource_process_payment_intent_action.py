@@ -8,9 +8,14 @@ class Terminal_Reader_Reader_Resource_Process_Payment_Intent_Action(Base):
 
     __tablename__ = "terminal_reader_reader_resource_process_payment_intent_action"
     payment_intent = Column(
-        PaymentIntent, comment="Most recent PaymentIntent processed by the reader"
+        payment_intent,
+        comment="[[FK(payment_intent)]] Most recent PaymentIntent processed by the reader",
     )
-    process_config = Column(TerminalReaderReaderResourceProcessConfig, nullable=True)
+    process_config = Column(
+        terminal_reader_reader_resource_process_config,
+        ForeignKey("terminal_reader_reader_resource_process_config"),
+        nullable=True,
+    )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

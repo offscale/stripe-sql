@@ -8,8 +8,8 @@ class Issuing_Authorization_Pending_Request(Base):
         comment="The additional amount Stripe will hold if the authorization is approved, in the card's [currency](https://stripe.com/docs/api#issuing_authorization_object-pending-request-currency) and in the [smallest currency unit](https://stripe.com/docs/currencies#zero-decimal)",
     )
     amount_details = Column(
-        IssuingAuthorizationAmountDetails,
-        comment="Detailed breakdown of amount components. These amounts are denominated in `currency` and in the [smallest currency unit](https://stripe.com/docs/currencies#zero-decimal)",
+        issuing_authorization_amount_details,
+        comment="[[FK(issuing_authorization_amount_details)]] Detailed breakdown of amount components. These amounts are denominated in `currency` and in the [smallest currency unit](https://stripe.com/docs/currencies#zero-decimal)",
         nullable=True,
     )
     currency = Column(

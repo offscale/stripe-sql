@@ -8,7 +8,11 @@ class Balance_Amount(Base):
         String,
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",
     )
-    source_types = Column(BalanceAmountBySourceType, nullable=True)
+    source_types = Column(
+        balance_amount_by_source_type,
+        ForeignKey("balance_amount_by_source_type"),
+        nullable=True,
+    )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

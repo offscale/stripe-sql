@@ -21,7 +21,9 @@ class Tax_Id(Base):
         Integer,
         comment="Time at which the object was created. Measured in seconds since the Unix epoch",
     )
-    customer = Column(Customer, comment="ID of the customer", nullable=True)
+    customer = Column(
+        customer, comment="[[FK(customer)]] ID of the customer", nullable=True
+    )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     livemode = Column(
         Boolean,
@@ -37,7 +39,9 @@ class Tax_Id(Base):
     )
     value = Column(String, comment="Value of the tax ID")
     verification = Column(
-        TaxIdVerification, comment="Tax ID verification information", nullable=True
+        tax_id_verification,
+        comment="[[FK(tax_id_verification)]] Tax ID verification information",
+        nullable=True,
     )
 
     def __repr__(self):

@@ -3,7 +3,11 @@ from sqlalchemy import Column, Integer
 
 class Payment_Flows_Amount_Details(Base):
     __tablename__ = "payment_flows_amount_details"
-    tip = Column(PaymentFlowsAmountDetailsResourceTip, nullable=True)
+    tip = Column(
+        payment_flows_amount_details_resource_tip,
+        ForeignKey("payment_flows_amount_details_resource_tip"),
+        nullable=True,
+    )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

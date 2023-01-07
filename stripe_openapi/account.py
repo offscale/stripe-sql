@@ -15,17 +15,25 @@ class Account(Base):
 
     __tablename__ = "account"
     business_profile = Column(
-        AccountBusinessProfile,
-        comment="Business information about the account",
+        account_business_profile,
+        comment="[[FK(account_business_profile)]] Business information about the account",
         nullable=True,
     )
     business_type = Column(String, comment="The business type", nullable=True)
-    capabilities = Column(AccountCapabilities, nullable=True)
+    capabilities = Column(
+        account_capabilities, ForeignKey("account_capabilities"), nullable=True
+    )
     charges_enabled = Column(
         Boolean, comment="Whether the account can create live charges", nullable=True
     )
-    company = Column(LegalEntityCompany, nullable=True)
-    controller = Column(AccountUnificationAccountController, nullable=True)
+    company = Column(
+        legal_entity_company, ForeignKey("legal_entity_company"), nullable=True
+    )
+    controller = Column(
+        account_unification_account_controller,
+        ForeignKey("account_unification_account_controller"),
+        nullable=True,
+    )
     country = Column(String, comment="The account's country", nullable=True)
     created = Column(
         Integer,
@@ -52,9 +60,13 @@ class Account(Base):
         comment="External accounts (bank accounts and debit cards) currently attached to this account",
         nullable=True,
     )
-    future_requirements = Column(AccountFutureRequirements, nullable=True)
+    future_requirements = Column(
+        account_future_requirements,
+        ForeignKey("account_future_requirements"),
+        nullable=True,
+    )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
-    individual = Column(Person, nullable=True)
+    individual = Column(person, ForeignKey("person"), nullable=True)
     metadata = Column(
         JSON,
         comment="Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format",
@@ -69,13 +81,17 @@ class Account(Base):
         comment="Whether Stripe can send payouts to this account",
         nullable=True,
     )
-    requirements = Column(AccountRequirements, nullable=True)
+    requirements = Column(
+        account_requirements, ForeignKey("account_requirements"), nullable=True
+    )
     settings = Column(
-        AccountSettings,
-        comment="Options for customizing how the account functions within Stripe",
+        account_settings,
+        comment="[[FK(account_settings)]] Options for customizing how the account functions within Stripe",
         nullable=True,
     )
-    tos_acceptance = Column(AccountTosAcceptance, nullable=True)
+    tos_acceptance = Column(
+        account_tos_acceptance, ForeignKey("account_tos_acceptance"), nullable=True
+    )
     type = Column(
         String,
         comment="The Stripe account type. Can be `standard`, `express`, or `custom`",

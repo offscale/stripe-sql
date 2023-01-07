@@ -16,7 +16,9 @@ class Coupon(Base):
         comment="Amount (in the `currency` specified) that will be taken off the subtotal of any invoices for this customer",
         nullable=True,
     )
-    applies_to = Column(CouponAppliesTo, nullable=True)
+    applies_to = Column(
+        coupon_applies_to, ForeignKey("coupon_applies_to"), nullable=True
+    )
     created = Column(
         Integer,
         comment="Time at which the object was created. Measured in seconds since the Unix epoch",

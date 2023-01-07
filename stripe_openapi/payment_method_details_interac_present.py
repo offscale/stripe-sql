@@ -73,8 +73,8 @@ class Payment_Method_Details_Interac_Present(Base):
         String, comment="How card details were read in this transaction", nullable=True
     )
     receipt = Column(
-        PaymentMethodDetailsInteracPresentReceipt,
-        comment="A collection of fields required to be displayed on receipts. Only required for EMV transactions",
+        payment_method_details_interac_present_receipt,
+        comment="[[FK(payment_method_details_interac_present_receipt)]] A collection of fields required to be displayed on receipts. Only required for EMV transactions",
         nullable=True,
     )
 

@@ -7,7 +7,9 @@ class Setup_Intent_Payment_Method_Options_Acss_Debit(Base):
         String, comment="Currency supported by the bank account", nullable=True
     )
     mandate_options = Column(
-        SetupIntentPaymentMethodOptionsMandateOptionsAcssDebit, nullable=True
+        setup_intent_payment_method_options_mandate_options_acss_debit,
+        ForeignKey("setup_intent_payment_method_options_mandate_options_acss_debit"),
+        nullable=True,
     )
     verification_method = Column(
         String, comment="Bank account verification method", nullable=True

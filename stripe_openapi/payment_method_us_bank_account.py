@@ -28,8 +28,8 @@ class Payment_Method_Us_Bank_Account(Base):
         String, comment="Last four digits of the bank account number", nullable=True
     )
     networks = Column(
-        UsBankAccountNetworks,
-        comment="Contains information about US bank account networks that can be used",
+        us_bank_account_networks,
+        comment="[[FK(us_bank_account_networks)]] Contains information about US bank account networks that can be used",
         nullable=True,
     )
     routing_number = Column(

@@ -8,7 +8,11 @@ class Quotes_Resource_Total_Details(Base):
         Integer, comment="This is the sum of all the shipping amounts", nullable=True
     )
     amount_tax = Column(Integer, comment="This is the sum of all the tax amounts")
-    breakdown = Column(QuotesResourceTotalDetailsResourceBreakdown, nullable=True)
+    breakdown = Column(
+        quotes_resource_total_details_resource_breakdown,
+        ForeignKey("quotes_resource_total_details_resource_breakdown"),
+        nullable=True,
+    )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

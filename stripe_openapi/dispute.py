@@ -23,7 +23,7 @@ class Dispute(Base):
         list,
         comment="List of zero, one, or two balance transactions that show funds withdrawn and reinstated to your Stripe account as a result of this dispute",
     )
-    charge = Column(Charge, comment="ID of the charge that was disputed")
+    charge = Column(charge, comment="[[FK(charge)]] ID of the charge that was disputed")
     created = Column(
         Integer,
         comment="Time at which the object was created. Measured in seconds since the Unix epoch",
@@ -32,8 +32,10 @@ class Dispute(Base):
         String,
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",
     )
-    evidence = Column(DisputeEvidence)
-    evidence_details = Column(DisputeEvidenceDetails)
+    evidence = Column(dispute_evidence, ForeignKey("dispute_evidence"))
+    evidence_details = Column(
+        dispute_evidence_details, ForeignKey("dispute_evidence_details")
+    )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     is_charge_refundable = Column(
         Boolean,
@@ -55,8 +57,8 @@ class Dispute(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     payment_intent = Column(
-        PaymentIntent,
-        comment="ID of the PaymentIntent that was disputed",
+        payment_intent,
+        comment="[[FK(payment_intent)]] ID of the PaymentIntent that was disputed",
         nullable=True,
     )
     reason = Column(

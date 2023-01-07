@@ -12,12 +12,20 @@ class Source_Transaction(Base):
     """
 
     __tablename__ = "source_transaction"
-    ach_credit_transfer = Column(SourceTransactionAchCreditTransferData, nullable=True)
+    ach_credit_transfer = Column(
+        source_transaction_ach_credit_transfer_data,
+        ForeignKey("source_transaction_ach_credit_transfer_data"),
+        nullable=True,
+    )
     amount = Column(
         Integer,
         comment="A positive integer in the smallest currency unit (that is, 100 cents for $1.00, or 1 for ¥1, Japanese Yen being a zero-decimal currency) representing the amount your customer has pushed to the receiver",
     )
-    chf_credit_transfer = Column(SourceTransactionChfCreditTransferData, nullable=True)
+    chf_credit_transfer = Column(
+        source_transaction_chf_credit_transfer_data,
+        ForeignKey("source_transaction_chf_credit_transfer_data"),
+        nullable=True,
+    )
     created = Column(
         Integer,
         comment="Time at which the object was created. Measured in seconds since the Unix epoch",
@@ -26,7 +34,11 @@ class Source_Transaction(Base):
         String,
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",
     )
-    gbp_credit_transfer = Column(SourceTransactionGbpCreditTransferData, nullable=True)
+    gbp_credit_transfer = Column(
+        source_transaction_gbp_credit_transfer_data,
+        ForeignKey("source_transaction_gbp_credit_transfer_data"),
+        nullable=True,
+    )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     livemode = Column(
         Boolean,
@@ -36,9 +48,15 @@ class Source_Transaction(Base):
         String,
         comment="String representing the object's type. Objects of the same type share the same value",
     )
-    paper_check = Column(SourceTransactionPaperCheckData, nullable=True)
+    paper_check = Column(
+        source_transaction_paper_check_data,
+        ForeignKey("source_transaction_paper_check_data"),
+        nullable=True,
+    )
     sepa_credit_transfer = Column(
-        SourceTransactionSepaCreditTransferData, nullable=True
+        source_transaction_sepa_credit_transfer_data,
+        ForeignKey("source_transaction_sepa_credit_transfer_data"),
+        nullable=True,
     )
     source = Column(
         String, comment="The ID of the source this transaction is attached to"

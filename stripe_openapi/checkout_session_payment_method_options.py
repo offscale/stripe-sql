@@ -3,34 +3,126 @@ from sqlalchemy import Column, Integer
 
 class Checkout_Session_Payment_Method_Options(Base):
     __tablename__ = "checkout_session_payment_method_options"
-    acss_debit = Column(CheckoutAcssDebitPaymentMethodOptions, nullable=True)
-    affirm = Column(CheckoutAffirmPaymentMethodOptions, nullable=True)
+    acss_debit = Column(
+        checkout_acss_debit_payment_method_options,
+        ForeignKey("checkout_acss_debit_payment_method_options"),
+        nullable=True,
+    )
+    affirm = Column(
+        checkout_affirm_payment_method_options,
+        ForeignKey("checkout_affirm_payment_method_options"),
+        nullable=True,
+    )
     afterpay_clearpay = Column(
-        CheckoutAfterpayClearpayPaymentMethodOptions, nullable=True
+        checkout_afterpay_clearpay_payment_method_options,
+        ForeignKey("checkout_afterpay_clearpay_payment_method_options"),
+        nullable=True,
     )
-    alipay = Column(CheckoutAlipayPaymentMethodOptions, nullable=True)
-    au_becs_debit = Column(CheckoutAuBecsDebitPaymentMethodOptions, nullable=True)
-    bacs_debit = Column(CheckoutBacsDebitPaymentMethodOptions, nullable=True)
-    bancontact = Column(CheckoutBancontactPaymentMethodOptions, nullable=True)
-    boleto = Column(CheckoutBoletoPaymentMethodOptions, nullable=True)
-    card = Column(CheckoutCardPaymentMethodOptions, nullable=True)
+    alipay = Column(
+        checkout_alipay_payment_method_options,
+        ForeignKey("checkout_alipay_payment_method_options"),
+        nullable=True,
+    )
+    au_becs_debit = Column(
+        checkout_au_becs_debit_payment_method_options,
+        ForeignKey("checkout_au_becs_debit_payment_method_options"),
+        nullable=True,
+    )
+    bacs_debit = Column(
+        checkout_bacs_debit_payment_method_options,
+        ForeignKey("checkout_bacs_debit_payment_method_options"),
+        nullable=True,
+    )
+    bancontact = Column(
+        checkout_bancontact_payment_method_options,
+        ForeignKey("checkout_bancontact_payment_method_options"),
+        nullable=True,
+    )
+    boleto = Column(
+        checkout_boleto_payment_method_options,
+        ForeignKey("checkout_boleto_payment_method_options"),
+        nullable=True,
+    )
+    card = Column(
+        checkout_card_payment_method_options,
+        ForeignKey("checkout_card_payment_method_options"),
+        nullable=True,
+    )
     customer_balance = Column(
-        CheckoutCustomerBalancePaymentMethodOptions, nullable=True
+        checkout_customer_balance_payment_method_options,
+        ForeignKey("checkout_customer_balance_payment_method_options"),
+        nullable=True,
     )
-    eps = Column(CheckoutEpsPaymentMethodOptions, nullable=True)
-    fpx = Column(CheckoutFpxPaymentMethodOptions, nullable=True)
-    giropay = Column(CheckoutGiropayPaymentMethodOptions, nullable=True)
-    grabpay = Column(CheckoutGrabPayPaymentMethodOptions, nullable=True)
-    ideal = Column(CheckoutIdealPaymentMethodOptions, nullable=True)
-    klarna = Column(CheckoutKlarnaPaymentMethodOptions, nullable=True)
-    konbini = Column(CheckoutKonbiniPaymentMethodOptions, nullable=True)
-    oxxo = Column(CheckoutOxxoPaymentMethodOptions, nullable=True)
-    p24 = Column(CheckoutP24PaymentMethodOptions, nullable=True)
-    paynow = Column(CheckoutPaynowPaymentMethodOptions, nullable=True)
-    pix = Column(CheckoutPixPaymentMethodOptions, nullable=True)
-    sepa_debit = Column(CheckoutSepaDebitPaymentMethodOptions, nullable=True)
-    sofort = Column(CheckoutSofortPaymentMethodOptions, nullable=True)
-    us_bank_account = Column(CheckoutUsBankAccountPaymentMethodOptions, nullable=True)
+    eps = Column(
+        checkout_eps_payment_method_options,
+        ForeignKey("checkout_eps_payment_method_options"),
+        nullable=True,
+    )
+    fpx = Column(
+        checkout_fpx_payment_method_options,
+        ForeignKey("checkout_fpx_payment_method_options"),
+        nullable=True,
+    )
+    giropay = Column(
+        checkout_giropay_payment_method_options,
+        ForeignKey("checkout_giropay_payment_method_options"),
+        nullable=True,
+    )
+    grabpay = Column(
+        checkout_grab_pay_payment_method_options,
+        ForeignKey("checkout_grab_pay_payment_method_options"),
+        nullable=True,
+    )
+    ideal = Column(
+        checkout_ideal_payment_method_options,
+        ForeignKey("checkout_ideal_payment_method_options"),
+        nullable=True,
+    )
+    klarna = Column(
+        checkout_klarna_payment_method_options,
+        ForeignKey("checkout_klarna_payment_method_options"),
+        nullable=True,
+    )
+    konbini = Column(
+        checkout_konbini_payment_method_options,
+        ForeignKey("checkout_konbini_payment_method_options"),
+        nullable=True,
+    )
+    oxxo = Column(
+        checkout_oxxo_payment_method_options,
+        ForeignKey("checkout_oxxo_payment_method_options"),
+        nullable=True,
+    )
+    p24 = Column(
+        checkout_p24_payment_method_options,
+        ForeignKey("checkout_p24_payment_method_options"),
+        nullable=True,
+    )
+    paynow = Column(
+        checkout_paynow_payment_method_options,
+        ForeignKey("checkout_paynow_payment_method_options"),
+        nullable=True,
+    )
+    pix = Column(
+        checkout_pix_payment_method_options,
+        ForeignKey("checkout_pix_payment_method_options"),
+        nullable=True,
+    )
+    sepa_debit = Column(
+        checkout_sepa_debit_payment_method_options,
+        ForeignKey("checkout_sepa_debit_payment_method_options"),
+        nullable=True,
+    )
+    sofort = Column(
+        checkout_sofort_payment_method_options,
+        ForeignKey("checkout_sofort_payment_method_options"),
+        nullable=True,
+    )
+    us_bank_account = Column(
+        checkout_us_bank_account_payment_method_options,
+        ForeignKey("checkout_us_bank_account_payment_method_options"),
+        nullable=True,
+    )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

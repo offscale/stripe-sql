@@ -3,7 +3,10 @@ from sqlalchemy import Boolean, Column, Integer, String
 
 class Portal_Subscription_Cancel(Base):
     __tablename__ = "portal_subscription_cancel"
-    cancellation_reason = Column(PortalSubscriptionCancellationReason)
+    cancellation_reason = Column(
+        portal_subscription_cancellation_reason,
+        ForeignKey("portal_subscription_cancellation_reason"),
+    )
     enabled = Column(Boolean, comment="Whether the feature is enabled")
     mode = Column(
         String,

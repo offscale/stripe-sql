@@ -7,9 +7,15 @@ class Bank_Connections_Resource_Balance(Base):
         Integer,
         comment="The time that the external institution calculated this balance. Measured in seconds since the Unix epoch",
     )
-    cash = Column(BankConnectionsResourceBalanceApiResourceCashBalance, nullable=True)
+    cash = Column(
+        bank_connections_resource_balance_api_resource_cash_balance,
+        ForeignKey("bank_connections_resource_balance_api_resource_cash_balance"),
+        nullable=True,
+    )
     credit = Column(
-        BankConnectionsResourceBalanceApiResourceCreditBalance, nullable=True
+        bank_connections_resource_balance_api_resource_credit_balance,
+        ForeignKey("bank_connections_resource_balance_api_resource_credit_balance"),
+        nullable=True,
     )
     current = Column(
         JSON,
