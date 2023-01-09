@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column
+from sqlalchemy import ARRAY, Boolean, Column, String
+
+from . import Base
 
 
-class Gelato_Session_Document_Options(Base):
+class GelatoSessionDocumentOptions(Base):
     __tablename__ = "gelato_session_document_options"
     allowed_types = Column(
         ARRAY(String),
@@ -32,7 +34,7 @@ class Gelato_Session_Document_Options(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Gelato_Session_Document_Options(allowed_types={allowed_types!r}, require_id_number={require_id_number!r}, require_live_capture={require_live_capture!r}, require_matching_selfie={require_matching_selfie!r})".format(
+        return "GelatoSessionDocumentOptions(allowed_types={allowed_types!r}, require_id_number={require_id_number!r}, require_live_capture={require_live_capture!r}, require_matching_selfie={require_matching_selfie!r})".format(
             allowed_types=self.allowed_types,
             require_id_number=self.require_id_number,
             require_live_capture=self.require_live_capture,

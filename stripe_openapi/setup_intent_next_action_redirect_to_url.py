@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Setup_Intent_Next_Action_Redirect_To_Url(Base):
+class SetupIntentNextActionRedirectToUrl(Base):
     __tablename__ = "setup_intent_next_action_redirect_to_url"
     return_url = Column(
         String,
@@ -22,7 +24,7 @@ class Setup_Intent_Next_Action_Redirect_To_Url(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Setup_Intent_Next_Action_Redirect_To_Url(return_url={return_url!r}, url={url!r}, id={id!r})".format(
+        return "SetupIntentNextActionRedirectToUrl(return_url={return_url!r}, url={url!r}, id={id!r})".format(
             return_url=self.return_url, url=self.url, id=self.id
         )
 

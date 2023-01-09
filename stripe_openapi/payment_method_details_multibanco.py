@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Method_Details_Multibanco(Base):
+class PaymentMethodDetailsMultibanco(Base):
     __tablename__ = "payment_method_details_multibanco"
     entity = Column(
         String,
@@ -22,7 +24,7 @@ class Payment_Method_Details_Multibanco(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Details_Multibanco(entity={entity!r}, reference={reference!r}, id={id!r})".format(
+        return "PaymentMethodDetailsMultibanco(entity={entity!r}, reference={reference!r}, id={id!r})".format(
             entity=self.entity, reference=self.reference, id=self.id
         )
 

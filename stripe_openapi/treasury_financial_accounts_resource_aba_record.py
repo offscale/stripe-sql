@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Treasury_Financial_Accounts_Resource_Aba_Record(Base):
+class TreasuryFinancialAccountsResourceAbaRecord(Base):
     """
     ABA Records contain U.S. bank account details per the ABA format.
     """
@@ -25,7 +27,7 @@ class Treasury_Financial_Accounts_Resource_Aba_Record(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Treasury_Financial_Accounts_Resource_Aba_Record(account_holder_name={account_holder_name!r}, account_number={account_number!r}, account_number_last4={account_number_last4!r}, bank_name={bank_name!r}, routing_number={routing_number!r}, id={id!r})".format(
+        return "TreasuryFinancialAccountsResourceAbaRecord(account_holder_name={account_holder_name!r}, account_number={account_number!r}, account_number_last4={account_number_last4!r}, bank_name={bank_name!r}, routing_number={routing_number!r}, id={id!r})".format(
             account_holder_name=self.account_holder_name,
             account_number=self.account_number,
             account_number_last4=self.account_number_last4,

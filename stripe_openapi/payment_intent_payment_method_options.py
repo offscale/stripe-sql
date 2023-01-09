@@ -1,157 +1,109 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer
+
+from . import Base
 
 
-class Payment_Intent_Payment_Method_Options(Base):
+class PaymentIntentPaymentMethodOptions(Base):
     __tablename__ = "payment_intent_payment_method_options"
     acss_debit = Column(
-        payment_intent_payment_method_options_acss_debit,
-        ForeignKey("payment_intent_payment_method_options_acss_debit"),
+        Integer,
+        ForeignKey("payment_intent_payment_method_options_acss_debit.id"),
         nullable=True,
     )
     affirm = Column(
-        payment_method_options_affirm,
-        ForeignKey("payment_method_options_affirm"),
-        nullable=True,
+        Integer, ForeignKey("payment_method_options_affirm.id"), nullable=True
     )
     afterpay_clearpay = Column(
-        payment_method_options_afterpay_clearpay,
-        ForeignKey("payment_method_options_afterpay_clearpay"),
+        Integer,
+        ForeignKey("payment_method_options_afterpay_clearpay.id"),
         nullable=True,
     )
     alipay = Column(
-        payment_method_options_alipay,
-        ForeignKey("payment_method_options_alipay"),
-        nullable=True,
+        Integer, ForeignKey("payment_method_options_alipay.id"), nullable=True
     )
     au_becs_debit = Column(
-        payment_intent_payment_method_options_au_becs_debit,
-        ForeignKey("payment_intent_payment_method_options_au_becs_debit"),
+        Integer,
+        ForeignKey("payment_intent_payment_method_options_au_becs_debit.id"),
         nullable=True,
     )
     bacs_debit = Column(
-        payment_method_options_bacs_debit,
-        ForeignKey("payment_method_options_bacs_debit"),
-        nullable=True,
+        Integer, ForeignKey("payment_method_options_bacs_debit.id"), nullable=True
     )
     bancontact = Column(
-        payment_method_options_bancontact,
-        ForeignKey("payment_method_options_bancontact"),
-        nullable=True,
+        Integer, ForeignKey("payment_method_options_bancontact.id"), nullable=True
     )
     blik = Column(
-        payment_intent_payment_method_options_blik,
-        ForeignKey("payment_intent_payment_method_options_blik"),
+        Integer,
+        ForeignKey("payment_intent_payment_method_options_blik.id"),
         nullable=True,
     )
     boleto = Column(
-        payment_method_options_boleto,
-        ForeignKey("payment_method_options_boleto"),
-        nullable=True,
+        Integer, ForeignKey("payment_method_options_boleto.id"), nullable=True
     )
     card = Column(
-        payment_intent_payment_method_options_card,
-        ForeignKey("payment_intent_payment_method_options_card"),
+        Integer,
+        ForeignKey("payment_intent_payment_method_options_card.id"),
         nullable=True,
     )
     card_present = Column(
-        payment_method_options_card_present,
-        ForeignKey("payment_method_options_card_present"),
-        nullable=True,
+        Integer, ForeignKey("payment_method_options_card_present.id"), nullable=True
     )
     customer_balance = Column(
-        payment_method_options_customer_balance,
-        ForeignKey("payment_method_options_customer_balance"),
-        nullable=True,
+        Integer, ForeignKey("payment_method_options_customer_balance.id"), nullable=True
     )
     eps = Column(
-        payment_intent_payment_method_options_eps,
-        ForeignKey("payment_intent_payment_method_options_eps"),
+        Integer,
+        ForeignKey("payment_intent_payment_method_options_eps.id"),
         nullable=True,
     )
-    fpx = Column(
-        payment_method_options_fpx,
-        ForeignKey("payment_method_options_fpx"),
-        nullable=True,
-    )
+    fpx = Column(Integer, ForeignKey("payment_method_options_fpx.id"), nullable=True)
     giropay = Column(
-        payment_method_options_giropay,
-        ForeignKey("payment_method_options_giropay"),
-        nullable=True,
+        Integer, ForeignKey("payment_method_options_giropay.id"), nullable=True
     )
     grabpay = Column(
-        payment_method_options_grabpay,
-        ForeignKey("payment_method_options_grabpay"),
-        nullable=True,
+        Integer, ForeignKey("payment_method_options_grabpay.id"), nullable=True
     )
     ideal = Column(
-        payment_method_options_ideal,
-        ForeignKey("payment_method_options_ideal"),
-        nullable=True,
+        Integer, ForeignKey("payment_method_options_ideal.id"), nullable=True
     )
     interac_present = Column(
-        payment_method_options_interac_present,
-        ForeignKey("payment_method_options_interac_present"),
-        nullable=True,
+        Integer, ForeignKey("payment_method_options_interac_present.id"), nullable=True
     )
     klarna = Column(
-        payment_method_options_klarna,
-        ForeignKey("payment_method_options_klarna"),
-        nullable=True,
+        Integer, ForeignKey("payment_method_options_klarna.id"), nullable=True
     )
     konbini = Column(
-        payment_method_options_konbini,
-        ForeignKey("payment_method_options_konbini"),
-        nullable=True,
+        Integer, ForeignKey("payment_method_options_konbini.id"), nullable=True
     )
     link = Column(
-        payment_intent_payment_method_options_link,
-        ForeignKey("payment_intent_payment_method_options_link"),
+        Integer,
+        ForeignKey("payment_intent_payment_method_options_link.id"),
         nullable=True,
     )
-    oxxo = Column(
-        payment_method_options_oxxo,
-        ForeignKey("payment_method_options_oxxo"),
-        nullable=True,
-    )
-    p24 = Column(
-        payment_method_options_p24,
-        ForeignKey("payment_method_options_p24"),
-        nullable=True,
-    )
+    oxxo = Column(Integer, ForeignKey("payment_method_options_oxxo.id"), nullable=True)
+    p24 = Column(Integer, ForeignKey("payment_method_options_p24.id"), nullable=True)
     paynow = Column(
-        payment_method_options_paynow,
-        ForeignKey("payment_method_options_paynow"),
-        nullable=True,
+        Integer, ForeignKey("payment_method_options_paynow.id"), nullable=True
     )
-    pix = Column(
-        payment_method_options_pix,
-        ForeignKey("payment_method_options_pix"),
-        nullable=True,
-    )
+    pix = Column(Integer, ForeignKey("payment_method_options_pix.id"), nullable=True)
     promptpay = Column(
-        payment_method_options_promptpay,
-        ForeignKey("payment_method_options_promptpay"),
-        nullable=True,
+        Integer, ForeignKey("payment_method_options_promptpay.id"), nullable=True
     )
     sepa_debit = Column(
-        payment_intent_payment_method_options_sepa_debit,
-        ForeignKey("payment_intent_payment_method_options_sepa_debit"),
+        Integer,
+        ForeignKey("payment_intent_payment_method_options_sepa_debit.id"),
         nullable=True,
     )
     sofort = Column(
-        payment_method_options_sofort,
-        ForeignKey("payment_method_options_sofort"),
-        nullable=True,
+        Integer, ForeignKey("payment_method_options_sofort.id"), nullable=True
     )
     us_bank_account = Column(
-        payment_intent_payment_method_options_us_bank_account,
-        ForeignKey("payment_intent_payment_method_options_us_bank_account"),
+        Integer,
+        ForeignKey("payment_intent_payment_method_options_us_bank_account.id"),
         nullable=True,
     )
     wechat_pay = Column(
-        payment_method_options_wechat_pay,
-        ForeignKey("payment_method_options_wechat_pay"),
-        nullable=True,
+        String, ForeignKey("payment_method_options_wechat_pay.app_id"), nullable=True
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
@@ -162,7 +114,7 @@ class Payment_Intent_Payment_Method_Options(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Intent_Payment_Method_Options(acss_debit={acss_debit!r}, affirm={affirm!r}, afterpay_clearpay={afterpay_clearpay!r}, alipay={alipay!r}, au_becs_debit={au_becs_debit!r}, bacs_debit={bacs_debit!r}, bancontact={bancontact!r}, blik={blik!r}, boleto={boleto!r}, card={card!r}, card_present={card_present!r}, customer_balance={customer_balance!r}, eps={eps!r}, fpx={fpx!r}, giropay={giropay!r}, grabpay={grabpay!r}, ideal={ideal!r}, interac_present={interac_present!r}, klarna={klarna!r}, konbini={konbini!r}, link={link!r}, oxxo={oxxo!r}, p24={p24!r}, paynow={paynow!r}, pix={pix!r}, promptpay={promptpay!r}, sepa_debit={sepa_debit!r}, sofort={sofort!r}, us_bank_account={us_bank_account!r}, wechat_pay={wechat_pay!r}, id={id!r})".format(
+        return "PaymentIntentPaymentMethodOptions(acss_debit={acss_debit!r}, affirm={affirm!r}, afterpay_clearpay={afterpay_clearpay!r}, alipay={alipay!r}, au_becs_debit={au_becs_debit!r}, bacs_debit={bacs_debit!r}, bancontact={bancontact!r}, blik={blik!r}, boleto={boleto!r}, card={card!r}, card_present={card_present!r}, customer_balance={customer_balance!r}, eps={eps!r}, fpx={fpx!r}, giropay={giropay!r}, grabpay={grabpay!r}, ideal={ideal!r}, interac_present={interac_present!r}, klarna={klarna!r}, konbini={konbini!r}, link={link!r}, oxxo={oxxo!r}, p24={p24!r}, paynow={paynow!r}, pix={pix!r}, promptpay={promptpay!r}, sepa_debit={sepa_debit!r}, sofort={sofort!r}, us_bank_account={us_bank_account!r}, wechat_pay={wechat_pay!r}, id={id!r})".format(
             acss_debit=self.acss_debit,
             affirm=self.affirm,
             afterpay_clearpay=self.afterpay_clearpay,

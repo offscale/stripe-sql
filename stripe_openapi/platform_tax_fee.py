@@ -1,7 +1,9 @@
 from sqlalchemy import Column, String
 
+from . import Base
 
-class Platform_Tax_Fee(Base):
+
+class PlatformTaxFee(Base):
     __tablename__ = "platform_tax_fee"
     account = Column(String, comment="The Connected account that incurred this charge")
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
@@ -21,7 +23,7 @@ class Platform_Tax_Fee(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Platform_Tax_Fee(account={account!r}, id={id!r}, object={object!r}, source_transaction={source_transaction!r}, type={type!r})".format(
+        return "PlatformTaxFee(account={account!r}, id={id!r}, object={object!r}, source_transaction={source_transaction!r}, type={type!r})".format(
             account=self.account,
             id=self.id,
             object=self.object,

@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Mandate_Us_Bank_Account(Base):
+class MandateUsBankAccount(Base):
     __tablename__ = "mandate_us_bank_account"
     id = Column(Integer, primary_key=True, server_default=Identity())
 
@@ -12,7 +14,7 @@ class Mandate_Us_Bank_Account(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Mandate_Us_Bank_Account(id={id!r})".format(id=self.id)
+        return "MandateUsBankAccount(id={id!r})".format(id=self.id)
 
 
 __all__ = ["mandate_us_bank_account"]

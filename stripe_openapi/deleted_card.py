@@ -1,7 +1,9 @@
 from sqlalchemy import Boolean, Column, String
 
+from . import Base
 
-class Deleted_Card(Base):
+
+class DeletedCard(Base):
     __tablename__ = "deleted_card"
     currency = Column(
         String,
@@ -22,7 +24,7 @@ class Deleted_Card(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Deleted_Card(currency={currency!r}, deleted={deleted!r}, id={id!r}, object={object!r})".format(
+        return "DeletedCard(currency={currency!r}, deleted={deleted!r}, id={id!r}, object={object!r})".format(
             currency=self.currency, deleted=self.deleted, id=self.id, object=self.object
         )
 

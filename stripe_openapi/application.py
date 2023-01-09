@@ -1,5 +1,7 @@
 from sqlalchemy import Column, String
 
+from . import Base
+
 
 class Application(Base):
     __tablename__ = "application"

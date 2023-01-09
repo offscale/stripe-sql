@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Method_Options_Konbini(Base):
+class PaymentMethodOptionsKonbini(Base):
     __tablename__ = "payment_method_options_konbini"
     confirmation_number = Column(
         String,
@@ -37,7 +39,7 @@ class Payment_Method_Options_Konbini(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Options_Konbini(confirmation_number={confirmation_number!r}, expires_after_days={expires_after_days!r}, expires_at={expires_at!r}, product_description={product_description!r}, setup_future_usage={setup_future_usage!r}, id={id!r})".format(
+        return "PaymentMethodOptionsKonbini(confirmation_number={confirmation_number!r}, expires_after_days={expires_after_days!r}, expires_at={expires_at!r}, product_description={product_description!r}, setup_future_usage={setup_future_usage!r}, id={id!r})".format(
             confirmation_number=self.confirmation_number,
             expires_after_days=self.expires_after_days,
             expires_at=self.expires_at,

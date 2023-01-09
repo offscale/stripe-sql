@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Email_Sent(Base):
+class EmailSent(Base):
     __tablename__ = "email_sent"
     email_sent_at = Column(Integer, comment="The timestamp when the email was sent")
     email_sent_to = Column(String, comment="The recipient's email address")
@@ -14,7 +16,7 @@ class Email_Sent(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Email_Sent(email_sent_at={email_sent_at!r}, email_sent_to={email_sent_to!r}, id={id!r})".format(
+        return "EmailSent(email_sent_at={email_sent_at!r}, email_sent_to={email_sent_to!r}, id={id!r})".format(
             email_sent_at=self.email_sent_at,
             email_sent_to=self.email_sent_to,
             id=self.id,

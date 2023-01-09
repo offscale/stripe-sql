@@ -1,18 +1,21 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Inbound_Transfers(Base):
+class InboundTransfers(Base):
     __tablename__ = "inbound_transfers"
     billing_details = Column(
-        treasury_shared_resource_billing_details,
-        ForeignKey("treasury_shared_resource_billing_details"),
+        Integer, ForeignKey("treasury_shared_resource_billing_details.id")
     )
     type = Column(
         String, comment="The type of the payment method used in the InboundTransfer"
     )
     us_bank_account = Column(
-        inbound_transfers_payment_method_details_us_bank_account,
-        ForeignKey("inbound_transfers_payment_method_details_us_bank_account"),
+        String,
+        ForeignKey(
+            "inbound_transfers_payment_method_details_us_bank_account.bank_name"
+        ),
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -24,7 +27,7 @@ class Inbound_Transfers(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Inbound_Transfers(billing_details={billing_details!r}, type={type!r}, us_bank_account={us_bank_account!r}, id={id!r})".format(
+        return "InboundTransfers(billing_details={billing_details!r}, type={type!r}, us_bank_account={us_bank_account!r}, id={id!r})".format(
             billing_details=self.billing_details,
             type=self.type,
             us_bank_account=self.us_bank_account,

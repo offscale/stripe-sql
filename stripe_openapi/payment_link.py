@@ -1,7 +1,35 @@
-from sqlalchemy import Boolean, Column, Float, Integer, String
+from sqlalchemy import (
+    ARRAY,
+    JSON,
+    Boolean,
+    Column,
+    Float,
+    ForeignKey,
+    Integer,
+    String,
+    list,
+)
+
+from stripe_openapi.payment_links_resource_consent_collection import (
+    PaymentLinksResourceConsentCollection,
+)
+from stripe_openapi.payment_links_resource_payment_intent_data import (
+    PaymentLinksResourcePaymentIntentData,
+)
+from stripe_openapi.payment_links_resource_shipping_address_collection import (
+    PaymentLinksResourceShippingAddressCollection,
+)
+from stripe_openapi.payment_links_resource_subscription_data import (
+    PaymentLinksResourceSubscriptionData,
+)
+from stripe_openapi.payment_links_resource_transfer_data import (
+    PaymentLinksResourceTransferData,
+)
+
+from . import Base
 
 
-class Payment_Link(Base):
+class PaymentLink(Base):
     """
     A payment link is a shareable URL that will take your customers to a hosted payment page. A payment link can be shared and used multiple times.
 
@@ -17,8 +45,7 @@ class Payment_Link(Base):
         comment="Whether the payment link's `url` is active. If `false`, customers visiting the URL will be shown a page saying that the link has been deactivated",
     )
     after_completion = Column(
-        payment_links_resource_after_completion,
-        ForeignKey("payment_links_resource_after_completion"),
+        Integer, ForeignKey("payment_links_resource_after_completion.id")
     )
     allow_promotion_codes = Column(
         Boolean, comment="Whether user redeemable promotion codes are enabled"
@@ -34,25 +61,21 @@ class Payment_Link(Base):
         nullable=True,
     )
     automatic_tax = Column(
-        payment_links_resource_automatic_tax,
-        ForeignKey("payment_links_resource_automatic_tax"),
+        Integer, ForeignKey("payment_links_resource_automatic_tax.id")
     )
     billing_address_collection = Column(
         String, comment="Configuration for collecting the customer's billing address"
     )
     consent_collection = Column(
-        payment_links_resource_consent_collection,
-        comment="[[FK(payment_links_resource_consent_collection)]] When set, provides configuration to gather active consent from customers",
+        PaymentLinksResourceConsentCollection,
+        comment="[[FK(PaymentLinksResourceConsentCollection)]] When set, provides configuration to gather active consent from customers",
         nullable=True,
     )
     currency = Column(
         String,
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",
     )
-    custom_text = Column(
-        payment_links_resource_custom_text,
-        ForeignKey("payment_links_resource_custom_text"),
-    )
+    custom_text = Column(Integer, ForeignKey("payment_links_resource_custom_text.id"))
     customer_creation = Column(
         String, comment="Configuration for Customer creation during checkout"
     )
@@ -73,13 +96,13 @@ class Payment_Link(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     on_behalf_of = Column(
-        account,
-        comment="[[FK(account)]] The account on behalf of which to charge. See the [Connect documentation](https://support.stripe.com/questions/sending-invoices-on-behalf-of-connected-accounts) for details",
+        Account,
+        comment="[[FK(Account)]] The account on behalf of which to charge. See the [Connect documentation](https://support.stripe.com/questions/sending-invoices-on-behalf-of-connected-accounts) for details",
         nullable=True,
     )
     payment_intent_data = Column(
-        payment_links_resource_payment_intent_data,
-        comment="[[FK(payment_links_resource_payment_intent_data)]] Indicates the parameters to be passed to PaymentIntent creation during checkout",
+        PaymentLinksResourcePaymentIntentData,
+        comment="[[FK(PaymentLinksResourcePaymentIntentData)]] Indicates the parameters to be passed to PaymentIntent creation during checkout",
         nullable=True,
     )
     payment_method_collection = Column(
@@ -91,12 +114,11 @@ class Payment_Link(Base):
         nullable=True,
     )
     phone_number_collection = Column(
-        payment_links_resource_phone_number_collection,
-        ForeignKey("payment_links_resource_phone_number_collection"),
+        Integer, ForeignKey("payment_links_resource_phone_number_collection.id")
     )
     shipping_address_collection = Column(
-        payment_links_resource_shipping_address_collection,
-        comment="[[FK(payment_links_resource_shipping_address_collection)]] Configuration for collecting the customer's shipping address",
+        PaymentLinksResourceShippingAddressCollection,
+        comment="[[FK(PaymentLinksResourceShippingAddressCollection)]] Configuration for collecting the customer's shipping address",
         nullable=True,
     )
     shipping_options = Column(
@@ -107,17 +129,16 @@ class Payment_Link(Base):
         comment="Indicates the type of transaction being performed which customizes relevant text on the page, such as the submit button",
     )
     subscription_data = Column(
-        payment_links_resource_subscription_data,
-        comment="[[FK(payment_links_resource_subscription_data)]] When creating a subscription, the specified configuration data will be used. There must be at least one line item with a recurring price to use `subscription_data`",
+        PaymentLinksResourceSubscriptionData,
+        comment="[[FK(PaymentLinksResourceSubscriptionData)]] When creating a subscription, the specified configuration data will be used. There must be at least one line item with a recurring price to use `subscription_data`",
         nullable=True,
     )
     tax_id_collection = Column(
-        payment_links_resource_tax_id_collection,
-        ForeignKey("payment_links_resource_tax_id_collection"),
+        Integer, ForeignKey("payment_links_resource_tax_id_collection.id")
     )
     transfer_data = Column(
-        payment_links_resource_transfer_data,
-        comment="[[FK(payment_links_resource_transfer_data)]] The account (if any) the payments will be attributed to for tax reporting, and where funds from each payment will be transferred to",
+        PaymentLinksResourceTransferData,
+        comment="[[FK(PaymentLinksResourceTransferData)]] The account (if any) the payments will be attributed to for tax reporting, and where funds from each payment will be transferred to",
         nullable=True,
     )
     url = Column(String, comment="The public URL that can be shared with customers")
@@ -129,7 +150,7 @@ class Payment_Link(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Link(active={active!r}, after_completion={after_completion!r}, allow_promotion_codes={allow_promotion_codes!r}, application_fee_amount={application_fee_amount!r}, application_fee_percent={application_fee_percent!r}, automatic_tax={automatic_tax!r}, billing_address_collection={billing_address_collection!r}, consent_collection={consent_collection!r}, currency={currency!r}, custom_text={custom_text!r}, customer_creation={customer_creation!r}, id={id!r}, line_items={line_items!r}, livemode={livemode!r}, metadata={metadata!r}, object={object!r}, on_behalf_of={on_behalf_of!r}, payment_intent_data={payment_intent_data!r}, payment_method_collection={payment_method_collection!r}, payment_method_types={payment_method_types!r}, phone_number_collection={phone_number_collection!r}, shipping_address_collection={shipping_address_collection!r}, shipping_options={shipping_options!r}, submit_type={submit_type!r}, subscription_data={subscription_data!r}, tax_id_collection={tax_id_collection!r}, transfer_data={transfer_data!r}, url={url!r})".format(
+        return "PaymentLink(active={active!r}, after_completion={after_completion!r}, allow_promotion_codes={allow_promotion_codes!r}, application_fee_amount={application_fee_amount!r}, application_fee_percent={application_fee_percent!r}, automatic_tax={automatic_tax!r}, billing_address_collection={billing_address_collection!r}, consent_collection={consent_collection!r}, currency={currency!r}, custom_text={custom_text!r}, customer_creation={customer_creation!r}, id={id!r}, line_items={line_items!r}, livemode={livemode!r}, metadata={metadata!r}, object={object!r}, on_behalf_of={on_behalf_of!r}, payment_intent_data={payment_intent_data!r}, payment_method_collection={payment_method_collection!r}, payment_method_types={payment_method_types!r}, phone_number_collection={phone_number_collection!r}, shipping_address_collection={shipping_address_collection!r}, shipping_options={shipping_options!r}, submit_type={submit_type!r}, subscription_data={subscription_data!r}, tax_id_collection={tax_id_collection!r}, transfer_data={transfer_data!r}, url={url!r})".format(
             active=self.active,
             after_completion=self.after_completion,
             allow_promotion_codes=self.allow_promotion_codes,

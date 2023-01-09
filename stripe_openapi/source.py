@@ -1,4 +1,8 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import JSON, Boolean, Column, ForeignKey, Integer, String
+
+from stripe_openapi.source_owner import SourceOwner
+
+from . import Base
 
 
 class Source(Base):
@@ -19,42 +23,36 @@ class Source(Base):
 
     __tablename__ = "source"
     ach_credit_transfer = Column(
-        source_type_ach_credit_transfer,
-        ForeignKey("source_type_ach_credit_transfer"),
-        nullable=True,
+        Integer, ForeignKey("source_type_ach_credit_transfer.id"), nullable=True
     )
     ach_debit = Column(
-        source_type_ach_debit, ForeignKey("source_type_ach_debit"), nullable=True
+        String, ForeignKey("source_type_ach_debit.bank_name"), nullable=True
     )
     acss_debit = Column(
-        source_type_acss_debit, ForeignKey("source_type_acss_debit"), nullable=True
+        String, ForeignKey("source_type_acss_debit.bank_name"), nullable=True
     )
-    alipay = Column(source_type_alipay, ForeignKey("source_type_alipay"), nullable=True)
+    alipay = Column(Integer, ForeignKey("source_type_alipay.id"), nullable=True)
     amount = Column(
         Integer,
         comment="A positive integer in the smallest currency unit (that is, 100 cents for $1.00, or 1 for ¥1, Japanese Yen being a zero-decimal currency) representing the total amount associated with the source. This is the amount for which the source will be chargeable once ready. Required for `single_use` sources",
         nullable=True,
     )
     au_becs_debit = Column(
-        source_type_au_becs_debit,
-        ForeignKey("source_type_au_becs_debit"),
-        nullable=True,
+        Integer, ForeignKey("source_type_au_becs_debit.id"), nullable=True
     )
     bancontact = Column(
-        source_type_bancontact, ForeignKey("source_type_bancontact"), nullable=True
+        String, ForeignKey("source_type_bancontact.bank_name"), nullable=True
     )
-    card = Column(source_type_card, ForeignKey("source_type_card"), nullable=True)
+    card = Column(Integer, ForeignKey("source_type_card.id"), nullable=True)
     card_present = Column(
-        source_type_card_present, ForeignKey("source_type_card_present"), nullable=True
+        Integer, ForeignKey("source_type_card_present.id"), nullable=True
     )
     client_secret = Column(
         String,
         comment="The client secret of the source. Used for client-side retrieval using a publishable key",
     )
     code_verification = Column(
-        source_code_verification_flow,
-        ForeignKey("source_code_verification_flow"),
-        nullable=True,
+        Integer, ForeignKey("source_code_verification_flow.id"), nullable=True
     )
     created = Column(
         Integer,
@@ -70,17 +68,15 @@ class Source(Base):
         comment="The ID of the customer to which this source is attached. This will not be present when the source has not been attached to a customer",
         nullable=True,
     )
-    eps = Column(source_type_eps, ForeignKey("source_type_eps"), nullable=True)
+    eps = Column(Integer, ForeignKey("source_type_eps.id"), nullable=True)
     flow = Column(
         String,
         comment="The authentication `flow` of the source. `flow` is one of `redirect`, `receiver`, `code_verification`, `none`",
     )
-    giropay = Column(
-        source_type_giropay, ForeignKey("source_type_giropay"), nullable=True
-    )
+    giropay = Column(String, ForeignKey("source_type_giropay.bank_name"), nullable=True)
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
-    ideal = Column(source_type_ideal, ForeignKey("source_type_ideal"), nullable=True)
-    klarna = Column(source_type_klarna, ForeignKey("source_type_klarna"), nullable=True)
+    ideal = Column(Integer, ForeignKey("source_type_ideal.id"), nullable=True)
+    klarna = Column(Integer, ForeignKey("source_type_klarna.id"), nullable=True)
     livemode = Column(
         Boolean,
         comment="Has the value `true` if the object exists in live mode or the value `false` if the object exists in test mode",
@@ -91,34 +87,28 @@ class Source(Base):
         nullable=True,
     )
     multibanco = Column(
-        source_type_multibanco, ForeignKey("source_type_multibanco"), nullable=True
+        String,
+        ForeignKey("source_type_multibanco.refund_account_holder_name"),
+        nullable=True,
     )
     object = Column(
         String,
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     owner = Column(
-        source_owner,
-        comment="[[FK(source_owner)]] Information about the owner of the payment instrument that may be used or required by particular source types",
+        SourceOwner,
+        comment="[[FK(SourceOwner)]] Information about the owner of the payment instrument that may be used or required by particular source types",
         nullable=True,
     )
-    p24 = Column(source_type_p24, ForeignKey("source_type_p24"), nullable=True)
-    receiver = Column(
-        source_receiver_flow, ForeignKey("source_receiver_flow"), nullable=True
-    )
-    redirect = Column(
-        source_redirect_flow, ForeignKey("source_redirect_flow"), nullable=True
-    )
+    p24 = Column(Integer, ForeignKey("source_type_p24.id"), nullable=True)
+    receiver = Column(Integer, ForeignKey("source_receiver_flow.id"), nullable=True)
+    redirect = Column(Integer, ForeignKey("source_redirect_flow.id"), nullable=True)
     sepa_credit_transfer = Column(
-        source_type_sepa_credit_transfer,
-        ForeignKey("source_type_sepa_credit_transfer"),
-        nullable=True,
+        Integer, ForeignKey("source_type_sepa_credit_transfer.id"), nullable=True
     )
-    sepa_debit = Column(
-        source_type_sepa_debit, ForeignKey("source_type_sepa_debit"), nullable=True
-    )
-    sofort = Column(source_type_sofort, ForeignKey("source_type_sofort"), nullable=True)
-    source_order = Column(source_order, ForeignKey("source_order"), nullable=True)
+    sepa_debit = Column(Integer, ForeignKey("source_type_sepa_debit.id"), nullable=True)
+    sofort = Column(String, ForeignKey("source_type_sofort.bank_name"), nullable=True)
+    source_order = Column(Integer, ForeignKey("source_order.id"), nullable=True)
     statement_descriptor = Column(
         String,
         comment="Extra information about a source. This will appear on your customer's statement every time you charge the source",
@@ -129,9 +119,7 @@ class Source(Base):
         comment="The status of the source, one of `canceled`, `chargeable`, `consumed`, `failed`, or `pending`. Only `chargeable` sources can be used to create a charge",
     )
     three_d_secure = Column(
-        source_type_three_d_secure,
-        ForeignKey("source_type_three_d_secure"),
-        nullable=True,
+        Integer, ForeignKey("source_type_three_d_secure.id"), nullable=True
     )
     type = Column(
         String,
@@ -142,7 +130,7 @@ class Source(Base):
         comment="Either `reusable` or `single_use`. Whether this source should be reusable or not. Some source types may or may not be reusable by construction, while others may leave the option at creation. If an incompatible value is passed, an error will be returned",
         nullable=True,
     )
-    wechat = Column(source_type_wechat, ForeignKey("source_type_wechat"), nullable=True)
+    wechat = Column(String, ForeignKey("source_type_wechat.prepay_id"), nullable=True)
 
     def __repr__(self):
         """

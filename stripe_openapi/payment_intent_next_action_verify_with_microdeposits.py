@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Intent_Next_Action_Verify_With_Microdeposits(Base):
+class PaymentIntentNextActionVerifyWithMicrodeposits(Base):
     __tablename__ = "payment_intent_next_action_verify_with_microdeposits"
     arrival_date = Column(
         Integer, comment="The timestamp when the microdeposits are expected to land"
@@ -24,7 +26,7 @@ class Payment_Intent_Next_Action_Verify_With_Microdeposits(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Intent_Next_Action_Verify_With_Microdeposits(arrival_date={arrival_date!r}, hosted_verification_url={hosted_verification_url!r}, microdeposit_type={microdeposit_type!r}, id={id!r})".format(
+        return "PaymentIntentNextActionVerifyWithMicrodeposits(arrival_date={arrival_date!r}, hosted_verification_url={hosted_verification_url!r}, microdeposit_type={microdeposit_type!r}, id={id!r})".format(
             arrival_date=self.arrival_date,
             hosted_verification_url=self.hosted_verification_url,
             microdeposit_type=self.microdeposit_type,

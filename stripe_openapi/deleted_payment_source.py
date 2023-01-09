@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Deleted_Payment_Source(Base):
+class DeletedPaymentSource(Base):
     __tablename__ = "deleted_payment_source"
     id = Column(Integer, primary_key=True, server_default=Identity())
 
@@ -12,7 +14,7 @@ class Deleted_Payment_Source(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Deleted_Payment_Source(id={id!r})".format(id=self.id)
+        return "DeletedPaymentSource(id={id!r})".format(id=self.id)
 
 
 __all__ = ["deleted_payment_source"]

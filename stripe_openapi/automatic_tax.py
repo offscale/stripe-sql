@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, Identity, Integer, String
+
+from . import Base
 
 
-class Automatic_Tax(Base):
+class AutomaticTax(Base):
     __tablename__ = "automatic_tax"
     enabled = Column(
         Boolean,
@@ -21,10 +23,8 @@ class Automatic_Tax(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return (
-            "Automatic_Tax(enabled={enabled!r}, status={status!r}, id={id!r})".format(
-                enabled=self.enabled, status=self.status, id=self.id
-            )
+        return "AutomaticTax(enabled={enabled!r}, status={status!r}, id={id!r})".format(
+            enabled=self.enabled, status=self.status, id=self.id
         )
 
 

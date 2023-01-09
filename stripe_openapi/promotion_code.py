@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import JSON, Boolean, Column, ForeignKey, Integer, String
+
+from . import Base
 
 
-class Promotion_Code(Base):
+class PromotionCode(Base):
     """
     A Promotion Code represents a customer-redeemable code for a [coupon](https://stripe.com/docs/api#coupons). It can be used to
 
@@ -18,14 +20,14 @@ class Promotion_Code(Base):
         String,
         comment="The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for each customer",
     )
-    coupon = Column(coupon, ForeignKey("coupon"))
+    coupon = Column(Coupon, ForeignKey("Coupon"))
     created = Column(
         Integer,
         comment="Time at which the object was created. Measured in seconds since the Unix epoch",
     )
     customer = Column(
-        string | customer,
-        comment="[[FK(deleted_customer)]] The customer that this promotion code can be used by",
+        Customer,
+        comment="[[FK(DeletedCustomer)]] The customer that this promotion code can be used by",
         nullable=True,
     )
     expires_at = Column(
@@ -53,8 +55,7 @@ class Promotion_Code(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     restrictions = Column(
-        promotion_codes_resource_restrictions,
-        ForeignKey("promotion_codes_resource_restrictions"),
+        Integer, ForeignKey("promotion_codes_resource_restrictions.id")
     )
     times_redeemed = Column(
         Integer, comment="Number of times this promotion code has been used"
@@ -67,7 +68,7 @@ class Promotion_Code(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Promotion_Code(active={active!r}, code={code!r}, coupon={coupon!r}, created={created!r}, customer={customer!r}, expires_at={expires_at!r}, id={id!r}, livemode={livemode!r}, max_redemptions={max_redemptions!r}, metadata={metadata!r}, object={object!r}, restrictions={restrictions!r}, times_redeemed={times_redeemed!r})".format(
+        return "PromotionCode(active={active!r}, code={code!r}, coupon={coupon!r}, created={created!r}, customer={customer!r}, expires_at={expires_at!r}, id={id!r}, livemode={livemode!r}, max_redemptions={max_redemptions!r}, metadata={metadata!r}, object={object!r}, restrictions={restrictions!r}, times_redeemed={times_redeemed!r})".format(
             active=self.active,
             code=self.code,
             coupon=self.coupon,

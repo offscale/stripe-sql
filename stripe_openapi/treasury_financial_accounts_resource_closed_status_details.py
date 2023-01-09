@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import ARRAY, Column, Identity, Integer, String
+
+from . import Base
 
 
-class Treasury_Financial_Accounts_Resource_Closed_Status_Details(Base):
+class TreasuryFinancialAccountsResourceClosedStatusDetails(Base):
     __tablename__ = "treasury_financial_accounts_resource_closed_status_details"
     reasons = Column(
         ARRAY(String),
@@ -16,7 +18,7 @@ class Treasury_Financial_Accounts_Resource_Closed_Status_Details(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Treasury_Financial_Accounts_Resource_Closed_Status_Details(reasons={reasons!r}, id={id!r})".format(
+        return "TreasuryFinancialAccountsResourceClosedStatusDetails(reasons={reasons!r}, id={id!r})".format(
             reasons=self.reasons, id=self.id
         )
 

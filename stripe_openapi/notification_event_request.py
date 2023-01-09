@@ -1,7 +1,9 @@
 from sqlalchemy import Column, String
 
+from . import Base
 
-class Notification_Event_Request(Base):
+
+class NotificationEventRequest(Base):
     __tablename__ = "notification_event_request"
     id = Column(
         String,
@@ -22,7 +24,7 @@ class Notification_Event_Request(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Notification_Event_Request(id={id!r}, idempotency_key={idempotency_key!r})".format(
+        return "NotificationEventRequest(id={id!r}, idempotency_key={idempotency_key!r})".format(
             id=self.id, idempotency_key=self.idempotency_key
         )
 

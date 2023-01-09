@@ -1,7 +1,13 @@
-from sqlalchemy import Column, String
+from sqlalchemy import JSON, Column, String, list
+
+from stripe_openapi.invoice_setting_rendering_options import (
+    InvoiceSettingRenderingOptions,
+)
+
+from . import Base
 
 
-class Payment_Pages_Checkout_Session_Invoice_Settings(Base):
+class PaymentPagesCheckoutSessionInvoiceSettings(Base):
     __tablename__ = "payment_pages_checkout_session_invoice_settings"
     account_tax_ids = Column(
         list,
@@ -24,8 +30,8 @@ class Payment_Pages_Checkout_Session_Invoice_Settings(Base):
         nullable=True,
     )
     rendering_options = Column(
-        invoice_setting_rendering_options,
-        comment="[[FK(invoice_setting_rendering_options)]] Options for invoice PDF rendering",
+        InvoiceSettingRenderingOptions,
+        comment="[[FK(InvoiceSettingRenderingOptions)]] Options for invoice PDF rendering",
         nullable=True,
     )
 
@@ -36,7 +42,7 @@ class Payment_Pages_Checkout_Session_Invoice_Settings(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Pages_Checkout_Session_Invoice_Settings(account_tax_ids={account_tax_ids!r}, custom_fields={custom_fields!r}, description={description!r}, footer={footer!r}, metadata={metadata!r}, rendering_options={rendering_options!r})".format(
+        return "PaymentPagesCheckoutSessionInvoiceSettings(account_tax_ids={account_tax_ids!r}, custom_fields={custom_fields!r}, description={description!r}, footer={footer!r}, metadata={metadata!r}, rendering_options={rendering_options!r})".format(
             account_tax_ids=self.account_tax_ids,
             custom_fields=self.custom_fields,
             description=self.description,

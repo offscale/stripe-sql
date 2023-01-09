@@ -1,7 +1,9 @@
 from sqlalchemy import Column, String
 
+from . import Base
 
-class Payment_Method_Details_Boleto(Base):
+
+class PaymentMethodDetailsBoleto(Base):
     __tablename__ = "payment_method_details_boleto"
     tax_id = Column(
         String,
@@ -16,7 +18,7 @@ class Payment_Method_Details_Boleto(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Details_Boleto(tax_id={tax_id!r})".format(
+        return "PaymentMethodDetailsBoleto(tax_id={tax_id!r})".format(
             tax_id=self.tax_id
         )
 

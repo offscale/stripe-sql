@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Issuing_Transaction_Fuel_Data(Base):
+class IssuingTransactionFuelData(Base):
     __tablename__ = "issuing_transaction_fuel_data"
     type = Column(
         String,
@@ -28,7 +30,7 @@ class Issuing_Transaction_Fuel_Data(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Issuing_Transaction_Fuel_Data(type={type!r}, unit={unit!r}, unit_cost_decimal={unit_cost_decimal!r}, volume_decimal={volume_decimal!r}, id={id!r})".format(
+        return "IssuingTransactionFuelData(type={type!r}, unit={unit!r}, unit_cost_decimal={unit_cost_decimal!r}, volume_decimal={volume_decimal!r}, id={id!r})".format(
             type=self.type,
             unit=self.unit,
             unit_cost_decimal=self.unit_cost_decimal,

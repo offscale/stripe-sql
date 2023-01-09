@@ -1,7 +1,11 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import JSON, Boolean, Column, Integer, String, list
+
+from stripe_openapi.customer_balance_transaction import CustomerBalanceTransaction
+
+from . import Base
 
 
-class Credit_Note(Base):
+class CreditNote(Base):
     """
     Issue a credit note to adjust an invoice's amount after the invoice is finalized.
 
@@ -22,12 +26,10 @@ class Credit_Note(Base):
         String,
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",
     )
-    customer = Column(
-        string | customer, comment="[[FK(deleted_customer)]] ID of the customer"
-    )
+    customer = Column(Customer, comment="[[FK(DeletedCustomer)]] ID of the customer")
     customer_balance_transaction = Column(
-        customer_balance_transaction,
-        comment="[[FK(customer_balance_transaction)]] Customer balance transaction related to this credit note",
+        CustomerBalanceTransaction,
+        comment="[[FK(CustomerBalanceTransaction)]] Customer balance transaction related to this credit note",
         nullable=True,
     )
     discount_amount = Column(
@@ -38,7 +40,7 @@ class Credit_Note(Base):
         list, comment="The aggregate amounts calculated per discount for all line items"
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
-    invoice = Column(invoice, comment="[[FK(invoice)]] ID of the invoice")
+    invoice = Column(Invoice, comment="[[FK(Invoice)]] ID of the invoice")
     lines = Column(JSON, comment="Line items that make up the credit note")
     livemode = Column(
         Boolean,
@@ -72,8 +74,8 @@ class Credit_Note(Base):
         nullable=True,
     )
     refund = Column(
-        refund,
-        comment="[[FK(refund)]] Refund related to this credit note",
+        Refund,
+        comment="[[FK(Refund)]] Refund related to this credit note",
         nullable=True,
     )
     status = Column(
@@ -116,7 +118,7 @@ class Credit_Note(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Credit_Note(amount={amount!r}, created={created!r}, currency={currency!r}, customer={customer!r}, customer_balance_transaction={customer_balance_transaction!r}, discount_amount={discount_amount!r}, discount_amounts={discount_amounts!r}, id={id!r}, invoice={invoice!r}, lines={lines!r}, livemode={livemode!r}, memo={memo!r}, metadata={metadata!r}, number={number!r}, object={object!r}, out_of_band_amount={out_of_band_amount!r}, pdf={pdf!r}, reason={reason!r}, refund={refund!r}, status={status!r}, subtotal={subtotal!r}, subtotal_excluding_tax={subtotal_excluding_tax!r}, tax_amounts={tax_amounts!r}, total={total!r}, total_excluding_tax={total_excluding_tax!r}, type={type!r}, voided_at={voided_at!r})".format(
+        return "CreditNote(amount={amount!r}, created={created!r}, currency={currency!r}, customer={customer!r}, customer_balance_transaction={customer_balance_transaction!r}, discount_amount={discount_amount!r}, discount_amounts={discount_amounts!r}, id={id!r}, invoice={invoice!r}, lines={lines!r}, livemode={livemode!r}, memo={memo!r}, metadata={metadata!r}, number={number!r}, object={object!r}, out_of_band_amount={out_of_band_amount!r}, pdf={pdf!r}, reason={reason!r}, refund={refund!r}, status={status!r}, subtotal={subtotal!r}, subtotal_excluding_tax={subtotal_excluding_tax!r}, tax_amounts={tax_amounts!r}, total={total!r}, total_excluding_tax={total_excluding_tax!r}, type={type!r}, voided_at={voided_at!r})".format(
             amount=self.amount,
             created=self.created,
             currency=self.currency,

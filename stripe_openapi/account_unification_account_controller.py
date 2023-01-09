@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, Identity, Integer, String
+
+from . import Base
 
 
-class Account_Unification_Account_Controller(Base):
+class AccountUnificationAccountController(Base):
     __tablename__ = "account_unification_account_controller"
     is_controller = Column(
         Boolean,
@@ -21,7 +23,7 @@ class Account_Unification_Account_Controller(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Account_Unification_Account_Controller(is_controller={is_controller!r}, type={type!r}, id={id!r})".format(
+        return "AccountUnificationAccountController(is_controller={is_controller!r}, type={type!r}, id={id!r})".format(
             is_controller=self.is_controller, type=self.type, id=self.id
         )
 

@@ -1,4 +1,6 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, ForeignKey, Identity, Integer, String, list
+
+from . import Base
 
 
 class Balance(Base):
@@ -31,7 +33,7 @@ class Balance(Base):
     instant_available = Column(
         list, comment="Funds that can be paid out using Instant Payouts", nullable=True
     )
-    issuing = Column(balance_detail, ForeignKey("balance_detail"), nullable=True)
+    issuing = Column(Integer, ForeignKey("balance_detail.id"), nullable=True)
     livemode = Column(
         Boolean,
         comment="Has the value `true` if the object exists in live mode or the value `false` if the object exists in test mode",

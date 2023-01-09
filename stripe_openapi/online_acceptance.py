@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Online_Acceptance(Base):
+class OnlineAcceptance(Base):
     __tablename__ = "online_acceptance"
     ip_address = Column(
         String,
@@ -22,7 +24,7 @@ class Online_Acceptance(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Online_Acceptance(ip_address={ip_address!r}, user_agent={user_agent!r}, id={id!r})".format(
+        return "OnlineAcceptance(ip_address={ip_address!r}, user_agent={user_agent!r}, id={id!r})".format(
             ip_address=self.ip_address, user_agent=self.user_agent, id=self.id
         )
 

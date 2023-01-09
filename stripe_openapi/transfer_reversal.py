@@ -1,7 +1,11 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import JSON, Column, Integer, String
+
+from stripe_openapi.balance_transaction import BalanceTransaction
+
+from . import Base
 
 
-class Transfer_Reversal(Base):
+class TransferReversal(Base):
     """
     [Stripe Connect](https://stripe.com/docs/connect) platforms can reverse transfers made to a
 
@@ -23,8 +27,8 @@ class Transfer_Reversal(Base):
     __tablename__ = "transfer_reversal"
     amount = Column(Integer, comment="Amount, in %s")
     balance_transaction = Column(
-        balance_transaction,
-        comment="[[FK(balance_transaction)]] Balance transaction that describes the impact on your account balance",
+        BalanceTransaction,
+        comment="[[FK(BalanceTransaction)]] Balance transaction that describes the impact on your account balance",
         nullable=True,
     )
     created = Column(
@@ -36,8 +40,8 @@ class Transfer_Reversal(Base):
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",
     )
     destination_payment_refund = Column(
-        refund,
-        comment="[[FK(refund)]] Linked payment refund for the transfer reversal",
+        Refund,
+        comment="[[FK(Refund)]] Linked payment refund for the transfer reversal",
         nullable=True,
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
@@ -51,12 +55,12 @@ class Transfer_Reversal(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     source_refund = Column(
-        refund,
-        comment="[[FK(refund)]] ID of the refund responsible for the transfer reversal",
+        Refund,
+        comment="[[FK(Refund)]] ID of the refund responsible for the transfer reversal",
         nullable=True,
     )
     transfer = Column(
-        transfer, comment="[[FK(transfer)]] ID of the transfer that was reversed"
+        Transfer, comment="[[FK(Transfer)]] ID of the transfer that was reversed"
     )
 
     def __repr__(self):
@@ -66,7 +70,7 @@ class Transfer_Reversal(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Transfer_Reversal(amount={amount!r}, balance_transaction={balance_transaction!r}, created={created!r}, currency={currency!r}, destination_payment_refund={destination_payment_refund!r}, id={id!r}, metadata={metadata!r}, object={object!r}, source_refund={source_refund!r}, transfer={transfer!r})".format(
+        return "TransferReversal(amount={amount!r}, balance_transaction={balance_transaction!r}, created={created!r}, currency={currency!r}, destination_payment_refund={destination_payment_refund!r}, id={id!r}, metadata={metadata!r}, object={object!r}, source_refund={source_refund!r}, transfer={transfer!r})".format(
             amount=self.amount,
             balance_transaction=self.balance_transaction,
             created=self.created,

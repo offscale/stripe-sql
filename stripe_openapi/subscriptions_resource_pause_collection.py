@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Subscriptions_Resource_Pause_Collection(Base):
+class SubscriptionsResourcePauseCollection(Base):
     """
     The Pause Collection settings determine how we will pause collection for this subscription and for how long the subscription
 
@@ -28,7 +30,7 @@ class Subscriptions_Resource_Pause_Collection(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Subscriptions_Resource_Pause_Collection(behavior={behavior!r}, resumes_at={resumes_at!r}, id={id!r})".format(
+        return "SubscriptionsResourcePauseCollection(behavior={behavior!r}, resumes_at={resumes_at!r}, id={id!r})".format(
             behavior=self.behavior, resumes_at=self.resumes_at, id=self.id
         )
 

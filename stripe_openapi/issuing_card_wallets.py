@@ -1,10 +1,12 @@
-from sqlalchemy import Column, String
+from sqlalchemy import Column, ForeignKey, String
+
+from . import Base
 
 
-class Issuing_Card_Wallets(Base):
+class IssuingCardWallets(Base):
     __tablename__ = "issuing_card_wallets"
-    apple_pay = Column(issuing_card_apple_pay, ForeignKey("issuing_card_apple_pay"))
-    google_pay = Column(issuing_card_google_pay, ForeignKey("issuing_card_google_pay"))
+    apple_pay = Column(Integer, ForeignKey("issuing_card_apple_pay.id"))
+    google_pay = Column(Integer, ForeignKey("issuing_card_google_pay.id"))
     primary_account_identifier = Column(
         String,
         comment="Unique identifier for a card used with digital wallets",
@@ -19,7 +21,7 @@ class Issuing_Card_Wallets(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Issuing_Card_Wallets(apple_pay={apple_pay!r}, google_pay={google_pay!r}, primary_account_identifier={primary_account_identifier!r})".format(
+        return "IssuingCardWallets(apple_pay={apple_pay!r}, google_pay={google_pay!r}, primary_account_identifier={primary_account_identifier!r})".format(
             apple_pay=self.apple_pay,
             google_pay=self.google_pay,
             primary_account_identifier=self.primary_account_identifier,

@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Setup_Attempt_Payment_Method_Details_Au_Becs_Debit(Base):
+class SetupAttemptPaymentMethodDetailsAuBecsDebit(Base):
     __tablename__ = "setup_attempt_payment_method_details_au_becs_debit"
     id = Column(Integer, primary_key=True, server_default=Identity())
 
@@ -12,7 +14,7 @@ class Setup_Attempt_Payment_Method_Details_Au_Becs_Debit(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Setup_Attempt_Payment_Method_Details_Au_Becs_Debit(id={id!r})".format(
+        return "SetupAttemptPaymentMethodDetailsAuBecsDebit(id={id!r})".format(
             id=self.id
         )
 

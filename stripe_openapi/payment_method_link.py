@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Method_Link(Base):
+class PaymentMethodLink(Base):
     __tablename__ = "payment_method_link"
     email = Column(String, comment="Account owner's email address", nullable=True)
     persistent_token = Column(
@@ -16,7 +18,7 @@ class Payment_Method_Link(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Link(email={email!r}, persistent_token={persistent_token!r}, id={id!r})".format(
+        return "PaymentMethodLink(email={email!r}, persistent_token={persistent_token!r}, id={id!r})".format(
             email=self.email, persistent_token=self.persistent_token, id=self.id
         )
 

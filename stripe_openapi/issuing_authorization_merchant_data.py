@@ -1,7 +1,9 @@
 from sqlalchemy import Column, String
 
+from . import Base
 
-class Issuing_Authorization_Merchant_Data(Base):
+
+class IssuingAuthorizationMerchantData(Base):
     __tablename__ = "issuing_authorization_merchant_data"
     category = Column(
         String,
@@ -32,7 +34,7 @@ class Issuing_Authorization_Merchant_Data(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Issuing_Authorization_Merchant_Data(category={category!r}, category_code={category_code!r}, city={city!r}, country={country!r}, name={name!r}, network_id={network_id!r}, postal_code={postal_code!r}, state={state!r})".format(
+        return "IssuingAuthorizationMerchantData(category={category!r}, category_code={category_code!r}, city={city!r}, country={country!r}, name={name!r}, network_id={network_id!r}, postal_code={postal_code!r}, state={state!r})".format(
             category=self.category,
             category_code=self.category_code,
             city=self.city,

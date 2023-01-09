@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Radar_Review_Resource_Session(Base):
+class RadarReviewResourceSession(Base):
     __tablename__ = "radar_review_resource_session"
     browser = Column(
         String,
@@ -32,7 +34,7 @@ class Radar_Review_Resource_Session(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Radar_Review_Resource_Session(browser={browser!r}, device={device!r}, platform={platform!r}, version={version!r}, id={id!r})".format(
+        return "RadarReviewResourceSession(browser={browser!r}, device={device!r}, platform={platform!r}, version={version!r}, id={id!r})".format(
             browser=self.browser,
             device=self.device,
             platform=self.platform,

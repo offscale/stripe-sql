@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Gelato_Data_Document_Report_Expiration_Date(Base):
+class GelatoDataDocumentReportExpirationDate(Base):
     """
     Point in Time
     """
@@ -19,7 +21,7 @@ class Gelato_Data_Document_Report_Expiration_Date(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Gelato_Data_Document_Report_Expiration_Date(day={day!r}, month={month!r}, year={year!r}, id={id!r})".format(
+        return "GelatoDataDocumentReportExpirationDate(day={day!r}, month={month!r}, year={year!r}, id={id!r})".format(
             day=self.day, month=self.month, year=self.year, id=self.id
         )
 

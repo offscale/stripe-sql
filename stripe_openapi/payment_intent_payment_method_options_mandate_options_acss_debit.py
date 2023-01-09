@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Intent_Payment_Method_Options_Mandate_Options_Acss_Debit(Base):
+class PaymentIntentPaymentMethodOptionsMandateOptionsAcssDebit(Base):
     __tablename__ = "payment_intent_payment_method_options_mandate_options_acss_debit"
     custom_mandate_url = Column(
         String, comment="A URL for custom mandate text", nullable=True
@@ -26,7 +28,7 @@ class Payment_Intent_Payment_Method_Options_Mandate_Options_Acss_Debit(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Intent_Payment_Method_Options_Mandate_Options_Acss_Debit(custom_mandate_url={custom_mandate_url!r}, interval_description={interval_description!r}, payment_schedule={payment_schedule!r}, transaction_type={transaction_type!r}, id={id!r})".format(
+        return "PaymentIntentPaymentMethodOptionsMandateOptionsAcssDebit(custom_mandate_url={custom_mandate_url!r}, interval_description={interval_description!r}, payment_schedule={payment_schedule!r}, transaction_type={transaction_type!r}, id={id!r})".format(
             custom_mandate_url=self.custom_mandate_url,
             interval_description=self.interval_description,
             payment_schedule=self.payment_schedule,

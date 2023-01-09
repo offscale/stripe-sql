@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+
+from . import Base
 
 
-class Scheduled_Query_Run(Base):
+class ScheduledQueryRun(Base):
     """
     If you have [scheduled a Sigma query](https://stripe.com/docs/sigma/scheduled-queries), you'll
 
@@ -21,13 +23,11 @@ class Scheduled_Query_Run(Base):
         comment="When the query was run, Sigma contained a snapshot of your Stripe data at this time",
     )
     error = Column(
-        sigma_scheduled_query_run_error,
-        ForeignKey("sigma_scheduled_query_run_error"),
-        nullable=True,
+        Integer, ForeignKey("sigma_scheduled_query_run_error.id"), nullable=True
     )
     file = Column(
-        file,
-        comment="[[FK(file)]] The file object representing the results of the query",
+        File,
+        comment="[[FK(File)]] The file object representing the results of the query",
         nullable=True,
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
@@ -57,7 +57,7 @@ class Scheduled_Query_Run(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Scheduled_Query_Run(created={created!r}, data_load_time={data_load_time!r}, error={error!r}, file={file!r}, id={id!r}, livemode={livemode!r}, object={object!r}, result_available_until={result_available_until!r}, sql={sql!r}, status={status!r}, title={title!r})".format(
+        return "ScheduledQueryRun(created={created!r}, data_load_time={data_load_time!r}, error={error!r}, file={file!r}, id={id!r}, livemode={livemode!r}, object={object!r}, result_available_until={result_available_until!r}, sql={sql!r}, status={status!r}, title={title!r})".format(
             created=self.created,
             data_load_time=self.data_load_time,
             error=self.error,

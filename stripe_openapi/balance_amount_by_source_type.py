@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Balance_Amount_By_Source_Type(Base):
+class BalanceAmountBySourceType(Base):
     __tablename__ = "balance_amount_by_source_type"
     bank_account = Column(Integer, comment="Amount for bank account", nullable=True)
     card = Column(Integer, comment="Amount for card", nullable=True)
@@ -15,7 +17,7 @@ class Balance_Amount_By_Source_Type(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Balance_Amount_By_Source_Type(bank_account={bank_account!r}, card={card!r}, fpx={fpx!r}, id={id!r})".format(
+        return "BalanceAmountBySourceType(bank_account={bank_account!r}, card={card!r}, fpx={fpx!r}, id={id!r})".format(
             bank_account=self.bank_account, card=self.card, fpx=self.fpx, id=self.id
         )
 

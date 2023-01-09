@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Issuing_Transaction_Lodging_Data(Base):
+class IssuingTransactionLodgingData(Base):
     __tablename__ = "issuing_transaction_lodging_data"
     check_in_at = Column(
         Integer, comment="The time of checking into the lodging", nullable=True
@@ -18,7 +20,7 @@ class Issuing_Transaction_Lodging_Data(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Issuing_Transaction_Lodging_Data(check_in_at={check_in_at!r}, nights={nights!r}, id={id!r})".format(
+        return "IssuingTransactionLodgingData(check_in_at={check_in_at!r}, nights={nights!r}, id={id!r})".format(
             check_in_at=self.check_in_at, nights=self.nights, id=self.id
         )
 

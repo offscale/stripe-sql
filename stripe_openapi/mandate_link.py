@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Mandate_Link(Base):
+class MandateLink(Base):
     __tablename__ = "mandate_link"
     id = Column(Integer, primary_key=True, server_default=Identity())
 
@@ -12,7 +14,7 @@ class Mandate_Link(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Mandate_Link(id={id!r})".format(id=self.id)
+        return "MandateLink(id={id!r})".format(id=self.id)
 
 
 __all__ = ["mandate_link"]

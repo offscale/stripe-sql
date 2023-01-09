@@ -1,30 +1,43 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import ARRAY, Column, Identity, Integer, String
+
+from stripe_openapi.gelato_data_document_report_date_of_birth import (
+    GelatoDataDocumentReportDateOfBirth,
+)
+from stripe_openapi.gelato_data_document_report_expiration_date import (
+    GelatoDataDocumentReportExpirationDate,
+)
+from stripe_openapi.gelato_data_document_report_issued_date import (
+    GelatoDataDocumentReportIssuedDate,
+)
+from stripe_openapi.gelato_document_report_error import GelatoDocumentReportError
+
+from . import Base
 
 
-class Gelato_Document_Report(Base):
+class GelatoDocumentReport(Base):
     """
     Result from a document check
     """
 
     __tablename__ = "gelato_document_report"
     address = Column(
-        address,
-        comment="[[FK(address)]] Address as it appears in the document",
+        Address,
+        comment="[[FK(Address)]] Address as it appears in the document",
         nullable=True,
     )
     dob = Column(
-        gelato_data_document_report_date_of_birth,
-        comment="[[FK(gelato_data_document_report_date_of_birth)]] Date of birth as it appears in the document",
+        GelatoDataDocumentReportDateOfBirth,
+        comment="[[FK(GelatoDataDocumentReportDateOfBirth)]] Date of birth as it appears in the document",
         nullable=True,
     )
     error = Column(
-        gelato_document_report_error,
-        comment="[[FK(gelato_document_report_error)]] Details on the verification error. Present when status is `unverified`",
+        GelatoDocumentReportError,
+        comment="[[FK(GelatoDocumentReportError)]] Details on the verification error. Present when status is `unverified`",
         nullable=True,
     )
     expiration_date = Column(
-        gelato_data_document_report_expiration_date,
-        comment="[[FK(gelato_data_document_report_expiration_date)]] Expiration date of the document",
+        GelatoDataDocumentReportExpirationDate,
+        comment="[[FK(GelatoDataDocumentReportExpirationDate)]] Expiration date of the document",
         nullable=True,
     )
     files = Column(
@@ -36,8 +49,8 @@ class Gelato_Document_Report(Base):
         String, comment="First name as it appears in the document", nullable=True
     )
     issued_date = Column(
-        gelato_data_document_report_issued_date,
-        comment="[[FK(gelato_data_document_report_issued_date)]] Issued date of the document",
+        GelatoDataDocumentReportIssuedDate,
+        comment="[[FK(GelatoDataDocumentReportIssuedDate)]] Issued date of the document",
         nullable=True,
     )
     issuing_country = Column(
@@ -58,7 +71,7 @@ class Gelato_Document_Report(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Gelato_Document_Report(address={address!r}, dob={dob!r}, error={error!r}, expiration_date={expiration_date!r}, files={files!r}, first_name={first_name!r}, issued_date={issued_date!r}, issuing_country={issuing_country!r}, last_name={last_name!r}, number={number!r}, status={status!r}, type={type!r}, id={id!r})".format(
+        return "GelatoDocumentReport(address={address!r}, dob={dob!r}, error={error!r}, expiration_date={expiration_date!r}, files={files!r}, first_name={first_name!r}, issued_date={issued_date!r}, issuing_country={issuing_country!r}, last_name={last_name!r}, number={number!r}, status={status!r}, type={type!r}, id={id!r})".format(
             address=self.address,
             dob=self.dob,
             error=self.error,

@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Float, Integer, String
+from sqlalchemy import Column, Float, Identity, Integer, String
+
+from . import Base
 
 
-class Radar_Review_Resource_Location(Base):
+class RadarReviewResourceLocation(Base):
     __tablename__ = "radar_review_resource_location"
     city = Column(
         String, comment="The city where the payment originated", nullable=True
@@ -35,7 +37,7 @@ class Radar_Review_Resource_Location(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Radar_Review_Resource_Location(city={city!r}, country={country!r}, latitude={latitude!r}, longitude={longitude!r}, region={region!r}, id={id!r})".format(
+        return "RadarReviewResourceLocation(city={city!r}, country={country!r}, latitude={latitude!r}, longitude={longitude!r}, region={region!r}, id={id!r})".format(
             city=self.city,
             country=self.country,
             latitude=self.latitude,

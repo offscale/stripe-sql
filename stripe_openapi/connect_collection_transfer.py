@@ -1,7 +1,9 @@
 from sqlalchemy import Boolean, Column, Integer, String
 
+from . import Base
 
-class Connect_Collection_Transfer(Base):
+
+class ConnectCollectionTransfer(Base):
     __tablename__ = "connect_collection_transfer"
     amount = Column(Integer, comment="Amount transferred, in %s")
     currency = Column(
@@ -9,8 +11,8 @@ class Connect_Collection_Transfer(Base):
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",
     )
     destination = Column(
-        account,
-        comment="[[FK(account)]] ID of the account that funds are being collected for",
+        Account,
+        comment="[[FK(Account)]] ID of the account that funds are being collected for",
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     livemode = Column(
@@ -29,7 +31,7 @@ class Connect_Collection_Transfer(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Connect_Collection_Transfer(amount={amount!r}, currency={currency!r}, destination={destination!r}, id={id!r}, livemode={livemode!r}, object={object!r})".format(
+        return "ConnectCollectionTransfer(amount={amount!r}, currency={currency!r}, destination={destination!r}, id={id!r}, livemode={livemode!r}, object={object!r})".format(
             amount=self.amount,
             currency=self.currency,
             destination=self.destination,

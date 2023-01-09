@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer
+from sqlalchemy import Boolean, Column, Identity, Integer
+
+from . import Base
 
 
-class Payment_Links_Resource_Tax_Id_Collection(Base):
+class PaymentLinksResourceTaxIdCollection(Base):
     __tablename__ = "payment_links_resource_tax_id_collection"
     enabled = Column(
         Boolean,
@@ -16,7 +18,7 @@ class Payment_Links_Resource_Tax_Id_Collection(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Links_Resource_Tax_Id_Collection(enabled={enabled!r}, id={id!r})".format(
+        return "PaymentLinksResourceTaxIdCollection(enabled={enabled!r}, id={id!r})".format(
             enabled=self.enabled, id=self.id
         )
 

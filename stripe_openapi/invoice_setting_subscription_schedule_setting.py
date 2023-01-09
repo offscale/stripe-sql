@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Invoice_Setting_Subscription_Schedule_Setting(Base):
+class InvoiceSettingSubscriptionScheduleSetting(Base):
     __tablename__ = "invoice_setting_subscription_schedule_setting"
     days_until_due = Column(
         Integer,
@@ -17,7 +19,7 @@ class Invoice_Setting_Subscription_Schedule_Setting(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Invoice_Setting_Subscription_Schedule_Setting(days_until_due={days_until_due!r}, id={id!r})".format(
+        return "InvoiceSettingSubscriptionScheduleSetting(days_until_due={days_until_due!r}, id={id!r})".format(
             days_until_due=self.days_until_due, id=self.id
         )
 

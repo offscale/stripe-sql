@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import ARRAY, Column, Identity, Integer, String
+
+from . import Base
 
 
-class Mandate_Acss_Debit(Base):
+class MandateAcssDebit(Base):
     __tablename__ = "mandate_acss_debit"
     default_for = Column(
         ARRAY(String),
@@ -24,7 +26,7 @@ class Mandate_Acss_Debit(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Mandate_Acss_Debit(default_for={default_for!r}, interval_description={interval_description!r}, payment_schedule={payment_schedule!r}, transaction_type={transaction_type!r}, id={id!r})".format(
+        return "MandateAcssDebit(default_for={default_for!r}, interval_description={interval_description!r}, payment_schedule={payment_schedule!r}, transaction_type={transaction_type!r}, id={id!r})".format(
             default_for=self.default_for,
             interval_description=self.interval_description,
             payment_schedule=self.payment_schedule,

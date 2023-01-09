@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, String
+from sqlalchemy import ARRAY, JSON, Boolean, Column, String
+
+from . import Base
 
 
-class Bank_Account(Base):
+class BankAccount(Base):
     """
     These bank accounts are payment methods on `Customer` objects.
 
@@ -15,8 +17,8 @@ class Bank_Account(Base):
 
     __tablename__ = "bank_account"
     account = Column(
-        account,
-        comment="[[FK(account)]] The ID of the account that the bank account is associated with",
+        Account,
+        comment="[[FK(Account)]] The ID of the account that the bank account is associated with",
         nullable=True,
     )
     account_holder_name = Column(
@@ -53,8 +55,8 @@ class Bank_Account(Base):
         comment="Three-letter [ISO code for the currency](https://stripe.com/docs/payouts) paid out to the bank account",
     )
     customer = Column(
-        string | customer,
-        comment="[[FK(deleted_customer)]] The ID of the customer that the bank account is associated with",
+        Customer,
+        comment="[[FK(DeletedCustomer)]] The ID of the customer that the bank account is associated with",
         nullable=True,
     )
     default_for_currency = Column(
@@ -93,7 +95,7 @@ class Bank_Account(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Bank_Account(account={account!r}, account_holder_name={account_holder_name!r}, account_holder_type={account_holder_type!r}, account_type={account_type!r}, available_payout_methods={available_payout_methods!r}, bank_name={bank_name!r}, country={country!r}, currency={currency!r}, customer={customer!r}, default_for_currency={default_for_currency!r}, fingerprint={fingerprint!r}, id={id!r}, last4={last4!r}, metadata={metadata!r}, object={object!r}, routing_number={routing_number!r}, status={status!r})".format(
+        return "BankAccount(account={account!r}, account_holder_name={account_holder_name!r}, account_holder_type={account_holder_type!r}, account_type={account_type!r}, available_payout_methods={available_payout_methods!r}, bank_name={bank_name!r}, country={country!r}, currency={currency!r}, customer={customer!r}, default_for_currency={default_for_currency!r}, fingerprint={fingerprint!r}, id={id!r}, last4={last4!r}, metadata={metadata!r}, object={object!r}, routing_number={routing_number!r}, status={status!r})".format(
             account=self.account,
             account_holder_name=self.account_holder_name,
             account_holder_type=self.account_holder_type,

@@ -1,13 +1,15 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Terminal_Configuration_Configuration_Resource_Device_Type_Specific_Config(Base):
+class TerminalConfigurationConfigurationResourceDeviceTypeSpecificConfig(Base):
     __tablename__ = (
         "terminal_configuration_configuration_resource_device_type_specific_config"
     )
     splashscreen = Column(
-        file,
-        comment="[[FK(file)]] A File ID representing an image you would like displayed on the reader",
+        File,
+        comment="[[FK(File)]] A File ID representing an image you would like displayed on the reader",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -19,7 +21,7 @@ class Terminal_Configuration_Configuration_Resource_Device_Type_Specific_Config(
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Terminal_Configuration_Configuration_Resource_Device_Type_Specific_Config(splashscreen={splashscreen!r}, id={id!r})".format(
+        return "TerminalConfigurationConfigurationResourceDeviceTypeSpecificConfig(splashscreen={splashscreen!r}, id={id!r})".format(
             splashscreen=self.splashscreen, id=self.id
         )
 

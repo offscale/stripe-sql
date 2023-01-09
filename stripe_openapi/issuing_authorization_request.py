@@ -1,15 +1,21 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, Identity, Integer, String
+
+from stripe_openapi.issuing_authorization_amount_details import (
+    IssuingAuthorizationAmountDetails,
+)
+
+from . import Base
 
 
-class Issuing_Authorization_Request(Base):
+class IssuingAuthorizationRequest(Base):
     __tablename__ = "issuing_authorization_request"
     amount = Column(
         Integer,
         comment="The `pending_request.amount` at the time of the request, presented in your card's currency and in the [smallest currency unit](https://stripe.com/docs/currencies#zero-decimal). Stripe held this amount from your account to fund the authorization if the request was approved",
     )
     amount_details = Column(
-        issuing_authorization_amount_details,
-        comment="[[FK(issuing_authorization_amount_details)]] Detailed breakdown of amount components. These amounts are denominated in `currency` and in the [smallest currency unit](https://stripe.com/docs/currencies#zero-decimal)",
+        IssuingAuthorizationAmountDetails,
+        comment="[[FK(IssuingAuthorizationAmountDetails)]] Detailed breakdown of amount components. These amounts are denominated in `currency` and in the [smallest currency unit](https://stripe.com/docs/currencies#zero-decimal)",
         nullable=True,
     )
     approved = Column(Boolean, comment="Whether this request was approved")
@@ -47,7 +53,7 @@ class Issuing_Authorization_Request(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Issuing_Authorization_Request(amount={amount!r}, amount_details={amount_details!r}, approved={approved!r}, created={created!r}, currency={currency!r}, merchant_amount={merchant_amount!r}, merchant_currency={merchant_currency!r}, reason={reason!r}, reason_message={reason_message!r}, id={id!r})".format(
+        return "IssuingAuthorizationRequest(amount={amount!r}, amount_details={amount_details!r}, approved={approved!r}, created={created!r}, currency={currency!r}, merchant_amount={merchant_amount!r}, merchant_currency={merchant_currency!r}, reason={reason!r}, reason_message={reason_message!r}, id={id!r})".format(
             amount=self.amount,
             amount_details=self.amount_details,
             approved=self.approved,

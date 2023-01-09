@@ -1,11 +1,13 @@
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, list
+
+from . import Base
 
 
-class Payment_Pages_Checkout_Session_Customer_Details(Base):
+class PaymentPagesCheckoutSessionCustomerDetails(Base):
     __tablename__ = "payment_pages_checkout_session_customer_details"
     address = Column(
-        address,
-        comment="[[FK(address)]] The customer's address after a completed Checkout Session. Note: This property is populated only for sessions on or after March 30, 2022",
+        Address,
+        comment="[[FK(Address)]] The customer's address after a completed Checkout Session. Note: This property is populated only for sessions on or after March 30, 2022",
         nullable=True,
     )
     email = Column(
@@ -42,7 +44,7 @@ class Payment_Pages_Checkout_Session_Customer_Details(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Pages_Checkout_Session_Customer_Details(address={address!r}, email={email!r}, name={name!r}, phone={phone!r}, tax_exempt={tax_exempt!r}, tax_ids={tax_ids!r})".format(
+        return "PaymentPagesCheckoutSessionCustomerDetails(address={address!r}, email={email!r}, name={name!r}, phone={phone!r}, tax_exempt={tax_exempt!r}, tax_ids={tax_ids!r})".format(
             address=self.address,
             email=self.email,
             name=self.name,

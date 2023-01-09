@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Alternate_Statement_Descriptors(Base):
+class AlternateStatementDescriptors(Base):
     __tablename__ = "alternate_statement_descriptors"
     kana = Column(String, comment="The Kana variation of the descriptor", nullable=True)
     kanji = Column(
@@ -16,7 +18,7 @@ class Alternate_Statement_Descriptors(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Alternate_Statement_Descriptors(kana={kana!r}, kanji={kanji!r}, id={id!r})".format(
+        return "AlternateStatementDescriptors(kana={kana!r}, kanji={kanji!r}, id={id!r})".format(
             kana=self.kana, kanji=self.kanji, id=self.id
         )
 

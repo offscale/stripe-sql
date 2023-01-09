@@ -1,17 +1,25 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, ForeignKey, Identity, Integer, String
+
+from stripe_openapi.legal_entity_company_verification import (
+    LegalEntityCompanyVerification,
+)
+from stripe_openapi.legal_entity_japan_address import LegalEntityJapanAddress
+from stripe_openapi.legal_entity_ubo_declaration import LegalEntityUboDeclaration
+
+from . import Base
 
 
-class Legal_Entity_Company(Base):
+class LegalEntityCompany(Base):
     __tablename__ = "legal_entity_company"
-    address = Column(address, ForeignKey("address"), nullable=True)
+    address = Column(Address, ForeignKey("Address"), nullable=True)
     address_kana = Column(
-        legal_entity_japan_address,
-        comment="[[FK(legal_entity_japan_address)]] The Kana variation of the company's primary address (Japan only)",
+        LegalEntityJapanAddress,
+        comment="[[FK(LegalEntityJapanAddress)]] The Kana variation of the company's primary address (Japan only)",
         nullable=True,
     )
     address_kanji = Column(
-        legal_entity_japan_address,
-        comment="[[FK(legal_entity_japan_address)]] The Kanji variation of the company's primary address (Japan only)",
+        LegalEntityJapanAddress,
+        comment="[[FK(LegalEntityJapanAddress)]] The Kanji variation of the company's primary address (Japan only)",
         nullable=True,
     )
     directors_provided = Column(
@@ -41,8 +49,8 @@ class Legal_Entity_Company(Base):
         nullable=True,
     )
     ownership_declaration = Column(
-        legal_entity_ubo_declaration,
-        comment="[[FK(legal_entity_ubo_declaration)]] This hash is used to attest that the beneficial owner information provided to Stripe is both current and correct",
+        LegalEntityUboDeclaration,
+        comment="[[FK(LegalEntityUboDeclaration)]] This hash is used to attest that the beneficial owner information provided to Stripe is both current and correct",
         nullable=True,
     )
     phone = Column(
@@ -71,8 +79,8 @@ class Legal_Entity_Company(Base):
         nullable=True,
     )
     verification = Column(
-        legal_entity_company_verification,
-        comment="[[FK(legal_entity_company_verification)]] Information on the verification state of the company",
+        LegalEntityCompanyVerification,
+        comment="[[FK(LegalEntityCompanyVerification)]] Information on the verification state of the company",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -84,7 +92,7 @@ class Legal_Entity_Company(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Legal_Entity_Company(address={address!r}, address_kana={address_kana!r}, address_kanji={address_kanji!r}, directors_provided={directors_provided!r}, executives_provided={executives_provided!r}, name={name!r}, name_kana={name_kana!r}, name_kanji={name_kanji!r}, owners_provided={owners_provided!r}, ownership_declaration={ownership_declaration!r}, phone={phone!r}, structure={structure!r}, tax_id_provided={tax_id_provided!r}, tax_id_registrar={tax_id_registrar!r}, vat_id_provided={vat_id_provided!r}, verification={verification!r}, id={id!r})".format(
+        return "LegalEntityCompany(address={address!r}, address_kana={address_kana!r}, address_kanji={address_kanji!r}, directors_provided={directors_provided!r}, executives_provided={executives_provided!r}, name={name!r}, name_kana={name_kana!r}, name_kanji={name_kanji!r}, owners_provided={owners_provided!r}, ownership_declaration={ownership_declaration!r}, phone={phone!r}, structure={structure!r}, tax_id_provided={tax_id_provided!r}, tax_id_registrar={tax_id_registrar!r}, vat_id_provided={vat_id_provided!r}, verification={verification!r}, id={id!r})".format(
             address=self.address,
             address_kana=self.address_kana,
             address_kanji=self.address_kanji,

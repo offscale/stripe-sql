@@ -1,103 +1,105 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer
+
+from . import Base
 
 
-class Terminal_Configuration_Configuration_Resource_Tipping(Base):
+class TerminalConfigurationConfigurationResourceTipping(Base):
     __tablename__ = "terminal_configuration_configuration_resource_tipping"
     aud = Column(
-        terminal_configuration_configuration_resource_currency_specific_config,
+        Integer,
         ForeignKey(
-            "terminal_configuration_configuration_resource_currency_specific_config"
+            "terminal_configuration_configuration_resource_currency_specific_config.id"
         ),
         nullable=True,
     )
     cad = Column(
-        terminal_configuration_configuration_resource_currency_specific_config,
+        Integer,
         ForeignKey(
-            "terminal_configuration_configuration_resource_currency_specific_config"
+            "terminal_configuration_configuration_resource_currency_specific_config.id"
         ),
         nullable=True,
     )
     chf = Column(
-        terminal_configuration_configuration_resource_currency_specific_config,
+        Integer,
         ForeignKey(
-            "terminal_configuration_configuration_resource_currency_specific_config"
+            "terminal_configuration_configuration_resource_currency_specific_config.id"
         ),
         nullable=True,
     )
     czk = Column(
-        terminal_configuration_configuration_resource_currency_specific_config,
+        Integer,
         ForeignKey(
-            "terminal_configuration_configuration_resource_currency_specific_config"
+            "terminal_configuration_configuration_resource_currency_specific_config.id"
         ),
         nullable=True,
     )
     dkk = Column(
-        terminal_configuration_configuration_resource_currency_specific_config,
+        Integer,
         ForeignKey(
-            "terminal_configuration_configuration_resource_currency_specific_config"
+            "terminal_configuration_configuration_resource_currency_specific_config.id"
         ),
         nullable=True,
     )
     eur = Column(
-        terminal_configuration_configuration_resource_currency_specific_config,
+        Integer,
         ForeignKey(
-            "terminal_configuration_configuration_resource_currency_specific_config"
+            "terminal_configuration_configuration_resource_currency_specific_config.id"
         ),
         nullable=True,
     )
     gbp = Column(
-        terminal_configuration_configuration_resource_currency_specific_config,
+        Integer,
         ForeignKey(
-            "terminal_configuration_configuration_resource_currency_specific_config"
+            "terminal_configuration_configuration_resource_currency_specific_config.id"
         ),
         nullable=True,
     )
     hkd = Column(
-        terminal_configuration_configuration_resource_currency_specific_config,
+        Integer,
         ForeignKey(
-            "terminal_configuration_configuration_resource_currency_specific_config"
+            "terminal_configuration_configuration_resource_currency_specific_config.id"
         ),
         nullable=True,
     )
     myr = Column(
-        terminal_configuration_configuration_resource_currency_specific_config,
+        Integer,
         ForeignKey(
-            "terminal_configuration_configuration_resource_currency_specific_config"
+            "terminal_configuration_configuration_resource_currency_specific_config.id"
         ),
         nullable=True,
     )
     nok = Column(
-        terminal_configuration_configuration_resource_currency_specific_config,
+        Integer,
         ForeignKey(
-            "terminal_configuration_configuration_resource_currency_specific_config"
+            "terminal_configuration_configuration_resource_currency_specific_config.id"
         ),
         nullable=True,
     )
     nzd = Column(
-        terminal_configuration_configuration_resource_currency_specific_config,
+        Integer,
         ForeignKey(
-            "terminal_configuration_configuration_resource_currency_specific_config"
+            "terminal_configuration_configuration_resource_currency_specific_config.id"
         ),
         nullable=True,
     )
     sek = Column(
-        terminal_configuration_configuration_resource_currency_specific_config,
+        Integer,
         ForeignKey(
-            "terminal_configuration_configuration_resource_currency_specific_config"
+            "terminal_configuration_configuration_resource_currency_specific_config.id"
         ),
         nullable=True,
     )
     sgd = Column(
-        terminal_configuration_configuration_resource_currency_specific_config,
+        Integer,
         ForeignKey(
-            "terminal_configuration_configuration_resource_currency_specific_config"
+            "terminal_configuration_configuration_resource_currency_specific_config.id"
         ),
         nullable=True,
     )
     usd = Column(
-        terminal_configuration_configuration_resource_currency_specific_config,
+        Integer,
         ForeignKey(
-            "terminal_configuration_configuration_resource_currency_specific_config"
+            "terminal_configuration_configuration_resource_currency_specific_config.id"
         ),
         nullable=True,
     )
@@ -110,7 +112,7 @@ class Terminal_Configuration_Configuration_Resource_Tipping(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Terminal_Configuration_Configuration_Resource_Tipping(aud={aud!r}, cad={cad!r}, chf={chf!r}, czk={czk!r}, dkk={dkk!r}, eur={eur!r}, gbp={gbp!r}, hkd={hkd!r}, myr={myr!r}, nok={nok!r}, nzd={nzd!r}, sek={sek!r}, sgd={sgd!r}, usd={usd!r}, id={id!r})".format(
+        return "TerminalConfigurationConfigurationResourceTipping(aud={aud!r}, cad={cad!r}, chf={chf!r}, czk={czk!r}, dkk={dkk!r}, eur={eur!r}, gbp={gbp!r}, hkd={hkd!r}, myr={myr!r}, nok={nok!r}, nzd={nzd!r}, sek={sek!r}, sgd={sgd!r}, usd={usd!r}, id={id!r})".format(
             aud=self.aud,
             cad=self.cad,
             chf=self.chf,

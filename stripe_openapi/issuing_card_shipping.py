@@ -1,15 +1,19 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, ForeignKey, Identity, Integer, String
+
+from stripe_openapi.issuing_card_shipping_customs import IssuingCardShippingCustoms
+
+from . import Base
 
 
-class Issuing_Card_Shipping(Base):
+class IssuingCardShipping(Base):
     __tablename__ = "issuing_card_shipping"
-    address = Column(address, ForeignKey("address"))
+    address = Column(Address, ForeignKey("Address"))
     carrier = Column(
         String, comment="The delivery company that shipped a card", nullable=True
     )
     customs = Column(
-        issuing_card_shipping_customs,
-        comment="[[FK(issuing_card_shipping_customs)]] Additional information that may be required for clearing customs",
+        IssuingCardShippingCustoms,
+        comment="[[FK(IssuingCardShippingCustoms)]] Additional information that may be required for clearing customs",
         nullable=True,
     )
     eta = Column(
@@ -50,7 +54,7 @@ class Issuing_Card_Shipping(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Issuing_Card_Shipping(address={address!r}, carrier={carrier!r}, customs={customs!r}, eta={eta!r}, name={name!r}, phone_number={phone_number!r}, require_signature={require_signature!r}, service={service!r}, status={status!r}, tracking_number={tracking_number!r}, tracking_url={tracking_url!r}, type={type!r}, id={id!r})".format(
+        return "IssuingCardShipping(address={address!r}, carrier={carrier!r}, customs={customs!r}, eta={eta!r}, name={name!r}, phone_number={phone_number!r}, require_signature={require_signature!r}, service={service!r}, status={status!r}, tracking_number={tracking_number!r}, tracking_url={tracking_url!r}, type={type!r}, id={id!r})".format(
             address=self.address,
             carrier=self.carrier,
             customs=self.customs,

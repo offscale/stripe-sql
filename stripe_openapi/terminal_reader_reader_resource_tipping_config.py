@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Terminal_Reader_Reader_Resource_Tipping_Config(Base):
+class TerminalReaderReaderResourceTippingConfig(Base):
     """
     Represents a per-transaction tipping configuration
     """
@@ -21,7 +23,7 @@ class Terminal_Reader_Reader_Resource_Tipping_Config(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Terminal_Reader_Reader_Resource_Tipping_Config(amount_eligible={amount_eligible!r}, id={id!r})".format(
+        return "TerminalReaderReaderResourceTippingConfig(amount_eligible={amount_eligible!r}, id={id!r})".format(
             amount_eligible=self.amount_eligible, id=self.id
         )
 

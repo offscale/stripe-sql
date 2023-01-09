@@ -1,15 +1,21 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from stripe_openapi.payment_method_card_checks import PaymentMethodCardChecks
+from stripe_openapi.payment_method_card_wallet import PaymentMethodCardWallet
+from stripe_openapi.three_d_secure_usage import ThreeDSecureUsage
+
+from . import Base
 
 
-class Payment_Method_Card(Base):
+class PaymentMethodCard(Base):
     __tablename__ = "payment_method_card"
     brand = Column(
         String,
         comment="Card brand. Can be `amex`, `diners`, `discover`, `jcb`, `mastercard`, `unionpay`, `visa`, or `unknown`",
     )
     checks = Column(
-        payment_method_card_checks,
-        comment="[[FK(payment_method_card_checks)]] Checks on Card address and CVC if provided",
+        PaymentMethodCardChecks,
+        comment="[[FK(PaymentMethodCardChecks)]] Checks on Card address and CVC if provided",
         nullable=True,
     )
     country = Column(
@@ -49,18 +55,18 @@ class Payment_Method_Card(Base):
     )
     last4 = Column(String, comment="The last four digits of the card")
     networks = Column(
-        networks,
-        comment="[[FK(networks)]] Contains information about card networks that can be used to process the payment",
+        Networks,
+        comment="[[FK(Networks)]] Contains information about card networks that can be used to process the payment",
         nullable=True,
     )
     three_d_secure_usage = Column(
-        three_d_secure_usage,
-        comment="[[FK(three_d_secure_usage)]] Contains details on how this Card maybe be used for 3D Secure authentication",
+        ThreeDSecureUsage,
+        comment="[[FK(ThreeDSecureUsage)]] Contains details on how this Card maybe be used for 3D Secure authentication",
         nullable=True,
     )
     wallet = Column(
-        payment_method_card_wallet,
-        comment="[[FK(payment_method_card_wallet)]] If this Card is part of a card wallet, this contains the details of the card wallet",
+        PaymentMethodCardWallet,
+        comment="[[FK(PaymentMethodCardWallet)]] If this Card is part of a card wallet, this contains the details of the card wallet",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -72,7 +78,7 @@ class Payment_Method_Card(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Card(brand={brand!r}, checks={checks!r}, country={country!r}, description={description!r}, exp_month={exp_month!r}, exp_year={exp_year!r}, fingerprint={fingerprint!r}, funding={funding!r}, iin={iin!r}, issuer={issuer!r}, last4={last4!r}, networks={networks!r}, three_d_secure_usage={three_d_secure_usage!r}, wallet={wallet!r}, id={id!r})".format(
+        return "PaymentMethodCard(brand={brand!r}, checks={checks!r}, country={country!r}, description={description!r}, exp_month={exp_month!r}, exp_year={exp_year!r}, fingerprint={fingerprint!r}, funding={funding!r}, iin={iin!r}, issuer={issuer!r}, last4={last4!r}, networks={networks!r}, three_d_secure_usage={three_d_secure_usage!r}, wallet={wallet!r}, id={id!r})".format(
             brand=self.brand,
             checks=self.checks,
             country=self.country,

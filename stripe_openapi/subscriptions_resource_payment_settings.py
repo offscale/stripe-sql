@@ -1,11 +1,17 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import ARRAY, Column, Identity, Integer, String
+
+from stripe_openapi.subscriptions_resource_payment_method_options import (
+    SubscriptionsResourcePaymentMethodOptions,
+)
+
+from . import Base
 
 
-class Subscriptions_Resource_Payment_Settings(Base):
+class SubscriptionsResourcePaymentSettings(Base):
     __tablename__ = "subscriptions_resource_payment_settings"
     payment_method_options = Column(
-        subscriptions_resource_payment_method_options,
-        comment="[[FK(subscriptions_resource_payment_method_options)]] Payment-method-specific configuration to provide to invoices created by the subscription",
+        SubscriptionsResourcePaymentMethodOptions,
+        comment="[[FK(SubscriptionsResourcePaymentMethodOptions)]] Payment-method-specific configuration to provide to invoices created by the subscription",
         nullable=True,
     )
     payment_method_types = Column(
@@ -27,7 +33,7 @@ class Subscriptions_Resource_Payment_Settings(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Subscriptions_Resource_Payment_Settings(payment_method_options={payment_method_options!r}, payment_method_types={payment_method_types!r}, save_default_payment_method={save_default_payment_method!r}, id={id!r})".format(
+        return "SubscriptionsResourcePaymentSettings(payment_method_options={payment_method_options!r}, payment_method_types={payment_method_types!r}, save_default_payment_method={save_default_payment_method!r}, id={id!r})".format(
             payment_method_options=self.payment_method_options,
             payment_method_types=self.payment_method_types,
             save_default_payment_method=self.save_default_payment_method,

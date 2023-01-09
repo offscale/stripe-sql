@@ -1,15 +1,21 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, Identity, Integer, String
+
+from stripe_openapi.issuing_authorization_amount_details import (
+    IssuingAuthorizationAmountDetails,
+)
+
+from . import Base
 
 
-class Issuing_Authorization_Pending_Request(Base):
+class IssuingAuthorizationPendingRequest(Base):
     __tablename__ = "issuing_authorization_pending_request"
     amount = Column(
         Integer,
         comment="The additional amount Stripe will hold if the authorization is approved, in the card's [currency](https://stripe.com/docs/api#issuing_authorization_object-pending-request-currency) and in the [smallest currency unit](https://stripe.com/docs/currencies#zero-decimal)",
     )
     amount_details = Column(
-        issuing_authorization_amount_details,
-        comment="[[FK(issuing_authorization_amount_details)]] Detailed breakdown of amount components. These amounts are denominated in `currency` and in the [smallest currency unit](https://stripe.com/docs/currencies#zero-decimal)",
+        IssuingAuthorizationAmountDetails,
+        comment="[[FK(IssuingAuthorizationAmountDetails)]] Detailed breakdown of amount components. These amounts are denominated in `currency` and in the [smallest currency unit](https://stripe.com/docs/currencies#zero-decimal)",
         nullable=True,
     )
     currency = Column(
@@ -36,7 +42,7 @@ class Issuing_Authorization_Pending_Request(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Issuing_Authorization_Pending_Request(amount={amount!r}, amount_details={amount_details!r}, currency={currency!r}, is_amount_controllable={is_amount_controllable!r}, merchant_amount={merchant_amount!r}, merchant_currency={merchant_currency!r}, id={id!r})".format(
+        return "IssuingAuthorizationPendingRequest(amount={amount!r}, amount_details={amount_details!r}, currency={currency!r}, is_amount_controllable={is_amount_controllable!r}, merchant_amount={merchant_amount!r}, merchant_currency={merchant_currency!r}, id={id!r})".format(
             amount=self.amount,
             amount_details=self.amount_details,
             currency=self.currency,

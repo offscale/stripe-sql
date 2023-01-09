@@ -1,20 +1,27 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from stripe_openapi.gelato_data_id_number_report_date import (
+    GelatoDataIdNumberReportDate,
+)
+from stripe_openapi.gelato_id_number_report_error import GelatoIdNumberReportError
+
+from . import Base
 
 
-class Gelato_Id_Number_Report(Base):
+class GelatoIdNumberReport(Base):
     """
     Result from an id_number check
     """
 
     __tablename__ = "gelato_id_number_report"
     dob = Column(
-        gelato_data_id_number_report_date,
-        comment="[[FK(gelato_data_id_number_report_date)]] Date of birth",
+        GelatoDataIdNumberReportDate,
+        comment="[[FK(GelatoDataIdNumberReportDate)]] Date of birth",
         nullable=True,
     )
     error = Column(
-        gelato_id_number_report_error,
-        comment="[[FK(gelato_id_number_report_error)]] Details on the verification error. Present when status is `unverified`",
+        GelatoIdNumberReportError,
+        comment="[[FK(GelatoIdNumberReportError)]] Details on the verification error. Present when status is `unverified`",
         nullable=True,
     )
     first_name = Column(String, comment="First name", nullable=True)
@@ -31,7 +38,7 @@ class Gelato_Id_Number_Report(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Gelato_Id_Number_Report(dob={dob!r}, error={error!r}, first_name={first_name!r}, id_number={id_number!r}, id_number_type={id_number_type!r}, last_name={last_name!r}, status={status!r}, id={id!r})".format(
+        return "GelatoIdNumberReport(dob={dob!r}, error={error!r}, first_name={first_name!r}, id_number={id_number!r}, id_number_type={id_number_type!r}, last_name={last_name!r}, status={status!r}, id={id!r})".format(
             dob=self.dob,
             error=self.error,
             first_name=self.first_name,

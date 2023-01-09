@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Legal_Entity_Ubo_Declaration(Base):
+class LegalEntityUboDeclaration(Base):
     __tablename__ = "legal_entity_ubo_declaration"
     date = Column(
         Integer,
@@ -27,7 +29,7 @@ class Legal_Entity_Ubo_Declaration(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Legal_Entity_Ubo_Declaration(date={date!r}, ip={ip!r}, user_agent={user_agent!r}, id={id!r})".format(
+        return "LegalEntityUboDeclaration(date={date!r}, ip={ip!r}, user_agent={user_agent!r}, id={id!r})".format(
             date=self.date, ip=self.ip, user_agent=self.user_agent, id=self.id
         )
 

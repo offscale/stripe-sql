@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer
+from sqlalchemy import Boolean, Column, Identity, Integer
+
+from . import Base
 
 
-class Payment_Links_Resource_Phone_Number_Collection(Base):
+class PaymentLinksResourcePhoneNumberCollection(Base):
     __tablename__ = "payment_links_resource_phone_number_collection"
     enabled = Column(
         Boolean, comment="If `true`, a phone number will be collected during checkout"
@@ -15,7 +17,7 @@ class Payment_Links_Resource_Phone_Number_Collection(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Links_Resource_Phone_Number_Collection(enabled={enabled!r}, id={id!r})".format(
+        return "PaymentLinksResourcePhoneNumberCollection(enabled={enabled!r}, id={id!r})".format(
             enabled=self.enabled, id=self.id
         )
 

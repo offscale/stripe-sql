@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Transfer_Data(Base):
+class TransferData(Base):
     __tablename__ = "transfer_data"
     amount = Column(
         Integer,
@@ -9,8 +11,8 @@ class Transfer_Data(Base):
         nullable=True,
     )
     destination = Column(
-        account,
-        comment="[[FK(account)]] The account (if any) the payment will be attributed to for tax\nreporting, and where funds from the payment will be transferred to upon\npayment success",
+        Account,
+        comment="[[FK(Account)]] The account (if any) the payment will be attributed to for tax\nreporting, and where funds from the payment will be transferred to upon\npayment success",
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
@@ -21,7 +23,7 @@ class Transfer_Data(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Transfer_Data(amount={amount!r}, destination={destination!r}, id={id!r})".format(
+        return "TransferData(amount={amount!r}, destination={destination!r}, id={id!r})".format(
             amount=self.amount, destination=self.destination, id=self.id
         )
 

@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Source_Type_Ach_Credit_Transfer(Base):
+class SourceTypeAchCreditTransfer(Base):
     __tablename__ = "source_type_ach_credit_transfer"
     account_number = Column(String, nullable=True)
     bank_name = Column(String, nullable=True)
@@ -20,7 +22,7 @@ class Source_Type_Ach_Credit_Transfer(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Source_Type_Ach_Credit_Transfer(account_number={account_number!r}, bank_name={bank_name!r}, fingerprint={fingerprint!r}, refund_account_holder_name={refund_account_holder_name!r}, refund_account_holder_type={refund_account_holder_type!r}, refund_routing_number={refund_routing_number!r}, routing_number={routing_number!r}, swift_code={swift_code!r}, id={id!r})".format(
+        return "SourceTypeAchCreditTransfer(account_number={account_number!r}, bank_name={bank_name!r}, fingerprint={fingerprint!r}, refund_account_holder_name={refund_account_holder_name!r}, refund_account_holder_type={refund_account_holder_type!r}, refund_routing_number={refund_routing_number!r}, routing_number={routing_number!r}, swift_code={swift_code!r}, id={id!r})".format(
             account_number=self.account_number,
             bank_name=self.bank_name,
             fingerprint=self.fingerprint,

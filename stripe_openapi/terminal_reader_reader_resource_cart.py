@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, list
+
+from . import Base
 
 
-class Terminal_Reader_Reader_Resource_Cart(Base):
+class TerminalReaderReaderResourceCart(Base):
     """
     Represents a cart to be displayed on the reader
     """
@@ -30,7 +32,7 @@ class Terminal_Reader_Reader_Resource_Cart(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Terminal_Reader_Reader_Resource_Cart(currency={currency!r}, line_items={line_items!r}, tax={tax!r}, total={total!r}, id={id!r})".format(
+        return "TerminalReaderReaderResourceCart(currency={currency!r}, line_items={line_items!r}, tax={tax!r}, total={total!r}, id={id!r})".format(
             currency=self.currency,
             line_items=self.line_items,
             tax=self.tax,

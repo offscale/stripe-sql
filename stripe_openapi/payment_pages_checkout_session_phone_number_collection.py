@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer
+from sqlalchemy import Boolean, Column, Identity, Integer
+
+from . import Base
 
 
-class Payment_Pages_Checkout_Session_Phone_Number_Collection(Base):
+class PaymentPagesCheckoutSessionPhoneNumberCollection(Base):
     __tablename__ = "payment_pages_checkout_session_phone_number_collection"
     enabled = Column(
         Boolean,
@@ -16,7 +18,7 @@ class Payment_Pages_Checkout_Session_Phone_Number_Collection(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Pages_Checkout_Session_Phone_Number_Collection(enabled={enabled!r}, id={id!r})".format(
+        return "PaymentPagesCheckoutSessionPhoneNumberCollection(enabled={enabled!r}, id={id!r})".format(
             enabled=self.enabled, id=self.id
         )
 

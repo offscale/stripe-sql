@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Treasury_Financial_Accounts_Resource_Platform_Restrictions(Base):
+class TreasuryFinancialAccountsResourcePlatformRestrictions(Base):
     """
     Restrictions that a Connect Platform has placed on this FinancialAccount.
     """
@@ -22,7 +24,7 @@ class Treasury_Financial_Accounts_Resource_Platform_Restrictions(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Treasury_Financial_Accounts_Resource_Platform_Restrictions(inbound_flows={inbound_flows!r}, outbound_flows={outbound_flows!r}, id={id!r})".format(
+        return "TreasuryFinancialAccountsResourcePlatformRestrictions(inbound_flows={inbound_flows!r}, outbound_flows={outbound_flows!r}, id={id!r})".format(
             inbound_flows=self.inbound_flows,
             outbound_flows=self.outbound_flows,
             id=self.id,

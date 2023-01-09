@@ -1,4 +1,8 @@
-from sqlalchemy import Boolean, Column, String
+from sqlalchemy import Boolean, Column, ForeignKey, String
+
+from stripe_openapi.payment_method import PaymentMethod
+
+from . import Base
 
 
 class Mandate(Base):
@@ -7,29 +11,25 @@ class Mandate(Base):
     """
 
     __tablename__ = "mandate"
-    customer_acceptance = Column(customer_acceptance, ForeignKey("customer_acceptance"))
+    customer_acceptance = Column(Integer, ForeignKey("customer_acceptance.id"))
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     livemode = Column(
         Boolean,
         comment="Has the value `true` if the object exists in live mode or the value `false` if the object exists in test mode",
     )
-    multi_use = Column(
-        mandate_multi_use, ForeignKey("mandate_multi_use"), nullable=True
-    )
+    multi_use = Column(Integer, ForeignKey("mandate_multi_use.id"), nullable=True)
     object = Column(
         String,
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     payment_method = Column(
-        payment_method,
-        comment="[[FK(payment_method)]] ID of the payment method associated with this mandate",
+        PaymentMethod,
+        comment="[[FK(PaymentMethod)]] ID of the payment method associated with this mandate",
     )
     payment_method_details = Column(
-        mandate_payment_method_details, ForeignKey("mandate_payment_method_details")
+        Integer, ForeignKey("mandate_payment_method_details.id")
     )
-    single_use = Column(
-        mandate_single_use, ForeignKey("mandate_single_use"), nullable=True
-    )
+    single_use = Column(Integer, ForeignKey("mandate_single_use.id"), nullable=True)
     status = Column(
         String,
         comment="The status of the mandate, which indicates whether it can be used to initiate a payment",

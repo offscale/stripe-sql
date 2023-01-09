@@ -1,12 +1,12 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Checkout_Card_Payment_Method_Options(Base):
+class CheckoutCardPaymentMethodOptions(Base):
     __tablename__ = "checkout_card_payment_method_options"
     installments = Column(
-        checkout_card_installments_options,
-        ForeignKey("checkout_card_installments_options"),
-        nullable=True,
+        Integer, ForeignKey("checkout_card_installments_options.id"), nullable=True
     )
     setup_future_usage = Column(
         String,
@@ -32,7 +32,7 @@ class Checkout_Card_Payment_Method_Options(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Checkout_Card_Payment_Method_Options(installments={installments!r}, setup_future_usage={setup_future_usage!r}, statement_descriptor_suffix_kana={statement_descriptor_suffix_kana!r}, statement_descriptor_suffix_kanji={statement_descriptor_suffix_kanji!r}, id={id!r})".format(
+        return "CheckoutCardPaymentMethodOptions(installments={installments!r}, setup_future_usage={setup_future_usage!r}, statement_descriptor_suffix_kana={statement_descriptor_suffix_kana!r}, statement_descriptor_suffix_kanji={statement_descriptor_suffix_kanji!r}, id={id!r})".format(
             installments=self.installments,
             setup_future_usage=self.setup_future_usage,
             statement_descriptor_suffix_kana=self.statement_descriptor_suffix_kana,

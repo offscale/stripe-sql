@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Level3_Line_Items(Base):
+class Level3LineItems(Base):
     __tablename__ = "level3_line_items"
     discount_amount = Column(Integer, nullable=True)
     product_code = Column(String)
@@ -18,7 +20,7 @@ class Level3_Line_Items(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Level3_Line_Items(discount_amount={discount_amount!r}, product_code={product_code!r}, product_description={product_description!r}, quantity={quantity!r}, tax_amount={tax_amount!r}, unit_cost={unit_cost!r}, id={id!r})".format(
+        return "Level3LineItems(discount_amount={discount_amount!r}, product_code={product_code!r}, product_description={product_description!r}, quantity={quantity!r}, tax_amount={tax_amount!r}, unit_cost={unit_cost!r}, id={id!r})".format(
             discount_amount=self.discount_amount,
             product_code=self.product_code,
             product_description=self.product_description,

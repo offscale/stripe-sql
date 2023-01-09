@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer
+from sqlalchemy import Boolean, Column, Identity, Integer
+
+from . import Base
 
 
-class Portal_Payment_Method_Update(Base):
+class PortalPaymentMethodUpdate(Base):
     __tablename__ = "portal_payment_method_update"
     enabled = Column(Boolean, comment="Whether the feature is enabled")
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -13,7 +15,7 @@ class Portal_Payment_Method_Update(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Portal_Payment_Method_Update(enabled={enabled!r}, id={id!r})".format(
+        return "PortalPaymentMethodUpdate(enabled={enabled!r}, id={id!r})".format(
             enabled=self.enabled, id=self.id
         )
 

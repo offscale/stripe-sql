@@ -1,17 +1,17 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Customer_Acceptance(Base):
+class CustomerAcceptance(Base):
     __tablename__ = "customer_acceptance"
     accepted_at = Column(
         Integer,
         comment="The time at which the customer accepted the Mandate",
         nullable=True,
     )
-    offline = Column(
-        offline_acceptance, ForeignKey("offline_acceptance"), nullable=True
-    )
-    online = Column(online_acceptance, ForeignKey("online_acceptance"), nullable=True)
+    offline = Column(Integer, ForeignKey("offline_acceptance.id"), nullable=True)
+    online = Column(Integer, ForeignKey("online_acceptance.id"), nullable=True)
     type = Column(
         String,
         comment="The type of customer acceptance information included with the Mandate. One of `online` or `offline`",
@@ -25,7 +25,7 @@ class Customer_Acceptance(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Customer_Acceptance(accepted_at={accepted_at!r}, offline={offline!r}, online={online!r}, type={type!r}, id={id!r})".format(
+        return "CustomerAcceptance(accepted_at={accepted_at!r}, offline={offline!r}, online={online!r}, type={type!r}, id={id!r})".format(
             accepted_at=self.accepted_at,
             offline=self.offline,
             online=self.online,

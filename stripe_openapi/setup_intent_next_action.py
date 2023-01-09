@@ -1,11 +1,13 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import JSON, Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Setup_Intent_Next_Action(Base):
+class SetupIntentNextAction(Base):
     __tablename__ = "setup_intent_next_action"
     redirect_to_url = Column(
-        setup_intent_next_action_redirect_to_url,
-        ForeignKey("setup_intent_next_action_redirect_to_url"),
+        Integer,
+        ForeignKey("setup_intent_next_action_redirect_to_url.id"),
         nullable=True,
     )
     type = Column(
@@ -18,8 +20,8 @@ class Setup_Intent_Next_Action(Base):
         nullable=True,
     )
     verify_with_microdeposits = Column(
-        setup_intent_next_action_verify_with_microdeposits,
-        ForeignKey("setup_intent_next_action_verify_with_microdeposits"),
+        Integer,
+        ForeignKey("setup_intent_next_action_verify_with_microdeposits.id"),
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -31,7 +33,7 @@ class Setup_Intent_Next_Action(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Setup_Intent_Next_Action(redirect_to_url={redirect_to_url!r}, type={type!r}, use_stripe_sdk={use_stripe_sdk!r}, verify_with_microdeposits={verify_with_microdeposits!r}, id={id!r})".format(
+        return "SetupIntentNextAction(redirect_to_url={redirect_to_url!r}, type={type!r}, use_stripe_sdk={use_stripe_sdk!r}, verify_with_microdeposits={verify_with_microdeposits!r}, id={id!r})".format(
             redirect_to_url=self.redirect_to_url,
             type=self.type,
             use_stripe_sdk=self.use_stripe_sdk,

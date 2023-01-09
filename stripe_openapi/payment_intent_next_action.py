@@ -1,56 +1,58 @@
-from sqlalchemy import Column, String
+from sqlalchemy import JSON, Column, ForeignKey, String
+
+from stripe_openapi.payment_intent_next_action_wechat_pay_redirect_to_android_app import (
+    PaymentIntentNextActionWechatPayRedirectToAndroidApp,
+)
+
+from . import Base
 
 
-class Payment_Intent_Next_Action(Base):
+class PaymentIntentNextAction(Base):
     __tablename__ = "payment_intent_next_action"
     alipay_handle_redirect = Column(
-        payment_intent_next_action_alipay_handle_redirect,
-        ForeignKey("payment_intent_next_action_alipay_handle_redirect"),
+        Integer,
+        ForeignKey("payment_intent_next_action_alipay_handle_redirect.id"),
         nullable=True,
     )
     boleto_display_details = Column(
-        payment_intent_next_action_boleto,
-        ForeignKey("payment_intent_next_action_boleto"),
-        nullable=True,
+        Integer, ForeignKey("payment_intent_next_action_boleto.id"), nullable=True
     )
     card_await_notification = Column(
-        payment_intent_next_action_card_await_notification,
-        ForeignKey("payment_intent_next_action_card_await_notification"),
+        Integer,
+        ForeignKey("payment_intent_next_action_card_await_notification.id"),
         nullable=True,
     )
     display_bank_transfer_instructions = Column(
-        payment_intent_next_action_display_bank_transfer_instructions,
-        ForeignKey("payment_intent_next_action_display_bank_transfer_instructions"),
+        Integer,
+        ForeignKey("payment_intent_next_action_display_bank_transfer_instructions.id"),
         nullable=True,
     )
     konbini_display_details = Column(
-        payment_intent_next_action_konbini,
-        ForeignKey("payment_intent_next_action_konbini"),
-        nullable=True,
+        Integer, ForeignKey("payment_intent_next_action_konbini.id"), nullable=True
     )
     oxxo_display_details = Column(
-        payment_intent_next_action_display_oxxo_details,
-        ForeignKey("payment_intent_next_action_display_oxxo_details"),
+        Integer,
+        ForeignKey("payment_intent_next_action_display_oxxo_details.id"),
         nullable=True,
     )
     paynow_display_qr_code = Column(
-        payment_intent_next_action_paynow_display_qr_code,
-        ForeignKey("payment_intent_next_action_paynow_display_qr_code"),
+        Integer,
+        ForeignKey("payment_intent_next_action_paynow_display_qr_code.id"),
         nullable=True,
     )
     pix_display_qr_code = Column(
-        payment_intent_next_action_pix_display_qr_code,
-        ForeignKey("payment_intent_next_action_pix_display_qr_code"),
+        Integer,
+        ForeignKey("payment_intent_next_action_pix_display_qr_code.id"),
         nullable=True,
     )
     promptpay_display_qr_code = Column(
-        payment_intent_next_action_promptpay_display_qr_code,
-        ForeignKey("payment_intent_next_action_promptpay_display_qr_code"),
+        Integer,
+        ForeignKey("payment_intent_next_action_promptpay_display_qr_code.id"),
         nullable=True,
     )
     redirect_to_url = Column(
-        payment_intent_next_action_redirect_to_url,
-        ForeignKey("payment_intent_next_action_redirect_to_url"),
+        Integer,
+        ForeignKey("payment_intent_next_action_redirect_to_url.id"),
         nullable=True,
     )
     type = Column(
@@ -63,24 +65,24 @@ class Payment_Intent_Next_Action(Base):
         nullable=True,
     )
     verify_with_microdeposits = Column(
-        payment_intent_next_action_verify_with_microdeposits,
-        ForeignKey("payment_intent_next_action_verify_with_microdeposits"),
+        Integer,
+        ForeignKey("payment_intent_next_action_verify_with_microdeposits.id"),
         nullable=True,
     )
     wechat_pay_display_qr_code = Column(
-        payment_intent_next_action_wechat_pay_display_qr_code,
-        ForeignKey("payment_intent_next_action_wechat_pay_display_qr_code"),
+        Integer,
+        ForeignKey("payment_intent_next_action_wechat_pay_display_qr_code.id"),
         nullable=True,
     )
     wechat_pay_redirect_to_android_app = Column(
-        payment_intent_next_action_wechat_pay_redirect_to_android_app,
-        comment="[FK(payment_intent_next_action_wechat_pay_redirect_to_android_app)]",
+        PaymentIntentNextActionWechatPayRedirectToAndroidApp,
+        comment="[FK(PaymentIntentNextActionWechatPayRedirectToAndroidApp)]",
         nullable=True,
         primary_key=True,
     )
     wechat_pay_redirect_to_ios_app = Column(
-        payment_intent_next_action_wechat_pay_redirect_to_ios_app,
-        ForeignKey("payment_intent_next_action_wechat_pay_redirect_to_ios_app"),
+        Integer,
+        ForeignKey("payment_intent_next_action_wechat_pay_redirect_to_ios_app.id"),
         nullable=True,
     )
 
@@ -91,7 +93,7 @@ class Payment_Intent_Next_Action(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Intent_Next_Action(alipay_handle_redirect={alipay_handle_redirect!r}, boleto_display_details={boleto_display_details!r}, card_await_notification={card_await_notification!r}, display_bank_transfer_instructions={display_bank_transfer_instructions!r}, konbini_display_details={konbini_display_details!r}, oxxo_display_details={oxxo_display_details!r}, paynow_display_qr_code={paynow_display_qr_code!r}, pix_display_qr_code={pix_display_qr_code!r}, promptpay_display_qr_code={promptpay_display_qr_code!r}, redirect_to_url={redirect_to_url!r}, type={type!r}, use_stripe_sdk={use_stripe_sdk!r}, verify_with_microdeposits={verify_with_microdeposits!r}, wechat_pay_display_qr_code={wechat_pay_display_qr_code!r}, wechat_pay_redirect_to_android_app={wechat_pay_redirect_to_android_app!r}, wechat_pay_redirect_to_ios_app={wechat_pay_redirect_to_ios_app!r})".format(
+        return "PaymentIntentNextAction(alipay_handle_redirect={alipay_handle_redirect!r}, boleto_display_details={boleto_display_details!r}, card_await_notification={card_await_notification!r}, display_bank_transfer_instructions={display_bank_transfer_instructions!r}, konbini_display_details={konbini_display_details!r}, oxxo_display_details={oxxo_display_details!r}, paynow_display_qr_code={paynow_display_qr_code!r}, pix_display_qr_code={pix_display_qr_code!r}, promptpay_display_qr_code={promptpay_display_qr_code!r}, redirect_to_url={redirect_to_url!r}, type={type!r}, use_stripe_sdk={use_stripe_sdk!r}, verify_with_microdeposits={verify_with_microdeposits!r}, wechat_pay_display_qr_code={wechat_pay_display_qr_code!r}, wechat_pay_redirect_to_android_app={wechat_pay_redirect_to_android_app!r}, wechat_pay_redirect_to_ios_app={wechat_pay_redirect_to_ios_app!r})".format(
             alipay_handle_redirect=self.alipay_handle_redirect,
             boleto_display_details=self.boleto_display_details,
             card_await_notification=self.card_await_notification,

@@ -1,11 +1,17 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from stripe_openapi.payment_pages_checkout_session_after_expiration_recovery import (
+    PaymentPagesCheckoutSessionAfterExpirationRecovery,
+)
+
+from . import Base
 
 
-class Payment_Pages_Checkout_Session_After_Expiration(Base):
+class PaymentPagesCheckoutSessionAfterExpiration(Base):
     __tablename__ = "payment_pages_checkout_session_after_expiration"
     recovery = Column(
-        payment_pages_checkout_session_after_expiration_recovery,
-        comment="[[FK(payment_pages_checkout_session_after_expiration_recovery)]] When set, configuration used to recover the Checkout Session on expiry",
+        PaymentPagesCheckoutSessionAfterExpirationRecovery,
+        comment="[[FK(PaymentPagesCheckoutSessionAfterExpirationRecovery)]] When set, configuration used to recover the Checkout Session on expiry",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -17,7 +23,7 @@ class Payment_Pages_Checkout_Session_After_Expiration(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Pages_Checkout_Session_After_Expiration(recovery={recovery!r}, id={id!r})".format(
+        return "PaymentPagesCheckoutSessionAfterExpiration(recovery={recovery!r}, id={id!r})".format(
             recovery=self.recovery, id=self.id
         )
 

@@ -1,12 +1,12 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer
+
+from . import Base
 
 
-class Account_Card_Issuing_Settings(Base):
+class AccountCardIssuingSettings(Base):
     __tablename__ = "account_card_issuing_settings"
     tos_acceptance = Column(
-        card_issuing_account_terms_of_service,
-        ForeignKey("card_issuing_account_terms_of_service"),
-        nullable=True,
+        Integer, ForeignKey("card_issuing_account_terms_of_service.id"), nullable=True
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
@@ -17,7 +17,7 @@ class Account_Card_Issuing_Settings(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Account_Card_Issuing_Settings(tos_acceptance={tos_acceptance!r}, id={id!r})".format(
+        return "AccountCardIssuingSettings(tos_acceptance={tos_acceptance!r}, id={id!r})".format(
             tos_acceptance=self.tos_acceptance, id=self.id
         )
 

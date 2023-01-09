@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Invoice_Payment_Method_Options_Konbini(Base):
+class InvoicePaymentMethodOptionsKonbini(Base):
     __tablename__ = "invoice_payment_method_options_konbini"
     id = Column(Integer, primary_key=True, server_default=Identity())
 
@@ -12,7 +14,7 @@ class Invoice_Payment_Method_Options_Konbini(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Invoice_Payment_Method_Options_Konbini(id={id!r})".format(id=self.id)
+        return "InvoicePaymentMethodOptionsKonbini(id={id!r})".format(id=self.id)
 
 
 __all__ = ["invoice_payment_method_options_konbini"]

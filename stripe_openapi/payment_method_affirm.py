@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Payment_Method_Affirm(Base):
+class PaymentMethodAffirm(Base):
     __tablename__ = "payment_method_affirm"
     id = Column(Integer, primary_key=True, server_default=Identity())
 
@@ -12,7 +14,7 @@ class Payment_Method_Affirm(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Affirm(id={id!r})".format(id=self.id)
+        return "PaymentMethodAffirm(id={id!r})".format(id=self.id)
 
 
 __all__ = ["payment_method_affirm"]

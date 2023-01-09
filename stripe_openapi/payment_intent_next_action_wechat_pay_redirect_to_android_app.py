@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Intent_Next_Action_Wechat_Pay_Redirect_To_Android_App(Base):
+class PaymentIntentNextActionWechatPayRedirectToAndroidApp(Base):
     __tablename__ = "payment_intent_next_action_wechat_pay_redirect_to_android_app"
     app_id = Column(
         String, comment="app_id is the APP ID registered on WeChat open platform"
@@ -21,7 +23,7 @@ class Payment_Intent_Next_Action_Wechat_Pay_Redirect_To_Android_App(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Intent_Next_Action_Wechat_Pay_Redirect_To_Android_App(app_id={app_id!r}, nonce_str={nonce_str!r}, package={package!r}, partner_id={partner_id!r}, prepay_id={prepay_id!r}, sign={sign!r}, timestamp={timestamp!r}, id={id!r})".format(
+        return "PaymentIntentNextActionWechatPayRedirectToAndroidApp(app_id={app_id!r}, nonce_str={nonce_str!r}, package={package!r}, partner_id={partner_id!r}, prepay_id={prepay_id!r}, sign={sign!r}, timestamp={timestamp!r}, id={id!r})".format(
             app_id=self.app_id,
             nonce_str=self.nonce_str,
             package=self.package,

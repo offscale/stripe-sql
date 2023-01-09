@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Shipping_Rate_Delivery_Estimate_Bound(Base):
+class ShippingRateDeliveryEstimateBound(Base):
     __tablename__ = "shipping_rate_delivery_estimate_bound"
     unit = Column(String, comment="A unit of time")
     value = Column(Integer, comment="Must be greater than 0")
@@ -14,7 +16,7 @@ class Shipping_Rate_Delivery_Estimate_Bound(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Shipping_Rate_Delivery_Estimate_Bound(unit={unit!r}, value={value!r}, id={id!r})".format(
+        return "ShippingRateDeliveryEstimateBound(unit={unit!r}, value={value!r}, id={id!r})".format(
             unit=self.unit, value=self.value, id=self.id
         )
 

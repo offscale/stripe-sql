@@ -1,11 +1,15 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Intent_Payment_Method_Options_Sepa_Debit(Base):
+class PaymentIntentPaymentMethodOptionsSepaDebit(Base):
     __tablename__ = "payment_intent_payment_method_options_sepa_debit"
     mandate_options = Column(
-        payment_intent_payment_method_options_mandate_options_sepa_debit,
-        ForeignKey("payment_intent_payment_method_options_mandate_options_sepa_debit"),
+        Integer,
+        ForeignKey(
+            "payment_intent_payment_method_options_mandate_options_sepa_debit.id"
+        ),
         nullable=True,
     )
     setup_future_usage = Column(
@@ -22,7 +26,7 @@ class Payment_Intent_Payment_Method_Options_Sepa_Debit(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Intent_Payment_Method_Options_Sepa_Debit(mandate_options={mandate_options!r}, setup_future_usage={setup_future_usage!r}, id={id!r})".format(
+        return "PaymentIntentPaymentMethodOptionsSepaDebit(mandate_options={mandate_options!r}, setup_future_usage={setup_future_usage!r}, id={id!r})".format(
             mandate_options=self.mandate_options,
             setup_future_usage=self.setup_future_usage,
             id=self.id,

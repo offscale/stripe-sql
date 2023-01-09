@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Source_Type_Card_Present(Base):
+class SourceTypeCardPresent(Base):
     __tablename__ = "source_type_card_present"
     application_cryptogram = Column(String, nullable=True)
     application_preferred_name = Column(String, nullable=True)
@@ -38,7 +40,7 @@ class Source_Type_Card_Present(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Source_Type_Card_Present(application_cryptogram={application_cryptogram!r}, application_preferred_name={application_preferred_name!r}, authorization_code={authorization_code!r}, authorization_response_code={authorization_response_code!r}, brand={brand!r}, country={country!r}, cvm_type={cvm_type!r}, data_type={data_type!r}, dedicated_file_name={dedicated_file_name!r}, description={description!r}, emv_auth_data={emv_auth_data!r}, evidence_customer_signature={evidence_customer_signature!r}, evidence_transaction_certificate={evidence_transaction_certificate!r}, exp_month={exp_month!r}, exp_year={exp_year!r}, fingerprint={fingerprint!r}, funding={funding!r}, iin={iin!r}, issuer={issuer!r}, last4={last4!r}, pos_device_id={pos_device_id!r}, pos_entry_mode={pos_entry_mode!r}, read_method={read_method!r}, reader={reader!r}, terminal_verification_results={terminal_verification_results!r}, transaction_status_information={transaction_status_information!r}, id={id!r})".format(
+        return "SourceTypeCardPresent(application_cryptogram={application_cryptogram!r}, application_preferred_name={application_preferred_name!r}, authorization_code={authorization_code!r}, authorization_response_code={authorization_response_code!r}, brand={brand!r}, country={country!r}, cvm_type={cvm_type!r}, data_type={data_type!r}, dedicated_file_name={dedicated_file_name!r}, description={description!r}, emv_auth_data={emv_auth_data!r}, evidence_customer_signature={evidence_customer_signature!r}, evidence_transaction_certificate={evidence_transaction_certificate!r}, exp_month={exp_month!r}, exp_year={exp_year!r}, fingerprint={fingerprint!r}, funding={funding!r}, iin={iin!r}, issuer={issuer!r}, last4={last4!r}, pos_device_id={pos_device_id!r}, pos_entry_mode={pos_entry_mode!r}, read_method={read_method!r}, reader={reader!r}, terminal_verification_results={terminal_verification_results!r}, transaction_status_information={transaction_status_information!r}, id={id!r})".format(
             application_cryptogram=self.application_cryptogram,
             application_preferred_name=self.application_preferred_name,
             authorization_code=self.authorization_code,

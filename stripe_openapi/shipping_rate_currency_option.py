@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Shipping_Rate_Currency_Option(Base):
+class ShippingRateCurrencyOption(Base):
     __tablename__ = "shipping_rate_currency_option"
     amount = Column(
         Integer,
@@ -20,7 +22,7 @@ class Shipping_Rate_Currency_Option(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Shipping_Rate_Currency_Option(amount={amount!r}, tax_behavior={tax_behavior!r}, id={id!r})".format(
+        return "ShippingRateCurrencyOption(amount={amount!r}, tax_behavior={tax_behavior!r}, id={id!r})".format(
             amount=self.amount, tax_behavior=self.tax_behavior, id=self.id
         )
 

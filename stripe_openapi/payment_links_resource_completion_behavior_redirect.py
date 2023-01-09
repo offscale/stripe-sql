@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Links_Resource_Completion_Behavior_Redirect(Base):
+class PaymentLinksResourceCompletionBehaviorRedirect(Base):
     __tablename__ = "payment_links_resource_completion_behavior_redirect"
     url = Column(
         String,
@@ -16,7 +18,7 @@ class Payment_Links_Resource_Completion_Behavior_Redirect(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Links_Resource_Completion_Behavior_Redirect(url={url!r}, id={id!r})".format(
+        return "PaymentLinksResourceCompletionBehaviorRedirect(url={url!r}, id={id!r})".format(
             url=self.url, id=self.id
         )
 

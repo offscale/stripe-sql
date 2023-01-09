@@ -1,11 +1,17 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from stripe_openapi.refund_next_action_display_details import (
+    RefundNextActionDisplayDetails,
+)
+
+from . import Base
 
 
-class Refund_Next_Action(Base):
+class RefundNextAction(Base):
     __tablename__ = "refund_next_action"
     display_details = Column(
-        refund_next_action_display_details,
-        comment="[[FK(refund_next_action_display_details)]] Contains the refund details",
+        RefundNextActionDisplayDetails,
+        comment="[[FK(RefundNextActionDisplayDetails)]] Contains the refund details",
         nullable=True,
     )
     type = Column(String, comment="Type of the next action to perform")
@@ -18,7 +24,7 @@ class Refund_Next_Action(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Refund_Next_Action(display_details={display_details!r}, type={type!r}, id={id!r})".format(
+        return "RefundNextAction(display_details={display_details!r}, type={type!r}, id={id!r})".format(
             display_details=self.display_details, type=self.type, id=self.id
         )
 

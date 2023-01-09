@@ -1,16 +1,18 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Links_Resource_After_Completion(Base):
+class PaymentLinksResourceAfterCompletion(Base):
     __tablename__ = "payment_links_resource_after_completion"
     hosted_confirmation = Column(
-        payment_links_resource_completion_behavior_confirmation_page,
-        ForeignKey("payment_links_resource_completion_behavior_confirmation_page"),
+        Integer,
+        ForeignKey("payment_links_resource_completion_behavior_confirmation_page.id"),
         nullable=True,
     )
     redirect = Column(
-        payment_links_resource_completion_behavior_redirect,
-        ForeignKey("payment_links_resource_completion_behavior_redirect"),
+        Integer,
+        ForeignKey("payment_links_resource_completion_behavior_redirect.id"),
         nullable=True,
     )
     type = Column(
@@ -25,7 +27,7 @@ class Payment_Links_Resource_After_Completion(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Links_Resource_After_Completion(hosted_confirmation={hosted_confirmation!r}, redirect={redirect!r}, type={type!r}, id={id!r})".format(
+        return "PaymentLinksResourceAfterCompletion(hosted_confirmation={hosted_confirmation!r}, redirect={redirect!r}, type={type!r}, id={id!r})".format(
             hosted_confirmation=self.hosted_confirmation,
             redirect=self.redirect,
             type=self.type,

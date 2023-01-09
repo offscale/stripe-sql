@@ -1,13 +1,17 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from stripe_openapi.payment_intent import PaymentIntent
+
+from . import Base
 
 
-class Customer_Balance_Resource_Cash_Balance_Transaction_Resource_Unapplied_From_Payment_Transaction(
+class CustomerBalanceResourceCashBalanceTransactionResourceUnappliedFromPaymentTransaction(
     Base
 ):
     __tablename__ = "customer_balance_resource_cash_balance_transaction_resource_unapplied_from_payment_transaction"
     payment_intent = Column(
-        payment_intent,
-        comment="[[FK(payment_intent)]] The [Payment Intent](https://stripe.com/docs/api/payment_intents/object) that funds were unapplied from",
+        PaymentIntent,
+        comment="[[FK(PaymentIntent)]] The [Payment Intent](https://stripe.com/docs/api/payment_intents/object) that funds were unapplied from",
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
@@ -18,7 +22,7 @@ class Customer_Balance_Resource_Cash_Balance_Transaction_Resource_Unapplied_From
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Customer_Balance_Resource_Cash_Balance_Transaction_Resource_Unapplied_From_Payment_Transaction(payment_intent={payment_intent!r}, id={id!r})".format(
+        return "CustomerBalanceResourceCashBalanceTransactionResourceUnappliedFromPaymentTransaction(payment_intent={payment_intent!r}, id={id!r})".format(
             payment_intent=self.payment_intent, id=self.id
         )
 

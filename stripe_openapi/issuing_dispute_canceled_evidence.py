@@ -1,11 +1,13 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, Identity, Integer, String
+
+from . import Base
 
 
-class Issuing_Dispute_Canceled_Evidence(Base):
+class IssuingDisputeCanceledEvidence(Base):
     __tablename__ = "issuing_dispute_canceled_evidence"
     additional_documentation = Column(
-        file,
-        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Additional documentation supporting the dispute",
+        File,
+        comment="[[FK(File)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Additional documentation supporting the dispute",
         nullable=True,
     )
     canceled_at = Column(Integer, comment="Date when order was canceled", nullable=True)
@@ -56,7 +58,7 @@ class Issuing_Dispute_Canceled_Evidence(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Issuing_Dispute_Canceled_Evidence(additional_documentation={additional_documentation!r}, canceled_at={canceled_at!r}, cancellation_policy_provided={cancellation_policy_provided!r}, cancellation_reason={cancellation_reason!r}, expected_at={expected_at!r}, explanation={explanation!r}, product_description={product_description!r}, product_type={product_type!r}, return_status={return_status!r}, returned_at={returned_at!r}, id={id!r})".format(
+        return "IssuingDisputeCanceledEvidence(additional_documentation={additional_documentation!r}, canceled_at={canceled_at!r}, cancellation_policy_provided={cancellation_policy_provided!r}, cancellation_reason={cancellation_reason!r}, expected_at={expected_at!r}, explanation={explanation!r}, product_description={product_description!r}, product_type={product_type!r}, return_status={return_status!r}, returned_at={returned_at!r}, id={id!r})".format(
             additional_documentation=self.additional_documentation,
             canceled_at=self.canceled_at,
             cancellation_policy_provided=self.cancellation_policy_provided,

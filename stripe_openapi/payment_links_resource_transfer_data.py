@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Payment_Links_Resource_Transfer_Data(Base):
+class PaymentLinksResourceTransferData(Base):
     __tablename__ = "payment_links_resource_transfer_data"
     amount = Column(
         Integer,
@@ -9,7 +11,7 @@ class Payment_Links_Resource_Transfer_Data(Base):
         nullable=True,
     )
     destination = Column(
-        account, comment="[[FK(account)]] The connected account receiving the transfer"
+        Account, comment="[[FK(Account)]] The connected account receiving the transfer"
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
@@ -20,7 +22,7 @@ class Payment_Links_Resource_Transfer_Data(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Links_Resource_Transfer_Data(amount={amount!r}, destination={destination!r}, id={id!r})".format(
+        return "PaymentLinksResourceTransferData(amount={amount!r}, destination={destination!r}, id={id!r})".format(
             amount=self.amount, destination=self.destination, id=self.id
         )
 

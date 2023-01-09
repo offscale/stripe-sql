@@ -1,9 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Treasury_Inbound_Transfers_Resource_Inbound_Transfer_Resource_Status_Transitions(
-    Base
-):
+class TreasuryInboundTransfersResourceInboundTransferResourceStatusTransitions(Base):
     __tablename__ = "treasury_inbound_transfers_resource_inbound_transfer_resource_status_transitions"
     canceled_at = Column(
         Integer,
@@ -29,7 +29,7 @@ class Treasury_Inbound_Transfers_Resource_Inbound_Transfer_Resource_Status_Trans
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Treasury_Inbound_Transfers_Resource_Inbound_Transfer_Resource_Status_Transitions(canceled_at={canceled_at!r}, failed_at={failed_at!r}, succeeded_at={succeeded_at!r}, id={id!r})".format(
+        return "TreasuryInboundTransfersResourceInboundTransferResourceStatusTransitions(canceled_at={canceled_at!r}, failed_at={failed_at!r}, succeeded_at={succeeded_at!r}, id={id!r})".format(
             canceled_at=self.canceled_at,
             failed_at=self.failed_at,
             succeeded_at=self.succeeded_at,

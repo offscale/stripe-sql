@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Payment_Method_Afterpay_Clearpay(Base):
+class PaymentMethodAfterpayClearpay(Base):
     __tablename__ = "payment_method_afterpay_clearpay"
     id = Column(Integer, primary_key=True, server_default=Identity())
 
@@ -12,7 +14,7 @@ class Payment_Method_Afterpay_Clearpay(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Afterpay_Clearpay(id={id!r})".format(id=self.id)
+        return "PaymentMethodAfterpayClearpay(id={id!r})".format(id=self.id)
 
 
 __all__ = ["payment_method_afterpay_clearpay"]

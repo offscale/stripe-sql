@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Issuing_Card_Shipping_Customs(Base):
+class IssuingCardShippingCustoms(Base):
     __tablename__ = "issuing_card_shipping_customs"
     eori_number = Column(
         String,
@@ -17,8 +19,10 @@ class Issuing_Card_Shipping_Customs(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Issuing_Card_Shipping_Customs(eori_number={eori_number!r}, id={id!r})".format(
-            eori_number=self.eori_number, id=self.id
+        return (
+            "IssuingCardShippingCustoms(eori_number={eori_number!r}, id={id!r})".format(
+                eori_number=self.eori_number, id=self.id
+            )
         )
 
 

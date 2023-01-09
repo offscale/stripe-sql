@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Login_Link(Base):
+class LoginLink(Base):
     __tablename__ = "login_link"
     created = Column(
         Integer,
@@ -21,7 +23,7 @@ class Login_Link(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Login_Link(created={created!r}, object={object!r}, url={url!r}, id={id!r})".format(
+        return "LoginLink(created={created!r}, object={object!r}, url={url!r}, id={id!r})".format(
             created=self.created, object=self.object, url=self.url, id=self.id
         )
 

@@ -1,16 +1,20 @@
-from sqlalchemy import Column
+from sqlalchemy import Column, ForeignKey
+
+from stripe_openapi.gelato_session_id_number_options import GelatoSessionIdNumberOptions
+
+from . import Base
 
 
-class Gelato_Verification_Session_Options(Base):
+class GelatoVerificationSessionOptions(Base):
     __tablename__ = "gelato_verification_session_options"
     document = Column(
-        gelato_session_document_options,
-        ForeignKey("gelato_session_document_options"),
+        Boolean,
+        ForeignKey("gelato_session_document_options.require_id_number"),
         nullable=True,
     )
     id_number = Column(
-        gelato_session_id_number_options,
-        comment="[FK(gelato_session_id_number_options)]",
+        GelatoSessionIdNumberOptions,
+        comment="[FK(GelatoSessionIdNumberOptions)]",
         nullable=True,
         primary_key=True,
     )
@@ -22,7 +26,7 @@ class Gelato_Verification_Session_Options(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Gelato_Verification_Session_Options(document={document!r}, id_number={id_number!r})".format(
+        return "GelatoVerificationSessionOptions(document={document!r}, id_number={id_number!r})".format(
             document=self.document, id_number=self.id_number
         )
 

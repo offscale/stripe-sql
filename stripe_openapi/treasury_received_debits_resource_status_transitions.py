@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Treasury_Received_Debits_Resource_Status_Transitions(Base):
+class TreasuryReceivedDebitsResourceStatusTransitions(Base):
     __tablename__ = "treasury_received_debits_resource_status_transitions"
     completed_at = Column(
         Integer,
@@ -17,7 +19,7 @@ class Treasury_Received_Debits_Resource_Status_Transitions(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Treasury_Received_Debits_Resource_Status_Transitions(completed_at={completed_at!r}, id={id!r})".format(
+        return "TreasuryReceivedDebitsResourceStatusTransitions(completed_at={completed_at!r}, id={id!r})".format(
             completed_at=self.completed_at, id=self.id
         )
 

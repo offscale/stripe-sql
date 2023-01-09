@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Source_Transaction_Paper_Check_Data(Base):
+class SourceTransactionPaperCheckData(Base):
     __tablename__ = "source_transaction_paper_check_data"
     available_at = Column(
         String,
@@ -22,7 +24,7 @@ class Source_Transaction_Paper_Check_Data(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Source_Transaction_Paper_Check_Data(available_at={available_at!r}, invoices={invoices!r}, id={id!r})".format(
+        return "SourceTransactionPaperCheckData(available_at={available_at!r}, invoices={invoices!r}, id={id!r})".format(
             available_at=self.available_at, invoices=self.invoices, id=self.id
         )
 

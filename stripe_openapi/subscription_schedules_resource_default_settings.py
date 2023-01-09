@@ -1,7 +1,16 @@
-from sqlalchemy import Column, Float, Integer, String
+from sqlalchemy import Column, Float, ForeignKey, Identity, Integer, String
+
+from stripe_openapi.invoice_setting_subscription_schedule_setting import (
+    InvoiceSettingSubscriptionScheduleSetting,
+)
+from stripe_openapi.payment_method import PaymentMethod
+from stripe_openapi.subscription_billing_thresholds import SubscriptionBillingThresholds
+from stripe_openapi.subscription_transfer_data import SubscriptionTransferData
+
+from . import Base
 
 
-class Subscription_Schedules_Resource_Default_Settings(Base):
+class SubscriptionSchedulesResourceDefaultSettings(Base):
     __tablename__ = "subscription_schedules_resource_default_settings"
     application_fee_percent = Column(
         Float,
@@ -9,8 +18,8 @@ class Subscription_Schedules_Resource_Default_Settings(Base):
         nullable=True,
     )
     automatic_tax = Column(
-        subscription_schedules_resource_default_settings_automatic_tax,
-        ForeignKey("subscription_schedules_resource_default_settings_automatic_tax"),
+        Integer,
+        ForeignKey("subscription_schedules_resource_default_settings_automatic_tax.id"),
         nullable=True,
     )
     billing_cycle_anchor = Column(
@@ -18,8 +27,8 @@ class Subscription_Schedules_Resource_Default_Settings(Base):
         comment="Possible values are `phase_start` or `automatic`. If `phase_start` then billing cycle anchor of the subscription is set to the start of the phase when entering the phase. If `automatic` then the billing cycle anchor is automatically modified as needed when entering the phase. For more information, see the billing cycle [documentation](https://stripe.com/docs/billing/subscriptions/billing-cycle)",
     )
     billing_thresholds = Column(
-        subscription_billing_thresholds,
-        comment="[[FK(subscription_billing_thresholds)]] Define thresholds at which an invoice will be sent, and the subscription advanced to a new billing period",
+        SubscriptionBillingThresholds,
+        comment="[[FK(SubscriptionBillingThresholds)]] Define thresholds at which an invoice will be sent, and the subscription advanced to a new billing period",
         nullable=True,
     )
     collection_method = Column(
@@ -28,8 +37,8 @@ class Subscription_Schedules_Resource_Default_Settings(Base):
         nullable=True,
     )
     default_payment_method = Column(
-        payment_method,
-        comment="[[FK(payment_method)]] ID of the default payment method for the subscription schedule. If not set, invoices will use the default payment method in the customer's invoice settings",
+        PaymentMethod,
+        comment="[[FK(PaymentMethod)]] ID of the default payment method for the subscription schedule. If not set, invoices will use the default payment method in the customer's invoice settings",
         nullable=True,
     )
     description = Column(
@@ -38,18 +47,18 @@ class Subscription_Schedules_Resource_Default_Settings(Base):
         nullable=True,
     )
     invoice_settings = Column(
-        invoice_setting_subscription_schedule_setting,
-        comment="[[FK(invoice_setting_subscription_schedule_setting)]] The subscription schedule's default invoice settings",
+        InvoiceSettingSubscriptionScheduleSetting,
+        comment="[[FK(InvoiceSettingSubscriptionScheduleSetting)]] The subscription schedule's default invoice settings",
         nullable=True,
     )
     on_behalf_of = Column(
-        account,
-        comment="[[FK(account)]] The account (if any) the charge was made on behalf of for charges associated with the schedule's subscription. See the Connect documentation for details",
+        Account,
+        comment="[[FK(Account)]] The account (if any) the charge was made on behalf of for charges associated with the schedule's subscription. See the Connect documentation for details",
         nullable=True,
     )
     transfer_data = Column(
-        subscription_transfer_data,
-        comment="[[FK(subscription_transfer_data)]] The account (if any) the associated subscription's payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the subscription's invoices",
+        SubscriptionTransferData,
+        comment="[[FK(SubscriptionTransferData)]] The account (if any) the associated subscription's payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the subscription's invoices",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -61,7 +70,7 @@ class Subscription_Schedules_Resource_Default_Settings(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Subscription_Schedules_Resource_Default_Settings(application_fee_percent={application_fee_percent!r}, automatic_tax={automatic_tax!r}, billing_cycle_anchor={billing_cycle_anchor!r}, billing_thresholds={billing_thresholds!r}, collection_method={collection_method!r}, default_payment_method={default_payment_method!r}, description={description!r}, invoice_settings={invoice_settings!r}, on_behalf_of={on_behalf_of!r}, transfer_data={transfer_data!r}, id={id!r})".format(
+        return "SubscriptionSchedulesResourceDefaultSettings(application_fee_percent={application_fee_percent!r}, automatic_tax={automatic_tax!r}, billing_cycle_anchor={billing_cycle_anchor!r}, billing_thresholds={billing_thresholds!r}, collection_method={collection_method!r}, default_payment_method={default_payment_method!r}, description={description!r}, invoice_settings={invoice_settings!r}, on_behalf_of={on_behalf_of!r}, transfer_data={transfer_data!r}, id={id!r})".format(
             application_fee_percent=self.application_fee_percent,
             automatic_tax=self.automatic_tax,
             billing_cycle_anchor=self.billing_cycle_anchor,

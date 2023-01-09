@@ -1,7 +1,9 @@
 from sqlalchemy import Column, String
 
+from . import Base
 
-class Source_Transaction_Sepa_Credit_Transfer_Data(Base):
+
+class SourceTransactionSepaCreditTransferData(Base):
     __tablename__ = "source_transaction_sepa_credit_transfer_data"
     reference = Column(
         String, comment="Reference associated with the transfer", nullable=True
@@ -18,7 +20,7 @@ class Source_Transaction_Sepa_Credit_Transfer_Data(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Source_Transaction_Sepa_Credit_Transfer_Data(reference={reference!r}, sender_iban={sender_iban!r}, sender_name={sender_name!r})".format(
+        return "SourceTransactionSepaCreditTransferData(reference={reference!r}, sender_iban={sender_iban!r}, sender_name={sender_name!r})".format(
             reference=self.reference,
             sender_iban=self.sender_iban,
             sender_name=self.sender_name,

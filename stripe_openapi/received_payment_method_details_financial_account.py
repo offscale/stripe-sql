@@ -1,7 +1,9 @@
 from sqlalchemy import Column, String
 
+from . import Base
 
-class Received_Payment_Method_Details_Financial_Account(Base):
+
+class ReceivedPaymentMethodDetailsFinancialAccount(Base):
     __tablename__ = "received_payment_method_details_financial_account"
     id = Column(String, comment="The FinancialAccount ID", primary_key=True)
     network = Column(
@@ -16,7 +18,7 @@ class Received_Payment_Method_Details_Financial_Account(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Received_Payment_Method_Details_Financial_Account(id={id!r}, network={network!r})".format(
+        return "ReceivedPaymentMethodDetailsFinancialAccount(id={id!r}, network={network!r})".format(
             id=self.id, network=self.network
         )
 

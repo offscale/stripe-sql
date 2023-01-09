@@ -1,7 +1,11 @@
-from sqlalchemy import Column, Float, Integer, String
+from sqlalchemy import Column, Float, Integer, String, list
+
+from stripe_openapi.balance_transaction_source import BalanceTransactionSource
+
+from . import Base
 
 
-class Balance_Transaction(Base):
+class BalanceTransaction(Base):
     """
     Balance transactions represent funds moving through your Stripe account.
 
@@ -50,8 +54,8 @@ class Balance_Transaction(Base):
         comment="[Learn more](https://stripe.com/docs/reports/reporting-categories) about how reporting categories can help you understand balance transactions from an accounting perspective",
     )
     source = Column(
-        balance_transaction_source,
-        comment="[[FK(balance_transaction_source)]] The Stripe object to which this transaction is related",
+        BalanceTransactionSource,
+        comment="[[FK(BalanceTransactionSource)]] The Stripe object to which this transaction is related",
         nullable=True,
     )
     status = Column(
@@ -70,7 +74,7 @@ class Balance_Transaction(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Balance_Transaction(amount={amount!r}, available_on={available_on!r}, created={created!r}, currency={currency!r}, description={description!r}, exchange_rate={exchange_rate!r}, fee={fee!r}, fee_details={fee_details!r}, id={id!r}, net={net!r}, object={object!r}, reporting_category={reporting_category!r}, source={source!r}, status={status!r}, type={type!r})".format(
+        return "BalanceTransaction(amount={amount!r}, available_on={available_on!r}, created={created!r}, currency={currency!r}, description={description!r}, exchange_rate={exchange_rate!r}, fee={fee!r}, fee_details={fee_details!r}, id={id!r}, net={net!r}, object={object!r}, reporting_category={reporting_category!r}, source={source!r}, status={status!r}, type={type!r})".format(
             amount=self.amount,
             available_on=self.available_on,
             created=self.created,

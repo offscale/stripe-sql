@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Checkout_Acss_Debit_Payment_Method_Options(Base):
+class CheckoutAcssDebitPaymentMethodOptions(Base):
     __tablename__ = "checkout_acss_debit_payment_method_options"
     currency = Column(
         String,
@@ -9,9 +11,7 @@ class Checkout_Acss_Debit_Payment_Method_Options(Base):
         nullable=True,
     )
     mandate_options = Column(
-        checkout_acss_debit_mandate_options,
-        ForeignKey("checkout_acss_debit_mandate_options"),
-        nullable=True,
+        Integer, ForeignKey("checkout_acss_debit_mandate_options.id"), nullable=True
     )
     setup_future_usage = Column(
         String,
@@ -30,7 +30,7 @@ class Checkout_Acss_Debit_Payment_Method_Options(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Checkout_Acss_Debit_Payment_Method_Options(currency={currency!r}, mandate_options={mandate_options!r}, setup_future_usage={setup_future_usage!r}, verification_method={verification_method!r}, id={id!r})".format(
+        return "CheckoutAcssDebitPaymentMethodOptions(currency={currency!r}, mandate_options={mandate_options!r}, setup_future_usage={setup_future_usage!r}, verification_method={verification_method!r}, id={id!r})".format(
             currency=self.currency,
             mandate_options=self.mandate_options,
             setup_future_usage=self.setup_future_usage,

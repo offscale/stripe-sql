@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Issuing_Authorization_Amount_Details(Base):
+class IssuingAuthorizationAmountDetails(Base):
     __tablename__ = "issuing_authorization_amount_details"
     atm_fee = Column(
         Integer,
@@ -17,8 +19,10 @@ class Issuing_Authorization_Amount_Details(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Issuing_Authorization_Amount_Details(atm_fee={atm_fee!r}, id={id!r})".format(
-            atm_fee=self.atm_fee, id=self.id
+        return (
+            "IssuingAuthorizationAmountDetails(atm_fee={atm_fee!r}, id={id!r})".format(
+                atm_fee=self.atm_fee, id=self.id
+            )
         )
 
 

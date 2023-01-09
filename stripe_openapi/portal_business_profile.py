@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Portal_Business_Profile(Base):
+class PortalBusinessProfile(Base):
     __tablename__ = "portal_business_profile"
     headline = Column(
         String, comment="The messaging shown to customers in the portal", nullable=True
@@ -25,7 +27,7 @@ class Portal_Business_Profile(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Portal_Business_Profile(headline={headline!r}, privacy_policy_url={privacy_policy_url!r}, terms_of_service_url={terms_of_service_url!r}, id={id!r})".format(
+        return "PortalBusinessProfile(headline={headline!r}, privacy_policy_url={privacy_policy_url!r}, terms_of_service_url={terms_of_service_url!r}, id={id!r})".format(
             headline=self.headline,
             privacy_policy_url=self.privacy_policy_url,
             terms_of_service_url=self.terms_of_service_url,

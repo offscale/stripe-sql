@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Promotion_Code_Currency_Option(Base):
+class PromotionCodeCurrencyOption(Base):
     __tablename__ = "promotion_code_currency_option"
     minimum_amount = Column(
         Integer,
@@ -16,7 +18,7 @@ class Promotion_Code_Currency_Option(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Promotion_Code_Currency_Option(minimum_amount={minimum_amount!r}, id={id!r})".format(
+        return "PromotionCodeCurrencyOption(minimum_amount={minimum_amount!r}, id={id!r})".format(
             minimum_amount=self.minimum_amount, id=self.id
         )
 

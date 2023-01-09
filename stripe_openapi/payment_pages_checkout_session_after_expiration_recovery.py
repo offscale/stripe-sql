@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Pages_Checkout_Session_After_Expiration_Recovery(Base):
+class PaymentPagesCheckoutSessionAfterExpirationRecovery(Base):
     __tablename__ = "payment_pages_checkout_session_after_expiration_recovery"
     allow_promotion_codes = Column(
         Boolean,
@@ -30,7 +32,7 @@ class Payment_Pages_Checkout_Session_After_Expiration_Recovery(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Pages_Checkout_Session_After_Expiration_Recovery(allow_promotion_codes={allow_promotion_codes!r}, enabled={enabled!r}, expires_at={expires_at!r}, url={url!r}, id={id!r})".format(
+        return "PaymentPagesCheckoutSessionAfterExpirationRecovery(allow_promotion_codes={allow_promotion_codes!r}, enabled={enabled!r}, expires_at={expires_at!r}, url={url!r}, id={id!r})".format(
             allow_promotion_codes=self.allow_promotion_codes,
             enabled=self.enabled,
             expires_at=self.expires_at,

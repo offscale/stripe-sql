@@ -1,4 +1,8 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import JSON, Boolean, Column, Integer, String, list
+
+from stripe_openapi.transform_usage import TransformUsage
+
+from . import Base
 
 
 class Plan(Base):
@@ -71,8 +75,8 @@ class Plan(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     product = Column(
-        string | product,
-        comment="[[FK(deleted_product)]] The product whose pricing this plan determines",
+        Product,
+        comment="[[FK(DeletedProduct)]] The product whose pricing this plan determines",
         nullable=True,
     )
     tiers = Column(
@@ -86,8 +90,8 @@ class Plan(Base):
         nullable=True,
     )
     transform_usage = Column(
-        transform_usage,
-        comment="[[FK(transform_usage)]] Apply a transformation to the reported usage or set quantity before computing the amount billed. Cannot be combined with `tiers`",
+        TransformUsage,
+        comment="[[FK(TransformUsage)]] Apply a transformation to the reported usage or set quantity before computing the amount billed. Cannot be combined with `tiers`",
         nullable=True,
     )
     trial_period_days = Column(

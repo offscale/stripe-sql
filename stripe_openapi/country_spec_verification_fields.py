@@ -1,15 +1,13 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer
+
+from . import Base
 
 
-class Country_Spec_Verification_Fields(Base):
+class CountrySpecVerificationFields(Base):
     __tablename__ = "country_spec_verification_fields"
-    company = Column(
-        country_spec_verification_field_details,
-        ForeignKey("country_spec_verification_field_details"),
-    )
+    company = Column(Integer, ForeignKey("country_spec_verification_field_details.id"))
     individual = Column(
-        country_spec_verification_field_details,
-        ForeignKey("country_spec_verification_field_details"),
+        Integer, ForeignKey("country_spec_verification_field_details.id")
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
@@ -20,7 +18,7 @@ class Country_Spec_Verification_Fields(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Country_Spec_Verification_Fields(company={company!r}, individual={individual!r}, id={id!r})".format(
+        return "CountrySpecVerificationFields(company={company!r}, individual={individual!r}, id={id!r})".format(
             company=self.company, individual=self.individual, id=self.id
         )
 

@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Checkout_Boleto_Payment_Method_Options(Base):
+class CheckoutBoletoPaymentMethodOptions(Base):
     __tablename__ = "checkout_boleto_payment_method_options"
     expires_after_days = Column(
         Integer,
@@ -21,7 +23,7 @@ class Checkout_Boleto_Payment_Method_Options(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Checkout_Boleto_Payment_Method_Options(expires_after_days={expires_after_days!r}, setup_future_usage={setup_future_usage!r}, id={id!r})".format(
+        return "CheckoutBoletoPaymentMethodOptions(expires_after_days={expires_after_days!r}, setup_future_usage={setup_future_usage!r}, id={id!r})".format(
             expires_after_days=self.expires_after_days,
             setup_future_usage=self.setup_future_usage,
             id=self.id,

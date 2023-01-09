@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Links_Resource_Subscription_Data(Base):
+class PaymentLinksResourceSubscriptionData(Base):
     __tablename__ = "payment_links_resource_subscription_data"
     description = Column(
         String,
@@ -22,7 +24,7 @@ class Payment_Links_Resource_Subscription_Data(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Links_Resource_Subscription_Data(description={description!r}, trial_period_days={trial_period_days!r}, id={id!r})".format(
+        return "PaymentLinksResourceSubscriptionData(description={description!r}, trial_period_days={trial_period_days!r}, id={id!r})".format(
             description=self.description,
             trial_period_days=self.trial_period_days,
             id=self.id,

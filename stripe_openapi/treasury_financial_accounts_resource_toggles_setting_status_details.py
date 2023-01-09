@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Treasury_Financial_Accounts_Resource_Toggles_Setting_Status_Details(Base):
+class TreasuryFinancialAccountsResourceTogglesSettingStatusDetails(Base):
     """
     Additional details on the FinancialAccount Features information.
     """
@@ -32,7 +34,7 @@ class Treasury_Financial_Accounts_Resource_Toggles_Setting_Status_Details(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Treasury_Financial_Accounts_Resource_Toggles_Setting_Status_Details(code={code!r}, resolution={resolution!r}, restriction={restriction!r}, id={id!r})".format(
+        return "TreasuryFinancialAccountsResourceTogglesSettingStatusDetails(code={code!r}, resolution={resolution!r}, restriction={restriction!r}, id={id!r})".format(
             code=self.code,
             resolution=self.resolution,
             restriction=self.restriction,

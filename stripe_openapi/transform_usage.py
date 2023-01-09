@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Transform_Usage(Base):
+class TransformUsage(Base):
     __tablename__ = "transform_usage"
     divide_by = Column(Integer, comment="Divide usage by this number")
     round = Column(
@@ -16,7 +18,7 @@ class Transform_Usage(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Transform_Usage(divide_by={divide_by!r}, round={round!r}, id={id!r})".format(
+        return "TransformUsage(divide_by={divide_by!r}, round={round!r}, id={id!r})".format(
             divide_by=self.divide_by, round=self.round, id=self.id
         )
 

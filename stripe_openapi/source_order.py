@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String, list
+
+from . import Base
 
 
-class Source_Order(Base):
+class SourceOrder(Base):
     __tablename__ = "source_order"
     amount = Column(
         Integer,
@@ -17,7 +19,7 @@ class Source_Order(Base):
         nullable=True,
     )
     items = Column(list, comment="List of items constituting the order", nullable=True)
-    shipping = Column(shipping, ForeignKey("shipping"), nullable=True)
+    shipping = Column(Shipping, ForeignKey("Shipping"), nullable=True)
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):
@@ -27,7 +29,7 @@ class Source_Order(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Source_Order(amount={amount!r}, currency={currency!r}, email={email!r}, items={items!r}, shipping={shipping!r}, id={id!r})".format(
+        return "SourceOrder(amount={amount!r}, currency={currency!r}, email={email!r}, items={items!r}, shipping={shipping!r}, id={id!r})".format(
             amount=self.amount,
             currency=self.currency,
             email=self.email,

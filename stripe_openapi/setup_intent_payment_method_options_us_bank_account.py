@@ -1,12 +1,12 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Setup_Intent_Payment_Method_Options_Us_Bank_Account(Base):
+class SetupIntentPaymentMethodOptionsUsBankAccount(Base):
     __tablename__ = "setup_intent_payment_method_options_us_bank_account"
     financial_connections = Column(
-        linked_account_options_us_bank_account,
-        ForeignKey("linked_account_options_us_bank_account"),
-        nullable=True,
+        Integer, ForeignKey("linked_account_options_us_bank_account.id"), nullable=True
     )
     verification_method = Column(
         String, comment="Bank account verification method", nullable=True
@@ -20,7 +20,7 @@ class Setup_Intent_Payment_Method_Options_Us_Bank_Account(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Setup_Intent_Payment_Method_Options_Us_Bank_Account(financial_connections={financial_connections!r}, verification_method={verification_method!r}, id={id!r})".format(
+        return "SetupIntentPaymentMethodOptionsUsBankAccount(financial_connections={financial_connections!r}, verification_method={verification_method!r}, id={id!r})".format(
             financial_connections=self.financial_connections,
             verification_method=self.verification_method,
             id=self.id,

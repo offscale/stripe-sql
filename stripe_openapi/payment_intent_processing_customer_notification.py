@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer
+from sqlalchemy import Boolean, Column, Identity, Integer
+
+from . import Base
 
 
-class Payment_Intent_Processing_Customer_Notification(Base):
+class PaymentIntentProcessingCustomerNotification(Base):
     __tablename__ = "payment_intent_processing_customer_notification"
     approval_requested = Column(
         Boolean,
@@ -22,7 +24,7 @@ class Payment_Intent_Processing_Customer_Notification(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Intent_Processing_Customer_Notification(approval_requested={approval_requested!r}, completes_at={completes_at!r}, id={id!r})".format(
+        return "PaymentIntentProcessingCustomerNotification(approval_requested={approval_requested!r}, completes_at={completes_at!r}, id={id!r})".format(
             approval_requested=self.approval_requested,
             completes_at=self.completes_at,
             id=self.id,

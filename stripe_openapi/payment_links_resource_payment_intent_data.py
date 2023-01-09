@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Links_Resource_Payment_Intent_Data(Base):
+class PaymentLinksResourcePaymentIntentData(Base):
     __tablename__ = "payment_links_resource_payment_intent_data"
     capture_method = Column(
         String,
@@ -22,7 +24,7 @@ class Payment_Links_Resource_Payment_Intent_Data(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Links_Resource_Payment_Intent_Data(capture_method={capture_method!r}, setup_future_usage={setup_future_usage!r}, id={id!r})".format(
+        return "PaymentLinksResourcePaymentIntentData(capture_method={capture_method!r}, setup_future_usage={setup_future_usage!r}, id={id!r})".format(
             capture_method=self.capture_method,
             setup_future_usage=self.setup_future_usage,
             id=self.id,

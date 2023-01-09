@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import ARRAY, Column, Identity, Integer, String
+
+from . import Base
 
 
-class Coupon_Applies_To(Base):
+class CouponAppliesTo(Base):
     __tablename__ = "coupon_applies_to"
     products = Column(
         ARRAY(String), comment="A list of product IDs this coupon applies to"
@@ -15,7 +17,7 @@ class Coupon_Applies_To(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Coupon_Applies_To(products={products!r}, id={id!r})".format(
+        return "CouponAppliesTo(products={products!r}, id={id!r})".format(
             products=self.products, id=self.id
         )
 

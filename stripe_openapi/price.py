@@ -1,4 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import JSON, Boolean, Column, Integer, String, list
+
+from stripe_openapi.custom_unit_amount import CustomUnitAmount
+from stripe_openapi.transform_quantity import TransformQuantity
+
+from . import Base
 
 
 class Price(Base):
@@ -33,8 +38,8 @@ class Price(Base):
         nullable=True,
     )
     custom_unit_amount = Column(
-        custom_unit_amount,
-        comment="[[FK(custom_unit_amount)]] When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links",
+        CustomUnitAmount,
+        comment="[[FK(CustomUnitAmount)]] When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links",
         nullable=True,
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
@@ -61,12 +66,12 @@ class Price(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     product = Column(
-        string | product,
-        comment="[[FK(deleted_product)]] The ID of the product this price is associated with",
+        Product,
+        comment="[[FK(DeletedProduct)]] The ID of the product this price is associated with",
     )
     recurring = Column(
-        recurring,
-        comment="[[FK(recurring)]] The recurring components of a price such as `interval` and `usage_type`",
+        Recurring,
+        comment="[[FK(Recurring)]] The recurring components of a price such as `interval` and `usage_type`",
         nullable=True,
     )
     tax_behavior = Column(
@@ -85,8 +90,8 @@ class Price(Base):
         nullable=True,
     )
     transform_quantity = Column(
-        transform_quantity,
-        comment="[[FK(transform_quantity)]] Apply a transformation to the reported usage or set quantity before computing the amount billed. Cannot be combined with `tiers`",
+        TransformQuantity,
+        comment="[[FK(TransformQuantity)]] Apply a transformation to the reported usage or set quantity before computing the amount billed. Cannot be combined with `tiers`",
         nullable=True,
     )
     type = Column(

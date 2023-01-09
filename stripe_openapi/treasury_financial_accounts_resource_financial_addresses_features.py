@@ -1,15 +1,17 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer
+
+from . import Base
 
 
-class Treasury_Financial_Accounts_Resource_Financial_Addresses_Features(Base):
+class TreasuryFinancialAccountsResourceFinancialAddressesFeatures(Base):
     """
     Settings related to Financial Addresses features on a Financial Account
     """
 
     __tablename__ = "treasury_financial_accounts_resource_financial_addresses_features"
     aba = Column(
-        treasury_financial_accounts_resource_toggle_settings,
-        ForeignKey("treasury_financial_accounts_resource_toggle_settings"),
+        Integer,
+        ForeignKey("treasury_financial_accounts_resource_toggle_settings.id"),
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -21,7 +23,7 @@ class Treasury_Financial_Accounts_Resource_Financial_Addresses_Features(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Treasury_Financial_Accounts_Resource_Financial_Addresses_Features(aba={aba!r}, id={id!r})".format(
+        return "TreasuryFinancialAccountsResourceFinancialAddressesFeatures(aba={aba!r}, id={id!r})".format(
             aba=self.aba, id=self.id
         )
 

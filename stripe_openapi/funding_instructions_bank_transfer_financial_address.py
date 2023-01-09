@@ -1,25 +1,31 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import ARRAY, Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Funding_Instructions_Bank_Transfer_Financial_Address(Base):
+class FundingInstructionsBankTransferFinancialAddress(Base):
     """
     FinancialAddresses contain identifying information that resolves to a FinancialAccount.
     """
 
     __tablename__ = "funding_instructions_bank_transfer_financial_address"
     iban = Column(
-        funding_instructions_bank_transfer_iban_record,
-        ForeignKey("funding_instructions_bank_transfer_iban_record"),
+        String,
+        ForeignKey(
+            "funding_instructions_bank_transfer_iban_record.account_holder_name"
+        ),
         nullable=True,
     )
     sort_code = Column(
-        funding_instructions_bank_transfer_sort_code_record,
-        ForeignKey("funding_instructions_bank_transfer_sort_code_record"),
+        String,
+        ForeignKey(
+            "funding_instructions_bank_transfer_sort_code_record.account_holder_name"
+        ),
         nullable=True,
     )
     spei = Column(
-        funding_instructions_bank_transfer_spei_record,
-        ForeignKey("funding_instructions_bank_transfer_spei_record"),
+        String,
+        ForeignKey("funding_instructions_bank_transfer_spei_record.bank_name"),
         nullable=True,
     )
     supported_networks = Column(
@@ -29,8 +35,8 @@ class Funding_Instructions_Bank_Transfer_Financial_Address(Base):
     )
     type = Column(String, comment="The type of financial address")
     zengin = Column(
-        funding_instructions_bank_transfer_zengin_record,
-        ForeignKey("funding_instructions_bank_transfer_zengin_record"),
+        Integer,
+        ForeignKey("funding_instructions_bank_transfer_zengin_record.id"),
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -42,7 +48,7 @@ class Funding_Instructions_Bank_Transfer_Financial_Address(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Funding_Instructions_Bank_Transfer_Financial_Address(iban={iban!r}, sort_code={sort_code!r}, spei={spei!r}, supported_networks={supported_networks!r}, type={type!r}, zengin={zengin!r}, id={id!r})".format(
+        return "FundingInstructionsBankTransferFinancialAddress(iban={iban!r}, sort_code={sort_code!r}, spei={spei!r}, supported_networks={supported_networks!r}, type={type!r}, zengin={zengin!r}, id={id!r})".format(
             iban=self.iban,
             sort_code=self.sort_code,
             spei=self.spei,

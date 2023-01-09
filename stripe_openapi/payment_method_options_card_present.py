@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer
+from sqlalchemy import Boolean, Column, Identity, Integer
+
+from . import Base
 
 
-class Payment_Method_Options_Card_Present(Base):
+class PaymentMethodOptionsCardPresent(Base):
     __tablename__ = "payment_method_options_card_present"
     request_extended_authorization = Column(
         Boolean,
@@ -22,7 +24,7 @@ class Payment_Method_Options_Card_Present(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Options_Card_Present(request_extended_authorization={request_extended_authorization!r}, request_incremental_authorization_support={request_incremental_authorization_support!r}, id={id!r})".format(
+        return "PaymentMethodOptionsCardPresent(request_extended_authorization={request_extended_authorization!r}, request_incremental_authorization_support={request_incremental_authorization_support!r}, id={id!r})".format(
             request_extended_authorization=self.request_extended_authorization,
             request_incremental_authorization_support=self.request_incremental_authorization_support,
             id=self.id,

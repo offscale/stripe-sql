@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import JSON, Boolean, Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Cash_Balance(Base):
+class CashBalance(Base):
     """
     A customer's `Cash balance` represents real funds. Customers can add funds to their cash balance by sending a bank transfer. These funds can be used for payment and can eventually be paid out to your bank account.
     """
@@ -25,8 +27,7 @@ class Cash_Balance(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     settings = Column(
-        customer_balance_customer_balance_settings,
-        ForeignKey("customer_balance_customer_balance_settings"),
+        Integer, ForeignKey("customer_balance_customer_balance_settings.id")
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
@@ -37,7 +38,7 @@ class Cash_Balance(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Cash_Balance(available={available!r}, customer={customer!r}, livemode={livemode!r}, object={object!r}, settings={settings!r}, id={id!r})".format(
+        return "CashBalance(available={available!r}, customer={customer!r}, livemode={livemode!r}, object={object!r}, settings={settings!r}, id={id!r})".format(
             available=self.available,
             customer=self.customer,
             livemode=self.livemode,

@@ -1,20 +1,22 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import JSON, Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Bank_Connections_Resource_Balance(Base):
+class BankConnectionsResourceBalance(Base):
     __tablename__ = "bank_connections_resource_balance"
     as_of = Column(
         Integer,
         comment="The time that the external institution calculated this balance. Measured in seconds since the Unix epoch",
     )
     cash = Column(
-        bank_connections_resource_balance_api_resource_cash_balance,
-        ForeignKey("bank_connections_resource_balance_api_resource_cash_balance"),
+        Integer,
+        ForeignKey("bank_connections_resource_balance_api_resource_cash_balance.id"),
         nullable=True,
     )
     credit = Column(
-        bank_connections_resource_balance_api_resource_credit_balance,
-        ForeignKey("bank_connections_resource_balance_api_resource_credit_balance"),
+        Integer,
+        ForeignKey("bank_connections_resource_balance_api_resource_credit_balance.id"),
         nullable=True,
     )
     current = Column(
@@ -34,7 +36,7 @@ class Bank_Connections_Resource_Balance(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Bank_Connections_Resource_Balance(as_of={as_of!r}, cash={cash!r}, credit={credit!r}, current={current!r}, type={type!r}, id={id!r})".format(
+        return "BankConnectionsResourceBalance(as_of={as_of!r}, cash={cash!r}, credit={credit!r}, current={current!r}, type={type!r}, id={id!r})".format(
             as_of=self.as_of,
             cash=self.cash,
             credit=self.credit,

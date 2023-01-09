@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Setup_Intent_Payment_Method_Options_Link(Base):
+class SetupIntentPaymentMethodOptionsLink(Base):
     __tablename__ = "setup_intent_payment_method_options_link"
     persistent_token = Column(
         String, comment="Token used for persistent Link logins", nullable=True
@@ -15,7 +17,7 @@ class Setup_Intent_Payment_Method_Options_Link(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Setup_Intent_Payment_Method_Options_Link(persistent_token={persistent_token!r}, id={id!r})".format(
+        return "SetupIntentPaymentMethodOptionsLink(persistent_token={persistent_token!r}, id={id!r})".format(
             persistent_token=self.persistent_token, id=self.id
         )
 

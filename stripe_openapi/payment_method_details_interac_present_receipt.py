@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Method_Details_Interac_Present_Receipt(Base):
+class PaymentMethodDetailsInteracPresentReceipt(Base):
     __tablename__ = "payment_method_details_interac_present_receipt"
     account_type = Column(
         String, comment="The type of account being debited or credited", nullable=True
@@ -49,7 +51,7 @@ class Payment_Method_Details_Interac_Present_Receipt(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Details_Interac_Present_Receipt(account_type={account_type!r}, application_cryptogram={application_cryptogram!r}, application_preferred_name={application_preferred_name!r}, authorization_code={authorization_code!r}, authorization_response_code={authorization_response_code!r}, cardholder_verification_method={cardholder_verification_method!r}, dedicated_file_name={dedicated_file_name!r}, terminal_verification_results={terminal_verification_results!r}, transaction_status_information={transaction_status_information!r}, id={id!r})".format(
+        return "PaymentMethodDetailsInteracPresentReceipt(account_type={account_type!r}, application_cryptogram={application_cryptogram!r}, application_preferred_name={application_preferred_name!r}, authorization_code={authorization_code!r}, authorization_response_code={authorization_response_code!r}, cardholder_verification_method={cardholder_verification_method!r}, dedicated_file_name={dedicated_file_name!r}, terminal_verification_results={terminal_verification_results!r}, transaction_status_information={transaction_status_information!r}, id={id!r})".format(
             account_type=self.account_type,
             application_cryptogram=self.application_cryptogram,
             application_preferred_name=self.application_preferred_name,

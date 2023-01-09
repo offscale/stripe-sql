@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer
+from sqlalchemy import ARRAY, Boolean, Column, Identity, Integer, String
+
+from . import Base
 
 
-class Portal_Customer_Update(Base):
+class PortalCustomerUpdate(Base):
     __tablename__ = "portal_customer_update"
     allowed_updates = Column(
         ARRAY(String),
@@ -17,7 +19,7 @@ class Portal_Customer_Update(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Portal_Customer_Update(allowed_updates={allowed_updates!r}, enabled={enabled!r}, id={id!r})".format(
+        return "PortalCustomerUpdate(allowed_updates={allowed_updates!r}, enabled={enabled!r}, id={id!r})".format(
             allowed_updates=self.allowed_updates, enabled=self.enabled, id=self.id
         )
 

@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Account_Link(Base):
+class AccountLink(Base):
     """
     Account Links are the means by which a Connect platform grants a connected account permission to access
 
@@ -33,7 +35,7 @@ class Account_Link(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Account_Link(created={created!r}, expires_at={expires_at!r}, object={object!r}, url={url!r}, id={id!r})".format(
+        return "AccountLink(created={created!r}, expires_at={expires_at!r}, object={object!r}, url={url!r}, id={id!r})".format(
             created=self.created,
             expires_at=self.expires_at,
             object=self.object,

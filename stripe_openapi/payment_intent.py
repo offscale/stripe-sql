@@ -1,7 +1,22 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import ARRAY, JSON, Boolean, Column, ForeignKey, Integer, String
+
+from stripe_openapi.api_errors import ApiErrors
+from stripe_openapi.payment_flows_automatic_payment_methods_payment_intent import (
+    PaymentFlowsAutomaticPaymentMethodsPaymentIntent,
+)
+from stripe_openapi.payment_intent_next_action import PaymentIntentNextAction
+from stripe_openapi.payment_intent_payment_method_options import (
+    PaymentIntentPaymentMethodOptions,
+)
+from stripe_openapi.payment_intent_processing import PaymentIntentProcessing
+from stripe_openapi.payment_method import PaymentMethod
+from stripe_openapi.payment_source import PaymentSource
+from stripe_openapi.transfer_data import TransferData
+
+from . import Base
 
 
-class Payment_Intent(Base):
+class PaymentIntent(Base):
     """
     A PaymentIntent guides you through the process of collecting a payment from your customer.
 
@@ -27,16 +42,14 @@ class Payment_Intent(Base):
         Integer, comment="Amount that can be captured from this PaymentIntent"
     )
     amount_details = Column(
-        payment_flows_amount_details,
-        ForeignKey("payment_flows_amount_details"),
-        nullable=True,
+        Integer, ForeignKey("payment_flows_amount_details.id"), nullable=True
     )
     amount_received = Column(
         Integer, comment="Amount that was collected by this PaymentIntent"
     )
     application = Column(
-        application,
-        comment="[[FK(application)]] ID of the Connect application that created the PaymentIntent",
+        Application,
+        comment="[[FK(Application)]] ID of the Connect application that created the PaymentIntent",
         nullable=True,
     )
     application_fee_amount = Column(
@@ -45,8 +58,8 @@ class Payment_Intent(Base):
         nullable=True,
     )
     automatic_payment_methods = Column(
-        payment_flows_automatic_payment_methods_payment_intent,
-        comment="[[FK(payment_flows_automatic_payment_methods_payment_intent)]] Settings to configure compatible payment methods from the [Stripe Dashboard](https://dashboard.stripe.com/settings/payment_methods)",
+        PaymentFlowsAutomaticPaymentMethodsPaymentIntent,
+        comment="[[FK(PaymentFlowsAutomaticPaymentMethodsPaymentIntent)]] Settings to configure compatible payment methods from the [Stripe Dashboard](https://dashboard.stripe.com/settings/payment_methods)",
         nullable=True,
     )
     canceled_at = Column(
@@ -78,8 +91,8 @@ class Payment_Intent(Base):
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",
     )
     customer = Column(
-        string | customer,
-        comment="[[FK(deleted_customer)]] ID of the Customer this PaymentIntent belongs to, if one exists.\n\nPayment methods attached to other Customers cannot be used with this PaymentIntent.\n\nIf present in combination with [setup_future_usage](https://stripe.com/docs/api#payment_intent_object-setup_future_usage), this PaymentIntent's payment method will be attached to the Customer after the PaymentIntent has been confirmed and any required actions from the user are complete",
+        Customer,
+        comment="[[FK(DeletedCustomer)]] ID of the Customer this PaymentIntent belongs to, if one exists.\n\nPayment methods attached to other Customers cannot be used with this PaymentIntent.\n\nIf present in combination with [setup_future_usage](https://stripe.com/docs/api#payment_intent_object-setup_future_usage), this PaymentIntent's payment method will be attached to the Customer after the PaymentIntent has been confirmed and any required actions from the user are complete",
         nullable=True,
     )
     description = Column(
@@ -89,18 +102,18 @@ class Payment_Intent(Base):
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     invoice = Column(
-        invoice,
-        comment="[[FK(invoice)]] ID of the invoice that created this PaymentIntent, if it exists",
+        Invoice,
+        comment="[[FK(Invoice)]] ID of the invoice that created this PaymentIntent, if it exists",
         nullable=True,
     )
     last_payment_error = Column(
-        api_errors,
-        comment="[[FK(api_errors)]] The payment error encountered in the previous PaymentIntent confirmation. It will be cleared if the PaymentIntent is later updated for any reason",
+        ApiErrors,
+        comment="[[FK(ApiErrors)]] The payment error encountered in the previous PaymentIntent confirmation. It will be cleared if the PaymentIntent is later updated for any reason",
         nullable=True,
     )
     latest_charge = Column(
-        charge,
-        comment="[[FK(charge)]] The latest charge created by this payment intent",
+        Charge,
+        comment="[[FK(Charge)]] The latest charge created by this payment intent",
         nullable=True,
     )
     livemode = Column(
@@ -112,8 +125,8 @@ class Payment_Intent(Base):
         comment="Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. For more information, see the [documentation](https://stripe.com/docs/payments/payment-intents/creating-payment-intents#storing-information-in-metadata)",
     )
     next_action = Column(
-        payment_intent_next_action,
-        comment="[[FK(payment_intent_next_action)]] If present, this property tells you what actions you need to take in order for your customer to fulfill a payment using the provided source",
+        PaymentIntentNextAction,
+        comment="[[FK(PaymentIntentNextAction)]] If present, this property tells you what actions you need to take in order for your customer to fulfill a payment using the provided source",
         nullable=True,
     )
     object = Column(
@@ -121,18 +134,18 @@ class Payment_Intent(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     on_behalf_of = Column(
-        account,
-        comment="[[FK(account)]] The account (if any) for which the funds of the PaymentIntent are intended. See the PaymentIntents [use case for connected accounts](https://stripe.com/docs/payments/connected-accounts) for details",
+        Account,
+        comment="[[FK(Account)]] The account (if any) for which the funds of the PaymentIntent are intended. See the PaymentIntents [use case for connected accounts](https://stripe.com/docs/payments/connected-accounts) for details",
         nullable=True,
     )
     payment_method = Column(
-        payment_method,
-        comment="[[FK(payment_method)]] ID of the payment method used in this PaymentIntent",
+        PaymentMethod,
+        comment="[[FK(PaymentMethod)]] ID of the payment method used in this PaymentIntent",
         nullable=True,
     )
     payment_method_options = Column(
-        payment_intent_payment_method_options,
-        comment="[[FK(payment_intent_payment_method_options)]] Payment-method-specific configuration for this PaymentIntent",
+        PaymentIntentPaymentMethodOptions,
+        comment="[[FK(PaymentIntentPaymentMethodOptions)]] Payment-method-specific configuration for this PaymentIntent",
         nullable=True,
     )
     payment_method_types = Column(
@@ -140,8 +153,8 @@ class Payment_Intent(Base):
         comment="The list of payment method types (e.g. card) that this PaymentIntent is allowed to use",
     )
     processing = Column(
-        payment_intent_processing,
-        comment="[[FK(payment_intent_processing)]] If present, this property tells you about the processing state of the payment",
+        PaymentIntentProcessing,
+        comment="[[FK(PaymentIntentProcessing)]] If present, this property tells you about the processing state of the payment",
         nullable=True,
     )
     receipt_email = Column(
@@ -150,8 +163,8 @@ class Payment_Intent(Base):
         nullable=True,
     )
     review = Column(
-        review,
-        comment="[[FK(review)]] ID of the review associated with this PaymentIntent, if any",
+        Review,
+        comment="[[FK(Review)]] ID of the review associated with this PaymentIntent, if any",
         nullable=True,
     )
     setup_future_usage = Column(
@@ -160,13 +173,13 @@ class Payment_Intent(Base):
         nullable=True,
     )
     shipping = Column(
-        shipping,
-        comment="[[FK(shipping)]] Shipping information for this PaymentIntent",
+        Shipping,
+        comment="[[FK(Shipping)]] Shipping information for this PaymentIntent",
         nullable=True,
     )
     source = Column(
-        string | payment_source,
-        comment="[[FK(deleted_payment_source)]] This is a legacy field that will be removed in the future. It is the ID of the Source object that is associated with this PaymentIntent, if one was supplied",
+        PaymentSource,
+        comment="[[FK(DeletedPaymentSource)]] This is a legacy field that will be removed in the future. It is the ID of the Source object that is associated with this PaymentIntent, if one was supplied",
         nullable=True,
     )
     statement_descriptor = Column(
@@ -184,8 +197,8 @@ class Payment_Intent(Base):
         comment="Status of this PaymentIntent, one of `requires_payment_method`, `requires_confirmation`, `requires_action`, `processing`, `requires_capture`, `canceled`, or `succeeded`. Read more about each PaymentIntent [status](https://stripe.com/docs/payments/intents#intent-statuses)",
     )
     transfer_data = Column(
-        transfer_data,
-        comment="[[FK(transfer_data)]] The data with which to automatically create a Transfer when the payment is finalized. See the PaymentIntents [use case for connected accounts](https://stripe.com/docs/payments/connected-accounts) for details",
+        TransferData,
+        comment="[[FK(TransferData)]] The data with which to automatically create a Transfer when the payment is finalized. See the PaymentIntents [use case for connected accounts](https://stripe.com/docs/payments/connected-accounts) for details",
         nullable=True,
     )
     transfer_group = Column(
@@ -201,7 +214,7 @@ class Payment_Intent(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Intent(amount={amount!r}, amount_capturable={amount_capturable!r}, amount_details={amount_details!r}, amount_received={amount_received!r}, application={application!r}, application_fee_amount={application_fee_amount!r}, automatic_payment_methods={automatic_payment_methods!r}, canceled_at={canceled_at!r}, cancellation_reason={cancellation_reason!r}, capture_method={capture_method!r}, client_secret={client_secret!r}, confirmation_method={confirmation_method!r}, created={created!r}, currency={currency!r}, customer={customer!r}, description={description!r}, id={id!r}, invoice={invoice!r}, last_payment_error={last_payment_error!r}, latest_charge={latest_charge!r}, livemode={livemode!r}, metadata={metadata!r}, next_action={next_action!r}, object={object!r}, on_behalf_of={on_behalf_of!r}, payment_method={payment_method!r}, payment_method_options={payment_method_options!r}, payment_method_types={payment_method_types!r}, processing={processing!r}, receipt_email={receipt_email!r}, review={review!r}, setup_future_usage={setup_future_usage!r}, shipping={shipping!r}, source={source!r}, statement_descriptor={statement_descriptor!r}, statement_descriptor_suffix={statement_descriptor_suffix!r}, status={status!r}, transfer_data={transfer_data!r}, transfer_group={transfer_group!r})".format(
+        return "PaymentIntent(amount={amount!r}, amount_capturable={amount_capturable!r}, amount_details={amount_details!r}, amount_received={amount_received!r}, application={application!r}, application_fee_amount={application_fee_amount!r}, automatic_payment_methods={automatic_payment_methods!r}, canceled_at={canceled_at!r}, cancellation_reason={cancellation_reason!r}, capture_method={capture_method!r}, client_secret={client_secret!r}, confirmation_method={confirmation_method!r}, created={created!r}, currency={currency!r}, customer={customer!r}, description={description!r}, id={id!r}, invoice={invoice!r}, last_payment_error={last_payment_error!r}, latest_charge={latest_charge!r}, livemode={livemode!r}, metadata={metadata!r}, next_action={next_action!r}, object={object!r}, on_behalf_of={on_behalf_of!r}, payment_method={payment_method!r}, payment_method_options={payment_method_options!r}, payment_method_types={payment_method_types!r}, processing={processing!r}, receipt_email={receipt_email!r}, review={review!r}, setup_future_usage={setup_future_usage!r}, shipping={shipping!r}, source={source!r}, statement_descriptor={statement_descriptor!r}, statement_descriptor_suffix={statement_descriptor_suffix!r}, status={status!r}, transfer_data={transfer_data!r}, transfer_group={transfer_group!r})".format(
             amount=self.amount,
             amount_capturable=self.amount_capturable,
             amount_details=self.amount_details,

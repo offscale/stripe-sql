@@ -1,7 +1,11 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from stripe_openapi.setup_intent import SetupIntent
+
+from . import Base
 
 
-class Terminal_Reader_Reader_Resource_Process_Setup_Intent_Action(Base):
+class TerminalReaderReaderResourceProcessSetupIntentAction(Base):
     """
     Represents a reader action to process a setup intent
     """
@@ -13,8 +17,8 @@ class Terminal_Reader_Reader_Resource_Process_Setup_Intent_Action(Base):
         nullable=True,
     )
     setup_intent = Column(
-        setup_intent,
-        comment="[[FK(setup_intent)]] Most recent SetupIntent processed by the reader",
+        SetupIntent,
+        comment="[[FK(SetupIntent)]] Most recent SetupIntent processed by the reader",
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
@@ -25,7 +29,7 @@ class Terminal_Reader_Reader_Resource_Process_Setup_Intent_Action(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Terminal_Reader_Reader_Resource_Process_Setup_Intent_Action(generated_card={generated_card!r}, setup_intent={setup_intent!r}, id={id!r})".format(
+        return "TerminalReaderReaderResourceProcessSetupIntentAction(generated_card={generated_card!r}, setup_intent={setup_intent!r}, id={id!r})".format(
             generated_card=self.generated_card,
             setup_intent=self.setup_intent,
             id=self.id,

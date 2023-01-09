@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer
+from sqlalchemy import Boolean, Column, Identity, Integer
+
+from . import Base
 
 
-class Invoice_Installments_Card(Base):
+class InvoiceInstallmentsCard(Base):
     __tablename__ = "invoice_installments_card"
     enabled = Column(
         Boolean,
@@ -17,7 +19,7 @@ class Invoice_Installments_Card(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Invoice_Installments_Card(enabled={enabled!r}, id={id!r})".format(
+        return "InvoiceInstallmentsCard(enabled={enabled!r}, id={id!r})".format(
             enabled=self.enabled, id=self.id
         )
 

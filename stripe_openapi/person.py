@@ -1,4 +1,10 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import ARRAY, JSON, Boolean, Column, ForeignKey, Integer, String
+
+from stripe_openapi.legal_entity_japan_address import LegalEntityJapanAddress
+from stripe_openapi.person_future_requirements import PersonFutureRequirements
+from stripe_openapi.person_requirements import PersonRequirements
+
+from . import Base
 
 
 class Person(Base):
@@ -16,22 +22,22 @@ class Person(Base):
     account = Column(
         String, comment="The account the person is associated with", nullable=True
     )
-    address = Column(address, ForeignKey("address"), nullable=True)
+    address = Column(Address, ForeignKey("Address"), nullable=True)
     address_kana = Column(
-        legal_entity_japan_address,
-        comment="[[FK(legal_entity_japan_address)]] The Kana variation of the person's address (Japan only)",
+        LegalEntityJapanAddress,
+        comment="[[FK(LegalEntityJapanAddress)]] The Kana variation of the person's address (Japan only)",
         nullable=True,
     )
     address_kanji = Column(
-        legal_entity_japan_address,
-        comment="[[FK(legal_entity_japan_address)]] The Kanji variation of the person's address (Japan only)",
+        LegalEntityJapanAddress,
+        comment="[[FK(LegalEntityJapanAddress)]] The Kanji variation of the person's address (Japan only)",
         nullable=True,
     )
     created = Column(
         Integer,
         comment="Time at which the object was created. Measured in seconds since the Unix epoch",
     )
-    dob = Column(legal_entity_dob, ForeignKey("legal_entity_dob"), nullable=True)
+    dob = Column(Integer, ForeignKey("legal_entity_dob.id"), nullable=True)
     email = Column(String, comment="The person's email address", nullable=True)
     first_name = Column(String, comment="The person's first name", nullable=True)
     first_name_kana = Column(
@@ -50,8 +56,8 @@ class Person(Base):
         nullable=True,
     )
     future_requirements = Column(
-        person_future_requirements,
-        comment="[[FK(person_future_requirements)]] Information about the upcoming new requirements for this person, including what information needs to be collected, and by when",
+        PersonFutureRequirements,
+        comment="[[FK(PersonFutureRequirements)]] Information about the upcoming new requirements for this person, including what information needs to be collected, and by when",
         nullable=True,
     )
     gender = Column(
@@ -98,13 +104,11 @@ class Person(Base):
         comment="Indicates if the person or any of their representatives, family members, or other closely related persons, declares that they hold or have held an important public job or function, in any jurisdiction",
         nullable=True,
     )
-    registered_address = Column(address, ForeignKey("address"), nullable=True)
-    relationship = Column(
-        person_relationship, ForeignKey("person_relationship"), nullable=True
-    )
+    registered_address = Column(Address, ForeignKey("Address"), nullable=True)
+    relationship = Column(Integer, ForeignKey("person_relationship.id"), nullable=True)
     requirements = Column(
-        person_requirements,
-        comment="[[FK(person_requirements)]] Information about the requirements for this person, including what information needs to be collected, and by when",
+        PersonRequirements,
+        comment="[[FK(PersonRequirements)]] Information about the requirements for this person, including what information needs to be collected, and by when",
         nullable=True,
     )
     ssn_last_4_provided = Column(
@@ -113,9 +117,7 @@ class Person(Base):
         nullable=True,
     )
     verification = Column(
-        legal_entity_person_verification,
-        ForeignKey("legal_entity_person_verification"),
-        nullable=True,
+        Integer, ForeignKey("legal_entity_person_verification.id"), nullable=True
     )
 
     def __repr__(self):

@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import ARRAY, Column, Identity, Integer, String, list
+
+from . import Base
 
 
-class Issuing_Card_Authorization_Controls(Base):
+class IssuingCardAuthorizationControls(Base):
     __tablename__ = "issuing_card_authorization_controls"
     allowed_categories = Column(
         ARRAY(String),
@@ -32,7 +34,7 @@ class Issuing_Card_Authorization_Controls(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Issuing_Card_Authorization_Controls(allowed_categories={allowed_categories!r}, blocked_categories={blocked_categories!r}, spending_limits={spending_limits!r}, spending_limits_currency={spending_limits_currency!r}, id={id!r})".format(
+        return "IssuingCardAuthorizationControls(allowed_categories={allowed_categories!r}, blocked_categories={blocked_categories!r}, spending_limits={spending_limits!r}, spending_limits_currency={spending_limits_currency!r}, id={id!r})".format(
             allowed_categories=self.allowed_categories,
             blocked_categories=self.blocked_categories,
             spending_limits=self.spending_limits,

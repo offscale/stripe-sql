@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Transfer_Schedule(Base):
+class TransferSchedule(Base):
     __tablename__ = "transfer_schedule"
     delay_days = Column(
         Integer,
@@ -30,7 +32,7 @@ class Transfer_Schedule(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Transfer_Schedule(delay_days={delay_days!r}, interval={interval!r}, monthly_anchor={monthly_anchor!r}, weekly_anchor={weekly_anchor!r}, id={id!r})".format(
+        return "TransferSchedule(delay_days={delay_days!r}, interval={interval!r}, monthly_anchor={monthly_anchor!r}, weekly_anchor={weekly_anchor!r}, id={id!r})".format(
             delay_days=self.delay_days,
             interval=self.interval,
             monthly_anchor=self.monthly_anchor,

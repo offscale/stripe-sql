@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Radar_Radar_Options(Base):
+class RadarRadarOptions(Base):
     """
     Options to configure Radar. See [Radar Session](https://stripe.com/docs/radar/radar-session) for more information.
     """
@@ -21,7 +23,7 @@ class Radar_Radar_Options(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Radar_Radar_Options(session={session!r}, id={id!r})".format(
+        return "RadarRadarOptions(session={session!r}, id={id!r})".format(
             session=self.session, id=self.id
         )
 

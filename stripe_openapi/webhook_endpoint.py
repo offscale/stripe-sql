@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import ARRAY, JSON, Boolean, Column, Integer, String
+
+from . import Base
 
 
-class Webhook_Endpoint(Base):
+class WebhookEndpoint(Base):
     """
     You can configure [webhook endpoints](https://stripe.com/docs/webhooks/) via the API to be
 
@@ -66,7 +68,7 @@ class Webhook_Endpoint(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Webhook_Endpoint(api_version={api_version!r}, application={application!r}, created={created!r}, description={description!r}, enabled_events={enabled_events!r}, id={id!r}, livemode={livemode!r}, metadata={metadata!r}, object={object!r}, secret={secret!r}, status={status!r}, url={url!r})".format(
+        return "WebhookEndpoint(api_version={api_version!r}, application={application!r}, created={created!r}, description={description!r}, enabled_events={enabled_events!r}, id={id!r}, livemode={livemode!r}, metadata={metadata!r}, object={object!r}, secret={secret!r}, status={status!r}, url={url!r})".format(
             api_version=self.api_version,
             application=self.application,
             created=self.created,

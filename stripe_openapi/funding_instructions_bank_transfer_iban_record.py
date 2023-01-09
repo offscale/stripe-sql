@@ -1,7 +1,9 @@
 from sqlalchemy import Column, String
 
+from . import Base
 
-class Funding_Instructions_Bank_Transfer_Iban_Record(Base):
+
+class FundingInstructionsBankTransferIbanRecord(Base):
     """
     Iban Records contain E.U. bank account details per the SEPA format.
     """
@@ -26,7 +28,7 @@ class Funding_Instructions_Bank_Transfer_Iban_Record(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Funding_Instructions_Bank_Transfer_Iban_Record(account_holder_name={account_holder_name!r}, bic={bic!r}, country={country!r}, iban={iban!r})".format(
+        return "FundingInstructionsBankTransferIbanRecord(account_holder_name={account_holder_name!r}, bic={bic!r}, country={country!r}, iban={iban!r})".format(
             account_holder_name=self.account_holder_name,
             bic=self.bic,
             country=self.country,

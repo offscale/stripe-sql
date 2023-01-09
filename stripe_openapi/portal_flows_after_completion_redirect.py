@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Portal_Flows_After_Completion_Redirect(Base):
+class PortalFlowsAfterCompletionRedirect(Base):
     __tablename__ = "portal_flows_after_completion_redirect"
     return_url = Column(
         String,
@@ -16,7 +18,7 @@ class Portal_Flows_After_Completion_Redirect(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Portal_Flows_After_Completion_Redirect(return_url={return_url!r}, id={id!r})".format(
+        return "PortalFlowsAfterCompletionRedirect(return_url={return_url!r}, id={id!r})".format(
             return_url=self.return_url, id=self.id
         )
 

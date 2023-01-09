@@ -1,4 +1,8 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import JSON, Boolean, Column, Integer, String
+
+from stripe_openapi.balance_transaction import BalanceTransaction
+
+from . import Base
 
 
 class Transfer(Base):
@@ -24,8 +28,8 @@ class Transfer(Base):
         comment="Amount in %s reversed (can be less than the amount attribute on the transfer if a partial reversal was issued)",
     )
     balance_transaction = Column(
-        balance_transaction,
-        comment="[[FK(balance_transaction)]] Balance transaction that describes the impact of this transfer on your account balance",
+        BalanceTransaction,
+        comment="[[FK(BalanceTransaction)]] Balance transaction that describes the impact of this transfer on your account balance",
         nullable=True,
     )
     created = Column(
@@ -41,13 +45,13 @@ class Transfer(Base):
         nullable=True,
     )
     destination = Column(
-        account,
-        comment="[[FK(account)]] ID of the Stripe account the transfer was sent to",
+        Account,
+        comment="[[FK(Account)]] ID of the Stripe account the transfer was sent to",
         nullable=True,
     )
     destination_payment = Column(
-        charge,
-        comment="[[FK(charge)]] If the destination is a Stripe account, this will be the ID of the payment that the destination account received for the transfer",
+        Charge,
+        comment="[[FK(Charge)]] If the destination is a Stripe account, this will be the ID of the payment that the destination account received for the transfer",
         nullable=True,
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
@@ -71,8 +75,8 @@ class Transfer(Base):
         comment="Whether the transfer has been fully reversed. If the transfer is only partially reversed, this attribute will still be false",
     )
     source_transaction = Column(
-        charge,
-        comment="[[FK(charge)]] ID of the charge or payment that was used to fund the transfer. If null, the transfer was funded from the available balance",
+        Charge,
+        comment="[[FK(Charge)]] ID of the charge or payment that was used to fund the transfer. If null, the transfer was funded from the available balance",
         nullable=True,
     )
     source_type = Column(

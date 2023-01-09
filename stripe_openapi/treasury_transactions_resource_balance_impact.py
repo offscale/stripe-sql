@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Treasury_Transactions_Resource_Balance_Impact(Base):
+class TreasuryTransactionsResourceBalanceImpact(Base):
     """
     Change to a FinancialAccount's balance
     """
@@ -27,7 +29,7 @@ class Treasury_Transactions_Resource_Balance_Impact(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Treasury_Transactions_Resource_Balance_Impact(cash={cash!r}, inbound_pending={inbound_pending!r}, outbound_pending={outbound_pending!r}, id={id!r})".format(
+        return "TreasuryTransactionsResourceBalanceImpact(cash={cash!r}, inbound_pending={inbound_pending!r}, outbound_pending={outbound_pending!r}, id={id!r})".format(
             cash=self.cash,
             inbound_pending=self.inbound_pending,
             outbound_pending=self.outbound_pending,

@@ -1,7 +1,9 @@
 from sqlalchemy import Boolean, Column, Integer, String
 
+from . import Base
 
-class Usage_Record(Base):
+
+class UsageRecord(Base):
     """
     Usage records allow you to report customer usage and metrics to Stripe for
 
@@ -35,7 +37,7 @@ class Usage_Record(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Usage_Record(id={id!r}, livemode={livemode!r}, object={object!r}, quantity={quantity!r}, subscription_item={subscription_item!r}, timestamp={timestamp!r})".format(
+        return "UsageRecord(id={id!r}, livemode={livemode!r}, object={object!r}, quantity={quantity!r}, subscription_item={subscription_item!r}, timestamp={timestamp!r})".format(
             id=self.id,
             livemode=self.livemode,
             object=self.object,

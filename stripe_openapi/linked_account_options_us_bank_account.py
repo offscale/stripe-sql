@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import ARRAY, Column, Identity, Integer, String
+
+from . import Base
 
 
-class Linked_Account_Options_Us_Bank_Account(Base):
+class LinkedAccountOptionsUsBankAccount(Base):
     __tablename__ = "linked_account_options_us_bank_account"
     permissions = Column(
         ARRAY(String),
@@ -22,7 +24,7 @@ class Linked_Account_Options_Us_Bank_Account(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Linked_Account_Options_Us_Bank_Account(permissions={permissions!r}, return_url={return_url!r}, id={id!r})".format(
+        return "LinkedAccountOptionsUsBankAccount(permissions={permissions!r}, return_url={return_url!r}, id={id!r})".format(
             permissions=self.permissions, return_url=self.return_url, id=self.id
         )
 

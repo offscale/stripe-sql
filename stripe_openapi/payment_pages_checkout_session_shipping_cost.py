@@ -1,7 +1,11 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer, list
+
+from stripe_openapi.shipping_rate import ShippingRate
+
+from . import Base
 
 
-class Payment_Pages_Checkout_Session_Shipping_Cost(Base):
+class PaymentPagesCheckoutSessionShippingCost(Base):
     __tablename__ = "payment_pages_checkout_session_shipping_cost"
     amount_subtotal = Column(
         Integer, comment="Total shipping cost before any discounts or taxes are applied"
@@ -14,8 +18,8 @@ class Payment_Pages_Checkout_Session_Shipping_Cost(Base):
         Integer, comment="Total shipping cost after discounts and taxes are applied"
     )
     shipping_rate = Column(
-        shipping_rate,
-        comment="[[FK(shipping_rate)]] The ID of the ShippingRate for this order",
+        ShippingRate,
+        comment="[[FK(ShippingRate)]] The ID of the ShippingRate for this order",
         nullable=True,
     )
     taxes = Column(
@@ -30,7 +34,7 @@ class Payment_Pages_Checkout_Session_Shipping_Cost(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Pages_Checkout_Session_Shipping_Cost(amount_subtotal={amount_subtotal!r}, amount_tax={amount_tax!r}, amount_total={amount_total!r}, shipping_rate={shipping_rate!r}, taxes={taxes!r}, id={id!r})".format(
+        return "PaymentPagesCheckoutSessionShippingCost(amount_subtotal={amount_subtotal!r}, amount_tax={amount_tax!r}, amount_total={amount_total!r}, shipping_rate={shipping_rate!r}, taxes={taxes!r}, id={id!r})".format(
             amount_subtotal=self.amount_subtotal,
             amount_tax=self.amount_tax,
             amount_total=self.amount_total,

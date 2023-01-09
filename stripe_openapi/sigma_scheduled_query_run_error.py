@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Sigma_Scheduled_Query_Run_Error(Base):
+class SigmaScheduledQueryRunError(Base):
     __tablename__ = "sigma_scheduled_query_run_error"
     message = Column(String, comment="Information about the run failure")
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -13,7 +15,7 @@ class Sigma_Scheduled_Query_Run_Error(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Sigma_Scheduled_Query_Run_Error(message={message!r}, id={id!r})".format(
+        return "SigmaScheduledQueryRunError(message={message!r}, id={id!r})".format(
             message=self.message, id=self.id
         )
 

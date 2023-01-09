@@ -1,7 +1,9 @@
 from sqlalchemy import Column, String
 
+from . import Base
 
-class Source_Transaction_Gbp_Credit_Transfer_Data(Base):
+
+class SourceTransactionGbpCreditTransferData(Base):
     __tablename__ = "source_transaction_gbp_credit_transfer_data"
     fingerprint = Column(
         String,
@@ -45,7 +47,7 @@ class Source_Transaction_Gbp_Credit_Transfer_Data(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Source_Transaction_Gbp_Credit_Transfer_Data(fingerprint={fingerprint!r}, funding_method={funding_method!r}, last4={last4!r}, reference={reference!r}, sender_account_number={sender_account_number!r}, sender_name={sender_name!r}, sender_sort_code={sender_sort_code!r})".format(
+        return "SourceTransactionGbpCreditTransferData(fingerprint={fingerprint!r}, funding_method={funding_method!r}, last4={last4!r}, reference={reference!r}, sender_account_number={sender_account_number!r}, sender_name={sender_name!r}, sender_sort_code={sender_sort_code!r})".format(
             fingerprint=self.fingerprint,
             funding_method=self.funding_method,
             last4=self.last4,

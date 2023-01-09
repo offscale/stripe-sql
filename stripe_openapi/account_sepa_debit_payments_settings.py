@@ -1,7 +1,9 @@
 from sqlalchemy import Column, String
 
+from . import Base
 
-class Account_Sepa_Debit_Payments_Settings(Base):
+
+class AccountSepaDebitPaymentsSettings(Base):
     __tablename__ = "account_sepa_debit_payments_settings"
     creditor_id = Column(
         String,
@@ -17,10 +19,8 @@ class Account_Sepa_Debit_Payments_Settings(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return (
-            "Account_Sepa_Debit_Payments_Settings(creditor_id={creditor_id!r})".format(
-                creditor_id=self.creditor_id
-            )
+        return "AccountSepaDebitPaymentsSettings(creditor_id={creditor_id!r})".format(
+            creditor_id=self.creditor_id
         )
 
 

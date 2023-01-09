@@ -1,4 +1,6 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, list
+
+from . import Base
 
 
 class Item(Base):
@@ -36,8 +38,8 @@ class Item(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     price = Column(
-        price,
-        comment="[[FK(price)]] The price used to generate the line item",
+        Price,
+        comment="[[FK(Price)]] The price used to generate the line item",
         nullable=True,
     )
     quantity = Column(

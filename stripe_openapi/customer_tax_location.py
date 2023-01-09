@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Customer_Tax_Location(Base):
+class CustomerTaxLocation(Base):
     __tablename__ = "customer_tax_location"
     country = Column(
         String, comment="The customer's country as identified by Stripe Tax"
@@ -23,7 +25,7 @@ class Customer_Tax_Location(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Customer_Tax_Location(country={country!r}, source={source!r}, state={state!r}, id={id!r})".format(
+        return "CustomerTaxLocation(country={country!r}, source={source!r}, state={state!r}, id={id!r})".format(
             country=self.country, source=self.source, state=self.state, id=self.id
         )
 

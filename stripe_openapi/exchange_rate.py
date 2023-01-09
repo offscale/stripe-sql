@@ -1,7 +1,9 @@
-from sqlalchemy import Column, String
+from sqlalchemy import JSON, Column, String
+
+from . import Base
 
 
-class Exchange_Rate(Base):
+class ExchangeRate(Base):
     """
     `Exchange Rate` objects allow you to determine the rates that Stripe is
 
@@ -40,7 +42,7 @@ class Exchange_Rate(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Exchange_Rate(id={id!r}, object={object!r}, rates={rates!r})".format(
+        return "ExchangeRate(id={id!r}, object={object!r}, rates={rates!r})".format(
             id=self.id, object=self.object, rates=self.rates
         )
 

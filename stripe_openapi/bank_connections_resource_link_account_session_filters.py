@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import ARRAY, Column, Identity, Integer, String
+
+from . import Base
 
 
-class Bank_Connections_Resource_Link_Account_Session_Filters(Base):
+class BankConnectionsResourceLinkAccountSessionFilters(Base):
     __tablename__ = "bank_connections_resource_link_account_session_filters"
     countries = Column(
         ARRAY(String),
@@ -17,7 +19,7 @@ class Bank_Connections_Resource_Link_Account_Session_Filters(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Bank_Connections_Resource_Link_Account_Session_Filters(countries={countries!r}, id={id!r})".format(
+        return "BankConnectionsResourceLinkAccountSessionFilters(countries={countries!r}, id={id!r})".format(
             countries=self.countries, id=self.id
         )
 

@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Links_Resource_Custom_Text_Position(Base):
+class PaymentLinksResourceCustomTextPosition(Base):
     __tablename__ = "payment_links_resource_custom_text_position"
     message = Column(String, comment="Text may be up to 500 characters in length")
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -13,7 +15,7 @@ class Payment_Links_Resource_Custom_Text_Position(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Links_Resource_Custom_Text_Position(message={message!r}, id={id!r})".format(
+        return "PaymentLinksResourceCustomTextPosition(message={message!r}, id={id!r})".format(
             message=self.message, id=self.id
         )
 

@@ -1,36 +1,57 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from stripe_openapi.invoice_payment_method_options_acss_debit import (
+    InvoicePaymentMethodOptionsAcssDebit,
+)
+from stripe_openapi.invoice_payment_method_options_bancontact import (
+    InvoicePaymentMethodOptionsBancontact,
+)
+from stripe_openapi.invoice_payment_method_options_card import (
+    InvoicePaymentMethodOptionsCard,
+)
+from stripe_openapi.invoice_payment_method_options_customer_balance import (
+    InvoicePaymentMethodOptionsCustomerBalance,
+)
+from stripe_openapi.invoice_payment_method_options_konbini import (
+    InvoicePaymentMethodOptionsKonbini,
+)
+from stripe_openapi.invoice_payment_method_options_us_bank_account import (
+    InvoicePaymentMethodOptionsUsBankAccount,
+)
+
+from . import Base
 
 
-class Invoices_Payment_Method_Options(Base):
+class InvoicesPaymentMethodOptions(Base):
     __tablename__ = "invoices_payment_method_options"
     acss_debit = Column(
-        invoice_payment_method_options_acss_debit,
-        comment="[[FK(invoice_payment_method_options_acss_debit)]] If paying by `acss_debit`, this sub-hash contains details about the Canadian pre-authorized debit payment method options to pass to the invoice’s PaymentIntent",
+        InvoicePaymentMethodOptionsAcssDebit,
+        comment="[[FK(InvoicePaymentMethodOptionsAcssDebit)]] If paying by `acss_debit`, this sub-hash contains details about the Canadian pre-authorized debit payment method options to pass to the invoice’s PaymentIntent",
         nullable=True,
     )
     bancontact = Column(
-        invoice_payment_method_options_bancontact,
-        comment="[[FK(invoice_payment_method_options_bancontact)]] If paying by `bancontact`, this sub-hash contains details about the Bancontact payment method options to pass to the invoice’s PaymentIntent",
+        InvoicePaymentMethodOptionsBancontact,
+        comment="[[FK(InvoicePaymentMethodOptionsBancontact)]] If paying by `bancontact`, this sub-hash contains details about the Bancontact payment method options to pass to the invoice’s PaymentIntent",
         nullable=True,
     )
     card = Column(
-        invoice_payment_method_options_card,
-        comment="[[FK(invoice_payment_method_options_card)]] If paying by `card`, this sub-hash contains details about the Card payment method options to pass to the invoice’s PaymentIntent",
+        InvoicePaymentMethodOptionsCard,
+        comment="[[FK(InvoicePaymentMethodOptionsCard)]] If paying by `card`, this sub-hash contains details about the Card payment method options to pass to the invoice’s PaymentIntent",
         nullable=True,
     )
     customer_balance = Column(
-        invoice_payment_method_options_customer_balance,
-        comment="[[FK(invoice_payment_method_options_customer_balance)]] If paying by `customer_balance`, this sub-hash contains details about the Bank transfer payment method options to pass to the invoice’s PaymentIntent",
+        InvoicePaymentMethodOptionsCustomerBalance,
+        comment="[[FK(InvoicePaymentMethodOptionsCustomerBalance)]] If paying by `customer_balance`, this sub-hash contains details about the Bank transfer payment method options to pass to the invoice’s PaymentIntent",
         nullable=True,
     )
     konbini = Column(
-        invoice_payment_method_options_konbini,
-        comment="[[FK(invoice_payment_method_options_konbini)]] If paying by `konbini`, this sub-hash contains details about the Konbini payment method options to pass to the invoice’s PaymentIntent",
+        InvoicePaymentMethodOptionsKonbini,
+        comment="[[FK(InvoicePaymentMethodOptionsKonbini)]] If paying by `konbini`, this sub-hash contains details about the Konbini payment method options to pass to the invoice’s PaymentIntent",
         nullable=True,
     )
     us_bank_account = Column(
-        invoice_payment_method_options_us_bank_account,
-        comment="[[FK(invoice_payment_method_options_us_bank_account)]] If paying by `us_bank_account`, this sub-hash contains details about the ACH direct debit payment method options to pass to the invoice’s PaymentIntent",
+        InvoicePaymentMethodOptionsUsBankAccount,
+        comment="[[FK(InvoicePaymentMethodOptionsUsBankAccount)]] If paying by `us_bank_account`, this sub-hash contains details about the ACH direct debit payment method options to pass to the invoice’s PaymentIntent",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -42,7 +63,7 @@ class Invoices_Payment_Method_Options(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Invoices_Payment_Method_Options(acss_debit={acss_debit!r}, bancontact={bancontact!r}, card={card!r}, customer_balance={customer_balance!r}, konbini={konbini!r}, us_bank_account={us_bank_account!r}, id={id!r})".format(
+        return "InvoicesPaymentMethodOptions(acss_debit={acss_debit!r}, bancontact={bancontact!r}, card={card!r}, customer_balance={customer_balance!r}, konbini={konbini!r}, us_bank_account={us_bank_account!r}, id={id!r})".format(
             acss_debit=self.acss_debit,
             bancontact=self.bancontact,
             card=self.card,

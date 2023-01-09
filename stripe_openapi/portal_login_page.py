@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, Identity, Integer, String
+
+from . import Base
 
 
-class Portal_Login_Page(Base):
+class PortalLoginPage(Base):
     __tablename__ = "portal_login_page"
     enabled = Column(
         Boolean,
@@ -21,7 +23,7 @@ class Portal_Login_Page(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Portal_Login_Page(enabled={enabled!r}, url={url!r}, id={id!r})".format(
+        return "PortalLoginPage(enabled={enabled!r}, url={url!r}, id={id!r})".format(
             enabled=self.enabled, url=self.url, id=self.id
         )
 

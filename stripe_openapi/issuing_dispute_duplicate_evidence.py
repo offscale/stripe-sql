@@ -1,26 +1,28 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Issuing_Dispute_Duplicate_Evidence(Base):
+class IssuingDisputeDuplicateEvidence(Base):
     __tablename__ = "issuing_dispute_duplicate_evidence"
     additional_documentation = Column(
-        file,
-        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Additional documentation supporting the dispute",
+        File,
+        comment="[[FK(File)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Additional documentation supporting the dispute",
         nullable=True,
     )
     card_statement = Column(
-        file,
-        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Copy of the card statement showing that the product had already been paid for",
+        File,
+        comment="[[FK(File)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Copy of the card statement showing that the product had already been paid for",
         nullable=True,
     )
     cash_receipt = Column(
-        file,
-        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Copy of the receipt showing that the product had been paid for in cash",
+        File,
+        comment="[[FK(File)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Copy of the receipt showing that the product had been paid for in cash",
         nullable=True,
     )
     check_image = Column(
-        file,
-        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Image of the front and back of the check that was used to pay for the product",
+        File,
+        comment="[[FK(File)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Image of the front and back of the check that was used to pay for the product",
         nullable=True,
     )
     explanation = Column(
@@ -42,7 +44,7 @@ class Issuing_Dispute_Duplicate_Evidence(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Issuing_Dispute_Duplicate_Evidence(additional_documentation={additional_documentation!r}, card_statement={card_statement!r}, cash_receipt={cash_receipt!r}, check_image={check_image!r}, explanation={explanation!r}, original_transaction={original_transaction!r}, id={id!r})".format(
+        return "IssuingDisputeDuplicateEvidence(additional_documentation={additional_documentation!r}, card_statement={card_statement!r}, cash_receipt={cash_receipt!r}, check_image={check_image!r}, explanation={explanation!r}, original_transaction={original_transaction!r}, id={id!r})".format(
             additional_documentation=self.additional_documentation,
             card_statement=self.card_statement,
             cash_receipt=self.cash_receipt,

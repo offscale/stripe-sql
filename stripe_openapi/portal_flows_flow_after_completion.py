@@ -1,16 +1,25 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from stripe_openapi.portal_flows_after_completion_hosted_confirmation import (
+    PortalFlowsAfterCompletionHostedConfirmation,
+)
+from stripe_openapi.portal_flows_after_completion_redirect import (
+    PortalFlowsAfterCompletionRedirect,
+)
+
+from . import Base
 
 
-class Portal_Flows_Flow_After_Completion(Base):
+class PortalFlowsFlowAfterCompletion(Base):
     __tablename__ = "portal_flows_flow_after_completion"
     hosted_confirmation = Column(
-        portal_flows_after_completion_hosted_confirmation,
-        comment="[[FK(portal_flows_after_completion_hosted_confirmation)]] Configuration when `after_completion.type=hosted_confirmation`",
+        PortalFlowsAfterCompletionHostedConfirmation,
+        comment="[[FK(PortalFlowsAfterCompletionHostedConfirmation)]] Configuration when `after_completion.type=hosted_confirmation`",
         nullable=True,
     )
     redirect = Column(
-        portal_flows_after_completion_redirect,
-        comment="[[FK(portal_flows_after_completion_redirect)]] Configuration when `after_completion.type=redirect`",
+        PortalFlowsAfterCompletionRedirect,
+        comment="[[FK(PortalFlowsAfterCompletionRedirect)]] Configuration when `after_completion.type=redirect`",
         nullable=True,
     )
     type = Column(
@@ -25,7 +34,7 @@ class Portal_Flows_Flow_After_Completion(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Portal_Flows_Flow_After_Completion(hosted_confirmation={hosted_confirmation!r}, redirect={redirect!r}, type={type!r}, id={id!r})".format(
+        return "PortalFlowsFlowAfterCompletion(hosted_confirmation={hosted_confirmation!r}, redirect={redirect!r}, type={type!r}, id={id!r})".format(
             hosted_confirmation=self.hosted_confirmation,
             redirect=self.redirect,
             type=self.type,

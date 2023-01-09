@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Issuing_Cardholder_Individual_Dob(Base):
+class IssuingCardholderIndividualDob(Base):
     __tablename__ = "issuing_cardholder_individual_dob"
     day = Column(Integer, comment="The day of birth, between 1 and 31", nullable=True)
     month = Column(
@@ -17,7 +19,7 @@ class Issuing_Cardholder_Individual_Dob(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Issuing_Cardholder_Individual_Dob(day={day!r}, month={month!r}, year={year!r}, id={id!r})".format(
+        return "IssuingCardholderIndividualDob(day={day!r}, month={month!r}, year={year!r}, id={id!r})".format(
             day=self.day, month=self.month, year=self.year, id=self.id
         )
 

@@ -1,7 +1,13 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import JSON, Boolean, Column, ForeignKey, Integer, String, list
+
+from stripe_openapi.invoices_line_items_proration_details import (
+    InvoicesLineItemsProrationDetails,
+)
+
+from . import Base
 
 
-class Line_Item(Base):
+class LineItem(Base):
     __tablename__ = "line_item"
     amount = Column(Integer, comment="The amount, in %s")
     amount_excluding_tax = Column(
@@ -50,19 +56,19 @@ class Line_Item(Base):
         String,
         comment="String representing the object's type. Objects of the same type share the same value",
     )
-    period = Column(invoice_line_item_period, ForeignKey("invoice_line_item_period"))
+    period = Column(Integer, ForeignKey("invoice_line_item_period.id"))
     plan = Column(
-        plan,
-        comment="[[FK(plan)]] The plan of the subscription, if the line item is a subscription or a proration",
+        Plan,
+        comment="[[FK(Plan)]] The plan of the subscription, if the line item is a subscription or a proration",
         nullable=True,
     )
     price = Column(
-        price, comment="[[FK(price)]] The price of the line item", nullable=True
+        Price, comment="[[FK(Price)]] The price of the line item", nullable=True
     )
     proration = Column(Boolean, comment="Whether this is a proration")
     proration_details = Column(
-        invoices_line_items_proration_details,
-        comment="[[FK(invoices_line_items_proration_details)]] Additional details for proration line items",
+        InvoicesLineItemsProrationDetails,
+        comment="[[FK(InvoicesLineItemsProrationDetails)]] Additional details for proration line items",
         nullable=True,
     )
     quantity = Column(
@@ -105,7 +111,7 @@ class Line_Item(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Line_Item(amount={amount!r}, amount_excluding_tax={amount_excluding_tax!r}, currency={currency!r}, description={description!r}, discount_amounts={discount_amounts!r}, discountable={discountable!r}, discounts={discounts!r}, id={id!r}, invoice_item={invoice_item!r}, livemode={livemode!r}, metadata={metadata!r}, object={object!r}, period={period!r}, plan={plan!r}, price={price!r}, proration={proration!r}, proration_details={proration_details!r}, quantity={quantity!r}, subscription={subscription!r}, subscription_item={subscription_item!r}, tax_amounts={tax_amounts!r}, tax_rates={tax_rates!r}, type={type!r}, unit_amount_excluding_tax={unit_amount_excluding_tax!r})".format(
+        return "LineItem(amount={amount!r}, amount_excluding_tax={amount_excluding_tax!r}, currency={currency!r}, description={description!r}, discount_amounts={discount_amounts!r}, discountable={discountable!r}, discounts={discounts!r}, id={id!r}, invoice_item={invoice_item!r}, livemode={livemode!r}, metadata={metadata!r}, object={object!r}, period={period!r}, plan={plan!r}, price={price!r}, proration={proration!r}, proration_details={proration_details!r}, quantity={quantity!r}, subscription={subscription!r}, subscription_item={subscription_item!r}, tax_amounts={tax_amounts!r}, tax_rates={tax_rates!r}, type={type!r}, unit_amount_excluding_tax={unit_amount_excluding_tax!r})".format(
             amount=self.amount,
             amount_excluding_tax=self.amount_excluding_tax,
             currency=self.currency,

@@ -1,9 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Invoice_Payment_Method_Options_Customer_Balance_Bank_Transfer_Eu_Bank_Transfer(
-    Base
-):
+class InvoicePaymentMethodOptionsCustomerBalanceBankTransferEuBankTransfer(Base):
     __tablename__ = (
         "invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transfer"
     )
@@ -20,7 +20,7 @@ class Invoice_Payment_Method_Options_Customer_Balance_Bank_Transfer_Eu_Bank_Tran
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Invoice_Payment_Method_Options_Customer_Balance_Bank_Transfer_Eu_Bank_Transfer(country={country!r}, id={id!r})".format(
+        return "InvoicePaymentMethodOptionsCustomerBalanceBankTransferEuBankTransfer(country={country!r}, id={id!r})".format(
             country=self.country, id=self.id
         )
 

@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer, list
+
+from . import Base
 
 
-class Terminal_Configuration_Configuration_Resource_Currency_Specific_Config(Base):
+class TerminalConfigurationConfigurationResourceCurrencySpecificConfig(Base):
     __tablename__ = (
         "terminal_configuration_configuration_resource_currency_specific_config"
     )
@@ -25,7 +27,7 @@ class Terminal_Configuration_Configuration_Resource_Currency_Specific_Config(Bas
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Terminal_Configuration_Configuration_Resource_Currency_Specific_Config(fixed_amounts={fixed_amounts!r}, percentages={percentages!r}, smart_tip_threshold={smart_tip_threshold!r}, id={id!r})".format(
+        return "TerminalConfigurationConfigurationResourceCurrencySpecificConfig(fixed_amounts={fixed_amounts!r}, percentages={percentages!r}, smart_tip_threshold={smart_tip_threshold!r}, id={id!r})".format(
             fixed_amounts=self.fixed_amounts,
             percentages=self.percentages,
             smart_tip_threshold=self.smart_tip_threshold,

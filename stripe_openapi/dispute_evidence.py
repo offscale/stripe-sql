@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Dispute_Evidence(Base):
+class DisputeEvidence(Base):
     __tablename__ = "dispute_evidence"
     access_activity_log = Column(
         String,
@@ -12,8 +14,8 @@ class Dispute_Evidence(Base):
         String, comment="The billing address provided by the customer", nullable=True
     )
     cancellation_policy = Column(
-        file,
-        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Your subscription cancellation policy, as shown to the customer",
+        File,
+        comment="[[FK(File)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Your subscription cancellation policy, as shown to the customer",
         nullable=True,
     )
     cancellation_policy_disclosure = Column(
@@ -27,8 +29,8 @@ class Dispute_Evidence(Base):
         nullable=True,
     )
     customer_communication = Column(
-        file,
-        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Any communication with the customer that you feel is relevant to your case. Examples include emails proving that the customer received the product or service, or demonstrating their use of or satisfaction with the product or service",
+        File,
+        comment="[[FK(File)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Any communication with the customer that you feel is relevant to your case. Examples include emails proving that the customer received the product or service, or demonstrating their use of or satisfaction with the product or service",
         nullable=True,
     )
     customer_email_address = Column(
@@ -41,13 +43,13 @@ class Dispute_Evidence(Base):
         nullable=True,
     )
     customer_signature = Column(
-        file,
-        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) A relevant document or contract showing the customer's signature",
+        File,
+        comment="[[FK(File)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) A relevant document or contract showing the customer's signature",
         nullable=True,
     )
     duplicate_charge_documentation = Column(
-        file,
-        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Documentation for the prior charge that can uniquely identify the charge, such as a receipt, shipping label, work order, etc. This document should be paired with a similar document from the disputed payment that proves the two payments are separate",
+        File,
+        comment="[[FK(File)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Documentation for the prior charge that can uniquely identify the charge, such as a receipt, shipping label, work order, etc. This document should be paired with a similar document from the disputed payment that proves the two payments are separate",
         nullable=True,
     )
     duplicate_charge_explanation = Column(
@@ -66,13 +68,13 @@ class Dispute_Evidence(Base):
         nullable=True,
     )
     receipt = Column(
-        file,
-        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Any receipt or message sent to the customer notifying them of the charge",
+        File,
+        comment="[[FK(File)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Any receipt or message sent to the customer notifying them of the charge",
         nullable=True,
     )
     refund_policy = Column(
-        file,
-        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Your refund policy, as shown to the customer",
+        File,
+        comment="[[FK(File)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Your refund policy, as shown to the customer",
         nullable=True,
     )
     refund_policy_disclosure = Column(
@@ -91,8 +93,8 @@ class Dispute_Evidence(Base):
         nullable=True,
     )
     service_documentation = Column(
-        file,
-        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Documentation showing proof that a service was provided to the customer. This could include a copy of a signed contract, work order, or other form of written agreement",
+        File,
+        comment="[[FK(File)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Documentation showing proof that a service was provided to the customer. This could include a copy of a signed contract, work order, or other form of written agreement",
         nullable=True,
     )
     shipping_address = Column(
@@ -111,8 +113,8 @@ class Dispute_Evidence(Base):
         nullable=True,
     )
     shipping_documentation = Column(
-        file,
-        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Documentation showing proof that a product was shipped to the customer at the same address the customer provided to you. This could include a copy of the shipment receipt, shipping label, etc. It should show the customer's full shipping address, if possible",
+        File,
+        comment="[[FK(File)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Documentation showing proof that a product was shipped to the customer at the same address the customer provided to you. This could include a copy of the shipment receipt, shipping label, etc. It should show the customer's full shipping address, if possible",
         nullable=True,
     )
     shipping_tracking_number = Column(
@@ -121,8 +123,8 @@ class Dispute_Evidence(Base):
         nullable=True,
     )
     uncategorized_file = Column(
-        file,
-        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Any additional evidence or statements",
+        File,
+        comment="[[FK(File)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Any additional evidence or statements",
         nullable=True,
     )
     uncategorized_text = Column(
@@ -137,7 +139,7 @@ class Dispute_Evidence(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Dispute_Evidence(access_activity_log={access_activity_log!r}, billing_address={billing_address!r}, cancellation_policy={cancellation_policy!r}, cancellation_policy_disclosure={cancellation_policy_disclosure!r}, cancellation_rebuttal={cancellation_rebuttal!r}, customer_communication={customer_communication!r}, customer_email_address={customer_email_address!r}, customer_name={customer_name!r}, customer_purchase_ip={customer_purchase_ip!r}, customer_signature={customer_signature!r}, duplicate_charge_documentation={duplicate_charge_documentation!r}, duplicate_charge_explanation={duplicate_charge_explanation!r}, duplicate_charge_id={duplicate_charge_id!r}, product_description={product_description!r}, receipt={receipt!r}, refund_policy={refund_policy!r}, refund_policy_disclosure={refund_policy_disclosure!r}, refund_refusal_explanation={refund_refusal_explanation!r}, service_date={service_date!r}, service_documentation={service_documentation!r}, shipping_address={shipping_address!r}, shipping_carrier={shipping_carrier!r}, shipping_date={shipping_date!r}, shipping_documentation={shipping_documentation!r}, shipping_tracking_number={shipping_tracking_number!r}, uncategorized_file={uncategorized_file!r}, uncategorized_text={uncategorized_text!r}, id={id!r})".format(
+        return "DisputeEvidence(access_activity_log={access_activity_log!r}, billing_address={billing_address!r}, cancellation_policy={cancellation_policy!r}, cancellation_policy_disclosure={cancellation_policy_disclosure!r}, cancellation_rebuttal={cancellation_rebuttal!r}, customer_communication={customer_communication!r}, customer_email_address={customer_email_address!r}, customer_name={customer_name!r}, customer_purchase_ip={customer_purchase_ip!r}, customer_signature={customer_signature!r}, duplicate_charge_documentation={duplicate_charge_documentation!r}, duplicate_charge_explanation={duplicate_charge_explanation!r}, duplicate_charge_id={duplicate_charge_id!r}, product_description={product_description!r}, receipt={receipt!r}, refund_policy={refund_policy!r}, refund_policy_disclosure={refund_policy_disclosure!r}, refund_refusal_explanation={refund_refusal_explanation!r}, service_date={service_date!r}, service_documentation={service_documentation!r}, shipping_address={shipping_address!r}, shipping_carrier={shipping_carrier!r}, shipping_date={shipping_date!r}, shipping_documentation={shipping_documentation!r}, shipping_tracking_number={shipping_tracking_number!r}, uncategorized_file={uncategorized_file!r}, uncategorized_text={uncategorized_text!r}, id={id!r})".format(
             access_activity_log=self.access_activity_log,
             billing_address=self.billing_address,
             cancellation_policy=self.cancellation_policy,

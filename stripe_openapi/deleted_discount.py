@@ -1,17 +1,21 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+
+from stripe_openapi.promotion_code import PromotionCode
+
+from . import Base
 
 
-class Deleted_Discount(Base):
+class DeletedDiscount(Base):
     __tablename__ = "deleted_discount"
     checkout_session = Column(
         String,
         comment="The Checkout session that this coupon is applied to, if it is applied to a particular session in payment mode. Will not be present for subscription mode",
         nullable=True,
     )
-    coupon = Column(coupon, ForeignKey("coupon"))
+    coupon = Column(Coupon, ForeignKey("Coupon"))
     customer = Column(
-        string | customer,
-        comment="[[FK(deleted_customer)]] The ID of the customer associated with this discount",
+        Customer,
+        comment="[[FK(DeletedCustomer)]] The ID of the customer associated with this discount",
         nullable=True,
     )
     deleted = Column(Boolean, comment="Always true for a deleted object")
@@ -35,8 +39,8 @@ class Deleted_Discount(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     promotion_code = Column(
-        promotion_code,
-        comment="[[FK(promotion_code)]] The promotion code applied to create this discount",
+        PromotionCode,
+        comment="[[FK(PromotionCode)]] The promotion code applied to create this discount",
         nullable=True,
     )
     start = Column(Integer, comment="Date that the coupon was applied")
@@ -53,7 +57,7 @@ class Deleted_Discount(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Deleted_Discount(checkout_session={checkout_session!r}, coupon={coupon!r}, customer={customer!r}, deleted={deleted!r}, id={id!r}, invoice={invoice!r}, invoice_item={invoice_item!r}, object={object!r}, promotion_code={promotion_code!r}, start={start!r}, subscription={subscription!r})".format(
+        return "DeletedDiscount(checkout_session={checkout_session!r}, coupon={coupon!r}, customer={customer!r}, deleted={deleted!r}, id={id!r}, invoice={invoice!r}, invoice_item={invoice_item!r}, object={object!r}, promotion_code={promotion_code!r}, start={start!r}, subscription={subscription!r})".format(
             checkout_session=self.checkout_session,
             coupon=self.coupon,
             customer=self.customer,

@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, Integer, String, list
+
+from . import Base
 
 
-class Issuing_Transaction_Flight_Data(Base):
+class IssuingTransactionFlightData(Base):
     __tablename__ = "issuing_transaction_flight_data"
     departure_at = Column(
         Integer, comment="The time that the flight departed", nullable=True
@@ -24,7 +26,7 @@ class Issuing_Transaction_Flight_Data(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Issuing_Transaction_Flight_Data(departure_at={departure_at!r}, passenger_name={passenger_name!r}, refundable={refundable!r}, segments={segments!r}, travel_agency={travel_agency!r})".format(
+        return "IssuingTransactionFlightData(departure_at={departure_at!r}, passenger_name={passenger_name!r}, refundable={refundable!r}, segments={segments!r}, travel_agency={travel_agency!r})".format(
             departure_at=self.departure_at,
             passenger_name=self.passenger_name,
             refundable=self.refundable,

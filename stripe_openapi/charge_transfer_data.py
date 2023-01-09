@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Charge_Transfer_Data(Base):
+class ChargeTransferData(Base):
     __tablename__ = "charge_transfer_data"
     amount = Column(
         Integer,
@@ -9,8 +11,8 @@ class Charge_Transfer_Data(Base):
         nullable=True,
     )
     destination = Column(
-        account,
-        comment="[[FK(account)]] ID of an existing, connected Stripe account to transfer funds to if `transfer_data` was specified in the charge request",
+        Account,
+        comment="[[FK(Account)]] ID of an existing, connected Stripe account to transfer funds to if `transfer_data` was specified in the charge request",
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
@@ -21,7 +23,7 @@ class Charge_Transfer_Data(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Charge_Transfer_Data(amount={amount!r}, destination={destination!r}, id={id!r})".format(
+        return "ChargeTransferData(amount={amount!r}, destination={destination!r}, id={id!r})".format(
             amount=self.amount, destination=self.destination, id=self.id
         )
 

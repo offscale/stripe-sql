@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import JSON, Boolean, Column, Identity, Integer, String
+
+from . import Base
 
 
-class Promotion_Codes_Resource_Restrictions(Base):
+class PromotionCodesResourceRestrictions(Base):
     __tablename__ = "promotion_codes_resource_restrictions"
     currency_options = Column(
         JSON,
@@ -31,7 +33,7 @@ class Promotion_Codes_Resource_Restrictions(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Promotion_Codes_Resource_Restrictions(currency_options={currency_options!r}, first_time_transaction={first_time_transaction!r}, minimum_amount={minimum_amount!r}, minimum_amount_currency={minimum_amount_currency!r}, id={id!r})".format(
+        return "PromotionCodesResourceRestrictions(currency_options={currency_options!r}, first_time_transaction={first_time_transaction!r}, minimum_amount={minimum_amount!r}, minimum_amount_currency={minimum_amount_currency!r}, id={id!r})".format(
             currency_options=self.currency_options,
             first_time_transaction=self.first_time_transaction,
             minimum_amount=self.minimum_amount,

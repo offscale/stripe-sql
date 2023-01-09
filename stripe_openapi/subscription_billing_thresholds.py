@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer
+from sqlalchemy import Boolean, Column, Identity, Integer
+
+from . import Base
 
 
-class Subscription_Billing_Thresholds(Base):
+class SubscriptionBillingThresholds(Base):
     __tablename__ = "subscription_billing_thresholds"
     amount_gte = Column(
         Integer,
@@ -22,7 +24,7 @@ class Subscription_Billing_Thresholds(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Subscription_Billing_Thresholds(amount_gte={amount_gte!r}, reset_billing_cycle_anchor={reset_billing_cycle_anchor!r}, id={id!r})".format(
+        return "SubscriptionBillingThresholds(amount_gte={amount_gte!r}, reset_billing_cycle_anchor={reset_billing_cycle_anchor!r}, id={id!r})".format(
             amount_gte=self.amount_gte,
             reset_billing_cycle_anchor=self.reset_billing_cycle_anchor,
             id=self.id,

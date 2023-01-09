@@ -1,4 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import ARRAY, JSON, Boolean, Column, Integer, String
+
+from stripe_openapi.package_dimensions import PackageDimensions
+from stripe_openapi.tax_code import TaxCode
+
+from . import Base
 
 
 class Product(Base):
@@ -39,8 +44,8 @@ class Product(Base):
         nullable=True,
     )
     default_price = Column(
-        price,
-        comment="[[FK(price)]] The ID of the [Price](https://stripe.com/docs/api/prices) object that is the default price for this product",
+        Price,
+        comment="[[FK(Price)]] The ID of the [Price](https://stripe.com/docs/api/prices) object that is the default price for this product",
         nullable=True,
     )
     description = Column(
@@ -69,8 +74,8 @@ class Product(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     package_dimensions = Column(
-        package_dimensions,
-        comment="[[FK(package_dimensions)]] The dimensions of this product for shipping purposes",
+        PackageDimensions,
+        comment="[[FK(PackageDimensions)]] The dimensions of this product for shipping purposes",
         nullable=True,
     )
     shippable = Column(
@@ -84,8 +89,8 @@ class Product(Base):
         nullable=True,
     )
     tax_code = Column(
-        tax_code,
-        comment="[[FK(tax_code)]] A [tax code](https://stripe.com/docs/tax/tax-categories) ID",
+        TaxCode,
+        comment="[[FK(TaxCode)]] A [tax code](https://stripe.com/docs/tax/tax-categories) ID",
         nullable=True,
     )
     type = Column(

@@ -1,12 +1,14 @@
-from sqlalchemy import Boolean, Column, Integer
+from sqlalchemy import Boolean, Column, ForeignKey, Identity, Integer
+
+from . import Base
 
 
-class Payment_Flows_Installment_Options(Base):
+class PaymentFlowsInstallmentOptions(Base):
     __tablename__ = "payment_flows_installment_options"
     enabled = Column(Boolean)
     plan = Column(
-        payment_method_details_card_installments_plan,
-        ForeignKey("payment_method_details_card_installments_plan"),
+        Integer,
+        ForeignKey("payment_method_details_card_installments_plan.id"),
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -18,7 +20,7 @@ class Payment_Flows_Installment_Options(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Flows_Installment_Options(enabled={enabled!r}, plan={plan!r}, id={id!r})".format(
+        return "PaymentFlowsInstallmentOptions(enabled={enabled!r}, plan={plan!r}, id={id!r})".format(
             enabled=self.enabled, plan=self.plan, id=self.id
         )
 

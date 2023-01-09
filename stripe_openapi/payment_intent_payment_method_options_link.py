@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Intent_Payment_Method_Options_Link(Base):
+class PaymentIntentPaymentMethodOptionsLink(Base):
     __tablename__ = "payment_intent_payment_method_options_link"
     capture_method = Column(
         String,
@@ -25,7 +27,7 @@ class Payment_Intent_Payment_Method_Options_Link(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Intent_Payment_Method_Options_Link(capture_method={capture_method!r}, persistent_token={persistent_token!r}, setup_future_usage={setup_future_usage!r}, id={id!r})".format(
+        return "PaymentIntentPaymentMethodOptionsLink(capture_method={capture_method!r}, persistent_token={persistent_token!r}, setup_future_usage={setup_future_usage!r}, id={id!r})".format(
             capture_method=self.capture_method,
             persistent_token=self.persistent_token,
             setup_future_usage=self.setup_future_usage,

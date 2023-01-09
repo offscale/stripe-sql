@@ -1,11 +1,17 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from stripe_openapi.payment_method_details_konbini_store import (
+    PaymentMethodDetailsKonbiniStore,
+)
+
+from . import Base
 
 
-class Payment_Method_Details_Konbini(Base):
+class PaymentMethodDetailsKonbini(Base):
     __tablename__ = "payment_method_details_konbini"
     store = Column(
-        payment_method_details_konbini_store,
-        comment="[[FK(payment_method_details_konbini_store)]] If the payment succeeded, this contains the details of the convenience store where the payment was completed",
+        PaymentMethodDetailsKonbiniStore,
+        comment="[[FK(PaymentMethodDetailsKonbiniStore)]] If the payment succeeded, this contains the details of the convenience store where the payment was completed",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -17,7 +23,7 @@ class Payment_Method_Details_Konbini(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Details_Konbini(store={store!r}, id={id!r})".format(
+        return "PaymentMethodDetailsKonbini(store={store!r}, id={id!r})".format(
             store=self.store, id=self.id
         )
 

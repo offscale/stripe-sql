@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Invoice_Setting_Rendering_Options(Base):
+class InvoiceSettingRenderingOptions(Base):
     __tablename__ = "invoice_setting_rendering_options"
     amount_tax_display = Column(
         String,
@@ -17,7 +19,7 @@ class Invoice_Setting_Rendering_Options(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Invoice_Setting_Rendering_Options(amount_tax_display={amount_tax_display!r}, id={id!r})".format(
+        return "InvoiceSettingRenderingOptions(amount_tax_display={amount_tax_display!r}, id={id!r})".format(
             amount_tax_display=self.amount_tax_display, id=self.id
         )
 

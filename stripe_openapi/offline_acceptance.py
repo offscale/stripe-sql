@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Offline_Acceptance(Base):
+class OfflineAcceptance(Base):
     __tablename__ = "offline_acceptance"
     id = Column(Integer, primary_key=True, server_default=Identity())
 
@@ -12,7 +14,7 @@ class Offline_Acceptance(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Offline_Acceptance(id={id!r})".format(id=self.id)
+        return "OfflineAcceptance(id={id!r})".format(id=self.id)
 
 
 __all__ = ["offline_acceptance"]

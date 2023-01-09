@@ -1,11 +1,12 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Portal_Subscription_Cancel(Base):
+class PortalSubscriptionCancel(Base):
     __tablename__ = "portal_subscription_cancel"
     cancellation_reason = Column(
-        portal_subscription_cancellation_reason,
-        ForeignKey("portal_subscription_cancellation_reason"),
+        Integer, ForeignKey("portal_subscription_cancellation_reason.id")
     )
     enabled = Column(Boolean, comment="Whether the feature is enabled")
     mode = Column(
@@ -25,7 +26,7 @@ class Portal_Subscription_Cancel(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Portal_Subscription_Cancel(cancellation_reason={cancellation_reason!r}, enabled={enabled!r}, mode={mode!r}, proration_behavior={proration_behavior!r}, id={id!r})".format(
+        return "PortalSubscriptionCancel(cancellation_reason={cancellation_reason!r}, enabled={enabled!r}, mode={mode!r}, proration_behavior={proration_behavior!r}, id={id!r})".format(
             cancellation_reason=self.cancellation_reason,
             enabled=self.enabled,
             mode=self.mode,

@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Payment_Flows_Private_Payment_Methods_Alipay(Base):
+class PaymentFlowsPrivatePaymentMethodsAlipay(Base):
     __tablename__ = "payment_flows_private_payment_methods_alipay"
     id = Column(Integer, primary_key=True, server_default=Identity())
 
@@ -12,9 +14,7 @@ class Payment_Flows_Private_Payment_Methods_Alipay(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Flows_Private_Payment_Methods_Alipay(id={id!r})".format(
-            id=self.id
-        )
+        return "PaymentFlowsPrivatePaymentMethodsAlipay(id={id!r})".format(id=self.id)
 
 
 __all__ = ["payment_flows_private_payment_methods_alipay"]

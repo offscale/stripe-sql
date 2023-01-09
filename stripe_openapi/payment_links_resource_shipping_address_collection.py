@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import ARRAY, Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Links_Resource_Shipping_Address_Collection(Base):
+class PaymentLinksResourceShippingAddressCollection(Base):
     __tablename__ = "payment_links_resource_shipping_address_collection"
     allowed_countries = Column(
         ARRAY(String),
@@ -16,7 +18,7 @@ class Payment_Links_Resource_Shipping_Address_Collection(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Links_Resource_Shipping_Address_Collection(allowed_countries={allowed_countries!r}, id={id!r})".format(
+        return "PaymentLinksResourceShippingAddressCollection(allowed_countries={allowed_countries!r}, id={id!r})".format(
             allowed_countries=self.allowed_countries, id=self.id
         )
 

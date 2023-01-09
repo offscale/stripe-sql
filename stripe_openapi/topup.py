@@ -1,4 +1,8 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import JSON, Boolean, Column, Integer, String
+
+from stripe_openapi.balance_transaction import BalanceTransaction
+
+from . import Base
 
 
 class Topup(Base):
@@ -15,8 +19,8 @@ class Topup(Base):
     __tablename__ = "topup"
     amount = Column(Integer, comment="Amount transferred")
     balance_transaction = Column(
-        balance_transaction,
-        comment="[[FK(balance_transaction)]] ID of the balance transaction that describes the impact of this top-up on your account balance. May not be specified depending on status of top-up",
+        BalanceTransaction,
+        comment="[[FK(BalanceTransaction)]] ID of the balance transaction that describes the impact of this top-up on your account balance. May not be specified depending on status of top-up",
         nullable=True,
     )
     created = Column(
@@ -61,8 +65,8 @@ class Topup(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     source = Column(
-        source,
-        comment="[[FK(source)]] For most Stripe users, the source of every top-up is a bank account. This hash is then the [source object](https://stripe.com/docs/api#source_object) describing that bank account",
+        Source,
+        comment="[[FK(Source)]] For most Stripe users, the source of every top-up is a bank account. This hash is then the [source object](https://stripe.com/docs/api#source_object) describing that bank account",
         nullable=True,
     )
     statement_descriptor = Column(

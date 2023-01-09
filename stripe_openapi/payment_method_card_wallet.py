@@ -1,17 +1,17 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Method_Card_Wallet(Base):
+class PaymentMethodCardWallet(Base):
     __tablename__ = "payment_method_card_wallet"
     amex_express_checkout = Column(
-        payment_method_card_wallet_amex_express_checkout,
-        ForeignKey("payment_method_card_wallet_amex_express_checkout"),
+        Integer,
+        ForeignKey("payment_method_card_wallet_amex_express_checkout.id"),
         nullable=True,
     )
     apple_pay = Column(
-        payment_method_card_wallet_apple_pay,
-        ForeignKey("payment_method_card_wallet_apple_pay"),
-        nullable=True,
+        Integer, ForeignKey("payment_method_card_wallet_apple_pay.id"), nullable=True
     )
     dynamic_last4 = Column(
         String,
@@ -19,27 +19,21 @@ class Payment_Method_Card_Wallet(Base):
         nullable=True,
     )
     google_pay = Column(
-        payment_method_card_wallet_google_pay,
-        ForeignKey("payment_method_card_wallet_google_pay"),
-        nullable=True,
+        Integer, ForeignKey("payment_method_card_wallet_google_pay.id"), nullable=True
     )
     masterpass = Column(
-        payment_method_card_wallet_masterpass,
-        ForeignKey("payment_method_card_wallet_masterpass"),
-        nullable=True,
+        Integer, ForeignKey("payment_method_card_wallet_masterpass.id"), nullable=True
     )
     samsung_pay = Column(
-        payment_method_card_wallet_samsung_pay,
-        ForeignKey("payment_method_card_wallet_samsung_pay"),
-        nullable=True,
+        Integer, ForeignKey("payment_method_card_wallet_samsung_pay.id"), nullable=True
     )
     type = Column(
         String,
         comment="The type of the card wallet, one of `amex_express_checkout`, `apple_pay`, `google_pay`, `masterpass`, `samsung_pay`, or `visa_checkout`. An additional hash is included on the Wallet subhash with a name matching this value. It contains additional information specific to the card wallet type",
     )
     visa_checkout = Column(
-        payment_method_card_wallet_visa_checkout,
-        ForeignKey("payment_method_card_wallet_visa_checkout"),
+        Integer,
+        ForeignKey("payment_method_card_wallet_visa_checkout.id"),
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -51,7 +45,7 @@ class Payment_Method_Card_Wallet(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Card_Wallet(amex_express_checkout={amex_express_checkout!r}, apple_pay={apple_pay!r}, dynamic_last4={dynamic_last4!r}, google_pay={google_pay!r}, masterpass={masterpass!r}, samsung_pay={samsung_pay!r}, type={type!r}, visa_checkout={visa_checkout!r}, id={id!r})".format(
+        return "PaymentMethodCardWallet(amex_express_checkout={amex_express_checkout!r}, apple_pay={apple_pay!r}, dynamic_last4={dynamic_last4!r}, google_pay={google_pay!r}, masterpass={masterpass!r}, samsung_pay={samsung_pay!r}, type={type!r}, visa_checkout={visa_checkout!r}, id={id!r})".format(
             amex_express_checkout=self.amex_express_checkout,
             apple_pay=self.apple_pay,
             dynamic_last4=self.dynamic_last4,

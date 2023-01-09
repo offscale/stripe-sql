@@ -1,7 +1,11 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from stripe_openapi.customer_tax_location import CustomerTaxLocation
+
+from . import Base
 
 
-class Customer_Tax(Base):
+class CustomerTax(Base):
     __tablename__ = "customer_tax"
     automatic_tax = Column(
         String,
@@ -13,8 +17,8 @@ class Customer_Tax(Base):
         nullable=True,
     )
     location = Column(
-        customer_tax_location,
-        comment="[[FK(customer_tax_location)]] The customer's location as identified by Stripe Tax",
+        CustomerTaxLocation,
+        comment="[[FK(CustomerTaxLocation)]] The customer's location as identified by Stripe Tax",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -26,7 +30,7 @@ class Customer_Tax(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Customer_Tax(automatic_tax={automatic_tax!r}, ip_address={ip_address!r}, location={location!r}, id={id!r})".format(
+        return "CustomerTax(automatic_tax={automatic_tax!r}, ip_address={ip_address!r}, location={location!r}, id={id!r})".format(
             automatic_tax=self.automatic_tax,
             ip_address=self.ip_address,
             location=self.location,

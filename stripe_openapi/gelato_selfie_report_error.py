@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Gelato_Selfie_Report_Error(Base):
+class GelatoSelfieReportError(Base):
     __tablename__ = "gelato_selfie_report_error"
     code = Column(
         String,
@@ -22,7 +24,7 @@ class Gelato_Selfie_Report_Error(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Gelato_Selfie_Report_Error(code={code!r}, reason={reason!r}, id={id!r})".format(
+        return "GelatoSelfieReportError(code={code!r}, reason={reason!r}, id={id!r})".format(
             code=self.code, reason=self.reason, id=self.id
         )
 

@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Invoice_Setting_Custom_Field(Base):
+class InvoiceSettingCustomField(Base):
     __tablename__ = "invoice_setting_custom_field"
     name = Column(String, comment="The name of the custom field")
     value = Column(String, comment="The value of the custom field")
@@ -14,7 +16,7 @@ class Invoice_Setting_Custom_Field(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Invoice_Setting_Custom_Field(name={name!r}, value={value!r}, id={id!r})".format(
+        return "InvoiceSettingCustomField(name={name!r}, value={value!r}, id={id!r})".format(
             name=self.name, value=self.value, id=self.id
         )
 

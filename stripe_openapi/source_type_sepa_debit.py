@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Source_Type_Sepa_Debit(Base):
+class SourceTypeSepaDebit(Base):
     __tablename__ = "source_type_sepa_debit"
     bank_code = Column(String, nullable=True)
     branch_code = Column(String, nullable=True)
@@ -19,7 +21,7 @@ class Source_Type_Sepa_Debit(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Source_Type_Sepa_Debit(bank_code={bank_code!r}, branch_code={branch_code!r}, country={country!r}, fingerprint={fingerprint!r}, last4={last4!r}, mandate_reference={mandate_reference!r}, mandate_url={mandate_url!r}, id={id!r})".format(
+        return "SourceTypeSepaDebit(bank_code={bank_code!r}, branch_code={branch_code!r}, country={country!r}, fingerprint={fingerprint!r}, last4={last4!r}, mandate_reference={mandate_reference!r}, mandate_url={mandate_url!r}, id={id!r})".format(
             bank_code=self.bank_code,
             branch_code=self.branch_code,
             country=self.country,

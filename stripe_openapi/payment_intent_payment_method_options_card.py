@@ -1,7 +1,16 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from stripe_openapi.payment_method_options_card_installments import (
+    PaymentMethodOptionsCardInstallments,
+)
+from stripe_openapi.payment_method_options_card_mandate_options import (
+    PaymentMethodOptionsCardMandateOptions,
+)
+
+from . import Base
 
 
-class Payment_Intent_Payment_Method_Options_Card(Base):
+class PaymentIntentPaymentMethodOptionsCard(Base):
     __tablename__ = "payment_intent_payment_method_options_card"
     capture_method = Column(
         String,
@@ -9,13 +18,13 @@ class Payment_Intent_Payment_Method_Options_Card(Base):
         nullable=True,
     )
     installments = Column(
-        payment_method_options_card_installments,
-        comment="[[FK(payment_method_options_card_installments)]] Installment details for this payment (Mexico only).\n\nFor more information, see the [installments integration guide](https://stripe.com/docs/payments/installments)",
+        PaymentMethodOptionsCardInstallments,
+        comment="[[FK(PaymentMethodOptionsCardInstallments)]] Installment details for this payment (Mexico only).\n\nFor more information, see the [installments integration guide](https://stripe.com/docs/payments/installments)",
         nullable=True,
     )
     mandate_options = Column(
-        payment_method_options_card_mandate_options,
-        comment="[[FK(payment_method_options_card_mandate_options)]] Configuration options for setting up an eMandate for cards issued in India",
+        PaymentMethodOptionsCardMandateOptions,
+        comment="[[FK(PaymentMethodOptionsCardMandateOptions)]] Configuration options for setting up an eMandate for cards issued in India",
         nullable=True,
     )
     network = Column(
@@ -52,7 +61,7 @@ class Payment_Intent_Payment_Method_Options_Card(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Intent_Payment_Method_Options_Card(capture_method={capture_method!r}, installments={installments!r}, mandate_options={mandate_options!r}, network={network!r}, request_three_d_secure={request_three_d_secure!r}, setup_future_usage={setup_future_usage!r}, statement_descriptor_suffix_kana={statement_descriptor_suffix_kana!r}, statement_descriptor_suffix_kanji={statement_descriptor_suffix_kanji!r}, id={id!r})".format(
+        return "PaymentIntentPaymentMethodOptionsCard(capture_method={capture_method!r}, installments={installments!r}, mandate_options={mandate_options!r}, network={network!r}, request_three_d_secure={request_three_d_secure!r}, setup_future_usage={setup_future_usage!r}, statement_descriptor_suffix_kana={statement_descriptor_suffix_kana!r}, statement_descriptor_suffix_kanji={statement_descriptor_suffix_kanji!r}, id={id!r})".format(
             capture_method=self.capture_method,
             installments=self.installments,
             mandate_options=self.mandate_options,

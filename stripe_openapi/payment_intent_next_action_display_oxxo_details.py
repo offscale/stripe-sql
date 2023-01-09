@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Intent_Next_Action_Display_Oxxo_Details(Base):
+class PaymentIntentNextActionDisplayOxxoDetails(Base):
     __tablename__ = "payment_intent_next_action_display_oxxo_details"
     expires_after = Column(
         Integer,
@@ -23,7 +25,7 @@ class Payment_Intent_Next_Action_Display_Oxxo_Details(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Intent_Next_Action_Display_Oxxo_Details(expires_after={expires_after!r}, hosted_voucher_url={hosted_voucher_url!r}, number={number!r}, id={id!r})".format(
+        return "PaymentIntentNextActionDisplayOxxoDetails(expires_after={expires_after!r}, hosted_voucher_url={hosted_voucher_url!r}, number={number!r}, id={id!r})".format(
             expires_after=self.expires_after,
             hosted_voucher_url=self.hosted_voucher_url,
             number=self.number,

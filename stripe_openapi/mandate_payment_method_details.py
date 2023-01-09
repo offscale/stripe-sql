@@ -1,33 +1,27 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Mandate_Payment_Method_Details(Base):
+class MandatePaymentMethodDetails(Base):
     __tablename__ = "mandate_payment_method_details"
-    acss_debit = Column(
-        mandate_acss_debit, ForeignKey("mandate_acss_debit"), nullable=True
-    )
+    acss_debit = Column(Integer, ForeignKey("mandate_acss_debit.id"), nullable=True)
     au_becs_debit = Column(
-        mandate_au_becs_debit, ForeignKey("mandate_au_becs_debit"), nullable=True
+        Integer, ForeignKey("mandate_au_becs_debit.id"), nullable=True
     )
-    bacs_debit = Column(
-        mandate_bacs_debit, ForeignKey("mandate_bacs_debit"), nullable=True
-    )
-    blik = Column(mandate_blik, ForeignKey("mandate_blik"), nullable=True)
+    bacs_debit = Column(Integer, ForeignKey("mandate_bacs_debit.id"), nullable=True)
+    blik = Column(Integer, ForeignKey("mandate_blik.id"), nullable=True)
     card = Column(
-        card_mandate_payment_method_details,
-        ForeignKey("card_mandate_payment_method_details"),
-        nullable=True,
+        Integer, ForeignKey("card_mandate_payment_method_details.id"), nullable=True
     )
-    link = Column(mandate_link, ForeignKey("mandate_link"), nullable=True)
-    sepa_debit = Column(
-        mandate_sepa_debit, ForeignKey("mandate_sepa_debit"), nullable=True
-    )
+    link = Column(Integer, ForeignKey("mandate_link.id"), nullable=True)
+    sepa_debit = Column(Integer, ForeignKey("mandate_sepa_debit.id"), nullable=True)
     type = Column(
         String,
         comment="The type of the payment method associated with this mandate. An additional hash is included on `payment_method_details` with a name matching this value. It contains mandate information specific to the payment method",
     )
     us_bank_account = Column(
-        mandate_us_bank_account, ForeignKey("mandate_us_bank_account"), nullable=True
+        Integer, ForeignKey("mandate_us_bank_account.id"), nullable=True
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
@@ -38,7 +32,7 @@ class Mandate_Payment_Method_Details(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Mandate_Payment_Method_Details(acss_debit={acss_debit!r}, au_becs_debit={au_becs_debit!r}, bacs_debit={bacs_debit!r}, blik={blik!r}, card={card!r}, link={link!r}, sepa_debit={sepa_debit!r}, type={type!r}, us_bank_account={us_bank_account!r}, id={id!r})".format(
+        return "MandatePaymentMethodDetails(acss_debit={acss_debit!r}, au_becs_debit={au_becs_debit!r}, bacs_debit={bacs_debit!r}, blik={blik!r}, card={card!r}, link={link!r}, sepa_debit={sepa_debit!r}, type={type!r}, us_bank_account={us_bank_account!r}, id={id!r})".format(
             acss_debit=self.acss_debit,
             au_becs_debit=self.au_becs_debit,
             bacs_debit=self.bacs_debit,

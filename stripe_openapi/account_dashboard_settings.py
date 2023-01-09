@@ -1,7 +1,9 @@
 from sqlalchemy import Column, String
 
+from . import Base
 
-class Account_Dashboard_Settings(Base):
+
+class AccountDashboardSettings(Base):
     __tablename__ = "account_dashboard_settings"
     display_name = Column(
         String,
@@ -22,7 +24,7 @@ class Account_Dashboard_Settings(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Account_Dashboard_Settings(display_name={display_name!r}, timezone={timezone!r})".format(
+        return "AccountDashboardSettings(display_name={display_name!r}, timezone={timezone!r})".format(
             display_name=self.display_name, timezone=self.timezone
         )
 

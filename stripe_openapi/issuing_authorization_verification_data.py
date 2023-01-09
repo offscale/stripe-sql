@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Issuing_Authorization_Verification_Data(Base):
+class IssuingAuthorizationVerificationData(Base):
     __tablename__ = "issuing_authorization_verification_data"
     address_line1_check = Column(
         String,
@@ -28,7 +30,7 @@ class Issuing_Authorization_Verification_Data(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Issuing_Authorization_Verification_Data(address_line1_check={address_line1_check!r}, address_postal_code_check={address_postal_code_check!r}, cvc_check={cvc_check!r}, expiry_check={expiry_check!r}, id={id!r})".format(
+        return "IssuingAuthorizationVerificationData(address_line1_check={address_line1_check!r}, address_postal_code_check={address_postal_code_check!r}, cvc_check={cvc_check!r}, expiry_check={expiry_check!r}, id={id!r})".format(
             address_line1_check=self.address_line1_check,
             address_postal_code_check=self.address_postal_code_check,
             cvc_check=self.cvc_check,

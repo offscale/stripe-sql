@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import ARRAY, Column, Identity, Integer, String
+
+from . import Base
 
 
-class Issuing_Authorization_Treasury(Base):
+class IssuingAuthorizationTreasury(Base):
     __tablename__ = "issuing_authorization_treasury"
     received_credits = Column(
         ARRAY(String),
@@ -25,7 +27,7 @@ class Issuing_Authorization_Treasury(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Issuing_Authorization_Treasury(received_credits={received_credits!r}, received_debits={received_debits!r}, transaction={transaction!r}, id={id!r})".format(
+        return "IssuingAuthorizationTreasury(received_credits={received_credits!r}, received_debits={received_debits!r}, transaction={transaction!r}, id={id!r})".format(
             received_credits=self.received_credits,
             received_debits=self.received_debits,
             transaction=self.transaction,

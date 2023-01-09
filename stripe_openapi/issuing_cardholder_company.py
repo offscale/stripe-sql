@@ -1,7 +1,9 @@
 from sqlalchemy import Boolean, Column
 
+from . import Base
 
-class Issuing_Cardholder_Company(Base):
+
+class IssuingCardholderCompany(Base):
     __tablename__ = "issuing_cardholder_company"
     tax_id_provided = Column(
         Boolean,
@@ -16,7 +18,7 @@ class Issuing_Cardholder_Company(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Issuing_Cardholder_Company(tax_id_provided={tax_id_provided!r})".format(
+        return "IssuingCardholderCompany(tax_id_provided={tax_id_provided!r})".format(
             tax_id_provided=self.tax_id_provided
         )
 

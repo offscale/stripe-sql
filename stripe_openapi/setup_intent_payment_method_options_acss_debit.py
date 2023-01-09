@@ -1,14 +1,16 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Setup_Intent_Payment_Method_Options_Acss_Debit(Base):
+class SetupIntentPaymentMethodOptionsAcssDebit(Base):
     __tablename__ = "setup_intent_payment_method_options_acss_debit"
     currency = Column(
         String, comment="Currency supported by the bank account", nullable=True
     )
     mandate_options = Column(
-        setup_intent_payment_method_options_mandate_options_acss_debit,
-        ForeignKey("setup_intent_payment_method_options_mandate_options_acss_debit"),
+        Integer,
+        ForeignKey("setup_intent_payment_method_options_mandate_options_acss_debit.id"),
         nullable=True,
     )
     verification_method = Column(
@@ -23,7 +25,7 @@ class Setup_Intent_Payment_Method_Options_Acss_Debit(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Setup_Intent_Payment_Method_Options_Acss_Debit(currency={currency!r}, mandate_options={mandate_options!r}, verification_method={verification_method!r}, id={id!r})".format(
+        return "SetupIntentPaymentMethodOptionsAcssDebit(currency={currency!r}, mandate_options={mandate_options!r}, verification_method={verification_method!r}, id={id!r})".format(
             currency=self.currency,
             mandate_options=self.mandate_options,
             verification_method=self.verification_method,

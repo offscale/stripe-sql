@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Checkout_Sepa_Debit_Payment_Method_Options(Base):
+class CheckoutSepaDebitPaymentMethodOptions(Base):
     __tablename__ = "checkout_sepa_debit_payment_method_options"
     setup_future_usage = Column(
         String,
@@ -17,7 +19,7 @@ class Checkout_Sepa_Debit_Payment_Method_Options(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Checkout_Sepa_Debit_Payment_Method_Options(setup_future_usage={setup_future_usage!r}, id={id!r})".format(
+        return "CheckoutSepaDebitPaymentMethodOptions(setup_future_usage={setup_future_usage!r}, id={id!r})".format(
             setup_future_usage=self.setup_future_usage, id=self.id
         )
 

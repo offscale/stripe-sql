@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+
+from . import Base
 
 
-class Usage_Record_Summary(Base):
+class UsageRecordSummary(Base):
     __tablename__ = "usage_record_summary"
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     invoice = Column(
@@ -17,7 +19,7 @@ class Usage_Record_Summary(Base):
         String,
         comment="String representing the object's type. Objects of the same type share the same value",
     )
-    period = Column(period, ForeignKey("period"))
+    period = Column(Period, ForeignKey("Period"))
     subscription_item = Column(
         String, comment="The ID of the subscription item this summary is describing"
     )
@@ -30,7 +32,7 @@ class Usage_Record_Summary(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Usage_Record_Summary(id={id!r}, invoice={invoice!r}, livemode={livemode!r}, object={object!r}, period={period!r}, subscription_item={subscription_item!r}, total_usage={total_usage!r})".format(
+        return "UsageRecordSummary(id={id!r}, invoice={invoice!r}, livemode={livemode!r}, object={object!r}, period={period!r}, subscription_item={subscription_item!r}, total_usage={total_usage!r})".format(
             id=self.id,
             invoice=self.invoice,
             livemode=self.livemode,

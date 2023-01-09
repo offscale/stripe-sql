@@ -1,7 +1,9 @@
 from sqlalchemy import Column, String
 
+from . import Base
 
-class Source_Type_Giropay(Base):
+
+class SourceTypeGiropay(Base):
     __tablename__ = "source_type_giropay"
     bank_code = Column(String, nullable=True)
     bank_name = Column(String, nullable=True, primary_key=True)
@@ -15,7 +17,7 @@ class Source_Type_Giropay(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Source_Type_Giropay(bank_code={bank_code!r}, bank_name={bank_name!r}, bic={bic!r}, statement_descriptor={statement_descriptor!r})".format(
+        return "SourceTypeGiropay(bank_code={bank_code!r}, bank_name={bank_name!r}, bic={bic!r}, statement_descriptor={statement_descriptor!r})".format(
             bank_code=self.bank_code,
             bank_name=self.bank_name,
             bic=self.bic,

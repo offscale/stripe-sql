@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Coupon_Currency_Option(Base):
+class CouponCurrencyOption(Base):
     __tablename__ = "coupon_currency_option"
     amount_off = Column(
         Integer,
@@ -16,7 +18,7 @@ class Coupon_Currency_Option(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Coupon_Currency_Option(amount_off={amount_off!r}, id={id!r})".format(
+        return "CouponCurrencyOption(amount_off={amount_off!r}, id={id!r})".format(
             amount_off=self.amount_off, id=self.id
         )
 

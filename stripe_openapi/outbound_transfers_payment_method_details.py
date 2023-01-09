@@ -1,18 +1,21 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Outbound_Transfers_Payment_Method_Details(Base):
+class OutboundTransfersPaymentMethodDetails(Base):
     __tablename__ = "outbound_transfers_payment_method_details"
     billing_details = Column(
-        treasury_shared_resource_billing_details,
-        ForeignKey("treasury_shared_resource_billing_details"),
+        Integer, ForeignKey("treasury_shared_resource_billing_details.id")
     )
     type = Column(
         String, comment="The type of the payment method used in the OutboundTransfer"
     )
     us_bank_account = Column(
-        outbound_transfers_payment_method_details_us_bank_account,
-        ForeignKey("outbound_transfers_payment_method_details_us_bank_account"),
+        String,
+        ForeignKey(
+            "outbound_transfers_payment_method_details_us_bank_account.bank_name"
+        ),
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -24,7 +27,7 @@ class Outbound_Transfers_Payment_Method_Details(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Outbound_Transfers_Payment_Method_Details(billing_details={billing_details!r}, type={type!r}, us_bank_account={us_bank_account!r}, id={id!r})".format(
+        return "OutboundTransfersPaymentMethodDetails(billing_details={billing_details!r}, type={type!r}, us_bank_account={us_bank_account!r}, id={id!r})".format(
             billing_details=self.billing_details,
             type=self.type,
             us_bank_account=self.us_bank_account,

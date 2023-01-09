@@ -1,15 +1,21 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from stripe_openapi.terminal_reader_reader_resource_cart import (
+    TerminalReaderReaderResourceCart,
+)
+
+from . import Base
 
 
-class Terminal_Reader_Reader_Resource_Set_Reader_Display_Action(Base):
+class TerminalReaderReaderResourceSetReaderDisplayAction(Base):
     """
     Represents a reader action to set the reader display
     """
 
     __tablename__ = "terminal_reader_reader_resource_set_reader_display_action"
     cart = Column(
-        terminal_reader_reader_resource_cart,
-        comment="[[FK(terminal_reader_reader_resource_cart)]] Cart object to be displayed by the reader",
+        TerminalReaderReaderResourceCart,
+        comment="[[FK(TerminalReaderReaderResourceCart)]] Cart object to be displayed by the reader",
         nullable=True,
     )
     type = Column(String, comment="Type of information to be displayed by the reader")
@@ -22,7 +28,7 @@ class Terminal_Reader_Reader_Resource_Set_Reader_Display_Action(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Terminal_Reader_Reader_Resource_Set_Reader_Display_Action(cart={cart!r}, type={type!r}, id={id!r})".format(
+        return "TerminalReaderReaderResourceSetReaderDisplayAction(cart={cart!r}, type={type!r}, id={id!r})".format(
             cart=self.cart, type=self.type, id=self.id
         )
 

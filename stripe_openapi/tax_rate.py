@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Float, Integer, String
+from sqlalchemy import JSON, Boolean, Column, Float, Integer, String
+
+from . import Base
 
 
-class Tax_Rate(Base):
+class TaxRate(Base):
     """
     Tax rates can be applied to [invoices](https://stripe.com/docs/billing/invoices/tax-rates), [subscriptions](https://stripe.com/docs/billing/subscriptions/taxes) and [Checkout Sessions](https://stripe.com/docs/payments/checkout/set-up-a-subscription#tax-rates) to collect tax.
 
@@ -75,7 +77,7 @@ class Tax_Rate(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Tax_Rate(active={active!r}, country={country!r}, created={created!r}, description={description!r}, display_name={display_name!r}, id={id!r}, inclusive={inclusive!r}, jurisdiction={jurisdiction!r}, livemode={livemode!r}, metadata={metadata!r}, object={object!r}, percentage={percentage!r}, state={state!r}, tax_type={tax_type!r})".format(
+        return "TaxRate(active={active!r}, country={country!r}, created={created!r}, description={description!r}, display_name={display_name!r}, id={id!r}, inclusive={inclusive!r}, jurisdiction={jurisdiction!r}, livemode={livemode!r}, metadata={metadata!r}, object={object!r}, percentage={percentage!r}, state={state!r}, tax_type={tax_type!r})".format(
             active=self.active,
             country=self.country,
             created=self.created,

@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Pages_Checkout_Session_Tax_Id(Base):
+class PaymentPagesCheckoutSessionTaxId(Base):
     __tablename__ = "payment_pages_checkout_session_tax_id"
     type = Column(
         String,
@@ -17,7 +19,7 @@ class Payment_Pages_Checkout_Session_Tax_Id(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Pages_Checkout_Session_Tax_Id(type={type!r}, value={value!r}, id={id!r})".format(
+        return "PaymentPagesCheckoutSessionTaxId(type={type!r}, value={value!r}, id={id!r})".format(
             type=self.type, value=self.value, id=self.id
         )
 

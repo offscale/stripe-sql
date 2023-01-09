@@ -1,7 +1,9 @@
 from sqlalchemy import Boolean, Column, Integer, String
 
+from . import Base
 
-class Ephemeral_Key(Base):
+
+class EphemeralKey(Base):
     __tablename__ = "ephemeral_key"
     created = Column(
         Integer,
@@ -33,7 +35,7 @@ class Ephemeral_Key(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Ephemeral_Key(created={created!r}, expires={expires!r}, id={id!r}, livemode={livemode!r}, object={object!r}, secret={secret!r})".format(
+        return "EphemeralKey(created={created!r}, expires={expires!r}, id={id!r}, livemode={livemode!r}, object={object!r}, secret={secret!r})".format(
             created=self.created,
             expires=self.expires,
             id=self.id,

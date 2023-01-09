@@ -1,16 +1,22 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from stripe_openapi.payment_pages_checkout_session_custom_text_position import (
+    PaymentPagesCheckoutSessionCustomTextPosition,
+)
+
+from . import Base
 
 
-class Payment_Pages_Checkout_Session_Custom_Text(Base):
+class PaymentPagesCheckoutSessionCustomText(Base):
     __tablename__ = "payment_pages_checkout_session_custom_text"
     shipping_address = Column(
-        payment_pages_checkout_session_custom_text_position,
-        comment="[[FK(payment_pages_checkout_session_custom_text_position)]] Custom text that should be displayed alongside shipping address collection",
+        PaymentPagesCheckoutSessionCustomTextPosition,
+        comment="[[FK(PaymentPagesCheckoutSessionCustomTextPosition)]] Custom text that should be displayed alongside shipping address collection",
         nullable=True,
     )
     submit = Column(
-        payment_pages_checkout_session_custom_text_position,
-        comment="[[FK(payment_pages_checkout_session_custom_text_position)]] Custom text that should be displayed alongside the payment confirmation button",
+        PaymentPagesCheckoutSessionCustomTextPosition,
+        comment="[[FK(PaymentPagesCheckoutSessionCustomTextPosition)]] Custom text that should be displayed alongside the payment confirmation button",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -22,7 +28,7 @@ class Payment_Pages_Checkout_Session_Custom_Text(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Pages_Checkout_Session_Custom_Text(shipping_address={shipping_address!r}, submit={submit!r}, id={id!r})".format(
+        return "PaymentPagesCheckoutSessionCustomText(shipping_address={shipping_address!r}, submit={submit!r}, id={id!r})".format(
             shipping_address=self.shipping_address, submit=self.submit, id=self.id
         )
 

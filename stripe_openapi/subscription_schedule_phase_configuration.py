@@ -1,7 +1,16 @@
-from sqlalchemy import Column, Float, Integer, String
+from sqlalchemy import JSON, Column, Float, ForeignKey, Identity, Integer, String, list
+
+from stripe_openapi.invoice_setting_subscription_schedule_setting import (
+    InvoiceSettingSubscriptionScheduleSetting,
+)
+from stripe_openapi.payment_method import PaymentMethod
+from stripe_openapi.subscription_billing_thresholds import SubscriptionBillingThresholds
+from stripe_openapi.subscription_transfer_data import SubscriptionTransferData
+
+from . import Base
 
 
-class Subscription_Schedule_Phase_Configuration(Base):
+class SubscriptionSchedulePhaseConfiguration(Base):
     """
     A phase describes the plans, coupon, and trialing status of a subscription for a predefined time period.
     """
@@ -17,9 +26,7 @@ class Subscription_Schedule_Phase_Configuration(Base):
         nullable=True,
     )
     automatic_tax = Column(
-        schedules_phase_automatic_tax,
-        ForeignKey("schedules_phase_automatic_tax"),
-        nullable=True,
+        Integer, ForeignKey("schedules_phase_automatic_tax.id"), nullable=True
     )
     billing_cycle_anchor = Column(
         String,
@@ -27,8 +34,8 @@ class Subscription_Schedule_Phase_Configuration(Base):
         nullable=True,
     )
     billing_thresholds = Column(
-        subscription_billing_thresholds,
-        comment="[[FK(subscription_billing_thresholds)]] Define thresholds at which an invoice will be sent, and the subscription advanced to a new billing period",
+        SubscriptionBillingThresholds,
+        comment="[[FK(SubscriptionBillingThresholds)]] Define thresholds at which an invoice will be sent, and the subscription advanced to a new billing period",
         nullable=True,
     )
     collection_method = Column(
@@ -37,8 +44,8 @@ class Subscription_Schedule_Phase_Configuration(Base):
         nullable=True,
     )
     coupon = Column(
-        string | coupon,
-        comment="[[FK(deleted_coupon)]] ID of the coupon to use during this phase of the subscription schedule",
+        Coupon,
+        comment="[[FK(DeletedCoupon)]] ID of the coupon to use during this phase of the subscription schedule",
         nullable=True,
     )
     currency = Column(
@@ -46,8 +53,8 @@ class Subscription_Schedule_Phase_Configuration(Base):
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",
     )
     default_payment_method = Column(
-        payment_method,
-        comment="[[FK(payment_method)]] ID of the default payment method for the subscription schedule. It must belong to the customer associated with the subscription schedule. If not set, invoices will use the default payment method in the customer's invoice settings",
+        PaymentMethod,
+        comment="[[FK(PaymentMethod)]] ID of the default payment method for the subscription schedule. It must belong to the customer associated with the subscription schedule. If not set, invoices will use the default payment method in the customer's invoice settings",
         nullable=True,
     )
     default_tax_rates = Column(
@@ -64,8 +71,8 @@ class Subscription_Schedule_Phase_Configuration(Base):
         Integer, comment="The end of this phase of the subscription schedule"
     )
     invoice_settings = Column(
-        invoice_setting_subscription_schedule_setting,
-        comment="[[FK(invoice_setting_subscription_schedule_setting)]] The invoice settings applicable during this phase",
+        InvoiceSettingSubscriptionScheduleSetting,
+        comment="[[FK(InvoiceSettingSubscriptionScheduleSetting)]] The invoice settings applicable during this phase",
         nullable=True,
     )
     items = Column(
@@ -78,8 +85,8 @@ class Subscription_Schedule_Phase_Configuration(Base):
         nullable=True,
     )
     on_behalf_of = Column(
-        account,
-        comment="[[FK(account)]] The account (if any) the charge was made on behalf of for charges associated with the schedule's subscription. See the Connect documentation for details",
+        Account,
+        comment="[[FK(Account)]] The account (if any) the charge was made on behalf of for charges associated with the schedule's subscription. See the Connect documentation for details",
         nullable=True,
     )
     proration_behavior = Column(
@@ -90,8 +97,8 @@ class Subscription_Schedule_Phase_Configuration(Base):
         Integer, comment="The start of this phase of the subscription schedule"
     )
     transfer_data = Column(
-        subscription_transfer_data,
-        comment="[[FK(subscription_transfer_data)]] The account (if any) the associated subscription's payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the subscription's invoices",
+        SubscriptionTransferData,
+        comment="[[FK(SubscriptionTransferData)]] The account (if any) the associated subscription's payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the subscription's invoices",
         nullable=True,
     )
     trial_end = Column(
@@ -106,7 +113,7 @@ class Subscription_Schedule_Phase_Configuration(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Subscription_Schedule_Phase_Configuration(add_invoice_items={add_invoice_items!r}, application_fee_percent={application_fee_percent!r}, automatic_tax={automatic_tax!r}, billing_cycle_anchor={billing_cycle_anchor!r}, billing_thresholds={billing_thresholds!r}, collection_method={collection_method!r}, coupon={coupon!r}, currency={currency!r}, default_payment_method={default_payment_method!r}, default_tax_rates={default_tax_rates!r}, description={description!r}, end_date={end_date!r}, invoice_settings={invoice_settings!r}, items={items!r}, metadata={metadata!r}, on_behalf_of={on_behalf_of!r}, proration_behavior={proration_behavior!r}, start_date={start_date!r}, transfer_data={transfer_data!r}, trial_end={trial_end!r}, id={id!r})".format(
+        return "SubscriptionSchedulePhaseConfiguration(add_invoice_items={add_invoice_items!r}, application_fee_percent={application_fee_percent!r}, automatic_tax={automatic_tax!r}, billing_cycle_anchor={billing_cycle_anchor!r}, billing_thresholds={billing_thresholds!r}, collection_method={collection_method!r}, coupon={coupon!r}, currency={currency!r}, default_payment_method={default_payment_method!r}, default_tax_rates={default_tax_rates!r}, description={description!r}, end_date={end_date!r}, invoice_settings={invoice_settings!r}, items={items!r}, metadata={metadata!r}, on_behalf_of={on_behalf_of!r}, proration_behavior={proration_behavior!r}, start_date={start_date!r}, transfer_data={transfer_data!r}, trial_end={trial_end!r}, id={id!r})".format(
             add_invoice_items=self.add_invoice_items,
             application_fee_percent=self.application_fee_percent,
             automatic_tax=self.automatic_tax,

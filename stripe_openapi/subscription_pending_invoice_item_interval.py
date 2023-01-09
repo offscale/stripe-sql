@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Subscription_Pending_Invoice_Item_Interval(Base):
+class SubscriptionPendingInvoiceItemInterval(Base):
     __tablename__ = "subscription_pending_invoice_item_interval"
     interval = Column(
         String,
@@ -20,7 +22,7 @@ class Subscription_Pending_Invoice_Item_Interval(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Subscription_Pending_Invoice_Item_Interval(interval={interval!r}, interval_count={interval_count!r}, id={id!r})".format(
+        return "SubscriptionPendingInvoiceItemInterval(interval={interval!r}, interval_count={interval_count!r}, id={id!r})".format(
             interval=self.interval, interval_count=self.interval_count, id=self.id
         )
 

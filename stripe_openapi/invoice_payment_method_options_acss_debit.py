@@ -1,11 +1,13 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Invoice_Payment_Method_Options_Acss_Debit(Base):
+class InvoicePaymentMethodOptionsAcssDebit(Base):
     __tablename__ = "invoice_payment_method_options_acss_debit"
     mandate_options = Column(
-        invoice_payment_method_options_acss_debit_mandate_options,
-        ForeignKey("invoice_payment_method_options_acss_debit_mandate_options"),
+        Integer,
+        ForeignKey("invoice_payment_method_options_acss_debit_mandate_options.id"),
         nullable=True,
     )
     verification_method = Column(
@@ -20,7 +22,7 @@ class Invoice_Payment_Method_Options_Acss_Debit(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Invoice_Payment_Method_Options_Acss_Debit(mandate_options={mandate_options!r}, verification_method={verification_method!r}, id={id!r})".format(
+        return "InvoicePaymentMethodOptionsAcssDebit(mandate_options={mandate_options!r}, verification_method={verification_method!r}, id={id!r})".format(
             mandate_options=self.mandate_options,
             verification_method=self.verification_method,
             id=self.id,

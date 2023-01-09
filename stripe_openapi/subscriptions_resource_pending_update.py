@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer
+from sqlalchemy import Boolean, Column, Identity, Integer, list
+
+from . import Base
 
 
-class Subscriptions_Resource_Pending_Update(Base):
+class SubscriptionsResourcePendingUpdate(Base):
     """
     Pending Updates store the changes pending from a previous update that will be applied
 
@@ -43,7 +45,7 @@ class Subscriptions_Resource_Pending_Update(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Subscriptions_Resource_Pending_Update(billing_cycle_anchor={billing_cycle_anchor!r}, expires_at={expires_at!r}, subscription_items={subscription_items!r}, trial_end={trial_end!r}, trial_from_plan={trial_from_plan!r}, id={id!r})".format(
+        return "SubscriptionsResourcePendingUpdate(billing_cycle_anchor={billing_cycle_anchor!r}, expires_at={expires_at!r}, subscription_items={subscription_items!r}, trial_end={trial_end!r}, trial_from_plan={trial_from_plan!r}, id={id!r})".format(
             billing_cycle_anchor=self.billing_cycle_anchor,
             expires_at=self.expires_at,
             subscription_items=self.subscription_items,

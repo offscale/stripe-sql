@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Method_Details_Oxxo(Base):
+class PaymentMethodDetailsOxxo(Base):
     __tablename__ = "payment_method_details_oxxo"
     number = Column(String, comment="OXXO reference number", nullable=True)
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -13,7 +15,7 @@ class Payment_Method_Details_Oxxo(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Details_Oxxo(number={number!r}, id={id!r})".format(
+        return "PaymentMethodDetailsOxxo(number={number!r}, id={id!r})".format(
             number=self.number, id=self.id
         )
 

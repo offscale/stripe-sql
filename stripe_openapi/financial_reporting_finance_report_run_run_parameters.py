@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import ARRAY, Column, Identity, Integer, String
+
+from . import Base
 
 
-class Financial_Reporting_Finance_Report_Run_Run_Parameters(Base):
+class FinancialReportingFinanceReportRunRunParameters(Base):
     __tablename__ = "financial_reporting_finance_report_run_run_parameters"
     columns = Column(
         ARRAY(String),
@@ -50,7 +52,7 @@ class Financial_Reporting_Finance_Report_Run_Run_Parameters(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Financial_Reporting_Finance_Report_Run_Run_Parameters(columns={columns!r}, connected_account={connected_account!r}, currency={currency!r}, interval_end={interval_end!r}, interval_start={interval_start!r}, payout={payout!r}, reporting_category={reporting_category!r}, timezone={timezone!r}, id={id!r})".format(
+        return "FinancialReportingFinanceReportRunRunParameters(columns={columns!r}, connected_account={connected_account!r}, currency={currency!r}, interval_end={interval_end!r}, interval_start={interval_start!r}, payout={payout!r}, reporting_category={reporting_category!r}, timezone={timezone!r}, id={id!r})".format(
             columns=self.columns,
             connected_account=self.connected_account,
             currency=self.currency,

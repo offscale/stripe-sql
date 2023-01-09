@@ -1,11 +1,17 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from stripe_openapi.treasury_financial_accounts_resource_closed_status_details import (
+    TreasuryFinancialAccountsResourceClosedStatusDetails,
+)
+
+from . import Base
 
 
-class Treasury_Financial_Accounts_Resource_Status_Details(Base):
+class TreasuryFinancialAccountsResourceStatusDetails(Base):
     __tablename__ = "treasury_financial_accounts_resource_status_details"
     closed = Column(
-        treasury_financial_accounts_resource_closed_status_details,
-        comment="[[FK(treasury_financial_accounts_resource_closed_status_details)]] Details related to the closure of this FinancialAccount",
+        TreasuryFinancialAccountsResourceClosedStatusDetails,
+        comment="[[FK(TreasuryFinancialAccountsResourceClosedStatusDetails)]] Details related to the closure of this FinancialAccount",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -17,7 +23,7 @@ class Treasury_Financial_Accounts_Resource_Status_Details(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Treasury_Financial_Accounts_Resource_Status_Details(closed={closed!r}, id={id!r})".format(
+        return "TreasuryFinancialAccountsResourceStatusDetails(closed={closed!r}, id={id!r})".format(
             closed=self.closed, id=self.id
         )
 

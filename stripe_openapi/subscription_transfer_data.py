@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Float, Integer
+from sqlalchemy import Column, Float, Identity, Integer
+
+from . import Base
 
 
-class Subscription_Transfer_Data(Base):
+class SubscriptionTransferData(Base):
     __tablename__ = "subscription_transfer_data"
     amount_percent = Column(
         Float,
@@ -9,8 +11,8 @@ class Subscription_Transfer_Data(Base):
         nullable=True,
     )
     destination = Column(
-        account,
-        comment="[[FK(account)]] The account where funds from the payment will be transferred to upon payment success",
+        Account,
+        comment="[[FK(Account)]] The account where funds from the payment will be transferred to upon payment success",
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
@@ -21,7 +23,7 @@ class Subscription_Transfer_Data(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Subscription_Transfer_Data(amount_percent={amount_percent!r}, destination={destination!r}, id={id!r})".format(
+        return "SubscriptionTransferData(amount_percent={amount_percent!r}, destination={destination!r}, id={id!r})".format(
             amount_percent=self.amount_percent, destination=self.destination, id=self.id
         )
 

@@ -1,11 +1,17 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from stripe_openapi.invoices_line_items_credited_items import (
+    InvoicesLineItemsCreditedItems,
+)
+
+from . import Base
 
 
-class Invoices_Line_Items_Proration_Details(Base):
+class InvoicesLineItemsProrationDetails(Base):
     __tablename__ = "invoices_line_items_proration_details"
     credited_items = Column(
-        invoices_line_items_credited_items,
-        comment="[[FK(invoices_line_items_credited_items)]] For a credit proration `line_item`, the original debit line_items to which the credit proration applies",
+        InvoicesLineItemsCreditedItems,
+        comment="[[FK(InvoicesLineItemsCreditedItems)]] For a credit proration `line_item`, the original debit line_items to which the credit proration applies",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -17,7 +23,7 @@ class Invoices_Line_Items_Proration_Details(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Invoices_Line_Items_Proration_Details(credited_items={credited_items!r}, id={id!r})".format(
+        return "InvoicesLineItemsProrationDetails(credited_items={credited_items!r}, id={id!r})".format(
             credited_items=self.credited_items, id=self.id
         )
 

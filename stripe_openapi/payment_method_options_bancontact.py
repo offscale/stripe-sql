@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Method_Options_Bancontact(Base):
+class PaymentMethodOptionsBancontact(Base):
     __tablename__ = "payment_method_options_bancontact"
     preferred_language = Column(
         String,
@@ -21,7 +23,7 @@ class Payment_Method_Options_Bancontact(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Options_Bancontact(preferred_language={preferred_language!r}, setup_future_usage={setup_future_usage!r}, id={id!r})".format(
+        return "PaymentMethodOptionsBancontact(preferred_language={preferred_language!r}, setup_future_usage={setup_future_usage!r}, id={id!r})".format(
             preferred_language=self.preferred_language,
             setup_future_usage=self.setup_future_usage,
             id=self.id,

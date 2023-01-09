@@ -1,7 +1,13 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import ARRAY, Boolean, Column, ForeignKey, Integer, String
+
+from stripe_openapi.api_errors import ApiErrors
+from stripe_openapi.payment_method import PaymentMethod
+from stripe_openapi.setup_intent import SetupIntent
+
+from . import Base
 
 
-class Setup_Attempt(Base):
+class SetupAttempt(Base):
     """
     A SetupAttempt describes one attempted confirmation of a SetupIntent,
 
@@ -13,8 +19,8 @@ class Setup_Attempt(Base):
 
     __tablename__ = "setup_attempt"
     application = Column(
-        application,
-        comment="[[FK(application)]] The value of [application](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-application) on the SetupIntent at the time of this confirmation",
+        Application,
+        comment="[[FK(Application)]] The value of [application](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-application) on the SetupIntent at the time of this confirmation",
         nullable=True,
     )
     attach_to_self = Column(
@@ -27,8 +33,8 @@ class Setup_Attempt(Base):
         comment="Time at which the object was created. Measured in seconds since the Unix epoch",
     )
     customer = Column(
-        string | customer,
-        comment="[[FK(deleted_customer)]] The value of [customer](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-customer) on the SetupIntent at the time of this confirmation",
+        Customer,
+        comment="[[FK(DeletedCustomer)]] The value of [customer](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-customer) on the SetupIntent at the time of this confirmation",
         nullable=True,
     )
     flow_directions = Column(
@@ -46,26 +52,25 @@ class Setup_Attempt(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     on_behalf_of = Column(
-        account,
-        comment="[[FK(account)]] The value of [on_behalf_of](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-on_behalf_of) on the SetupIntent at the time of this confirmation",
+        Account,
+        comment="[[FK(Account)]] The value of [on_behalf_of](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-on_behalf_of) on the SetupIntent at the time of this confirmation",
         nullable=True,
     )
     payment_method = Column(
-        payment_method,
-        comment="[[FK(payment_method)]] ID of the payment method used with this SetupAttempt",
+        PaymentMethod,
+        comment="[[FK(PaymentMethod)]] ID of the payment method used with this SetupAttempt",
     )
     payment_method_details = Column(
-        setup_attempt_payment_method_details,
-        ForeignKey("setup_attempt_payment_method_details"),
+        Integer, ForeignKey("setup_attempt_payment_method_details.id")
     )
     setup_error = Column(
-        api_errors,
-        comment="[[FK(api_errors)]] The error encountered during this attempt to confirm the SetupIntent, if any",
+        ApiErrors,
+        comment="[[FK(ApiErrors)]] The error encountered during this attempt to confirm the SetupIntent, if any",
         nullable=True,
     )
     setup_intent = Column(
-        setup_intent,
-        comment="[[FK(setup_intent)]] ID of the SetupIntent that this attempt belongs to",
+        SetupIntent,
+        comment="[[FK(SetupIntent)]] ID of the SetupIntent that this attempt belongs to",
     )
     status = Column(
         String,
@@ -83,7 +88,7 @@ class Setup_Attempt(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Setup_Attempt(application={application!r}, attach_to_self={attach_to_self!r}, created={created!r}, customer={customer!r}, flow_directions={flow_directions!r}, id={id!r}, livemode={livemode!r}, object={object!r}, on_behalf_of={on_behalf_of!r}, payment_method={payment_method!r}, payment_method_details={payment_method_details!r}, setup_error={setup_error!r}, setup_intent={setup_intent!r}, status={status!r}, usage={usage!r})".format(
+        return "SetupAttempt(application={application!r}, attach_to_self={attach_to_self!r}, created={created!r}, customer={customer!r}, flow_directions={flow_directions!r}, id={id!r}, livemode={livemode!r}, object={object!r}, on_behalf_of={on_behalf_of!r}, payment_method={payment_method!r}, payment_method_details={payment_method_details!r}, setup_error={setup_error!r}, setup_intent={setup_intent!r}, status={status!r}, usage={usage!r})".format(
             application=self.application,
             attach_to_self=self.attach_to_self,
             created=self.created,

@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer
+
+from . import Base
 
 
-class Payment_Pages_Checkout_Session_Total_Details(Base):
+class PaymentPagesCheckoutSessionTotalDetails(Base):
     __tablename__ = "payment_pages_checkout_session_total_details"
     amount_discount = Column(Integer, comment="This is the sum of all the discounts")
     amount_shipping = Column(
@@ -9,8 +11,10 @@ class Payment_Pages_Checkout_Session_Total_Details(Base):
     )
     amount_tax = Column(Integer, comment="This is the sum of all the tax amounts")
     breakdown = Column(
-        payment_pages_checkout_session_total_details_resource_breakdown,
-        ForeignKey("payment_pages_checkout_session_total_details_resource_breakdown"),
+        Integer,
+        ForeignKey(
+            "payment_pages_checkout_session_total_details_resource_breakdown.id"
+        ),
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -22,7 +26,7 @@ class Payment_Pages_Checkout_Session_Total_Details(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Pages_Checkout_Session_Total_Details(amount_discount={amount_discount!r}, amount_shipping={amount_shipping!r}, amount_tax={amount_tax!r}, breakdown={breakdown!r}, id={id!r})".format(
+        return "PaymentPagesCheckoutSessionTotalDetails(amount_discount={amount_discount!r}, amount_shipping={amount_shipping!r}, amount_tax={amount_tax!r}, breakdown={breakdown!r}, id={id!r})".format(
             amount_discount=self.amount_discount,
             amount_shipping=self.amount_shipping,
             amount_tax=self.amount_tax,

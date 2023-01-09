@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Treasury_Received_Debits_Resource_Linked_Flows(Base):
+class TreasuryReceivedDebitsResourceLinkedFlows(Base):
     __tablename__ = "treasury_received_debits_resource_linked_flows"
     debit_reversal = Column(
         String,
@@ -32,7 +34,7 @@ class Treasury_Received_Debits_Resource_Linked_Flows(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Treasury_Received_Debits_Resource_Linked_Flows(debit_reversal={debit_reversal!r}, inbound_transfer={inbound_transfer!r}, issuing_authorization={issuing_authorization!r}, issuing_transaction={issuing_transaction!r}, id={id!r})".format(
+        return "TreasuryReceivedDebitsResourceLinkedFlows(debit_reversal={debit_reversal!r}, inbound_transfer={inbound_transfer!r}, issuing_authorization={issuing_authorization!r}, issuing_transaction={issuing_transaction!r}, id={id!r})".format(
             debit_reversal=self.debit_reversal,
             inbound_transfer=self.inbound_transfer,
             issuing_authorization=self.issuing_authorization,

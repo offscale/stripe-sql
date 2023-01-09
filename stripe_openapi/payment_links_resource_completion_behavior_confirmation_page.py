@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Links_Resource_Completion_Behavior_Confirmation_Page(Base):
+class PaymentLinksResourceCompletionBehaviorConfirmationPage(Base):
     __tablename__ = "payment_links_resource_completion_behavior_confirmation_page"
     custom_message = Column(
         String,
@@ -17,7 +19,7 @@ class Payment_Links_Resource_Completion_Behavior_Confirmation_Page(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Links_Resource_Completion_Behavior_Confirmation_Page(custom_message={custom_message!r}, id={id!r})".format(
+        return "PaymentLinksResourceCompletionBehaviorConfirmationPage(custom_message={custom_message!r}, id={id!r})".format(
             custom_message=self.custom_message, id=self.id
         )
 

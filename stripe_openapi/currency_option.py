@@ -1,11 +1,15 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, list
+
+from stripe_openapi.custom_unit_amount import CustomUnitAmount
+
+from . import Base
 
 
-class Currency_Option(Base):
+class CurrencyOption(Base):
     __tablename__ = "currency_option"
     custom_unit_amount = Column(
-        custom_unit_amount,
-        comment="[[FK(custom_unit_amount)]] When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links",
+        CustomUnitAmount,
+        comment="[[FK(CustomUnitAmount)]] When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links",
         nullable=True,
     )
     tax_behavior = Column(
@@ -37,7 +41,7 @@ class Currency_Option(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Currency_Option(custom_unit_amount={custom_unit_amount!r}, tax_behavior={tax_behavior!r}, tiers={tiers!r}, unit_amount={unit_amount!r}, unit_amount_decimal={unit_amount_decimal!r}, id={id!r})".format(
+        return "CurrencyOption(custom_unit_amount={custom_unit_amount!r}, tax_behavior={tax_behavior!r}, tiers={tiers!r}, unit_amount={unit_amount!r}, unit_amount_decimal={unit_amount_decimal!r}, id={id!r})".format(
             custom_unit_amount=self.custom_unit_amount,
             tax_behavior=self.tax_behavior,
             tiers=self.tiers,

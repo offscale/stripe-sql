@@ -1,7 +1,9 @@
 from sqlalchemy import Column, String
 
+from . import Base
 
-class Source_Type_Acss_Debit(Base):
+
+class SourceTypeAcssDebit(Base):
     __tablename__ = "source_type_acss_debit"
     bank_address_city = Column(String, nullable=True)
     bank_address_line_1 = Column(String, nullable=True)
@@ -21,7 +23,7 @@ class Source_Type_Acss_Debit(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Source_Type_Acss_Debit(bank_address_city={bank_address_city!r}, bank_address_line_1={bank_address_line_1!r}, bank_address_line_2={bank_address_line_2!r}, bank_address_postal_code={bank_address_postal_code!r}, bank_name={bank_name!r}, category={category!r}, country={country!r}, fingerprint={fingerprint!r}, last4={last4!r}, routing_number={routing_number!r})".format(
+        return "SourceTypeAcssDebit(bank_address_city={bank_address_city!r}, bank_address_line_1={bank_address_line_1!r}, bank_address_line_2={bank_address_line_2!r}, bank_address_postal_code={bank_address_postal_code!r}, bank_name={bank_name!r}, category={category!r}, country={country!r}, fingerprint={fingerprint!r}, last4={last4!r}, routing_number={routing_number!r})".format(
             bank_address_city=self.bank_address_city,
             bank_address_line_1=self.bank_address_line_1,
             bank_address_line_2=self.bank_address_line_2,

@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer
+from sqlalchemy import Boolean, Column, Identity, Integer
+
+from . import Base
 
 
-class Dispute_Evidence_Details(Base):
+class DisputeEvidenceDetails(Base):
     __tablename__ = "dispute_evidence_details"
     due_by = Column(
         Integer,
@@ -28,7 +30,7 @@ class Dispute_Evidence_Details(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Dispute_Evidence_Details(due_by={due_by!r}, has_evidence={has_evidence!r}, past_due={past_due!r}, submission_count={submission_count!r}, id={id!r})".format(
+        return "DisputeEvidenceDetails(due_by={due_by!r}, has_evidence={has_evidence!r}, past_due={past_due!r}, submission_count={submission_count!r}, id={id!r})".format(
             due_by=self.due_by,
             has_evidence=self.has_evidence,
             past_due=self.past_due,

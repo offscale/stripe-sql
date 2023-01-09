@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Method_Options_Klarna(Base):
+class PaymentMethodOptionsKlarna(Base):
     __tablename__ = "payment_method_options_klarna"
     capture_method = Column(
         String,
@@ -27,7 +29,7 @@ class Payment_Method_Options_Klarna(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Options_Klarna(capture_method={capture_method!r}, preferred_locale={preferred_locale!r}, setup_future_usage={setup_future_usage!r}, id={id!r})".format(
+        return "PaymentMethodOptionsKlarna(capture_method={capture_method!r}, preferred_locale={preferred_locale!r}, setup_future_usage={setup_future_usage!r}, id={id!r})".format(
             capture_method=self.capture_method,
             preferred_locale=self.preferred_locale,
             setup_future_usage=self.setup_future_usage,

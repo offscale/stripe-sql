@@ -1,11 +1,13 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Issuing_Dispute_Not_Received_Evidence(Base):
+class IssuingDisputeNotReceivedEvidence(Base):
     __tablename__ = "issuing_dispute_not_received_evidence"
     additional_documentation = Column(
-        file,
-        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Additional documentation supporting the dispute",
+        File,
+        comment="[[FK(File)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Additional documentation supporting the dispute",
         nullable=True,
     )
     expected_at = Column(
@@ -37,7 +39,7 @@ class Issuing_Dispute_Not_Received_Evidence(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Issuing_Dispute_Not_Received_Evidence(additional_documentation={additional_documentation!r}, expected_at={expected_at!r}, explanation={explanation!r}, product_description={product_description!r}, product_type={product_type!r}, id={id!r})".format(
+        return "IssuingDisputeNotReceivedEvidence(additional_documentation={additional_documentation!r}, expected_at={expected_at!r}, explanation={explanation!r}, product_description={product_description!r}, product_type={product_type!r}, id={id!r})".format(
             additional_documentation=self.additional_documentation,
             expected_at=self.expected_at,
             explanation=self.explanation,

@@ -1,17 +1,17 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Treasury_Received_Credits_Resource_Source_Flows_Details(Base):
+class TreasuryReceivedCreditsResourceSourceFlowsDetails(Base):
     __tablename__ = "treasury_received_credits_resource_source_flows_details"
     credit_reversal = Column(
-        treasury.credit_reversal, ForeignKey("treasury.credit_reversal"), nullable=True
+        Treasury.CreditReversal, ForeignKey("Treasury.CreditReversal"), nullable=True
     )
     outbound_payment = Column(
-        treasury.outbound_payment,
-        ForeignKey("treasury.outbound_payment"),
-        nullable=True,
+        Treasury.OutboundPayment, ForeignKey("Treasury.OutboundPayment"), nullable=True
     )
-    payout = Column(payout, ForeignKey("payout"), nullable=True)
+    payout = Column(Payout, ForeignKey("Payout"), nullable=True)
     type = Column(
         String, comment="The type of the source flow that originated the ReceivedCredit"
     )
@@ -24,7 +24,7 @@ class Treasury_Received_Credits_Resource_Source_Flows_Details(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Treasury_Received_Credits_Resource_Source_Flows_Details(credit_reversal={credit_reversal!r}, outbound_payment={outbound_payment!r}, payout={payout!r}, type={type!r}, id={id!r})".format(
+        return "TreasuryReceivedCreditsResourceSourceFlowsDetails(credit_reversal={credit_reversal!r}, outbound_payment={outbound_payment!r}, payout={payout!r}, type={type!r}, id={id!r})".format(
             credit_reversal=self.credit_reversal,
             outbound_payment=self.outbound_payment,
             payout=self.payout,

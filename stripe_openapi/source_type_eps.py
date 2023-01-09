@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Source_Type_Eps(Base):
+class SourceTypeEps(Base):
     __tablename__ = "source_type_eps"
     reference = Column(String, nullable=True)
     statement_descriptor = Column(String, nullable=True)
@@ -14,7 +16,7 @@ class Source_Type_Eps(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Source_Type_Eps(reference={reference!r}, statement_descriptor={statement_descriptor!r}, id={id!r})".format(
+        return "SourceTypeEps(reference={reference!r}, statement_descriptor={statement_descriptor!r}, id={id!r})".format(
             reference=self.reference,
             statement_descriptor=self.statement_descriptor,
             id=self.id,

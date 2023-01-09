@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import ARRAY, Column, Integer, String
+
+from . import Base
 
 
-class Invoice_Item_Threshold_Reason(Base):
+class InvoiceItemThresholdReason(Base):
     __tablename__ = "invoice_item_threshold_reason"
     line_item_ids = Column(
         ARRAY(String),
@@ -20,7 +22,7 @@ class Invoice_Item_Threshold_Reason(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Invoice_Item_Threshold_Reason(line_item_ids={line_item_ids!r}, usage_gte={usage_gte!r})".format(
+        return "InvoiceItemThresholdReason(line_item_ids={line_item_ids!r}, usage_gte={usage_gte!r})".format(
             line_item_ids=self.line_item_ids, usage_gte=self.usage_gte
         )
 

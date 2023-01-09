@@ -1,7 +1,11 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import JSON, Boolean, Column, Integer, String
+
+from stripe_openapi.credit_note import CreditNote
+
+from . import Base
 
 
-class Customer_Balance_Transaction(Base):
+class CustomerBalanceTransaction(Base):
     """
     Each customer has a [`balance`](https://stripe.com/docs/api/customers/object#customer_object-balance) value,
 
@@ -23,8 +27,8 @@ class Customer_Balance_Transaction(Base):
         comment="Time at which the object was created. Measured in seconds since the Unix epoch",
     )
     credit_note = Column(
-        credit_note,
-        comment="[[FK(credit_note)]] The ID of the credit note (if any) related to the transaction",
+        CreditNote,
+        comment="[[FK(CreditNote)]] The ID of the credit note (if any) related to the transaction",
         nullable=True,
     )
     currency = Column(
@@ -32,8 +36,8 @@ class Customer_Balance_Transaction(Base):
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",
     )
     customer = Column(
-        customer,
-        comment="[[FK(customer)]] The ID of the customer the transaction belongs to",
+        Customer,
+        comment="[[FK(Customer)]] The ID of the customer the transaction belongs to",
     )
     description = Column(
         String,
@@ -46,8 +50,8 @@ class Customer_Balance_Transaction(Base):
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     invoice = Column(
-        invoice,
-        comment="[[FK(invoice)]] The ID of the invoice (if any) related to the transaction",
+        Invoice,
+        comment="[[FK(Invoice)]] The ID of the invoice (if any) related to the transaction",
         nullable=True,
     )
     livemode = Column(
@@ -75,7 +79,7 @@ class Customer_Balance_Transaction(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Customer_Balance_Transaction(amount={amount!r}, created={created!r}, credit_note={credit_note!r}, currency={currency!r}, customer={customer!r}, description={description!r}, ending_balance={ending_balance!r}, id={id!r}, invoice={invoice!r}, livemode={livemode!r}, metadata={metadata!r}, object={object!r}, type={type!r})".format(
+        return "CustomerBalanceTransaction(amount={amount!r}, created={created!r}, credit_note={credit_note!r}, currency={currency!r}, customer={customer!r}, description={description!r}, ending_balance={ending_balance!r}, id={id!r}, invoice={invoice!r}, livemode={livemode!r}, metadata={metadata!r}, object={object!r}, type={type!r})".format(
             amount=self.amount,
             created=self.created,
             credit_note=self.credit_note,

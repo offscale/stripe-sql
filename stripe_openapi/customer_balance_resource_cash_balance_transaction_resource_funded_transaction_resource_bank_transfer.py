@@ -1,14 +1,16 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Customer_Balance_Resource_Cash_Balance_Transaction_Resource_Funded_Transaction_Resource_Bank_Transfer(
+class CustomerBalanceResourceCashBalanceTransactionResourceFundedTransactionResourceBankTransfer(
     Base
 ):
     __tablename__ = "customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer"
     eu_bank_transfer = Column(
-        customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_eu_bank_transfer,
+        String,
         ForeignKey(
-            "customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_eu_bank_transfer"
+            "customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_eu_bank_transfer.sender_name"
         ),
         nullable=True,
     )
@@ -30,7 +32,7 @@ class Customer_Balance_Resource_Cash_Balance_Transaction_Resource_Funded_Transac
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Customer_Balance_Resource_Cash_Balance_Transaction_Resource_Funded_Transaction_Resource_Bank_Transfer(eu_bank_transfer={eu_bank_transfer!r}, reference={reference!r}, type={type!r}, id={id!r})".format(
+        return "CustomerBalanceResourceCashBalanceTransactionResourceFundedTransactionResourceBankTransfer(eu_bank_transfer={eu_bank_transfer!r}, reference={reference!r}, type={type!r}, id={id!r})".format(
             eu_bank_transfer=self.eu_bank_transfer,
             reference=self.reference,
             type=self.type,

@@ -1,11 +1,13 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Issuing_Dispute_Service_Not_As_Described_Evidence(Base):
+class IssuingDisputeServiceNotAsDescribedEvidence(Base):
     __tablename__ = "issuing_dispute_service_not_as_described_evidence"
     additional_documentation = Column(
-        file,
-        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Additional documentation supporting the dispute",
+        File,
+        comment="[[FK(File)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Additional documentation supporting the dispute",
         nullable=True,
     )
     canceled_at = Column(Integer, comment="Date when order was canceled", nullable=True)
@@ -29,7 +31,7 @@ class Issuing_Dispute_Service_Not_As_Described_Evidence(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Issuing_Dispute_Service_Not_As_Described_Evidence(additional_documentation={additional_documentation!r}, canceled_at={canceled_at!r}, cancellation_reason={cancellation_reason!r}, explanation={explanation!r}, received_at={received_at!r}, id={id!r})".format(
+        return "IssuingDisputeServiceNotAsDescribedEvidence(additional_documentation={additional_documentation!r}, canceled_at={canceled_at!r}, cancellation_reason={cancellation_reason!r}, explanation={explanation!r}, received_at={received_at!r}, id={id!r})".format(
             additional_documentation=self.additional_documentation,
             canceled_at=self.canceled_at,
             cancellation_reason=self.cancellation_reason,

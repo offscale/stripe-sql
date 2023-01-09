@@ -1,20 +1,22 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer
+
+from . import Base
 
 
-class Treasury_Financial_Accounts_Resource_Outbound_Transfers(Base):
+class TreasuryFinancialAccountsResourceOutboundTransfers(Base):
     """
     OutboundTransfers contains outbound transfers features for a FinancialAccount.
     """
 
     __tablename__ = "treasury_financial_accounts_resource_outbound_transfers"
     ach = Column(
-        treasury_financial_accounts_resource_ach_toggle_settings,
-        ForeignKey("treasury_financial_accounts_resource_ach_toggle_settings"),
+        Integer,
+        ForeignKey("treasury_financial_accounts_resource_ach_toggle_settings.id"),
         nullable=True,
     )
     us_domestic_wire = Column(
-        treasury_financial_accounts_resource_toggle_settings,
-        ForeignKey("treasury_financial_accounts_resource_toggle_settings"),
+        Integer,
+        ForeignKey("treasury_financial_accounts_resource_toggle_settings.id"),
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -26,7 +28,7 @@ class Treasury_Financial_Accounts_Resource_Outbound_Transfers(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Treasury_Financial_Accounts_Resource_Outbound_Transfers(ach={ach!r}, us_domestic_wire={us_domestic_wire!r}, id={id!r})".format(
+        return "TreasuryFinancialAccountsResourceOutboundTransfers(ach={ach!r}, us_domestic_wire={us_domestic_wire!r}, id={id!r})".format(
             ach=self.ach, us_domestic_wire=self.us_domestic_wire, id=self.id
         )
 

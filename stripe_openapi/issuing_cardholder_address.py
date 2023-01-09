@@ -1,9 +1,11 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer
+
+from . import Base
 
 
-class Issuing_Cardholder_Address(Base):
+class IssuingCardholderAddress(Base):
     __tablename__ = "issuing_cardholder_address"
-    address = Column(address, ForeignKey("address"))
+    address = Column(Address, ForeignKey("Address"))
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):
@@ -13,7 +15,7 @@ class Issuing_Cardholder_Address(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Issuing_Cardholder_Address(address={address!r}, id={id!r})".format(
+        return "IssuingCardholderAddress(address={address!r}, id={id!r})".format(
             address=self.address, id=self.id
         )
 

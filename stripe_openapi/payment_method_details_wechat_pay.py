@@ -1,7 +1,9 @@
 from sqlalchemy import Column, String
 
+from . import Base
 
-class Payment_Method_Details_Wechat_Pay(Base):
+
+class PaymentMethodDetailsWechatPay(Base):
     __tablename__ = "payment_method_details_wechat_pay"
     fingerprint = Column(
         String,
@@ -22,7 +24,7 @@ class Payment_Method_Details_Wechat_Pay(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Details_Wechat_Pay(fingerprint={fingerprint!r}, transaction_id={transaction_id!r})".format(
+        return "PaymentMethodDetailsWechatPay(fingerprint={fingerprint!r}, transaction_id={transaction_id!r})".format(
             fingerprint=self.fingerprint, transaction_id=self.transaction_id
         )
 

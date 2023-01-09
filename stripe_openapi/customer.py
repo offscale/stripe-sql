@@ -1,4 +1,10 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import ARRAY, JSON, Boolean, Column, ForeignKey, Integer, String
+
+from stripe_openapi.cash_balance import CashBalance
+from stripe_openapi.payment_source import PaymentSource
+from stripe_openapi.test_helpers import TestHelpers
+
+from . import Base
 
 
 class Customer(Base):
@@ -11,7 +17,7 @@ class Customer(Base):
 
     __tablename__ = "customer"
     address = Column(
-        address, comment="[[FK(address)]] The customer's address", nullable=True
+        Address, comment="[[FK(Address)]] The customer's address", nullable=True
     )
     balance = Column(
         Integer,
@@ -19,8 +25,8 @@ class Customer(Base):
         nullable=True,
     )
     cash_balance = Column(
-        cash_balance,
-        comment='[[FK(cash_balance)]] The current funds being held by Stripe on behalf of the customer. These funds can be applied towards payment intents with source "cash_balance". The settings[reconciliation_mode] field describes whether these funds are applied to such payment intents manually or automatically',
+        CashBalance,
+        comment='[[FK(CashBalance)]] The current funds being held by Stripe on behalf of the customer. These funds can be applied towards payment intents with source "cash_balance". The settings[reconciliation_mode] field describes whether these funds are applied to such payment intents manually or automatically',
         nullable=True,
     )
     created = Column(
@@ -33,8 +39,8 @@ class Customer(Base):
         nullable=True,
     )
     default_source = Column(
-        payment_source,
-        comment="[[FK(payment_source)]] ID of the default payment source for the customer.\n\nIf you are using payment methods created via the PaymentMethods API, see the [invoice_settings.default_payment_method](https://stripe.com/docs/api/customers/object#customer_object-invoice_settings-default_payment_method) field instead",
+        PaymentSource,
+        comment="[[FK(PaymentSource)]] ID of the default payment source for the customer.\n\nIf you are using payment methods created via the PaymentMethods API, see the [invoice_settings.default_payment_method](https://stripe.com/docs/api/customers/object#customer_object-invoice_settings-default_payment_method) field instead",
         nullable=True,
     )
     delinquent = Column(
@@ -48,8 +54,8 @@ class Customer(Base):
         nullable=True,
     )
     discount = Column(
-        discount,
-        comment="[[FK(discount)]] Describes the current discount active on the customer, if there is one",
+        Discount,
+        comment="[[FK(Discount)]] Describes the current discount active on the customer, if there is one",
         nullable=True,
     )
     email = Column(String, comment="The customer's email address", nullable=True)
@@ -65,9 +71,7 @@ class Customer(Base):
         nullable=True,
     )
     invoice_settings = Column(
-        invoice_setting_customer_setting,
-        ForeignKey("invoice_setting_customer_setting"),
-        nullable=True,
+        Integer, ForeignKey("invoice_setting_customer_setting.id"), nullable=True
     )
     livemode = Column(
         Boolean,
@@ -97,8 +101,8 @@ class Customer(Base):
         nullable=True,
     )
     shipping = Column(
-        shipping,
-        comment="[[FK(shipping)]] Mailing and shipping address for the customer. Appears on invoices emailed to this customer",
+        Shipping,
+        comment="[[FK(Shipping)]] Mailing and shipping address for the customer. Appears on invoices emailed to this customer",
         nullable=True,
     )
     sources = Column(
@@ -107,7 +111,7 @@ class Customer(Base):
     subscriptions = Column(
         JSON, comment="The customer's current subscriptions, if any", nullable=True
     )
-    tax = Column(customer_tax, ForeignKey("customer_tax"), nullable=True)
+    tax = Column(Integer, ForeignKey("customer_tax.id"), nullable=True)
     tax_exempt = Column(
         String,
         comment='Describes the customer\'s tax exemption status. One of `none`, `exempt`, or `reverse`. When set to `reverse`, invoice and receipt PDFs include the text **"Reverse charge"**',
@@ -115,8 +119,8 @@ class Customer(Base):
     )
     tax_ids = Column(JSON, comment="The customer's tax IDs", nullable=True)
     test_clock = Column(
-        test_helpers.test_clock,
-        comment="[[FK(test_helpers.test_clock)]] ID of the test clock this customer belongs to",
+        TestHelpers.TestClock,
+        comment="[[FK(TestHelpers.TestClock)]] ID of the test clock this customer belongs to",
         nullable=True,
     )
 

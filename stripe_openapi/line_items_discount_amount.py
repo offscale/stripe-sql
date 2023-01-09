@@ -1,10 +1,12 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer
+
+from . import Base
 
 
-class Line_Items_Discount_Amount(Base):
+class LineItemsDiscountAmount(Base):
     __tablename__ = "line_items_discount_amount"
     amount = Column(Integer, comment="The amount discounted")
-    discount = Column(discount, ForeignKey("discount"))
+    discount = Column(Discount, ForeignKey("Discount"))
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):
@@ -14,7 +16,7 @@ class Line_Items_Discount_Amount(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Line_Items_Discount_Amount(amount={amount!r}, discount={discount!r}, id={id!r})".format(
+        return "LineItemsDiscountAmount(amount={amount!r}, discount={discount!r}, id={id!r})".format(
             amount=self.amount, discount=self.discount, id=self.id
         )
 

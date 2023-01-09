@@ -1,26 +1,41 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from stripe_openapi.payment_intent_next_action_konbini_familymart import (
+    PaymentIntentNextActionKonbiniFamilymart,
+)
+from stripe_openapi.payment_intent_next_action_konbini_lawson import (
+    PaymentIntentNextActionKonbiniLawson,
+)
+from stripe_openapi.payment_intent_next_action_konbini_ministop import (
+    PaymentIntentNextActionKonbiniMinistop,
+)
+from stripe_openapi.payment_intent_next_action_konbini_seicomart import (
+    PaymentIntentNextActionKonbiniSeicomart,
+)
+
+from . import Base
 
 
-class Payment_Intent_Next_Action_Konbini_Stores(Base):
+class PaymentIntentNextActionKonbiniStores(Base):
     __tablename__ = "payment_intent_next_action_konbini_stores"
     familymart = Column(
-        payment_intent_next_action_konbini_familymart,
-        comment="[[FK(payment_intent_next_action_konbini_familymart)]] FamilyMart instruction details",
+        PaymentIntentNextActionKonbiniFamilymart,
+        comment="[[FK(PaymentIntentNextActionKonbiniFamilymart)]] FamilyMart instruction details",
         nullable=True,
     )
     lawson = Column(
-        payment_intent_next_action_konbini_lawson,
-        comment="[[FK(payment_intent_next_action_konbini_lawson)]] Lawson instruction details",
+        PaymentIntentNextActionKonbiniLawson,
+        comment="[[FK(PaymentIntentNextActionKonbiniLawson)]] Lawson instruction details",
         nullable=True,
     )
     ministop = Column(
-        payment_intent_next_action_konbini_ministop,
-        comment="[[FK(payment_intent_next_action_konbini_ministop)]] Ministop instruction details",
+        PaymentIntentNextActionKonbiniMinistop,
+        comment="[[FK(PaymentIntentNextActionKonbiniMinistop)]] Ministop instruction details",
         nullable=True,
     )
     seicomart = Column(
-        payment_intent_next_action_konbini_seicomart,
-        comment="[[FK(payment_intent_next_action_konbini_seicomart)]] Seicomart instruction details",
+        PaymentIntentNextActionKonbiniSeicomart,
+        comment="[[FK(PaymentIntentNextActionKonbiniSeicomart)]] Seicomart instruction details",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -32,7 +47,7 @@ class Payment_Intent_Next_Action_Konbini_Stores(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Intent_Next_Action_Konbini_Stores(familymart={familymart!r}, lawson={lawson!r}, ministop={ministop!r}, seicomart={seicomart!r}, id={id!r})".format(
+        return "PaymentIntentNextActionKonbiniStores(familymart={familymart!r}, lawson={lawson!r}, ministop={ministop!r}, seicomart={seicomart!r}, id={id!r})".format(
             familymart=self.familymart,
             lawson=self.lawson,
             ministop=self.ministop,

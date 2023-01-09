@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Mandate_Au_Becs_Debit(Base):
+class MandateAuBecsDebit(Base):
     __tablename__ = "mandate_au_becs_debit"
     url = Column(
         String,
@@ -16,7 +18,7 @@ class Mandate_Au_Becs_Debit(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Mandate_Au_Becs_Debit(url={url!r}, id={id!r})".format(
+        return "MandateAuBecsDebit(url={url!r}, id={id!r})".format(
             url=self.url, id=self.id
         )
 

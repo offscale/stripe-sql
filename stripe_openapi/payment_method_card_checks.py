@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Method_Card_Checks(Base):
+class PaymentMethodCardChecks(Base):
     __tablename__ = "payment_method_card_checks"
     address_line1_check = Column(
         String,
@@ -27,7 +29,7 @@ class Payment_Method_Card_Checks(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Card_Checks(address_line1_check={address_line1_check!r}, address_postal_code_check={address_postal_code_check!r}, cvc_check={cvc_check!r}, id={id!r})".format(
+        return "PaymentMethodCardChecks(address_line1_check={address_line1_check!r}, address_postal_code_check={address_postal_code_check!r}, cvc_check={cvc_check!r}, id={id!r})".format(
             address_line1_check=self.address_line1_check,
             address_postal_code_check=self.address_postal_code_check,
             cvc_check=self.cvc_check,

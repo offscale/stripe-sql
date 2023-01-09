@@ -1,16 +1,16 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer
+
+from . import Base
 
 
-class Customer_Balance_Resource_Cash_Balance_Transaction_Resource_Funded_Transaction(
-    Base
-):
+class CustomerBalanceResourceCashBalanceTransactionResourceFundedTransaction(Base):
     __tablename__ = (
         "customer_balance_resource_cash_balance_transaction_resource_funded_transaction"
     )
     bank_transfer = Column(
-        customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer,
+        Integer,
         ForeignKey(
-            "customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer"
+            "customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer.id"
         ),
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -22,7 +22,7 @@ class Customer_Balance_Resource_Cash_Balance_Transaction_Resource_Funded_Transac
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Customer_Balance_Resource_Cash_Balance_Transaction_Resource_Funded_Transaction(bank_transfer={bank_transfer!r}, id={id!r})".format(
+        return "CustomerBalanceResourceCashBalanceTransactionResourceFundedTransaction(bank_transfer={bank_transfer!r}, id={id!r})".format(
             bank_transfer=self.bank_transfer, id=self.id
         )
 

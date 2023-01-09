@@ -1,4 +1,8 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Integer, String
+
+from stripe_openapi.promotion_code import PromotionCode
+
+from . import Base
 
 
 class Discount(Base):
@@ -17,10 +21,10 @@ class Discount(Base):
         comment="The Checkout session that this coupon is applied to, if it is applied to a particular session in payment mode. Will not be present for subscription mode",
         nullable=True,
     )
-    coupon = Column(coupon, ForeignKey("coupon"))
+    coupon = Column(Coupon, ForeignKey("Coupon"))
     customer = Column(
-        string | customer,
-        comment="[[FK(deleted_customer)]] The ID of the customer associated with this discount",
+        Customer,
+        comment="[[FK(DeletedCustomer)]] The ID of the customer associated with this discount",
         nullable=True,
     )
     end = Column(
@@ -48,8 +52,8 @@ class Discount(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     promotion_code = Column(
-        promotion_code,
-        comment="[[FK(promotion_code)]] The promotion code applied to create this discount",
+        PromotionCode,
+        comment="[[FK(PromotionCode)]] The promotion code applied to create this discount",
         nullable=True,
     )
     start = Column(Integer, comment="Date that the coupon was applied")

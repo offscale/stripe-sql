@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, list
+
+from . import Base
 
 
-class Funding_Instructions_Bank_Transfer(Base):
+class FundingInstructionsBankTransfer(Base):
     __tablename__ = "funding_instructions_bank_transfer"
     country = Column(String, comment="The country of the bank account to fund")
     financial_addresses = Column(
@@ -18,7 +20,7 @@ class Funding_Instructions_Bank_Transfer(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Funding_Instructions_Bank_Transfer(country={country!r}, financial_addresses={financial_addresses!r}, type={type!r}, id={id!r})".format(
+        return "FundingInstructionsBankTransfer(country={country!r}, financial_addresses={financial_addresses!r}, type={type!r}, id={id!r})".format(
             country=self.country,
             financial_addresses=self.financial_addresses,
             type=self.type,

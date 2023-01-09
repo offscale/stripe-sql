@@ -1,9 +1,11 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Billing_Details(Base):
+class BillingDetails(Base):
     __tablename__ = "billing_details"
-    address = Column(address, comment="[[FK(address)]] Billing address", nullable=True)
+    address = Column(Address, comment="[[FK(Address)]] Billing address", nullable=True)
     email = Column(String, comment="Email address", nullable=True)
     name = Column(String, comment="Full name", nullable=True)
     phone = Column(
@@ -18,7 +20,7 @@ class Billing_Details(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Billing_Details(address={address!r}, email={email!r}, name={name!r}, phone={phone!r}, id={id!r})".format(
+        return "BillingDetails(address={address!r}, email={email!r}, name={name!r}, phone={phone!r}, id={id!r})".format(
             address=self.address,
             email=self.email,
             name=self.name,

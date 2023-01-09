@@ -1,7 +1,13 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from stripe_openapi.treasury_received_credits_resource_source_flows_details import (
+    TreasuryReceivedCreditsResourceSourceFlowsDetails,
+)
+
+from . import Base
 
 
-class Treasury_Received_Credits_Resource_Linked_Flows(Base):
+class TreasuryReceivedCreditsResourceLinkedFlows(Base):
     __tablename__ = "treasury_received_credits_resource_linked_flows"
     credit_reversal = Column(
         String,
@@ -24,8 +30,8 @@ class Treasury_Received_Credits_Resource_Linked_Flows(Base):
         nullable=True,
     )
     source_flow_details = Column(
-        treasury_received_credits_resource_source_flows_details,
-        comment="[[FK(treasury_received_credits_resource_source_flows_details)]] The expandable object of the source flow",
+        TreasuryReceivedCreditsResourceSourceFlowsDetails,
+        comment="[[FK(TreasuryReceivedCreditsResourceSourceFlowsDetails)]] The expandable object of the source flow",
         nullable=True,
     )
     source_flow_type = Column(
@@ -42,7 +48,7 @@ class Treasury_Received_Credits_Resource_Linked_Flows(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Treasury_Received_Credits_Resource_Linked_Flows(credit_reversal={credit_reversal!r}, issuing_authorization={issuing_authorization!r}, issuing_transaction={issuing_transaction!r}, source_flow={source_flow!r}, source_flow_details={source_flow_details!r}, source_flow_type={source_flow_type!r}, id={id!r})".format(
+        return "TreasuryReceivedCreditsResourceLinkedFlows(credit_reversal={credit_reversal!r}, issuing_authorization={issuing_authorization!r}, issuing_transaction={issuing_transaction!r}, source_flow={source_flow!r}, source_flow_details={source_flow_details!r}, source_flow_type={source_flow_type!r}, id={id!r})".format(
             credit_reversal=self.credit_reversal,
             issuing_authorization=self.issuing_authorization,
             issuing_transaction=self.issuing_transaction,

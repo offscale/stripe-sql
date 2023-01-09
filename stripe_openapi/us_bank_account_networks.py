@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import ARRAY, Column, Identity, Integer, String
+
+from . import Base
 
 
-class Us_Bank_Account_Networks(Base):
+class UsBankAccountNetworks(Base):
     __tablename__ = "us_bank_account_networks"
     preferred = Column(String, comment="The preferred network", nullable=True)
     supported = Column(ARRAY(String), comment="All supported networks")
@@ -14,7 +16,7 @@ class Us_Bank_Account_Networks(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Us_Bank_Account_Networks(preferred={preferred!r}, supported={supported!r}, id={id!r})".format(
+        return "UsBankAccountNetworks(preferred={preferred!r}, supported={supported!r}, id={id!r})".format(
             preferred=self.preferred, supported=self.supported, id=self.id
         )
 

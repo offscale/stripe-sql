@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Pages_Checkout_Session_Consent_Collection(Base):
+class PaymentPagesCheckoutSessionConsentCollection(Base):
     __tablename__ = "payment_pages_checkout_session_consent_collection"
     promotions = Column(
         String,
@@ -22,7 +24,7 @@ class Payment_Pages_Checkout_Session_Consent_Collection(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Pages_Checkout_Session_Consent_Collection(promotions={promotions!r}, terms_of_service={terms_of_service!r}, id={id!r})".format(
+        return "PaymentPagesCheckoutSessionConsentCollection(promotions={promotions!r}, terms_of_service={terms_of_service!r}, id={id!r})".format(
             promotions=self.promotions,
             terms_of_service=self.terms_of_service,
             id=self.id,

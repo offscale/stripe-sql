@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Float, Integer, String
+from sqlalchemy import Boolean, Column, Float, Identity, Integer, String
+
+from . import Base
 
 
-class Person_Relationship(Base):
+class PersonRelationship(Base):
     __tablename__ = "person_relationship"
     director = Column(
         Boolean,
@@ -42,7 +44,7 @@ class Person_Relationship(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Person_Relationship(director={director!r}, executive={executive!r}, owner={owner!r}, percent_ownership={percent_ownership!r}, representative={representative!r}, title={title!r}, id={id!r})".format(
+        return "PersonRelationship(director={director!r}, executive={executive!r}, owner={owner!r}, percent_ownership={percent_ownership!r}, representative={representative!r}, title={title!r}, id={id!r})".format(
             director=self.director,
             executive=self.executive,
             owner=self.owner,

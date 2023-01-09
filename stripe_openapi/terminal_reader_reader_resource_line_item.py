@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Terminal_Reader_Reader_Resource_Line_Item(Base):
+class TerminalReaderReaderResourceLineItem(Base):
     """
     Represents a line item to be displayed on the reader
     """
@@ -22,7 +24,7 @@ class Terminal_Reader_Reader_Resource_Line_Item(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Terminal_Reader_Reader_Resource_Line_Item(amount={amount!r}, description={description!r}, quantity={quantity!r}, id={id!r})".format(
+        return "TerminalReaderReaderResourceLineItem(amount={amount!r}, description={description!r}, quantity={quantity!r}, id={id!r})".format(
             amount=self.amount,
             description=self.description,
             quantity=self.quantity,

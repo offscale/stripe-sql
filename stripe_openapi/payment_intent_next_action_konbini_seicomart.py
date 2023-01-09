@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Intent_Next_Action_Konbini_Seicomart(Base):
+class PaymentIntentNextActionKonbiniSeicomart(Base):
     __tablename__ = "payment_intent_next_action_konbini_seicomart"
     confirmation_number = Column(
         String, comment="The confirmation number", nullable=True
@@ -16,7 +18,7 @@ class Payment_Intent_Next_Action_Konbini_Seicomart(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Intent_Next_Action_Konbini_Seicomart(confirmation_number={confirmation_number!r}, payment_code={payment_code!r}, id={id!r})".format(
+        return "PaymentIntentNextActionKonbiniSeicomart(confirmation_number={confirmation_number!r}, payment_code={payment_code!r}, id={id!r})".format(
             confirmation_number=self.confirmation_number,
             payment_code=self.payment_code,
             id=self.id,

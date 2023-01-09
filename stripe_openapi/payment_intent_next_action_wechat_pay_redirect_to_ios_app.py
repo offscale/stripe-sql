@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Intent_Next_Action_Wechat_Pay_Redirect_To_Ios_App(Base):
+class PaymentIntentNextActionWechatPayRedirectToIosApp(Base):
     __tablename__ = "payment_intent_next_action_wechat_pay_redirect_to_ios_app"
     native_url = Column(
         String, comment="An universal link that redirect to WeChat Pay app"
@@ -15,7 +17,7 @@ class Payment_Intent_Next_Action_Wechat_Pay_Redirect_To_Ios_App(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Intent_Next_Action_Wechat_Pay_Redirect_To_Ios_App(native_url={native_url!r}, id={id!r})".format(
+        return "PaymentIntentNextActionWechatPayRedirectToIosApp(native_url={native_url!r}, id={id!r})".format(
             native_url=self.native_url, id=self.id
         )
 

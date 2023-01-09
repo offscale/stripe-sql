@@ -1,4 +1,12 @@
-from sqlalchemy import Boolean, Column, Float, Integer, String
+from sqlalchemy import JSON, Boolean, Column, Float, ForeignKey, Integer, String, list
+
+from stripe_openapi.invoice_setting_quote_setting import InvoiceSettingQuoteSetting
+from stripe_openapi.quotes_resource_from_quote import QuotesResourceFromQuote
+from stripe_openapi.quotes_resource_transfer_data import QuotesResourceTransferData
+from stripe_openapi.subscription_schedule import SubscriptionSchedule
+from stripe_openapi.test_helpers import TestHelpers
+
+from . import Base
 
 
 class Quote(Base):
@@ -17,8 +25,8 @@ class Quote(Base):
         Integer, comment="Total after discounts and taxes are applied"
     )
     application = Column(
-        string | application,
-        comment="[[FK(deleted_application)]] ID of the Connect Application that created the quote",
+        Application,
+        comment="[[FK(DeletedApplication)]] ID of the Connect Application that created the quote",
         nullable=True,
     )
     application_fee_amount = Column(
@@ -31,14 +39,12 @@ class Quote(Base):
         comment="A non-negative decimal between 0 and 100, with at most two decimal places. This represents the percentage of the subscription invoice subtotal that will be transferred to the application owner's Stripe account. Only applicable if there are line items with recurring prices on the quote",
         nullable=True,
     )
-    automatic_tax = Column(
-        quotes_resource_automatic_tax, ForeignKey("quotes_resource_automatic_tax")
-    )
+    automatic_tax = Column(Integer, ForeignKey("quotes_resource_automatic_tax.id"))
     collection_method = Column(
         String,
         comment="Either `charge_automatically`, or `send_invoice`. When charging automatically, Stripe will attempt to pay invoices at the end of the subscription cycle or on finalization using the default payment method attached to the subscription or customer. When sending an invoice, Stripe will email your customer an invoice with payment instructions and mark the subscription as `active`. Defaults to `charge_automatically`",
     )
-    computed = Column(quotes_resource_computed, ForeignKey("quotes_resource_computed"))
+    computed = Column(Integer, ForeignKey("quotes_resource_computed.id"))
     created = Column(
         Integer,
         comment="Time at which the object was created. Measured in seconds since the Unix epoch",
@@ -49,8 +55,8 @@ class Quote(Base):
         nullable=True,
     )
     customer = Column(
-        string | customer,
-        comment="[[FK(deleted_customer)]] The customer which this quote belongs to. A customer is required before finalizing the quote. Once specified, it cannot be changed",
+        Customer,
+        comment="[[FK(DeletedCustomer)]] The customer which this quote belongs to. A customer is required before finalizing the quote. Once specified, it cannot be changed",
         nullable=True,
     )
     default_tax_rates = Column(
@@ -72,8 +78,8 @@ class Quote(Base):
         nullable=True,
     )
     from_quote = Column(
-        quotes_resource_from_quote,
-        comment="[[FK(quotes_resource_from_quote)]] Details of the quote that was cloned. See the [cloning documentation](https://stripe.com/docs/quotes/clone) for more details",
+        QuotesResourceFromQuote,
+        comment="[[FK(QuotesResourceFromQuote)]] Details of the quote that was cloned. See the [cloning documentation](https://stripe.com/docs/quotes/clone) for more details",
         nullable=True,
     )
     header = Column(
@@ -83,13 +89,13 @@ class Quote(Base):
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     invoice = Column(
-        string | invoice,
-        comment="[[FK(deleted_invoice)]] The invoice that was created from this quote",
+        Invoice,
+        comment="[[FK(DeletedInvoice)]] The invoice that was created from this quote",
         nullable=True,
     )
     invoice_settings = Column(
-        invoice_setting_quote_setting,
-        comment="[[FK(invoice_setting_quote_setting)]] All invoices will be billed using the specified settings",
+        InvoiceSettingQuoteSetting,
+        comment="[[FK(InvoiceSettingQuoteSetting)]] All invoices will be billed using the specified settings",
         nullable=True,
     )
     line_items = Column(
@@ -113,40 +119,36 @@ class Quote(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     on_behalf_of = Column(
-        account,
-        comment="[[FK(account)]] The account on behalf of which to charge. See the [Connect documentation](https://support.stripe.com/questions/sending-invoices-on-behalf-of-connected-accounts) for details",
+        Account,
+        comment="[[FK(Account)]] The account on behalf of which to charge. See the [Connect documentation](https://support.stripe.com/questions/sending-invoices-on-behalf-of-connected-accounts) for details",
         nullable=True,
     )
     status = Column(String, comment="The status of the quote")
     status_transitions = Column(
-        quotes_resource_status_transitions,
-        ForeignKey("quotes_resource_status_transitions"),
+        Integer, ForeignKey("quotes_resource_status_transitions.id")
     )
     subscription = Column(
-        subscription,
-        comment="[[FK(subscription)]] The subscription that was created or updated from this quote",
+        Subscription,
+        comment="[[FK(Subscription)]] The subscription that was created or updated from this quote",
         nullable=True,
     )
     subscription_data = Column(
-        quotes_resource_subscription_data_subscription_data,
-        ForeignKey("quotes_resource_subscription_data_subscription_data"),
+        Integer, ForeignKey("quotes_resource_subscription_data_subscription_data.id")
     )
     subscription_schedule = Column(
-        subscription_schedule,
-        comment="[[FK(subscription_schedule)]] The subscription schedule that was created or updated from this quote",
+        SubscriptionSchedule,
+        comment="[[FK(SubscriptionSchedule)]] The subscription schedule that was created or updated from this quote",
         nullable=True,
     )
     test_clock = Column(
-        test_helpers.test_clock,
-        comment="[[FK(test_helpers.test_clock)]] ID of the test clock this quote belongs to",
+        TestHelpers.TestClock,
+        comment="[[FK(TestHelpers.TestClock)]] ID of the test clock this quote belongs to",
         nullable=True,
     )
-    total_details = Column(
-        quotes_resource_total_details, ForeignKey("quotes_resource_total_details")
-    )
+    total_details = Column(Integer, ForeignKey("quotes_resource_total_details.id"))
     transfer_data = Column(
-        quotes_resource_transfer_data,
-        comment="[[FK(quotes_resource_transfer_data)]] The account (if any) the payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the invoices",
+        QuotesResourceTransferData,
+        comment="[[FK(QuotesResourceTransferData)]] The account (if any) the payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the invoices",
         nullable=True,
     )
 

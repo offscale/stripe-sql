@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Charge_Fraud_Details(Base):
+class ChargeFraudDetails(Base):
     __tablename__ = "charge_fraud_details"
     stripe_report = Column(
         String,
@@ -22,7 +24,7 @@ class Charge_Fraud_Details(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Charge_Fraud_Details(stripe_report={stripe_report!r}, user_report={user_report!r}, id={id!r})".format(
+        return "ChargeFraudDetails(stripe_report={stripe_report!r}, user_report={user_report!r}, id={id!r})".format(
             stripe_report=self.stripe_report, user_report=self.user_report, id=self.id
         )
 

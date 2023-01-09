@@ -18,16 +18,27 @@ $ ./scripts/get_stripe_openapi_gen_json_schema.bash
 (it downloads from https://github.com/stripe/openapi)
 
 Now you can use the regular [cdd-python](https://github.com/offscale/cdd-python) (`pip install python-cdd`) CLI to generate SQLalchemy from these JSON-schema files:
-```sh
-$ for json_file in 'json_schemas'/*.json; do
-     python -m cdd gen --emit-and-infer-imports \
-                       --name-tpl '{name}' \
-                       --input-mapping "$json_file" \
-                       --parse 'json_schema' \
-                       --emit 'sqlalchemy' \
-                       --output-filename 'stripe_openapi/'"${json_file//+(*\/|.*)}"'.py'
+```bash
+$ for phase in {0..2}; do
+    for json_file in 'json_schemas'/*.json; do
+      py_file='stripe_openapi/'"${json_file//+(*\/|.*)}"'.py'
+      python -m cdd gen --emit-and-infer-imports \
+                        --name-tpl '{name}' \
+                        --input-mapping "$json_file" \
+                        --parse 'json_schema' \
+                        --emit 'sqlalchemy' \
+                        --output-filename "$py_file" \
+                        --phase "$phase"
+      if [ "$phase" -eq 0 ]; then
+        echo -e 'from . import Base' | cat - "$py_file" | sponge "$py_file"
+      fi
+    done
   done
 ```
+
+Three phases, as it needs to: generate from JSON schema ; resolve imports (now that they have all been generated) ; and resolve foreign key types & references.
+
+(in this repo I then run `autoflake -r -i --remove-all-unused-imports . ; isort . ; python -m black .` for sanity)
 
 ---
 

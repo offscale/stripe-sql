@@ -1,4 +1,10 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import JSON, Column, ForeignKey, Integer, String
+
+from stripe_openapi.balance_transaction import BalanceTransaction
+from stripe_openapi.payment_intent import PaymentIntent
+from stripe_openapi.transfer_reversal import TransferReversal
+
+from . import Base
 
 
 class Refund(Base):
@@ -15,13 +21,13 @@ class Refund(Base):
     __tablename__ = "refund"
     amount = Column(Integer, comment="Amount, in %s")
     balance_transaction = Column(
-        balance_transaction,
-        comment="[[FK(balance_transaction)]] Balance transaction that describes the impact on your account balance",
+        BalanceTransaction,
+        comment="[[FK(BalanceTransaction)]] Balance transaction that describes the impact on your account balance",
         nullable=True,
     )
     charge = Column(
-        charge,
-        comment="[[FK(charge)]] ID of the charge that was refunded",
+        Charge,
+        comment="[[FK(Charge)]] ID of the charge that was refunded",
         nullable=True,
     )
     created = Column(
@@ -38,8 +44,8 @@ class Refund(Base):
         nullable=True,
     )
     failure_balance_transaction = Column(
-        balance_transaction,
-        comment="[[FK(balance_transaction)]] If the refund failed, this balance transaction describes the adjustment made on your account balance that reverses the initial balance transaction",
+        BalanceTransaction,
+        comment="[[FK(BalanceTransaction)]] If the refund failed, this balance transaction describes the adjustment made on your account balance that reverses the initial balance transaction",
         nullable=True,
     )
     failure_reason = Column(
@@ -58,16 +64,14 @@ class Refund(Base):
         comment="Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format",
         nullable=True,
     )
-    next_action = Column(
-        refund_next_action, ForeignKey("refund_next_action"), nullable=True
-    )
+    next_action = Column(Integer, ForeignKey("refund_next_action.id"), nullable=True)
     object = Column(
         String,
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     payment_intent = Column(
-        payment_intent,
-        comment="[[FK(payment_intent)]] ID of the PaymentIntent that was refunded",
+        PaymentIntent,
+        comment="[[FK(PaymentIntent)]] ID of the PaymentIntent that was refunded",
         nullable=True,
     )
     reason = Column(
@@ -81,8 +85,8 @@ class Refund(Base):
         nullable=True,
     )
     source_transfer_reversal = Column(
-        transfer_reversal,
-        comment="[[FK(transfer_reversal)]] The transfer reversal that is associated with the refund. Only present if the charge came from another Stripe account. See the Connect documentation for details",
+        TransferReversal,
+        comment="[[FK(TransferReversal)]] The transfer reversal that is associated with the refund. Only present if the charge came from another Stripe account. See the Connect documentation for details",
         nullable=True,
     )
     status = Column(
@@ -91,8 +95,8 @@ class Refund(Base):
         nullable=True,
     )
     transfer_reversal = Column(
-        transfer_reversal,
-        comment="[[FK(transfer_reversal)]] If the accompanying transfer was reversed, the transfer reversal object. Only applicable if the charge was created using the destination parameter",
+        TransferReversal,
+        comment="[[FK(TransferReversal)]] If the accompanying transfer was reversed, the transfer reversal object. Only applicable if the charge was created using the destination parameter",
         nullable=True,
     )
 

@@ -1,17 +1,19 @@
 from sqlalchemy import Column, String
 
+from . import Base
 
-class Source_Owner(Base):
+
+class SourceOwner(Base):
     __tablename__ = "source_owner"
-    address = Column(address, comment="[[FK(address)]] Owner's address", nullable=True)
+    address = Column(Address, comment="[[FK(Address)]] Owner's address", nullable=True)
     email = Column(String, comment="Owner's email address", nullable=True)
     name = Column(String, comment="Owner's full name", nullable=True)
     phone = Column(
         String, comment="Owner's phone number (including extension)", nullable=True
     )
     verified_address = Column(
-        address,
-        comment="[[FK(address)]] Verified owner's address. Verified values are verified or provided by the payment method directly (and if supported) at the time of authorization or settlement. They cannot be set or mutated",
+        Address,
+        comment="[[FK(Address)]] Verified owner's address. Verified values are verified or provided by the payment method directly (and if supported) at the time of authorization or settlement. They cannot be set or mutated",
         nullable=True,
     )
     verified_email = Column(
@@ -38,7 +40,7 @@ class Source_Owner(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Source_Owner(address={address!r}, email={email!r}, name={name!r}, phone={phone!r}, verified_address={verified_address!r}, verified_email={verified_email!r}, verified_name={verified_name!r}, verified_phone={verified_phone!r})".format(
+        return "SourceOwner(address={address!r}, email={email!r}, name={name!r}, phone={phone!r}, verified_address={verified_address!r}, verified_email={verified_email!r}, verified_name={verified_name!r}, verified_phone={verified_phone!r})".format(
             address=self.address,
             email=self.email,
             name=self.name,

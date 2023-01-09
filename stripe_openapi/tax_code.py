@@ -1,7 +1,9 @@
 from sqlalchemy import Column, String
 
+from . import Base
 
-class Tax_Code(Base):
+
+class TaxCode(Base):
     """
     [Tax codes](https://stripe.com/docs/tax/tax-categories) classify goods and services for tax purposes.
     """
@@ -25,7 +27,7 @@ class Tax_Code(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Tax_Code(description={description!r}, id={id!r}, name={name!r}, object={object!r})".format(
+        return "TaxCode(description={description!r}, id={id!r}, name={name!r}, object={object!r})".format(
             description=self.description, id=self.id, name=self.name, object=self.object
         )
 

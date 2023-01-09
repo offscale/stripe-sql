@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer
+from sqlalchemy import Boolean, Column, Identity, Integer
+
+from . import Base
 
 
-class Three_D_Secure_Usage(Base):
+class ThreeDSecureUsage(Base):
     __tablename__ = "three_d_secure_usage"
     supported = Column(Boolean, comment="Whether 3D Secure is supported on this card")
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -13,7 +15,7 @@ class Three_D_Secure_Usage(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Three_D_Secure_Usage(supported={supported!r}, id={id!r})".format(
+        return "ThreeDSecureUsage(supported={supported!r}, id={id!r})".format(
             supported=self.supported, id=self.id
         )
 

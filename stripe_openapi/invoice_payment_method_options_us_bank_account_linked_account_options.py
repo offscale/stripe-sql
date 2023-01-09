@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import ARRAY, Column, Identity, Integer, String
+
+from . import Base
 
 
-class Invoice_Payment_Method_Options_Us_Bank_Account_Linked_Account_Options(Base):
+class InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptions(Base):
     __tablename__ = (
         "invoice_payment_method_options_us_bank_account_linked_account_options"
     )
@@ -19,7 +21,7 @@ class Invoice_Payment_Method_Options_Us_Bank_Account_Linked_Account_Options(Base
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Invoice_Payment_Method_Options_Us_Bank_Account_Linked_Account_Options(permissions={permissions!r}, id={id!r})".format(
+        return "InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptions(permissions={permissions!r}, id={id!r})".format(
             permissions=self.permissions, id=self.id
         )
 

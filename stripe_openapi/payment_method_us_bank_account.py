@@ -1,7 +1,11 @@
 from sqlalchemy import Column, String
 
+from stripe_openapi.us_bank_account_networks import UsBankAccountNetworks
 
-class Payment_Method_Us_Bank_Account(Base):
+from . import Base
+
+
+class PaymentMethodUsBankAccount(Base):
     __tablename__ = "payment_method_us_bank_account"
     account_holder_type = Column(
         String, comment="Account holder type: individual or company", nullable=True
@@ -28,8 +32,8 @@ class Payment_Method_Us_Bank_Account(Base):
         String, comment="Last four digits of the bank account number", nullable=True
     )
     networks = Column(
-        us_bank_account_networks,
-        comment="[[FK(us_bank_account_networks)]] Contains information about US bank account networks that can be used",
+        UsBankAccountNetworks,
+        comment="[[FK(UsBankAccountNetworks)]] Contains information about US bank account networks that can be used",
         nullable=True,
     )
     routing_number = Column(
@@ -43,7 +47,7 @@ class Payment_Method_Us_Bank_Account(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Us_Bank_Account(account_holder_type={account_holder_type!r}, account_type={account_type!r}, bank_name={bank_name!r}, financial_connections_account={financial_connections_account!r}, fingerprint={fingerprint!r}, last4={last4!r}, networks={networks!r}, routing_number={routing_number!r})".format(
+        return "PaymentMethodUsBankAccount(account_holder_type={account_holder_type!r}, account_type={account_type!r}, bank_name={bank_name!r}, financial_connections_account={financial_connections_account!r}, fingerprint={fingerprint!r}, last4={last4!r}, networks={networks!r}, routing_number={routing_number!r})".format(
             account_holder_type=self.account_holder_type,
             account_type=self.account_type,
             bank_name=self.bank_name,

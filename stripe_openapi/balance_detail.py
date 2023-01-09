@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer, list
+
+from . import Base
 
 
-class Balance_Detail(Base):
+class BalanceDetail(Base):
     __tablename__ = "balance_detail"
     available = Column(list, comment="Funds that are available for use")
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -13,7 +15,7 @@ class Balance_Detail(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Balance_Detail(available={available!r}, id={id!r})".format(
+        return "BalanceDetail(available={available!r}, id={id!r})".format(
             available=self.available, id=self.id
         )
 

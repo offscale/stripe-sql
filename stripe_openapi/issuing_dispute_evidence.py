@@ -1,45 +1,37 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Issuing_Dispute_Evidence(Base):
+class IssuingDisputeEvidence(Base):
     __tablename__ = "issuing_dispute_evidence"
     canceled = Column(
-        issuing_dispute_canceled_evidence,
-        ForeignKey("issuing_dispute_canceled_evidence"),
-        nullable=True,
+        Integer, ForeignKey("issuing_dispute_canceled_evidence.id"), nullable=True
     )
     duplicate = Column(
-        issuing_dispute_duplicate_evidence,
-        ForeignKey("issuing_dispute_duplicate_evidence"),
-        nullable=True,
+        Integer, ForeignKey("issuing_dispute_duplicate_evidence.id"), nullable=True
     )
     fraudulent = Column(
-        issuing_dispute_fraudulent_evidence,
-        ForeignKey("issuing_dispute_fraudulent_evidence"),
-        nullable=True,
+        Integer, ForeignKey("issuing_dispute_fraudulent_evidence.id"), nullable=True
     )
     merchandise_not_as_described = Column(
-        issuing_dispute_merchandise_not_as_described_evidence,
-        ForeignKey("issuing_dispute_merchandise_not_as_described_evidence"),
+        Integer,
+        ForeignKey("issuing_dispute_merchandise_not_as_described_evidence.id"),
         nullable=True,
     )
     not_received = Column(
-        issuing_dispute_not_received_evidence,
-        ForeignKey("issuing_dispute_not_received_evidence"),
-        nullable=True,
+        Integer, ForeignKey("issuing_dispute_not_received_evidence.id"), nullable=True
     )
     other = Column(
-        issuing_dispute_other_evidence,
-        ForeignKey("issuing_dispute_other_evidence"),
-        nullable=True,
+        Integer, ForeignKey("issuing_dispute_other_evidence.id"), nullable=True
     )
     reason = Column(
         String,
         comment="The reason for filing the dispute. Its value will match the field containing the evidence",
     )
     service_not_as_described = Column(
-        issuing_dispute_service_not_as_described_evidence,
-        ForeignKey("issuing_dispute_service_not_as_described_evidence"),
+        Integer,
+        ForeignKey("issuing_dispute_service_not_as_described_evidence.id"),
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -51,7 +43,7 @@ class Issuing_Dispute_Evidence(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Issuing_Dispute_Evidence(canceled={canceled!r}, duplicate={duplicate!r}, fraudulent={fraudulent!r}, merchandise_not_as_described={merchandise_not_as_described!r}, not_received={not_received!r}, other={other!r}, reason={reason!r}, service_not_as_described={service_not_as_described!r}, id={id!r})".format(
+        return "IssuingDisputeEvidence(canceled={canceled!r}, duplicate={duplicate!r}, fraudulent={fraudulent!r}, merchandise_not_as_described={merchandise_not_as_described!r}, not_received={not_received!r}, other={other!r}, reason={reason!r}, service_not_as_described={service_not_as_described!r}, id={id!r})".format(
             canceled=self.canceled,
             duplicate=self.duplicate,
             fraudulent=self.fraudulent,

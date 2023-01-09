@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Invoice_Transfer_Data(Base):
+class InvoiceTransferData(Base):
     __tablename__ = "invoice_transfer_data"
     amount = Column(
         Integer,
@@ -9,8 +11,8 @@ class Invoice_Transfer_Data(Base):
         nullable=True,
     )
     destination = Column(
-        account,
-        comment="[[FK(account)]] The account where funds from the payment will be transferred to upon payment success",
+        Account,
+        comment="[[FK(Account)]] The account where funds from the payment will be transferred to upon payment success",
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
@@ -21,7 +23,7 @@ class Invoice_Transfer_Data(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Invoice_Transfer_Data(amount={amount!r}, destination={destination!r}, id={id!r})".format(
+        return "InvoiceTransferData(amount={amount!r}, destination={destination!r}, id={id!r})".format(
             amount=self.amount, destination=self.destination, id=self.id
         )
 

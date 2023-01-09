@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Account_Terms_Of_Service(Base):
+class AccountTermsOfService(Base):
     __tablename__ = "account_terms_of_service"
     date = Column(
         Integer,
@@ -27,7 +29,7 @@ class Account_Terms_Of_Service(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Account_Terms_Of_Service(date={date!r}, ip={ip!r}, user_agent={user_agent!r}, id={id!r})".format(
+        return "AccountTermsOfService(date={date!r}, ip={ip!r}, user_agent={user_agent!r}, id={id!r})".format(
             date=self.date, ip=self.ip, user_agent=self.user_agent, id=self.id
         )
 

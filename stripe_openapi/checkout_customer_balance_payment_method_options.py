@@ -1,11 +1,13 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Checkout_Customer_Balance_Payment_Method_Options(Base):
+class CheckoutCustomerBalancePaymentMethodOptions(Base):
     __tablename__ = "checkout_customer_balance_payment_method_options"
     bank_transfer = Column(
-        checkout_customer_balance_bank_transfer_payment_method_options,
-        ForeignKey("checkout_customer_balance_bank_transfer_payment_method_options"),
+        Integer,
+        ForeignKey("checkout_customer_balance_bank_transfer_payment_method_options.id"),
         nullable=True,
     )
     funding_type = Column(
@@ -27,7 +29,7 @@ class Checkout_Customer_Balance_Payment_Method_Options(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Checkout_Customer_Balance_Payment_Method_Options(bank_transfer={bank_transfer!r}, funding_type={funding_type!r}, setup_future_usage={setup_future_usage!r}, id={id!r})".format(
+        return "CheckoutCustomerBalancePaymentMethodOptions(bank_transfer={bank_transfer!r}, funding_type={funding_type!r}, setup_future_usage={setup_future_usage!r}, id={id!r})".format(
             bank_transfer=self.bank_transfer,
             funding_type=self.funding_type,
             setup_future_usage=self.setup_future_usage,

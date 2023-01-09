@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Verification_Session_Redaction(Base):
+class VerificationSessionRedaction(Base):
     __tablename__ = "verification_session_redaction"
     status = Column(
         String,
@@ -16,7 +18,7 @@ class Verification_Session_Redaction(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Verification_Session_Redaction(status={status!r}, id={id!r})".format(
+        return "VerificationSessionRedaction(status={status!r}, id={id!r})".format(
             status=self.status, id=self.id
         )
 

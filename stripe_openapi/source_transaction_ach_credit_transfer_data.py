@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Source_Transaction_Ach_Credit_Transfer_Data(Base):
+class SourceTransactionAchCreditTransferData(Base):
     __tablename__ = "source_transaction_ach_credit_transfer_data"
     customer_data = Column(
         String, comment="Customer data associated with the transfer", nullable=True
@@ -28,7 +30,7 @@ class Source_Transaction_Ach_Credit_Transfer_Data(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Source_Transaction_Ach_Credit_Transfer_Data(customer_data={customer_data!r}, fingerprint={fingerprint!r}, last4={last4!r}, routing_number={routing_number!r}, id={id!r})".format(
+        return "SourceTransactionAchCreditTransferData(customer_data={customer_data!r}, fingerprint={fingerprint!r}, last4={last4!r}, routing_number={routing_number!r}, id={id!r})".format(
             customer_data=self.customer_data,
             fingerprint=self.fingerprint,
             last4=self.last4,

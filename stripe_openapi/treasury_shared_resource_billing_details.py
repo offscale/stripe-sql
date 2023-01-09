@@ -1,9 +1,11 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Treasury_Shared_Resource_Billing_Details(Base):
+class TreasurySharedResourceBillingDetails(Base):
     __tablename__ = "treasury_shared_resource_billing_details"
-    address = Column(address, ForeignKey("address"))
+    address = Column(Address, ForeignKey("Address"))
     email = Column(String, comment="Email address", nullable=True)
     name = Column(String, comment="Full name", nullable=True)
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -15,7 +17,7 @@ class Treasury_Shared_Resource_Billing_Details(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Treasury_Shared_Resource_Billing_Details(address={address!r}, email={email!r}, name={name!r}, id={id!r})".format(
+        return "TreasurySharedResourceBillingDetails(address={address!r}, email={email!r}, name={name!r}, id={id!r})".format(
             address=self.address, email=self.email, name=self.name, id=self.id
         )
 

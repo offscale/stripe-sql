@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Method_Sofort(Base):
+class PaymentMethodSofort(Base):
     __tablename__ = "payment_method_sofort"
     country = Column(
         String,
@@ -17,7 +19,7 @@ class Payment_Method_Sofort(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Sofort(country={country!r}, id={id!r})".format(
+        return "PaymentMethodSofort(country={country!r}, id={id!r})".format(
             country=self.country, id=self.id
         )
 

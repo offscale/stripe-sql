@@ -1,7 +1,9 @@
 from sqlalchemy import Column, String
 
+from . import Base
 
-class Source_Type_Bancontact(Base):
+
+class SourceTypeBancontact(Base):
     __tablename__ = "source_type_bancontact"
     bank_code = Column(String, nullable=True)
     bank_name = Column(String, nullable=True, primary_key=True)
@@ -17,7 +19,7 @@ class Source_Type_Bancontact(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Source_Type_Bancontact(bank_code={bank_code!r}, bank_name={bank_name!r}, bic={bic!r}, iban_last4={iban_last4!r}, preferred_language={preferred_language!r}, statement_descriptor={statement_descriptor!r})".format(
+        return "SourceTypeBancontact(bank_code={bank_code!r}, bank_name={bank_name!r}, bic={bic!r}, iban_last4={iban_last4!r}, preferred_language={preferred_language!r}, statement_descriptor={statement_descriptor!r})".format(
             bank_code=self.bank_code,
             bank_name=self.bank_name,
             bic=self.bic,

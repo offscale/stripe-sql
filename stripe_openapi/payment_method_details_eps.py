@@ -1,7 +1,9 @@
 from sqlalchemy import Column, String
 
+from . import Base
 
-class Payment_Method_Details_Eps(Base):
+
+class PaymentMethodDetailsEps(Base):
     __tablename__ = "payment_method_details_eps"
     bank = Column(
         String,
@@ -22,7 +24,7 @@ class Payment_Method_Details_Eps(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Details_Eps(bank={bank!r}, verified_name={verified_name!r})".format(
+        return "PaymentMethodDetailsEps(bank={bank!r}, verified_name={verified_name!r})".format(
             bank=self.bank, verified_name=self.verified_name
         )
 

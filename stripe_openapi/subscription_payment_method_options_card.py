@@ -1,12 +1,12 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Subscription_Payment_Method_Options_Card(Base):
+class SubscriptionPaymentMethodOptionsCard(Base):
     __tablename__ = "subscription_payment_method_options_card"
     mandate_options = Column(
-        invoice_mandate_options_card,
-        ForeignKey("invoice_mandate_options_card"),
-        nullable=True,
+        Integer, ForeignKey("invoice_mandate_options_card.id"), nullable=True
     )
     network = Column(
         String,
@@ -27,7 +27,7 @@ class Subscription_Payment_Method_Options_Card(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Subscription_Payment_Method_Options_Card(mandate_options={mandate_options!r}, network={network!r}, request_three_d_secure={request_three_d_secure!r}, id={id!r})".format(
+        return "SubscriptionPaymentMethodOptionsCard(mandate_options={mandate_options!r}, network={network!r}, request_three_d_secure={request_three_d_secure!r}, id={id!r})".format(
             mandate_options=self.mandate_options,
             network=self.network,
             request_three_d_secure=self.request_three_d_secure,

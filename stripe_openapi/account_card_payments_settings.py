@@ -1,12 +1,12 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Account_Card_Payments_Settings(Base):
+class AccountCardPaymentsSettings(Base):
     __tablename__ = "account_card_payments_settings"
     decline_on = Column(
-        account_decline_charge_on,
-        ForeignKey("account_decline_charge_on"),
-        nullable=True,
+        Integer, ForeignKey("account_decline_charge_on.id"), nullable=True
     )
     statement_descriptor_prefix = Column(
         String,
@@ -32,7 +32,7 @@ class Account_Card_Payments_Settings(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Account_Card_Payments_Settings(decline_on={decline_on!r}, statement_descriptor_prefix={statement_descriptor_prefix!r}, statement_descriptor_prefix_kana={statement_descriptor_prefix_kana!r}, statement_descriptor_prefix_kanji={statement_descriptor_prefix_kanji!r}, id={id!r})".format(
+        return "AccountCardPaymentsSettings(decline_on={decline_on!r}, statement_descriptor_prefix={statement_descriptor_prefix!r}, statement_descriptor_prefix_kana={statement_descriptor_prefix_kana!r}, statement_descriptor_prefix_kanji={statement_descriptor_prefix_kanji!r}, id={id!r})".format(
             decline_on=self.decline_on,
             statement_descriptor_prefix=self.statement_descriptor_prefix,
             statement_descriptor_prefix_kana=self.statement_descriptor_prefix_kana,

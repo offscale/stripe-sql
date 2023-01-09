@@ -1,7 +1,9 @@
-from sqlalchemy import Column, String
+from sqlalchemy import ARRAY, JSON, Column, ForeignKey, String
+
+from . import Base
 
 
-class Country_Spec(Base):
+class CountrySpec(Base):
     """
     Stripe needs to collect certain pieces of information about each account
 
@@ -44,7 +46,7 @@ class Country_Spec(Base):
         comment="Countries that can accept transfers from the specified country",
     )
     verification_fields = Column(
-        country_spec_verification_fields, ForeignKey("country_spec_verification_fields")
+        Integer, ForeignKey("country_spec_verification_fields.id")
     )
 
     def __repr__(self):
@@ -54,7 +56,7 @@ class Country_Spec(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Country_Spec(default_currency={default_currency!r}, id={id!r}, object={object!r}, supported_bank_account_currencies={supported_bank_account_currencies!r}, supported_payment_currencies={supported_payment_currencies!r}, supported_payment_methods={supported_payment_methods!r}, supported_transfer_countries={supported_transfer_countries!r}, verification_fields={verification_fields!r})".format(
+        return "CountrySpec(default_currency={default_currency!r}, id={id!r}, object={object!r}, supported_bank_account_currencies={supported_bank_account_currencies!r}, supported_payment_currencies={supported_payment_currencies!r}, supported_payment_methods={supported_payment_methods!r}, supported_transfer_countries={supported_transfer_countries!r}, verification_fields={verification_fields!r})".format(
             default_currency=self.default_currency,
             id=self.id,
             object=self.object,

@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Account_Payments_Settings(Base):
+class AccountPaymentsSettings(Base):
     __tablename__ = "account_payments_settings"
     statement_descriptor = Column(
         String,
@@ -37,7 +39,7 @@ class Account_Payments_Settings(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Account_Payments_Settings(statement_descriptor={statement_descriptor!r}, statement_descriptor_kana={statement_descriptor_kana!r}, statement_descriptor_kanji={statement_descriptor_kanji!r}, statement_descriptor_prefix_kana={statement_descriptor_prefix_kana!r}, statement_descriptor_prefix_kanji={statement_descriptor_prefix_kanji!r}, id={id!r})".format(
+        return "AccountPaymentsSettings(statement_descriptor={statement_descriptor!r}, statement_descriptor_kana={statement_descriptor_kana!r}, statement_descriptor_kanji={statement_descriptor_kanji!r}, statement_descriptor_prefix_kana={statement_descriptor_prefix_kana!r}, statement_descriptor_prefix_kanji={statement_descriptor_prefix_kanji!r}, id={id!r})".format(
             statement_descriptor=self.statement_descriptor,
             statement_descriptor_kana=self.statement_descriptor_kana,
             statement_descriptor_kanji=self.statement_descriptor_kanji,

@@ -1,7 +1,9 @@
 from sqlalchemy import Boolean, Column, Integer, String
 
+from . import Base
 
-class Apple_Pay_Domain(Base):
+
+class ApplePayDomain(Base):
     __tablename__ = "apple_pay_domain"
     created = Column(
         Integer,
@@ -25,7 +27,7 @@ class Apple_Pay_Domain(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Apple_Pay_Domain(created={created!r}, domain_name={domain_name!r}, id={id!r}, livemode={livemode!r}, object={object!r})".format(
+        return "ApplePayDomain(created={created!r}, domain_name={domain_name!r}, id={id!r}, livemode={livemode!r}, object={object!r})".format(
             created=self.created,
             domain_name=self.domain_name,
             id=self.id,

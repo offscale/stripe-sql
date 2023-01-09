@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, Identity, Integer, String
+
+from . import Base
 
 
-class Issuing_Card_Apple_Pay(Base):
+class IssuingCardApplePay(Base):
     __tablename__ = "issuing_card_apple_pay"
     eligible = Column(Boolean, comment="Apple Pay Eligibility")
     ineligible_reason = Column(
@@ -16,7 +18,7 @@ class Issuing_Card_Apple_Pay(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Issuing_Card_Apple_Pay(eligible={eligible!r}, ineligible_reason={ineligible_reason!r}, id={id!r})".format(
+        return "IssuingCardApplePay(eligible={eligible!r}, ineligible_reason={ineligible_reason!r}, id={id!r})".format(
             eligible=self.eligible, ineligible_reason=self.ineligible_reason, id=self.id
         )
 

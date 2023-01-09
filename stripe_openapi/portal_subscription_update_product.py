@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import ARRAY, Column, Identity, Integer, String
+
+from . import Base
 
 
-class Portal_Subscription_Update_Product(Base):
+class PortalSubscriptionUpdateProduct(Base):
     __tablename__ = "portal_subscription_update_product"
     prices = Column(
         ARRAY(String),
@@ -17,7 +19,7 @@ class Portal_Subscription_Update_Product(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Portal_Subscription_Update_Product(prices={prices!r}, product={product!r}, id={id!r})".format(
+        return "PortalSubscriptionUpdateProduct(prices={prices!r}, product={product!r}, id={id!r})".format(
             prices=self.prices, product=self.product, id=self.id
         )
 

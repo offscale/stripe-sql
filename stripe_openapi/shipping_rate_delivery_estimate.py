@@ -1,16 +1,22 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from stripe_openapi.shipping_rate_delivery_estimate_bound import (
+    ShippingRateDeliveryEstimateBound,
+)
+
+from . import Base
 
 
-class Shipping_Rate_Delivery_Estimate(Base):
+class ShippingRateDeliveryEstimate(Base):
     __tablename__ = "shipping_rate_delivery_estimate"
     maximum = Column(
-        shipping_rate_delivery_estimate_bound,
-        comment="[[FK(shipping_rate_delivery_estimate_bound)]] The upper bound of the estimated range. If empty, represents no upper bound i.e., infinite",
+        ShippingRateDeliveryEstimateBound,
+        comment="[[FK(ShippingRateDeliveryEstimateBound)]] The upper bound of the estimated range. If empty, represents no upper bound i.e., infinite",
         nullable=True,
     )
     minimum = Column(
-        shipping_rate_delivery_estimate_bound,
-        comment="[[FK(shipping_rate_delivery_estimate_bound)]] The lower bound of the estimated range. If empty, represents no lower bound",
+        ShippingRateDeliveryEstimateBound,
+        comment="[[FK(ShippingRateDeliveryEstimateBound)]] The lower bound of the estimated range. If empty, represents no lower bound",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -22,7 +28,7 @@ class Shipping_Rate_Delivery_Estimate(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Shipping_Rate_Delivery_Estimate(maximum={maximum!r}, minimum={minimum!r}, id={id!r})".format(
+        return "ShippingRateDeliveryEstimate(maximum={maximum!r}, minimum={minimum!r}, id={id!r})".format(
             maximum=self.maximum, minimum=self.minimum, id=self.id
         )
 

@@ -1,15 +1,21 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import JSON, Column, Identity, Integer, list
+
+from stripe_openapi.subscription_item_billing_thresholds import (
+    SubscriptionItemBillingThresholds,
+)
+
+from . import Base
 
 
-class Subscription_Schedule_Configuration_Item(Base):
+class SubscriptionScheduleConfigurationItem(Base):
     """
     A phase item describes the price and quantity of a phase.
     """
 
     __tablename__ = "subscription_schedule_configuration_item"
     billing_thresholds = Column(
-        subscription_item_billing_thresholds,
-        comment="[[FK(subscription_item_billing_thresholds)]] Define thresholds at which an invoice will be sent, and the related subscription advanced to a new billing period",
+        SubscriptionItemBillingThresholds,
+        comment="[[FK(SubscriptionItemBillingThresholds)]] Define thresholds at which an invoice will be sent, and the related subscription advanced to a new billing period",
         nullable=True,
     )
     metadata = Column(
@@ -18,12 +24,12 @@ class Subscription_Schedule_Configuration_Item(Base):
         nullable=True,
     )
     plan = Column(
-        string | plan,
-        comment="[[FK(deleted_plan)]] ID of the plan to which the customer should be subscribed",
+        Plan,
+        comment="[[FK(DeletedPlan)]] ID of the plan to which the customer should be subscribed",
     )
     price = Column(
-        string | price,
-        comment="[[FK(deleted_price)]] ID of the price to which the customer should be subscribed",
+        Price,
+        comment="[[FK(DeletedPrice)]] ID of the price to which the customer should be subscribed",
     )
     quantity = Column(
         Integer,
@@ -44,7 +50,7 @@ class Subscription_Schedule_Configuration_Item(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Subscription_Schedule_Configuration_Item(billing_thresholds={billing_thresholds!r}, metadata={metadata!r}, plan={plan!r}, price={price!r}, quantity={quantity!r}, tax_rates={tax_rates!r}, id={id!r})".format(
+        return "SubscriptionScheduleConfigurationItem(billing_thresholds={billing_thresholds!r}, metadata={metadata!r}, plan={plan!r}, price={price!r}, quantity={quantity!r}, tax_rates={tax_rates!r}, id={id!r})".format(
             billing_thresholds=self.billing_thresholds,
             metadata=self.metadata,
             plan=self.plan,

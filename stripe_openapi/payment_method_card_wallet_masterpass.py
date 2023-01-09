@@ -1,11 +1,13 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Method_Card_Wallet_Masterpass(Base):
+class PaymentMethodCardWalletMasterpass(Base):
     __tablename__ = "payment_method_card_wallet_masterpass"
     billing_address = Column(
-        address,
-        comment="[[FK(address)]] Owner's verified billing address. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated",
+        Address,
+        comment="[[FK(Address)]] Owner's verified billing address. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated",
         nullable=True,
     )
     email = Column(
@@ -19,8 +21,8 @@ class Payment_Method_Card_Wallet_Masterpass(Base):
         nullable=True,
     )
     shipping_address = Column(
-        address,
-        comment="[[FK(address)]] Owner's verified shipping address. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated",
+        Address,
+        comment="[[FK(Address)]] Owner's verified shipping address. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -32,7 +34,7 @@ class Payment_Method_Card_Wallet_Masterpass(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Card_Wallet_Masterpass(billing_address={billing_address!r}, email={email!r}, name={name!r}, shipping_address={shipping_address!r}, id={id!r})".format(
+        return "PaymentMethodCardWalletMasterpass(billing_address={billing_address!r}, email={email!r}, name={name!r}, shipping_address={shipping_address!r}, id={id!r})".format(
             billing_address=self.billing_address,
             email=self.email,
             name=self.name,

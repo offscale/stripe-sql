@@ -1,7 +1,9 @@
 from sqlalchemy import Column, String
 
+from . import Base
 
-class Funding_Instructions_Bank_Transfer_Sort_Code_Record(Base):
+
+class FundingInstructionsBankTransferSortCodeRecord(Base):
     """
     Sort Code Records contain U.K. bank account details per the sort code format.
     """
@@ -22,7 +24,7 @@ class Funding_Instructions_Bank_Transfer_Sort_Code_Record(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Funding_Instructions_Bank_Transfer_Sort_Code_Record(account_holder_name={account_holder_name!r}, account_number={account_number!r}, sort_code={sort_code!r})".format(
+        return "FundingInstructionsBankTransferSortCodeRecord(account_holder_name={account_holder_name!r}, account_number={account_number!r}, sort_code={sort_code!r})".format(
             account_holder_name=self.account_holder_name,
             account_number=self.account_number,
             sort_code=self.sort_code,

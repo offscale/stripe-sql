@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Account_Business_Profile(Base):
+class AccountBusinessProfile(Base):
     __tablename__ = "account_business_profile"
     mcc = Column(
         String,
@@ -15,8 +17,8 @@ class Account_Business_Profile(Base):
         nullable=True,
     )
     support_address = Column(
-        address,
-        comment="[[FK(address)]] A publicly available mailing address for sending support issues to",
+        Address,
+        comment="[[FK(Address)]] A publicly available mailing address for sending support issues to",
         nullable=True,
     )
     support_email = Column(
@@ -46,7 +48,7 @@ class Account_Business_Profile(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Account_Business_Profile(mcc={mcc!r}, name={name!r}, product_description={product_description!r}, support_address={support_address!r}, support_email={support_email!r}, support_phone={support_phone!r}, support_url={support_url!r}, url={url!r}, id={id!r})".format(
+        return "AccountBusinessProfile(mcc={mcc!r}, name={name!r}, product_description={product_description!r}, support_address={support_address!r}, support_email={support_email!r}, support_phone={support_phone!r}, support_url={support_url!r}, url={url!r}, id={id!r})".format(
             mcc=self.mcc,
             name=self.name,
             product_description=self.product_description,

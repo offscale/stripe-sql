@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import ARRAY, Column, Identity, Integer, String
+
+from . import Base
 
 
-class Country_Spec_Verification_Field_Details(Base):
+class CountrySpecVerificationFieldDetails(Base):
     __tablename__ = "country_spec_verification_field_details"
     additional = Column(
         ARRAY(String),
@@ -19,7 +21,7 @@ class Country_Spec_Verification_Field_Details(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Country_Spec_Verification_Field_Details(additional={additional!r}, minimum={minimum!r}, id={id!r})".format(
+        return "CountrySpecVerificationFieldDetails(additional={additional!r}, minimum={minimum!r}, id={id!r})".format(
             additional=self.additional, minimum=self.minimum, id=self.id
         )
 

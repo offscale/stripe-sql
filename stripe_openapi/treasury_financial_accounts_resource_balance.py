@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import JSON, Column, Identity, Integer
+
+from . import Base
 
 
-class Treasury_Financial_Accounts_Resource_Balance(Base):
+class TreasuryFinancialAccountsResourceBalance(Base):
     """
     Balance information for the FinancialAccount
     """
@@ -25,7 +27,7 @@ class Treasury_Financial_Accounts_Resource_Balance(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Treasury_Financial_Accounts_Resource_Balance(cash={cash!r}, inbound_pending={inbound_pending!r}, outbound_pending={outbound_pending!r}, id={id!r})".format(
+        return "TreasuryFinancialAccountsResourceBalance(cash={cash!r}, inbound_pending={inbound_pending!r}, outbound_pending={outbound_pending!r}, id={id!r})".format(
             cash=self.cash,
             inbound_pending=self.inbound_pending,
             outbound_pending=self.outbound_pending,

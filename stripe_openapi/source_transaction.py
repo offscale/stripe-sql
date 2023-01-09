@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+
+from . import Base
 
 
-class Source_Transaction(Base):
+class SourceTransaction(Base):
     """
     Some payment methods have no required amount that a customer must send.
 
@@ -13,8 +15,8 @@ class Source_Transaction(Base):
 
     __tablename__ = "source_transaction"
     ach_credit_transfer = Column(
-        source_transaction_ach_credit_transfer_data,
-        ForeignKey("source_transaction_ach_credit_transfer_data"),
+        Integer,
+        ForeignKey("source_transaction_ach_credit_transfer_data.id"),
         nullable=True,
     )
     amount = Column(
@@ -22,8 +24,8 @@ class Source_Transaction(Base):
         comment="A positive integer in the smallest currency unit (that is, 100 cents for $1.00, or 1 for ¥1, Japanese Yen being a zero-decimal currency) representing the amount your customer has pushed to the receiver",
     )
     chf_credit_transfer = Column(
-        source_transaction_chf_credit_transfer_data,
-        ForeignKey("source_transaction_chf_credit_transfer_data"),
+        String,
+        ForeignKey("source_transaction_chf_credit_transfer_data.sender_name"),
         nullable=True,
     )
     created = Column(
@@ -35,8 +37,8 @@ class Source_Transaction(Base):
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",
     )
     gbp_credit_transfer = Column(
-        source_transaction_gbp_credit_transfer_data,
-        ForeignKey("source_transaction_gbp_credit_transfer_data"),
+        String,
+        ForeignKey("source_transaction_gbp_credit_transfer_data.sender_name"),
         nullable=True,
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
@@ -49,13 +51,11 @@ class Source_Transaction(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     paper_check = Column(
-        source_transaction_paper_check_data,
-        ForeignKey("source_transaction_paper_check_data"),
-        nullable=True,
+        Integer, ForeignKey("source_transaction_paper_check_data.id"), nullable=True
     )
     sepa_credit_transfer = Column(
-        source_transaction_sepa_credit_transfer_data,
-        ForeignKey("source_transaction_sepa_credit_transfer_data"),
+        String,
+        ForeignKey("source_transaction_sepa_credit_transfer_data.sender_name"),
         nullable=True,
     )
     source = Column(
@@ -74,7 +74,7 @@ class Source_Transaction(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Source_Transaction(ach_credit_transfer={ach_credit_transfer!r}, amount={amount!r}, chf_credit_transfer={chf_credit_transfer!r}, created={created!r}, currency={currency!r}, gbp_credit_transfer={gbp_credit_transfer!r}, id={id!r}, livemode={livemode!r}, object={object!r}, paper_check={paper_check!r}, sepa_credit_transfer={sepa_credit_transfer!r}, source={source!r}, status={status!r}, type={type!r})".format(
+        return "SourceTransaction(ach_credit_transfer={ach_credit_transfer!r}, amount={amount!r}, chf_credit_transfer={chf_credit_transfer!r}, created={created!r}, currency={currency!r}, gbp_credit_transfer={gbp_credit_transfer!r}, id={id!r}, livemode={livemode!r}, object={object!r}, paper_check={paper_check!r}, sepa_credit_transfer={sepa_credit_transfer!r}, source={source!r}, status={status!r}, type={type!r})".format(
             ach_credit_transfer=self.ach_credit_transfer,
             amount=self.amount,
             chf_credit_transfer=self.chf_credit_transfer,

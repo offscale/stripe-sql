@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer
+from sqlalchemy import Boolean, Column, Identity, Integer
+
+from . import Base
 
 
-class Checkout_Card_Installments_Options(Base):
+class CheckoutCardInstallmentsOptions(Base):
     __tablename__ = "checkout_card_installments_options"
     enabled = Column(
         Boolean, comment="Indicates if installments are enabled", nullable=True
@@ -15,10 +17,8 @@ class Checkout_Card_Installments_Options(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return (
-            "Checkout_Card_Installments_Options(enabled={enabled!r}, id={id!r})".format(
-                enabled=self.enabled, id=self.id
-            )
+        return "CheckoutCardInstallmentsOptions(enabled={enabled!r}, id={id!r})".format(
+            enabled=self.enabled, id=self.id
         )
 
 

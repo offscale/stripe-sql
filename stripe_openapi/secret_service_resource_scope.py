@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Secret_Service_Resource_Scope(Base):
+class SecretServiceResourceScope(Base):
     __tablename__ = "secret_service_resource_scope"
     type = Column(String, comment="The secret scope type")
     user = Column(
@@ -16,7 +18,7 @@ class Secret_Service_Resource_Scope(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Secret_Service_Resource_Scope(type={type!r}, user={user!r}, id={id!r})".format(
+        return "SecretServiceResourceScope(type={type!r}, user={user!r}, id={id!r})".format(
             type=self.type, user=self.user, id=self.id
         )
 

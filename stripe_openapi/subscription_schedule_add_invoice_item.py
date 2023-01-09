@@ -1,15 +1,17 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer, list
+
+from . import Base
 
 
-class Subscription_Schedule_Add_Invoice_Item(Base):
+class SubscriptionScheduleAddInvoiceItem(Base):
     """
     An Add Invoice Item describes the prices and quantities that will be added as pending invoice items when entering a phase.
     """
 
     __tablename__ = "subscription_schedule_add_invoice_item"
     price = Column(
-        string | price,
-        comment="[[FK(deleted_price)]] ID of the price used to generate the invoice item",
+        Price,
+        comment="[[FK(DeletedPrice)]] ID of the price used to generate the invoice item",
     )
     quantity = Column(
         Integer, comment="The quantity of the invoice item", nullable=True
@@ -28,7 +30,7 @@ class Subscription_Schedule_Add_Invoice_Item(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Subscription_Schedule_Add_Invoice_Item(price={price!r}, quantity={quantity!r}, tax_rates={tax_rates!r}, id={id!r})".format(
+        return "SubscriptionScheduleAddInvoiceItem(price={price!r}, quantity={quantity!r}, tax_rates={tax_rates!r}, id={id!r})".format(
             price=self.price,
             quantity=self.quantity,
             tax_rates=self.tax_rates,

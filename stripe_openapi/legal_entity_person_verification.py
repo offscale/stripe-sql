@@ -1,11 +1,17 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+
+from stripe_openapi.legal_entity_person_verification_document import (
+    LegalEntityPersonVerificationDocument,
+)
+
+from . import Base
 
 
-class Legal_Entity_Person_Verification(Base):
+class LegalEntityPersonVerification(Base):
     __tablename__ = "legal_entity_person_verification"
     additional_document = Column(
-        legal_entity_person_verification_document,
-        comment="[[FK(legal_entity_person_verification_document)]] A document showing address, either a passport, local ID card, or utility bill from a well-known utility company",
+        LegalEntityPersonVerificationDocument,
+        comment="[[FK(LegalEntityPersonVerificationDocument)]] A document showing address, either a passport, local ID card, or utility bill from a well-known utility company",
         nullable=True,
     )
     details = Column(
@@ -19,8 +25,8 @@ class Legal_Entity_Person_Verification(Base):
         nullable=True,
     )
     document = Column(
-        legal_entity_person_verification_document,
-        ForeignKey("legal_entity_person_verification_document"),
+        Integer,
+        ForeignKey("legal_entity_person_verification_document.id"),
         nullable=True,
     )
     status = Column(
@@ -36,7 +42,7 @@ class Legal_Entity_Person_Verification(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Legal_Entity_Person_Verification(additional_document={additional_document!r}, details={details!r}, details_code={details_code!r}, document={document!r}, status={status!r}, id={id!r})".format(
+        return "LegalEntityPersonVerification(additional_document={additional_document!r}, details={details!r}, details_code={details_code!r}, document={document!r}, status={status!r}, id={id!r})".format(
             additional_document=self.additional_document,
             details=self.details,
             details_code=self.details_code,

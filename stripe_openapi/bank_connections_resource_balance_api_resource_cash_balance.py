@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import JSON, Column, Identity, Integer
+
+from . import Base
 
 
-class Bank_Connections_Resource_Balance_Api_Resource_Cash_Balance(Base):
+class BankConnectionsResourceBalanceApiResourceCashBalance(Base):
     __tablename__ = "bank_connections_resource_balance_api_resource_cash_balance"
     available = Column(
         JSON,
@@ -17,7 +19,7 @@ class Bank_Connections_Resource_Balance_Api_Resource_Cash_Balance(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Bank_Connections_Resource_Balance_Api_Resource_Cash_Balance(available={available!r}, id={id!r})".format(
+        return "BankConnectionsResourceBalanceApiResourceCashBalance(available={available!r}, id={id!r})".format(
             available=self.available, id=self.id
         )
 

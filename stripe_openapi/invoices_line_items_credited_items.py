@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import ARRAY, Column, Identity, Integer, String
+
+from . import Base
 
 
-class Invoices_Line_Items_Credited_Items(Base):
+class InvoicesLineItemsCreditedItems(Base):
     __tablename__ = "invoices_line_items_credited_items"
     invoice = Column(
         String, comment="Invoice containing the credited invoice line items"
@@ -16,7 +18,7 @@ class Invoices_Line_Items_Credited_Items(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Invoices_Line_Items_Credited_Items(invoice={invoice!r}, invoice_line_items={invoice_line_items!r}, id={id!r})".format(
+        return "InvoicesLineItemsCreditedItems(invoice={invoice!r}, invoice_line_items={invoice_line_items!r}, id={id!r})".format(
             invoice=self.invoice, invoice_line_items=self.invoice_line_items, id=self.id
         )
 

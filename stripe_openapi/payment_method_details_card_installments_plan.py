@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Method_Details_Card_Installments_Plan(Base):
+class PaymentMethodDetailsCardInstallmentsPlan(Base):
     __tablename__ = "payment_method_details_card_installments_plan"
     count = Column(
         Integer,
@@ -23,7 +25,7 @@ class Payment_Method_Details_Card_Installments_Plan(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Details_Card_Installments_Plan(count={count!r}, interval={interval!r}, type={type!r}, id={id!r})".format(
+        return "PaymentMethodDetailsCardInstallmentsPlan(count={count!r}, interval={interval!r}, type={type!r}, id={id!r})".format(
             count=self.count, interval=self.interval, type=self.type, id=self.id
         )
 

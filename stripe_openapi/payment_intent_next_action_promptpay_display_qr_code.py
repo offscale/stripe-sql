@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Intent_Next_Action_Promptpay_Display_Qr_Code(Base):
+class PaymentIntentNextActionPromptpayDisplayQrCode(Base):
     __tablename__ = "payment_intent_next_action_promptpay_display_qr_code"
     data = Column(
         String,
@@ -28,7 +30,7 @@ class Payment_Intent_Next_Action_Promptpay_Display_Qr_Code(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Intent_Next_Action_Promptpay_Display_Qr_Code(data={data!r}, hosted_instructions_url={hosted_instructions_url!r}, image_url_png={image_url_png!r}, image_url_svg={image_url_svg!r}, id={id!r})".format(
+        return "PaymentIntentNextActionPromptpayDisplayQrCode(data={data!r}, hosted_instructions_url={hosted_instructions_url!r}, image_url_png={image_url_png!r}, image_url_svg={image_url_svg!r}, id={id!r})".format(
             data=self.data,
             hosted_instructions_url=self.hosted_instructions_url,
             image_url_png=self.image_url_png,

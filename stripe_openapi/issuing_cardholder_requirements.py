@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import ARRAY, Column, Identity, Integer, String
+
+from . import Base
 
 
-class Issuing_Cardholder_Requirements(Base):
+class IssuingCardholderRequirements(Base):
     __tablename__ = "issuing_cardholder_requirements"
     disabled_reason = Column(
         String,
@@ -22,7 +24,7 @@ class Issuing_Cardholder_Requirements(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Issuing_Cardholder_Requirements(disabled_reason={disabled_reason!r}, past_due={past_due!r}, id={id!r})".format(
+        return "IssuingCardholderRequirements(disabled_reason={disabled_reason!r}, past_due={past_due!r}, id={id!r})".format(
             disabled_reason=self.disabled_reason, past_due=self.past_due, id=self.id
         )
 

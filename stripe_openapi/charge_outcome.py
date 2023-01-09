@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Charge_Outcome(Base):
+class ChargeOutcome(Base):
     __tablename__ = "charge_outcome"
     network_status = Column(
         String,
@@ -24,8 +26,8 @@ class Charge_Outcome(Base):
         nullable=True,
     )
     rule = Column(
-        rule,
-        comment="[[FK(rule)]] The ID of the Radar rule that matched the payment, if applicable",
+        Rule,
+        comment="[[FK(Rule)]] The ID of the Radar rule that matched the payment, if applicable",
         nullable=True,
     )
     seller_message = Column(
@@ -46,7 +48,7 @@ class Charge_Outcome(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Charge_Outcome(network_status={network_status!r}, reason={reason!r}, risk_level={risk_level!r}, risk_score={risk_score!r}, rule={rule!r}, seller_message={seller_message!r}, type={type!r}, id={id!r})".format(
+        return "ChargeOutcome(network_status={network_status!r}, reason={reason!r}, risk_level={risk_level!r}, risk_score={risk_score!r}, rule={rule!r}, seller_message={seller_message!r}, type={type!r}, id={id!r})".format(
             network_status=self.network_status,
             reason=self.reason,
             risk_level=self.risk_level,

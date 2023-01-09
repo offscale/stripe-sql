@@ -1,7 +1,9 @@
 from sqlalchemy import Column, Integer, String
 
+from . import Base
 
-class Reserve_Transaction(Base):
+
+class ReserveTransaction(Base):
     __tablename__ = "reserve_transaction"
     amount = Column(Integer)
     currency = Column(
@@ -26,7 +28,7 @@ class Reserve_Transaction(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Reserve_Transaction(amount={amount!r}, currency={currency!r}, description={description!r}, id={id!r}, object={object!r})".format(
+        return "ReserveTransaction(amount={amount!r}, currency={currency!r}, description={description!r}, id={id!r}, object={object!r})".format(
             amount=self.amount,
             currency=self.currency,
             description=self.description,

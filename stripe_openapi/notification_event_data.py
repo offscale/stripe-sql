@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import JSON, Column, Identity, Integer
+
+from . import Base
 
 
-class Notification_Event_Data(Base):
+class NotificationEventData(Base):
     __tablename__ = "notification_event_data"
     object = Column(
         JSON,
@@ -21,7 +23,7 @@ class Notification_Event_Data(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Notification_Event_Data(object={object!r}, previous_attributes={previous_attributes!r}, id={id!r})".format(
+        return "NotificationEventData(object={object!r}, previous_attributes={previous_attributes!r}, id={id!r})".format(
             object=self.object, previous_attributes=self.previous_attributes, id=self.id
         )
 

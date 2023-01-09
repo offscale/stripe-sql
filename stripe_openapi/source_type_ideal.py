@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Source_Type_Ideal(Base):
+class SourceTypeIdeal(Base):
     __tablename__ = "source_type_ideal"
     bank = Column(String, nullable=True)
     bic = Column(String, nullable=True)
@@ -16,7 +18,7 @@ class Source_Type_Ideal(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Source_Type_Ideal(bank={bank!r}, bic={bic!r}, iban_last4={iban_last4!r}, statement_descriptor={statement_descriptor!r}, id={id!r})".format(
+        return "SourceTypeIdeal(bank={bank!r}, bic={bic!r}, iban_last4={iban_last4!r}, statement_descriptor={statement_descriptor!r}, id={id!r})".format(
             bank=self.bank,
             bic=self.bic,
             iban_last4=self.iban_last4,

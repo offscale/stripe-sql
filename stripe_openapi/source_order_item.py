@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Source_Order_Item(Base):
+class SourceOrderItem(Base):
     __tablename__ = "source_order_item"
     amount = Column(
         Integer, comment="The amount (price) for this order item", nullable=True
@@ -38,7 +40,7 @@ class Source_Order_Item(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Source_Order_Item(amount={amount!r}, currency={currency!r}, description={description!r}, parent={parent!r}, quantity={quantity!r}, type={type!r}, id={id!r})".format(
+        return "SourceOrderItem(amount={amount!r}, currency={currency!r}, description={description!r}, parent={parent!r}, quantity={quantity!r}, type={type!r}, id={id!r})".format(
             amount=self.amount,
             currency=self.currency,
             description=self.description,

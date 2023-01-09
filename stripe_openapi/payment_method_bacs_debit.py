@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Method_Bacs_Debit(Base):
+class PaymentMethodBacsDebit(Base):
     __tablename__ = "payment_method_bacs_debit"
     fingerprint = Column(
         String,
@@ -25,7 +27,7 @@ class Payment_Method_Bacs_Debit(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Bacs_Debit(fingerprint={fingerprint!r}, last4={last4!r}, sort_code={sort_code!r}, id={id!r})".format(
+        return "PaymentMethodBacsDebit(fingerprint={fingerprint!r}, last4={last4!r}, sort_code={sort_code!r}, id={id!r})".format(
             fingerprint=self.fingerprint,
             last4=self.last4,
             sort_code=self.sort_code,

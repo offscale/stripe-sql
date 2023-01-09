@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Subscription_Schedule_Current_Phase(Base):
+class SubscriptionScheduleCurrentPhase(Base):
     __tablename__ = "subscription_schedule_current_phase"
     end_date = Column(
         Integer, comment="The end of this phase of the subscription schedule"
@@ -18,7 +20,7 @@ class Subscription_Schedule_Current_Phase(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Subscription_Schedule_Current_Phase(end_date={end_date!r}, start_date={start_date!r}, id={id!r})".format(
+        return "SubscriptionScheduleCurrentPhase(end_date={end_date!r}, start_date={start_date!r}, id={id!r})".format(
             end_date=self.end_date, start_date=self.start_date, id=self.id
         )
 

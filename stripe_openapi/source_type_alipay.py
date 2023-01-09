@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Source_Type_Alipay(Base):
+class SourceTypeAlipay(Base):
     __tablename__ = "source_type_alipay"
     data_string = Column(String, nullable=True)
     native_url = Column(String, nullable=True)
@@ -15,7 +17,7 @@ class Source_Type_Alipay(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Source_Type_Alipay(data_string={data_string!r}, native_url={native_url!r}, statement_descriptor={statement_descriptor!r}, id={id!r})".format(
+        return "SourceTypeAlipay(data_string={data_string!r}, native_url={native_url!r}, statement_descriptor={statement_descriptor!r}, id={id!r})".format(
             data_string=self.data_string,
             native_url=self.native_url,
             statement_descriptor=self.statement_descriptor,

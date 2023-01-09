@@ -1,14 +1,20 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from stripe_openapi.gelato_data_verified_outputs_date import (
+    GelatoDataVerifiedOutputsDate,
+)
+
+from . import Base
 
 
-class Gelato_Verified_Outputs(Base):
+class GelatoVerifiedOutputs(Base):
     __tablename__ = "gelato_verified_outputs"
     address = Column(
-        address, comment="[[FK(address)]] The user's verified address", nullable=True
+        Address, comment="[[FK(Address)]] The user's verified address", nullable=True
     )
     dob = Column(
-        gelato_data_verified_outputs_date,
-        comment="[[FK(gelato_data_verified_outputs_date)]] The user’s verified date of birth",
+        GelatoDataVerifiedOutputsDate,
+        comment="[[FK(GelatoDataVerifiedOutputsDate)]] The user’s verified date of birth",
         nullable=True,
     )
     first_name = Column(String, comment="The user's verified first name", nullable=True)
@@ -26,7 +32,7 @@ class Gelato_Verified_Outputs(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Gelato_Verified_Outputs(address={address!r}, dob={dob!r}, first_name={first_name!r}, id_number={id_number!r}, id_number_type={id_number_type!r}, last_name={last_name!r}, id={id!r})".format(
+        return "GelatoVerifiedOutputs(address={address!r}, dob={dob!r}, first_name={first_name!r}, id_number={id_number!r}, id_number_type={id_number_type!r}, last_name={last_name!r}, id={id!r})".format(
             address=self.address,
             dob=self.dob,
             first_name=self.first_name,

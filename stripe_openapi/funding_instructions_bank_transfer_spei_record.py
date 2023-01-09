@@ -1,7 +1,9 @@
 from sqlalchemy import Column, String
 
+from . import Base
 
-class Funding_Instructions_Bank_Transfer_Spei_Record(Base):
+
+class FundingInstructionsBankTransferSpeiRecord(Base):
     """
     SPEI Records contain Mexico bank account details per the SPEI format.
     """
@@ -20,7 +22,7 @@ class Funding_Instructions_Bank_Transfer_Spei_Record(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Funding_Instructions_Bank_Transfer_Spei_Record(bank_code={bank_code!r}, bank_name={bank_name!r}, clabe={clabe!r})".format(
+        return "FundingInstructionsBankTransferSpeiRecord(bank_code={bank_code!r}, bank_name={bank_name!r}, clabe={clabe!r})".format(
             bank_code=self.bank_code, bank_name=self.bank_name, clabe=self.clabe
         )
 

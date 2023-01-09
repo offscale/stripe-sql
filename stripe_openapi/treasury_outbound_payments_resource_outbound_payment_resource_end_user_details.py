@@ -1,9 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, Identity, Integer, String
+
+from . import Base
 
 
-class Treasury_Outbound_Payments_Resource_Outbound_Payment_Resource_End_User_Details(
-    Base
-):
+class TreasuryOutboundPaymentsResourceOutboundPaymentResourceEndUserDetails(Base):
     __tablename__ = (
         "treasury_outbound_payments_resource_outbound_payment_resource_end_user_details"
     )
@@ -25,7 +25,7 @@ class Treasury_Outbound_Payments_Resource_Outbound_Payment_Resource_End_User_Det
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Treasury_Outbound_Payments_Resource_Outbound_Payment_Resource_End_User_Details(ip_address={ip_address!r}, present={present!r}, id={id!r})".format(
+        return "TreasuryOutboundPaymentsResourceOutboundPaymentResourceEndUserDetails(ip_address={ip_address!r}, present={present!r}, id={id!r})".format(
             ip_address=self.ip_address, present=self.present, id=self.id
         )
 

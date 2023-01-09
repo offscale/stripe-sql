@@ -1,15 +1,19 @@
-from sqlalchemy import Boolean, Column, Integer
+from sqlalchemy import Boolean, Column, Identity, Integer
+
+from stripe_openapi.tax_rate import TaxRate
+
+from . import Base
 
 
-class Invoice_Tax_Amount(Base):
+class InvoiceTaxAmount(Base):
     __tablename__ = "invoice_tax_amount"
     amount = Column(Integer, comment="The amount, in %s, of the tax")
     inclusive = Column(
         Boolean, comment="Whether this tax amount is inclusive or exclusive"
     )
     tax_rate = Column(
-        tax_rate,
-        comment="[[FK(tax_rate)]] The tax rate that was applied to get this tax amount",
+        TaxRate,
+        comment="[[FK(TaxRate)]] The tax rate that was applied to get this tax amount",
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
@@ -20,7 +24,7 @@ class Invoice_Tax_Amount(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Invoice_Tax_Amount(amount={amount!r}, inclusive={inclusive!r}, tax_rate={tax_rate!r}, id={id!r})".format(
+        return "InvoiceTaxAmount(amount={amount!r}, inclusive={inclusive!r}, tax_rate={tax_rate!r}, id={id!r})".format(
             amount=self.amount,
             inclusive=self.inclusive,
             tax_rate=self.tax_rate,

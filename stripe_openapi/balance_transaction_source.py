@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Balance_Transaction_Source(Base):
+class BalanceTransactionSource(Base):
     __tablename__ = "balance_transaction_source"
     id = Column(Integer, primary_key=True, server_default=Identity())
 
@@ -12,7 +14,7 @@ class Balance_Transaction_Source(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Balance_Transaction_Source(id={id!r})".format(id=self.id)
+        return "BalanceTransactionSource(id={id!r})".format(id=self.id)
 
 
 __all__ = ["balance_transaction_source"]

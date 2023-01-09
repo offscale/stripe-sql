@@ -1,7 +1,9 @@
 from sqlalchemy import Boolean, Column, String
 
+from . import Base
 
-class Deleted_Customer(Base):
+
+class DeletedCustomer(Base):
     __tablename__ = "deleted_customer"
     deleted = Column(Boolean, comment="Always true for a deleted object")
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
@@ -17,8 +19,10 @@ class Deleted_Customer(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Deleted_Customer(deleted={deleted!r}, id={id!r}, object={object!r})".format(
-            deleted=self.deleted, id=self.id, object=self.object
+        return (
+            "DeletedCustomer(deleted={deleted!r}, id={id!r}, object={object!r})".format(
+                deleted=self.deleted, id=self.id, object=self.object
+            )
         )
 
 

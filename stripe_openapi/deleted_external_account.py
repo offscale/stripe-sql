@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Deleted_External_Account(Base):
+class DeletedExternalAccount(Base):
     __tablename__ = "deleted_external_account"
     id = Column(Integer, primary_key=True, server_default=Identity())
 
@@ -12,7 +14,7 @@ class Deleted_External_Account(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Deleted_External_Account(id={id!r})".format(id=self.id)
+        return "DeletedExternalAccount(id={id!r})".format(id=self.id)
 
 
 __all__ = ["deleted_external_account"]

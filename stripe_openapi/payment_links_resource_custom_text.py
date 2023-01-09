@@ -1,16 +1,22 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from stripe_openapi.payment_links_resource_custom_text_position import (
+    PaymentLinksResourceCustomTextPosition,
+)
+
+from . import Base
 
 
-class Payment_Links_Resource_Custom_Text(Base):
+class PaymentLinksResourceCustomText(Base):
     __tablename__ = "payment_links_resource_custom_text"
     shipping_address = Column(
-        payment_links_resource_custom_text_position,
-        comment="[[FK(payment_links_resource_custom_text_position)]] Custom text that should be displayed alongside shipping address collection",
+        PaymentLinksResourceCustomTextPosition,
+        comment="[[FK(PaymentLinksResourceCustomTextPosition)]] Custom text that should be displayed alongside shipping address collection",
         nullable=True,
     )
     submit = Column(
-        payment_links_resource_custom_text_position,
-        comment="[[FK(payment_links_resource_custom_text_position)]] Custom text that should be displayed alongside the payment confirmation button",
+        PaymentLinksResourceCustomTextPosition,
+        comment="[[FK(PaymentLinksResourceCustomTextPosition)]] Custom text that should be displayed alongside the payment confirmation button",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -22,7 +28,7 @@ class Payment_Links_Resource_Custom_Text(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Links_Resource_Custom_Text(shipping_address={shipping_address!r}, submit={submit!r}, id={id!r})".format(
+        return "PaymentLinksResourceCustomText(shipping_address={shipping_address!r}, submit={submit!r}, id={id!r})".format(
             shipping_address=self.shipping_address, submit=self.submit, id=self.id
         )
 

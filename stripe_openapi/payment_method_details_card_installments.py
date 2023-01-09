@@ -1,11 +1,17 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from stripe_openapi.payment_method_details_card_installments_plan import (
+    PaymentMethodDetailsCardInstallmentsPlan,
+)
+
+from . import Base
 
 
-class Payment_Method_Details_Card_Installments(Base):
+class PaymentMethodDetailsCardInstallments(Base):
     __tablename__ = "payment_method_details_card_installments"
     plan = Column(
-        payment_method_details_card_installments_plan,
-        comment="[[FK(payment_method_details_card_installments_plan)]] Installment plan selected for the payment",
+        PaymentMethodDetailsCardInstallmentsPlan,
+        comment="[[FK(PaymentMethodDetailsCardInstallmentsPlan)]] Installment plan selected for the payment",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -17,10 +23,8 @@ class Payment_Method_Details_Card_Installments(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return (
-            "Payment_Method_Details_Card_Installments(plan={plan!r}, id={id!r})".format(
-                plan=self.plan, id=self.id
-            )
+        return "PaymentMethodDetailsCardInstallments(plan={plan!r}, id={id!r})".format(
+            plan=self.plan, id=self.id
         )
 
 

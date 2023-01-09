@@ -1,9 +1,11 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
 class Shipping(Base):
     __tablename__ = "shipping"
-    address = Column(address, ForeignKey("address"), nullable=True)
+    address = Column(Address, ForeignKey("Address"), nullable=True)
     carrier = Column(
         String,
         comment="The delivery service that shipped a physical product, such as Fedex, UPS, USPS, etc",

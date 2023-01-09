@@ -1,11 +1,13 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Issuing_Dispute_Merchandise_Not_As_Described_Evidence(Base):
+class IssuingDisputeMerchandiseNotAsDescribedEvidence(Base):
     __tablename__ = "issuing_dispute_merchandise_not_as_described_evidence"
     additional_documentation = Column(
-        file,
-        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Additional documentation supporting the dispute",
+        File,
+        comment="[[FK(File)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Additional documentation supporting the dispute",
         nullable=True,
     )
     explanation = Column(
@@ -40,7 +42,7 @@ class Issuing_Dispute_Merchandise_Not_As_Described_Evidence(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Issuing_Dispute_Merchandise_Not_As_Described_Evidence(additional_documentation={additional_documentation!r}, explanation={explanation!r}, received_at={received_at!r}, return_description={return_description!r}, return_status={return_status!r}, returned_at={returned_at!r}, id={id!r})".format(
+        return "IssuingDisputeMerchandiseNotAsDescribedEvidence(additional_documentation={additional_documentation!r}, explanation={explanation!r}, received_at={received_at!r}, return_description={return_description!r}, return_status={return_status!r}, returned_at={returned_at!r}, id={id!r})".format(
             additional_documentation=self.additional_documentation,
             explanation=self.explanation,
             received_at=self.received_at,

@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Intent_Next_Action_Alipay_Handle_Redirect(Base):
+class PaymentIntentNextActionAlipayHandleRedirect(Base):
     __tablename__ = "payment_intent_next_action_alipay_handle_redirect"
     native_data = Column(
         String,
@@ -32,7 +34,7 @@ class Payment_Intent_Next_Action_Alipay_Handle_Redirect(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Intent_Next_Action_Alipay_Handle_Redirect(native_data={native_data!r}, native_url={native_url!r}, return_url={return_url!r}, url={url!r}, id={id!r})".format(
+        return "PaymentIntentNextActionAlipayHandleRedirect(native_data={native_data!r}, native_url={native_url!r}, return_url={return_url!r}, url={url!r}, id={id!r})".format(
             native_data=self.native_data,
             native_url=self.native_url,
             return_url=self.return_url,

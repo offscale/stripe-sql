@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer
+from sqlalchemy import Boolean, Column, ForeignKey, Identity, Integer
+
+from . import Base
 
 
-class Terminal_Reader_Reader_Resource_Process_Config(Base):
+class TerminalReaderReaderResourceProcessConfig(Base):
     """
     Represents a per-transaction override of a reader configuration
     """
@@ -13,8 +15,8 @@ class Terminal_Reader_Reader_Resource_Process_Config(Base):
         nullable=True,
     )
     tipping = Column(
-        terminal_reader_reader_resource_tipping_config,
-        ForeignKey("terminal_reader_reader_resource_tipping_config"),
+        Integer,
+        ForeignKey("terminal_reader_reader_resource_tipping_config.id"),
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -26,7 +28,7 @@ class Terminal_Reader_Reader_Resource_Process_Config(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Terminal_Reader_Reader_Resource_Process_Config(skip_tipping={skip_tipping!r}, tipping={tipping!r}, id={id!r})".format(
+        return "TerminalReaderReaderResourceProcessConfig(skip_tipping={skip_tipping!r}, tipping={tipping!r}, id={id!r})".format(
             skip_tipping=self.skip_tipping, tipping=self.tipping, id=self.id
         )
 

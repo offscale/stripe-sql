@@ -1,7 +1,12 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import JSON, Column, Integer, String
+
+from stripe_openapi.application_fee import ApplicationFee
+from stripe_openapi.balance_transaction import BalanceTransaction
+
+from . import Base
 
 
-class Fee_Refund(Base):
+class FeeRefund(Base):
     """
     `Application Fee Refund` objects allow you to refund an application fee that
 
@@ -15,8 +20,8 @@ class Fee_Refund(Base):
     __tablename__ = "fee_refund"
     amount = Column(Integer, comment="Amount, in %s")
     balance_transaction = Column(
-        balance_transaction,
-        comment="[[FK(balance_transaction)]] Balance transaction that describes the impact on your account balance",
+        BalanceTransaction,
+        comment="[[FK(BalanceTransaction)]] Balance transaction that describes the impact on your account balance",
         nullable=True,
     )
     created = Column(
@@ -28,8 +33,8 @@ class Fee_Refund(Base):
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",
     )
     fee = Column(
-        application_fee,
-        comment="[[FK(application_fee)]] ID of the application fee that was refunded",
+        ApplicationFee,
+        comment="[[FK(ApplicationFee)]] ID of the application fee that was refunded",
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     metadata = Column(
@@ -49,7 +54,7 @@ class Fee_Refund(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Fee_Refund(amount={amount!r}, balance_transaction={balance_transaction!r}, created={created!r}, currency={currency!r}, fee={fee!r}, id={id!r}, metadata={metadata!r}, object={object!r})".format(
+        return "FeeRefund(amount={amount!r}, balance_transaction={balance_transaction!r}, created={created!r}, currency={currency!r}, fee={fee!r}, id={id!r}, metadata={metadata!r}, object={object!r})".format(
             amount=self.amount,
             balance_transaction=self.balance_transaction,
             created=self.created,

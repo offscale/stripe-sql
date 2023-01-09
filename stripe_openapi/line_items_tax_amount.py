@@ -1,10 +1,12 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer
+
+from . import Base
 
 
-class Line_Items_Tax_Amount(Base):
+class LineItemsTaxAmount(Base):
     __tablename__ = "line_items_tax_amount"
     amount = Column(Integer, comment="Amount of tax applied for this rate")
-    rate = Column(tax_rate, ForeignKey("tax_rate"))
+    rate = Column(String, ForeignKey("tax_rate.id"))
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):
@@ -14,10 +16,8 @@ class Line_Items_Tax_Amount(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return (
-            "Line_Items_Tax_Amount(amount={amount!r}, rate={rate!r}, id={id!r})".format(
-                amount=self.amount, rate=self.rate, id=self.id
-            )
+        return "LineItemsTaxAmount(amount={amount!r}, rate={rate!r}, id={id!r})".format(
+            amount=self.amount, rate=self.rate, id=self.id
         )
 
 

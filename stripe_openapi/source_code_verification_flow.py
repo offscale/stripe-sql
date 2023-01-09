@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Source_Code_Verification_Flow(Base):
+class SourceCodeVerificationFlow(Base):
     __tablename__ = "source_code_verification_flow"
     attempts_remaining = Column(
         Integer,
@@ -20,7 +22,7 @@ class Source_Code_Verification_Flow(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Source_Code_Verification_Flow(attempts_remaining={attempts_remaining!r}, status={status!r}, id={id!r})".format(
+        return "SourceCodeVerificationFlow(attempts_remaining={attempts_remaining!r}, status={status!r}, id={id!r})".format(
             attempts_remaining=self.attempts_remaining, status=self.status, id=self.id
         )
 

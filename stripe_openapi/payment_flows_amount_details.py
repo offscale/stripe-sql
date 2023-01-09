@@ -1,11 +1,13 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer
+
+from . import Base
 
 
-class Payment_Flows_Amount_Details(Base):
+class PaymentFlowsAmountDetails(Base):
     __tablename__ = "payment_flows_amount_details"
     tip = Column(
-        payment_flows_amount_details_resource_tip,
-        ForeignKey("payment_flows_amount_details_resource_tip"),
+        Integer,
+        ForeignKey("payment_flows_amount_details_resource_tip.id"),
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -17,7 +19,7 @@ class Payment_Flows_Amount_Details(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Flows_Amount_Details(tip={tip!r}, id={id!r})".format(
+        return "PaymentFlowsAmountDetails(tip={tip!r}, id={id!r})".format(
             tip=self.tip, id=self.id
         )
 

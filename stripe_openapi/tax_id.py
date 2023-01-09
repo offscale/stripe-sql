@@ -1,7 +1,11 @@
 from sqlalchemy import Boolean, Column, Integer, String
 
+from stripe_openapi.tax_id_verification import TaxIdVerification
 
-class Tax_Id(Base):
+from . import Base
+
+
+class TaxId(Base):
     """
     You can add one or multiple tax IDs to a [customer](https://stripe.com/docs/api/customers).
 
@@ -22,7 +26,7 @@ class Tax_Id(Base):
         comment="Time at which the object was created. Measured in seconds since the Unix epoch",
     )
     customer = Column(
-        customer, comment="[[FK(customer)]] ID of the customer", nullable=True
+        Customer, comment="[[FK(Customer)]] ID of the customer", nullable=True
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     livemode = Column(
@@ -39,8 +43,8 @@ class Tax_Id(Base):
     )
     value = Column(String, comment="Value of the tax ID")
     verification = Column(
-        tax_id_verification,
-        comment="[[FK(tax_id_verification)]] Tax ID verification information",
+        TaxIdVerification,
+        comment="[[FK(TaxIdVerification)]] Tax ID verification information",
         nullable=True,
     )
 
@@ -51,7 +55,7 @@ class Tax_Id(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Tax_Id(country={country!r}, created={created!r}, customer={customer!r}, id={id!r}, livemode={livemode!r}, object={object!r}, type={type!r}, value={value!r}, verification={verification!r})".format(
+        return "TaxId(country={country!r}, created={created!r}, customer={customer!r}, id={id!r}, livemode={livemode!r}, object={object!r}, type={type!r}, value={value!r}, verification={verification!r})".format(
             country=self.country,
             created=self.created,
             customer=self.customer,

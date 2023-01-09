@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Mandate_Bacs_Debit(Base):
+class MandateBacsDebit(Base):
     __tablename__ = "mandate_bacs_debit"
     network_status = Column(
         String,
@@ -24,7 +26,7 @@ class Mandate_Bacs_Debit(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Mandate_Bacs_Debit(network_status={network_status!r}, reference={reference!r}, url={url!r}, id={id!r})".format(
+        return "MandateBacsDebit(network_status={network_status!r}, reference={reference!r}, url={url!r}, id={id!r})".format(
             network_status=self.network_status,
             reference=self.reference,
             url=self.url,

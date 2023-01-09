@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Terminal_Reader_Reader_Resource_Reader_Action(Base):
+class TerminalReaderReaderResourceReaderAction(Base):
     """
     Represents an action performed by the reader
     """
@@ -16,18 +18,18 @@ class Terminal_Reader_Reader_Resource_Reader_Action(Base):
         nullable=True,
     )
     process_payment_intent = Column(
-        terminal_reader_reader_resource_process_payment_intent_action,
-        ForeignKey("terminal_reader_reader_resource_process_payment_intent_action"),
+        Integer,
+        ForeignKey("terminal_reader_reader_resource_process_payment_intent_action.id"),
         nullable=True,
     )
     process_setup_intent = Column(
-        terminal_reader_reader_resource_process_setup_intent_action,
-        ForeignKey("terminal_reader_reader_resource_process_setup_intent_action"),
+        Integer,
+        ForeignKey("terminal_reader_reader_resource_process_setup_intent_action.id"),
         nullable=True,
     )
     set_reader_display = Column(
-        terminal_reader_reader_resource_set_reader_display_action,
-        ForeignKey("terminal_reader_reader_resource_set_reader_display_action"),
+        Integer,
+        ForeignKey("terminal_reader_reader_resource_set_reader_display_action.id"),
         nullable=True,
     )
     status = Column(String, comment="Status of the action performed by the reader")
@@ -41,7 +43,7 @@ class Terminal_Reader_Reader_Resource_Reader_Action(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Terminal_Reader_Reader_Resource_Reader_Action(failure_code={failure_code!r}, failure_message={failure_message!r}, process_payment_intent={process_payment_intent!r}, process_setup_intent={process_setup_intent!r}, set_reader_display={set_reader_display!r}, status={status!r}, type={type!r}, id={id!r})".format(
+        return "TerminalReaderReaderResourceReaderAction(failure_code={failure_code!r}, failure_message={failure_message!r}, process_payment_intent={process_payment_intent!r}, process_setup_intent={process_setup_intent!r}, set_reader_display={set_reader_display!r}, status={status!r}, type={type!r}, id={id!r})".format(
             failure_code=self.failure_code,
             failure_message=self.failure_message,
             process_payment_intent=self.process_payment_intent,

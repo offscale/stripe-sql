@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Account_Requirements_Error(Base):
+class AccountRequirementsError(Base):
     __tablename__ = "account_requirements_error"
     code = Column(String, comment="The code for the type of error")
     reason = Column(
@@ -21,7 +23,7 @@ class Account_Requirements_Error(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Account_Requirements_Error(code={code!r}, reason={reason!r}, requirement={requirement!r}, id={id!r})".format(
+        return "AccountRequirementsError(code={code!r}, reason={reason!r}, requirement={requirement!r}, id={id!r})".format(
             code=self.code, reason=self.reason, requirement=self.requirement, id=self.id
         )
 

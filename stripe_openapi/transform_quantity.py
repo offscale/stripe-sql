@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Transform_Quantity(Base):
+class TransformQuantity(Base):
     __tablename__ = "transform_quantity"
     divide_by = Column(Integer, comment="Divide usage by this number")
     round = Column(
@@ -16,7 +18,7 @@ class Transform_Quantity(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Transform_Quantity(divide_by={divide_by!r}, round={round!r}, id={id!r})".format(
+        return "TransformQuantity(divide_by={divide_by!r}, round={round!r}, id={id!r})".format(
             divide_by=self.divide_by, round=self.round, id=self.id
         )
 

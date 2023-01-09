@@ -1,7 +1,11 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from stripe_openapi.sepa_debit_generated_from import SepaDebitGeneratedFrom
+
+from . import Base
 
 
-class Payment_Method_Sepa_Debit(Base):
+class PaymentMethodSepaDebit(Base):
     __tablename__ = "payment_method_sepa_debit"
     bank_code = Column(
         String,
@@ -24,8 +28,8 @@ class Payment_Method_Sepa_Debit(Base):
         nullable=True,
     )
     generated_from = Column(
-        sepa_debit_generated_from,
-        comment="[[FK(sepa_debit_generated_from)]] Information about the object that generated this PaymentMethod",
+        SepaDebitGeneratedFrom,
+        comment="[[FK(SepaDebitGeneratedFrom)]] Information about the object that generated this PaymentMethod",
         nullable=True,
     )
     last4 = Column(String, comment="Last four characters of the IBAN", nullable=True)
@@ -38,7 +42,7 @@ class Payment_Method_Sepa_Debit(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Sepa_Debit(bank_code={bank_code!r}, branch_code={branch_code!r}, country={country!r}, fingerprint={fingerprint!r}, generated_from={generated_from!r}, last4={last4!r}, id={id!r})".format(
+        return "PaymentMethodSepaDebit(bank_code={bank_code!r}, branch_code={branch_code!r}, country={country!r}, fingerprint={fingerprint!r}, generated_from={generated_from!r}, last4={last4!r}, id={id!r})".format(
             bank_code=self.bank_code,
             branch_code=self.branch_code,
             country=self.country,

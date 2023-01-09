@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Mandate_Multi_Use(Base):
+class MandateMultiUse(Base):
     __tablename__ = "mandate_multi_use"
     id = Column(Integer, primary_key=True, server_default=Identity())
 
@@ -12,7 +14,7 @@ class Mandate_Multi_Use(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Mandate_Multi_Use(id={id!r})".format(id=self.id)
+        return "MandateMultiUse(id={id!r})".format(id=self.id)
 
 
 __all__ = ["mandate_multi_use"]

@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import ARRAY, Column, Identity, Integer, String, list
+
+from . import Base
 
 
-class Account_Future_Requirements(Base):
+class AccountFutureRequirements(Base):
     __tablename__ = "account_future_requirements"
     alternatives = Column(
         list,
@@ -52,7 +54,7 @@ class Account_Future_Requirements(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Account_Future_Requirements(alternatives={alternatives!r}, current_deadline={current_deadline!r}, currently_due={currently_due!r}, disabled_reason={disabled_reason!r}, errors={errors!r}, eventually_due={eventually_due!r}, past_due={past_due!r}, pending_verification={pending_verification!r}, id={id!r})".format(
+        return "AccountFutureRequirements(alternatives={alternatives!r}, current_deadline={current_deadline!r}, currently_due={currently_due!r}, disabled_reason={disabled_reason!r}, errors={errors!r}, eventually_due={eventually_due!r}, past_due={past_due!r}, pending_verification={pending_verification!r}, id={id!r})".format(
             alternatives=self.alternatives,
             current_deadline=self.current_deadline,
             currently_due=self.currently_due,

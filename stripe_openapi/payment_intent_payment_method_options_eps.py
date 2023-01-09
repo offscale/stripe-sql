@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Intent_Payment_Method_Options_Eps(Base):
+class PaymentIntentPaymentMethodOptionsEps(Base):
     __tablename__ = "payment_intent_payment_method_options_eps"
     setup_future_usage = Column(
         String,
@@ -17,7 +19,7 @@ class Payment_Intent_Payment_Method_Options_Eps(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Intent_Payment_Method_Options_Eps(setup_future_usage={setup_future_usage!r}, id={id!r})".format(
+        return "PaymentIntentPaymentMethodOptionsEps(setup_future_usage={setup_future_usage!r}, id={id!r})".format(
             setup_future_usage=self.setup_future_usage, id=self.id
         )
 

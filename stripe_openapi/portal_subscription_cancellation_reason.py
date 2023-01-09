@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer
+from sqlalchemy import ARRAY, Boolean, Column, Identity, Integer, String
+
+from . import Base
 
 
-class Portal_Subscription_Cancellation_Reason(Base):
+class PortalSubscriptionCancellationReason(Base):
     __tablename__ = "portal_subscription_cancellation_reason"
     enabled = Column(Boolean, comment="Whether the feature is enabled")
     options = Column(
@@ -17,7 +19,7 @@ class Portal_Subscription_Cancellation_Reason(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Portal_Subscription_Cancellation_Reason(enabled={enabled!r}, options={options!r}, id={id!r})".format(
+        return "PortalSubscriptionCancellationReason(enabled={enabled!r}, options={options!r}, id={id!r})".format(
             enabled=self.enabled, options=self.options, id=self.id
         )
 

@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Source_Redirect_Flow(Base):
+class SourceRedirectFlow(Base):
     __tablename__ = "source_redirect_flow"
     failure_reason = Column(
         String,
@@ -29,7 +31,7 @@ class Source_Redirect_Flow(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Source_Redirect_Flow(failure_reason={failure_reason!r}, return_url={return_url!r}, status={status!r}, url={url!r}, id={id!r})".format(
+        return "SourceRedirectFlow(failure_reason={failure_reason!r}, return_url={return_url!r}, status={status!r}, url={url!r}, id={id!r})".format(
             failure_reason=self.failure_reason,
             return_url=self.return_url,
             status=self.status,

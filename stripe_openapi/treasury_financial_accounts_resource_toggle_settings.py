@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, Identity, Integer, String, list
+
+from . import Base
 
 
-class Treasury_Financial_Accounts_Resource_Toggle_Settings(Base):
+class TreasuryFinancialAccountsResourceToggleSettings(Base):
     """
     Toggle settings for enabling/disabling a feature
     """
@@ -24,7 +26,7 @@ class Treasury_Financial_Accounts_Resource_Toggle_Settings(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Treasury_Financial_Accounts_Resource_Toggle_Settings(requested={requested!r}, status={status!r}, status_details={status_details!r}, id={id!r})".format(
+        return "TreasuryFinancialAccountsResourceToggleSettings(requested={requested!r}, status={status!r}, status_details={status_details!r}, id={id!r})".format(
             requested=self.requested,
             status=self.status,
             status_details=self.status_details,

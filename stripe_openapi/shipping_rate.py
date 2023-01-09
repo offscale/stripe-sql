@@ -1,7 +1,12 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import JSON, Boolean, Column, ForeignKey, Integer, String
+
+from stripe_openapi.shipping_rate_delivery_estimate import ShippingRateDeliveryEstimate
+from stripe_openapi.tax_code import TaxCode
+
+from . import Base
 
 
-class Shipping_Rate(Base):
+class ShippingRate(Base):
     """
     Shipping rates describe the price of shipping presented to your customers and can be
 
@@ -20,8 +25,8 @@ class Shipping_Rate(Base):
         comment="Time at which the object was created. Measured in seconds since the Unix epoch",
     )
     delivery_estimate = Column(
-        shipping_rate_delivery_estimate,
-        comment="[[FK(shipping_rate_delivery_estimate)]] The estimated range for how long shipping will take, meant to be displayable to the customer. This will appear on CheckoutSessions",
+        ShippingRateDeliveryEstimate,
+        comment="[[FK(ShippingRateDeliveryEstimate)]] The estimated range for how long shipping will take, meant to be displayable to the customer. This will appear on CheckoutSessions",
         nullable=True,
     )
     display_name = Column(
@@ -30,9 +35,7 @@ class Shipping_Rate(Base):
         nullable=True,
     )
     fixed_amount = Column(
-        shipping_rate_fixed_amount,
-        ForeignKey("shipping_rate_fixed_amount"),
-        nullable=True,
+        Integer, ForeignKey("shipping_rate_fixed_amount.id"), nullable=True
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     livemode = Column(
@@ -53,8 +56,8 @@ class Shipping_Rate(Base):
         nullable=True,
     )
     tax_code = Column(
-        tax_code,
-        comment="[[FK(tax_code)]] A [tax code](https://stripe.com/docs/tax/tax-categories) ID. The Shipping tax code is `txcd_92010001`",
+        TaxCode,
+        comment="[[FK(TaxCode)]] A [tax code](https://stripe.com/docs/tax/tax-categories) ID. The Shipping tax code is `txcd_92010001`",
         nullable=True,
     )
     type = Column(
@@ -69,7 +72,7 @@ class Shipping_Rate(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Shipping_Rate(active={active!r}, created={created!r}, delivery_estimate={delivery_estimate!r}, display_name={display_name!r}, fixed_amount={fixed_amount!r}, id={id!r}, livemode={livemode!r}, metadata={metadata!r}, object={object!r}, tax_behavior={tax_behavior!r}, tax_code={tax_code!r}, type={type!r})".format(
+        return "ShippingRate(active={active!r}, created={created!r}, delivery_estimate={delivery_estimate!r}, display_name={display_name!r}, fixed_amount={fixed_amount!r}, id={id!r}, livemode={livemode!r}, metadata={metadata!r}, object={object!r}, tax_behavior={tax_behavior!r}, tax_code={tax_code!r}, type={type!r})".format(
             active=self.active,
             created=self.created,
             delivery_estimate=self.delivery_estimate,

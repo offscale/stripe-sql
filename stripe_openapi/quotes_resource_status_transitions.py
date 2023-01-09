@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Quotes_Resource_Status_Transitions(Base):
+class QuotesResourceStatusTransitions(Base):
     __tablename__ = "quotes_resource_status_transitions"
     accepted_at = Column(
         Integer,
@@ -27,7 +29,7 @@ class Quotes_Resource_Status_Transitions(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Quotes_Resource_Status_Transitions(accepted_at={accepted_at!r}, canceled_at={canceled_at!r}, finalized_at={finalized_at!r}, id={id!r})".format(
+        return "QuotesResourceStatusTransitions(accepted_at={accepted_at!r}, canceled_at={canceled_at!r}, finalized_at={finalized_at!r}, id={id!r})".format(
             accepted_at=self.accepted_at,
             canceled_at=self.canceled_at,
             finalized_at=self.finalized_at,

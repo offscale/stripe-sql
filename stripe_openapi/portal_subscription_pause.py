@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer
+from sqlalchemy import Boolean, Column, Identity, Integer
+
+from . import Base
 
 
-class Portal_Subscription_Pause(Base):
+class PortalSubscriptionPause(Base):
     __tablename__ = "portal_subscription_pause"
     enabled = Column(Boolean, comment="Whether the feature is enabled")
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -13,7 +15,7 @@ class Portal_Subscription_Pause(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Portal_Subscription_Pause(enabled={enabled!r}, id={id!r})".format(
+        return "PortalSubscriptionPause(enabled={enabled!r}, id={id!r})".format(
             enabled=self.enabled, id=self.id
         )
 

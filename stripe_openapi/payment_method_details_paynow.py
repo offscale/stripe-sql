@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Method_Details_Paynow(Base):
+class PaymentMethodDetailsPaynow(Base):
     __tablename__ = "payment_method_details_paynow"
     reference = Column(
         String,
@@ -17,10 +19,8 @@ class Payment_Method_Details_Paynow(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return (
-            "Payment_Method_Details_Paynow(reference={reference!r}, id={id!r})".format(
-                reference=self.reference, id=self.id
-            )
+        return "PaymentMethodDetailsPaynow(reference={reference!r}, id={id!r})".format(
+            reference=self.reference, id=self.id
         )
 
 

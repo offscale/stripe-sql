@@ -1,15 +1,20 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+
+from stripe_openapi.portal_flows_flow_subscription_cancel import (
+    PortalFlowsFlowSubscriptionCancel,
+)
+
+from . import Base
 
 
-class Portal_Flows_Flow(Base):
+class PortalFlowsFlow(Base):
     __tablename__ = "portal_flows_flow"
     after_completion = Column(
-        portal_flows_flow_after_completion,
-        ForeignKey("portal_flows_flow_after_completion"),
+        Integer, ForeignKey("portal_flows_flow_after_completion.id")
     )
     subscription_cancel = Column(
-        portal_flows_flow_subscription_cancel,
-        comment="[[FK(portal_flows_flow_subscription_cancel)]] Configuration when `flow.type=subscription_cancel`",
+        PortalFlowsFlowSubscriptionCancel,
+        comment="[[FK(PortalFlowsFlowSubscriptionCancel)]] Configuration when `flow.type=subscription_cancel`",
         nullable=True,
     )
     type = Column(String, comment="Type of flow that the customer will go through")
@@ -22,7 +27,7 @@ class Portal_Flows_Flow(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Portal_Flows_Flow(after_completion={after_completion!r}, subscription_cancel={subscription_cancel!r}, type={type!r}, id={id!r})".format(
+        return "PortalFlowsFlow(after_completion={after_completion!r}, subscription_cancel={subscription_cancel!r}, type={type!r}, id={id!r})".format(
             after_completion=self.after_completion,
             subscription_cancel=self.subscription_cancel,
             type=self.type,

@@ -1,4 +1,6 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, list
+
+from . import Base
 
 
 class Level3(Base):

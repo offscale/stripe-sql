@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Api_Errors(Base):
+class ApiErrors(Base):
     __tablename__ = "api_errors"
     charge = Column(
         String, comment="For card errors, the ID of the failed charge", nullable=True
@@ -31,8 +33,8 @@ class Api_Errors(Base):
         comment="If the error is parameter-specific, the parameter related to the error. For example, you can use this to display a message near the correct form field",
         nullable=True,
     )
-    payment_intent = Column(payment_intent, ForeignKey("payment_intent"), nullable=True)
-    payment_method = Column(payment_method, ForeignKey("payment_method"), nullable=True)
+    payment_intent = Column(String, ForeignKey("payment_intent.id"), nullable=True)
+    payment_method = Column(String, ForeignKey("payment_method.id"), nullable=True)
     payment_method_type = Column(
         String,
         comment="If the error is specific to the type of payment method, the payment method type that had a problem. This field is only populated for invoice-related errors",
@@ -43,8 +45,8 @@ class Api_Errors(Base):
         comment="A URL to the request log entry in your dashboard",
         nullable=True,
     )
-    setup_intent = Column(setup_intent, ForeignKey("setup_intent"), nullable=True)
-    source = Column(payment_source, ForeignKey("payment_source"), nullable=True)
+    setup_intent = Column(String, ForeignKey("setup_intent.id"), nullable=True)
+    source = Column(Integer, ForeignKey("payment_source.id"), nullable=True)
     type = Column(
         String,
         comment="The type of error returned. One of `api_error`, `card_error`, `idempotency_error`, or `invalid_request_error`",
@@ -58,7 +60,7 @@ class Api_Errors(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Api_Errors(charge={charge!r}, code={code!r}, decline_code={decline_code!r}, doc_url={doc_url!r}, message={message!r}, param={param!r}, payment_intent={payment_intent!r}, payment_method={payment_method!r}, payment_method_type={payment_method_type!r}, request_log_url={request_log_url!r}, setup_intent={setup_intent!r}, source={source!r}, type={type!r}, id={id!r})".format(
+        return "ApiErrors(charge={charge!r}, code={code!r}, decline_code={decline_code!r}, doc_url={doc_url!r}, message={message!r}, param={param!r}, payment_intent={payment_intent!r}, payment_method={payment_method!r}, payment_method_type={payment_method_type!r}, request_log_url={request_log_url!r}, setup_intent={setup_intent!r}, source={source!r}, type={type!r}, id={id!r})".format(
             charge=self.charge,
             code=self.code,
             decline_code=self.decline_code,

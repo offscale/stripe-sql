@@ -1,12 +1,14 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Discounts_Resource_Discount_Amount(Base):
+class DiscountsResourceDiscountAmount(Base):
     __tablename__ = "discounts_resource_discount_amount"
     amount = Column(Integer, comment="The amount, in %s, of the discount")
     discount = Column(
-        string | discount,
-        comment="[[FK(deleted_discount)]] The discount that was applied to get this discount amount",
+        Discount,
+        comment="[[FK(DeletedDiscount)]] The discount that was applied to get this discount amount",
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
@@ -17,7 +19,7 @@ class Discounts_Resource_Discount_Amount(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Discounts_Resource_Discount_Amount(amount={amount!r}, discount={discount!r}, id={id!r})".format(
+        return "DiscountsResourceDiscountAmount(amount={amount!r}, discount={discount!r}, id={id!r})".format(
             amount=self.amount, discount=self.discount, id=self.id
         )
 

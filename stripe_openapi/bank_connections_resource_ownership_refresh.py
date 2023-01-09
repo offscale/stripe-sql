@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Bank_Connections_Resource_Ownership_Refresh(Base):
+class BankConnectionsResourceOwnershipRefresh(Base):
     __tablename__ = "bank_connections_resource_ownership_refresh"
     last_attempted_at = Column(
         Integer,
@@ -17,7 +19,7 @@ class Bank_Connections_Resource_Ownership_Refresh(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Bank_Connections_Resource_Ownership_Refresh(last_attempted_at={last_attempted_at!r}, status={status!r}, id={id!r})".format(
+        return "BankConnectionsResourceOwnershipRefresh(last_attempted_at={last_attempted_at!r}, status={status!r}, id={id!r})".format(
             last_attempted_at=self.last_attempted_at, status=self.status, id=self.id
         )
 

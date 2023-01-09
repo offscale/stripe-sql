@@ -1,7 +1,13 @@
 from sqlalchemy import Boolean, Column, Integer, String
 
+from stripe_openapi.payment_method_details_card_present_receipt import (
+    PaymentMethodDetailsCardPresentReceipt,
+)
 
-class Payment_Method_Details_Card_Present(Base):
+from . import Base
+
+
+class PaymentMethodDetailsCardPresent(Base):
     __tablename__ = "payment_method_details_card_present"
     amount_authorized = Column(Integer, comment="The authorized amount", nullable=True)
     brand = Column(
@@ -82,8 +88,8 @@ class Payment_Method_Details_Card_Present(Base):
         String, comment="How card details were read in this transaction", nullable=True
     )
     receipt = Column(
-        payment_method_details_card_present_receipt,
-        comment="[[FK(payment_method_details_card_present_receipt)]] A collection of fields required to be displayed on receipts. Only required for EMV transactions",
+        PaymentMethodDetailsCardPresentReceipt,
+        comment="[[FK(PaymentMethodDetailsCardPresentReceipt)]] A collection of fields required to be displayed on receipts. Only required for EMV transactions",
         nullable=True,
     )
 
@@ -94,7 +100,7 @@ class Payment_Method_Details_Card_Present(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Details_Card_Present(amount_authorized={amount_authorized!r}, brand={brand!r}, capture_before={capture_before!r}, cardholder_name={cardholder_name!r}, country={country!r}, description={description!r}, emv_auth_data={emv_auth_data!r}, exp_month={exp_month!r}, exp_year={exp_year!r}, fingerprint={fingerprint!r}, funding={funding!r}, generated_card={generated_card!r}, iin={iin!r}, incremental_authorization_supported={incremental_authorization_supported!r}, issuer={issuer!r}, last4={last4!r}, network={network!r}, overcapture_supported={overcapture_supported!r}, read_method={read_method!r}, receipt={receipt!r})".format(
+        return "PaymentMethodDetailsCardPresent(amount_authorized={amount_authorized!r}, brand={brand!r}, capture_before={capture_before!r}, cardholder_name={cardholder_name!r}, country={country!r}, description={description!r}, emv_auth_data={emv_auth_data!r}, exp_month={exp_month!r}, exp_year={exp_year!r}, fingerprint={fingerprint!r}, funding={funding!r}, generated_card={generated_card!r}, iin={iin!r}, incremental_authorization_supported={incremental_authorization_supported!r}, issuer={issuer!r}, last4={last4!r}, network={network!r}, overcapture_supported={overcapture_supported!r}, read_method={read_method!r}, receipt={receipt!r})".format(
             amount_authorized=self.amount_authorized,
             brand=self.brand,
             capture_before=self.capture_before,

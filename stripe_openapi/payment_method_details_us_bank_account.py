@@ -1,7 +1,9 @@
 from sqlalchemy import Column, String
 
+from . import Base
 
-class Payment_Method_Details_Us_Bank_Account(Base):
+
+class PaymentMethodDetailsUsBankAccount(Base):
     __tablename__ = "payment_method_details_us_bank_account"
     account_holder_type = Column(
         String, comment="Account holder type: individual or company", nullable=True
@@ -36,7 +38,7 @@ class Payment_Method_Details_Us_Bank_Account(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Details_Us_Bank_Account(account_holder_type={account_holder_type!r}, account_type={account_type!r}, bank_name={bank_name!r}, fingerprint={fingerprint!r}, last4={last4!r}, routing_number={routing_number!r})".format(
+        return "PaymentMethodDetailsUsBankAccount(account_holder_type={account_holder_type!r}, account_type={account_type!r}, bank_name={bank_name!r}, fingerprint={fingerprint!r}, last4={last4!r}, routing_number={routing_number!r})".format(
             account_holder_type=self.account_holder_type,
             account_type=self.account_type,
             bank_name=self.bank_name,

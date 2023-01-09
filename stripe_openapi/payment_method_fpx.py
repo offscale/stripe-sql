@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Method_Fpx(Base):
+class PaymentMethodFpx(Base):
     __tablename__ = "payment_method_fpx"
     account_holder_type = Column(
         String,
@@ -21,7 +23,7 @@ class Payment_Method_Fpx(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Fpx(account_holder_type={account_holder_type!r}, bank={bank!r}, id={id!r})".format(
+        return "PaymentMethodFpx(account_holder_type={account_holder_type!r}, bank={bank!r}, id={id!r})".format(
             account_holder_type=self.account_holder_type, bank=self.bank, id=self.id
         )
 

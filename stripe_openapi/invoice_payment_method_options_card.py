@@ -1,12 +1,12 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Invoice_Payment_Method_Options_Card(Base):
+class InvoicePaymentMethodOptionsCard(Base):
     __tablename__ = "invoice_payment_method_options_card"
     installments = Column(
-        invoice_installments_card,
-        ForeignKey("invoice_installments_card"),
-        nullable=True,
+        Integer, ForeignKey("invoice_installments_card.id"), nullable=True
     )
     request_three_d_secure = Column(
         String,
@@ -22,7 +22,7 @@ class Invoice_Payment_Method_Options_Card(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Invoice_Payment_Method_Options_Card(installments={installments!r}, request_three_d_secure={request_three_d_secure!r}, id={id!r})".format(
+        return "InvoicePaymentMethodOptionsCard(installments={installments!r}, request_three_d_secure={request_three_d_secure!r}, id={id!r})".format(
             installments=self.installments,
             request_three_d_secure=self.request_three_d_secure,
             id=self.id,

@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Payment_Flows_Private_Payment_Methods_Klarna_Dob(Base):
+class PaymentFlowsPrivatePaymentMethodsKlarnaDob(Base):
     __tablename__ = "payment_flows_private_payment_methods_klarna_dob"
     day = Column(Integer, comment="The day of birth, between 1 and 31", nullable=True)
     month = Column(
@@ -17,7 +19,7 @@ class Payment_Flows_Private_Payment_Methods_Klarna_Dob(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Flows_Private_Payment_Methods_Klarna_Dob(day={day!r}, month={month!r}, year={year!r}, id={id!r})".format(
+        return "PaymentFlowsPrivatePaymentMethodsKlarnaDob(day={day!r}, month={month!r}, year={year!r}, id={id!r})".format(
             day=self.day, month=self.month, year=self.year, id=self.id
         )
 

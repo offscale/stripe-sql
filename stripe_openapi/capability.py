@@ -1,4 +1,6 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+
+from . import Base
 
 
 class Capability(Base):
@@ -11,13 +13,11 @@ class Capability(Base):
 
     __tablename__ = "capability"
     account = Column(
-        account,
-        comment="[[FK(account)]] The account for which the capability enables functionality",
+        Account,
+        comment="[[FK(Account)]] The account for which the capability enables functionality",
     )
     future_requirements = Column(
-        account_capability_future_requirements,
-        ForeignKey("account_capability_future_requirements"),
-        nullable=True,
+        Integer, ForeignKey("account_capability_future_requirements.id"), nullable=True
     )
     id = Column(String, comment="The identifier for the capability", primary_key=True)
     object = Column(
@@ -31,9 +31,7 @@ class Capability(Base):
         nullable=True,
     )
     requirements = Column(
-        account_capability_requirements,
-        ForeignKey("account_capability_requirements"),
-        nullable=True,
+        Integer, ForeignKey("account_capability_requirements.id"), nullable=True
     )
     status = Column(
         String,

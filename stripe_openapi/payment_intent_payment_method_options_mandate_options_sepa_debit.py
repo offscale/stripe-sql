@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Payment_Intent_Payment_Method_Options_Mandate_Options_Sepa_Debit(Base):
+class PaymentIntentPaymentMethodOptionsMandateOptionsSepaDebit(Base):
     __tablename__ = "payment_intent_payment_method_options_mandate_options_sepa_debit"
     id = Column(Integer, primary_key=True, server_default=Identity())
 
@@ -12,7 +14,7 @@ class Payment_Intent_Payment_Method_Options_Mandate_Options_Sepa_Debit(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Intent_Payment_Method_Options_Mandate_Options_Sepa_Debit(id={id!r})".format(
+        return "PaymentIntentPaymentMethodOptionsMandateOptionsSepaDebit(id={id!r})".format(
             id=self.id
         )
 

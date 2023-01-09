@@ -1,11 +1,15 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import JSON, Boolean, Column, Integer, String
+
+from stripe_openapi.balance_transaction import BalanceTransaction
+
+from . import Base
 
 
-class Application_Fee(Base):
+class ApplicationFee(Base):
     __tablename__ = "application_fee"
     account = Column(
-        account,
-        comment="[[FK(account)]] ID of the Stripe account this fee was taken from",
+        Account,
+        comment="[[FK(Account)]] ID of the Stripe account this fee was taken from",
     )
     amount = Column(Integer, comment="Amount earned, in %s")
     amount_refunded = Column(
@@ -13,17 +17,17 @@ class Application_Fee(Base):
         comment="Amount in %s refunded (can be less than the amount attribute on the fee if a partial refund was issued)",
     )
     application = Column(
-        application,
-        comment="[[FK(application)]] ID of the Connect application that earned the fee",
+        Application,
+        comment="[[FK(Application)]] ID of the Connect application that earned the fee",
     )
     balance_transaction = Column(
-        balance_transaction,
-        comment="[[FK(balance_transaction)]] Balance transaction that describes the impact of this collected application fee on your account balance (not including refunds)",
+        BalanceTransaction,
+        comment="[[FK(BalanceTransaction)]] Balance transaction that describes the impact of this collected application fee on your account balance (not including refunds)",
         nullable=True,
     )
     charge = Column(
-        charge,
-        comment="[[FK(charge)]] ID of the charge that the application fee was taken from",
+        Charge,
+        comment="[[FK(Charge)]] ID of the charge that the application fee was taken from",
     )
     created = Column(
         Integer,
@@ -43,8 +47,8 @@ class Application_Fee(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     originating_transaction = Column(
-        charge,
-        comment="[[FK(charge)]] ID of the corresponding charge on the platform account, if this fee was the result of a charge using the `destination` parameter",
+        Charge,
+        comment="[[FK(Charge)]] ID of the corresponding charge on the platform account, if this fee was the result of a charge using the `destination` parameter",
         nullable=True,
     )
     refunded = Column(
@@ -62,7 +66,7 @@ class Application_Fee(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Application_Fee(account={account!r}, amount={amount!r}, amount_refunded={amount_refunded!r}, application={application!r}, balance_transaction={balance_transaction!r}, charge={charge!r}, created={created!r}, currency={currency!r}, id={id!r}, livemode={livemode!r}, object={object!r}, originating_transaction={originating_transaction!r}, refunded={refunded!r}, refunds={refunds!r})".format(
+        return "ApplicationFee(account={account!r}, amount={amount!r}, amount_refunded={amount_refunded!r}, application={application!r}, balance_transaction={balance_transaction!r}, charge={charge!r}, created={created!r}, currency={currency!r}, id={id!r}, livemode={livemode!r}, object={object!r}, originating_transaction={originating_transaction!r}, refunded={refunded!r}, refunds={refunds!r})".format(
             account=self.account,
             amount=self.amount,
             amount_refunded=self.amount_refunded,

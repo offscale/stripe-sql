@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Custom_Unit_Amount(Base):
+class CustomUnitAmount(Base):
     __tablename__ = "custom_unit_amount"
     maximum = Column(
         Integer,
@@ -27,7 +29,7 @@ class Custom_Unit_Amount(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Custom_Unit_Amount(maximum={maximum!r}, minimum={minimum!r}, preset={preset!r}, id={id!r})".format(
+        return "CustomUnitAmount(maximum={maximum!r}, minimum={minimum!r}, preset={preset!r}, id={id!r})".format(
             maximum=self.maximum, minimum=self.minimum, preset=self.preset, id=self.id
         )
 

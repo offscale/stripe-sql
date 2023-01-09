@@ -1,7 +1,9 @@
 from sqlalchemy import Column, Integer, String
 
+from . import Base
 
-class Tax_Deducted_At_Source(Base):
+
+class TaxDeductedAtSource(Base):
     __tablename__ = "tax_deducted_at_source"
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     object = Column(
@@ -27,7 +29,7 @@ class Tax_Deducted_At_Source(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Tax_Deducted_At_Source(id={id!r}, object={object!r}, period_end={period_end!r}, period_start={period_start!r}, tax_deduction_account_number={tax_deduction_account_number!r})".format(
+        return "TaxDeductedAtSource(id={id!r}, object={object!r}, period_end={period_end!r}, period_start={period_start!r}, tax_deduction_account_number={tax_deduction_account_number!r})".format(
             id=self.id,
             object=self.object,
             period_end=self.period_end,

@@ -1,11 +1,15 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from stripe_openapi.issuing_cardholder_id_document import IssuingCardholderIdDocument
+
+from . import Base
 
 
-class Issuing_Cardholder_Verification(Base):
+class IssuingCardholderVerification(Base):
     __tablename__ = "issuing_cardholder_verification"
     document = Column(
-        issuing_cardholder_id_document,
-        comment="[[FK(issuing_cardholder_id_document)]] An identifying document, either a passport or local ID card",
+        IssuingCardholderIdDocument,
+        comment="[[FK(IssuingCardholderIdDocument)]] An identifying document, either a passport or local ID card",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -17,10 +21,8 @@ class Issuing_Cardholder_Verification(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return (
-            "Issuing_Cardholder_Verification(document={document!r}, id={id!r})".format(
-                document=self.document, id=self.id
-            )
+        return "IssuingCardholderVerification(document={document!r}, id={id!r})".format(
+            document=self.document, id=self.id
         )
 
 

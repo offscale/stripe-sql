@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Account_Capabilities(Base):
+class AccountCapabilities(Base):
     __tablename__ = "account_capabilities"
     acss_debit_payments = Column(
         String,
@@ -182,7 +184,7 @@ class Account_Capabilities(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Account_Capabilities(acss_debit_payments={acss_debit_payments!r}, affirm_payments={affirm_payments!r}, afterpay_clearpay_payments={afterpay_clearpay_payments!r}, au_becs_debit_payments={au_becs_debit_payments!r}, bacs_debit_payments={bacs_debit_payments!r}, bancontact_payments={bancontact_payments!r}, bank_transfer_payments={bank_transfer_payments!r}, blik_payments={blik_payments!r}, boleto_payments={boleto_payments!r}, card_issuing={card_issuing!r}, card_payments={card_payments!r}, cartes_bancaires_payments={cartes_bancaires_payments!r}, eps_payments={eps_payments!r}, fpx_payments={fpx_payments!r}, giropay_payments={giropay_payments!r}, grabpay_payments={grabpay_payments!r}, ideal_payments={ideal_payments!r}, india_international_payments={india_international_payments!r}, jcb_payments={jcb_payments!r}, klarna_payments={klarna_payments!r}, konbini_payments={konbini_payments!r}, legacy_payments={legacy_payments!r}, link_payments={link_payments!r}, oxxo_payments={oxxo_payments!r}, p24_payments={p24_payments!r}, paynow_payments={paynow_payments!r}, promptpay_payments={promptpay_payments!r}, sepa_debit_payments={sepa_debit_payments!r}, sofort_payments={sofort_payments!r}, tax_reporting_us_1099_k={tax_reporting_us_1099_k!r}, tax_reporting_us_1099_misc={tax_reporting_us_1099_misc!r}, transfers={transfers!r}, treasury={treasury!r}, us_bank_account_ach_payments={us_bank_account_ach_payments!r}, id={id!r})".format(
+        return "AccountCapabilities(acss_debit_payments={acss_debit_payments!r}, affirm_payments={affirm_payments!r}, afterpay_clearpay_payments={afterpay_clearpay_payments!r}, au_becs_debit_payments={au_becs_debit_payments!r}, bacs_debit_payments={bacs_debit_payments!r}, bancontact_payments={bancontact_payments!r}, bank_transfer_payments={bank_transfer_payments!r}, blik_payments={blik_payments!r}, boleto_payments={boleto_payments!r}, card_issuing={card_issuing!r}, card_payments={card_payments!r}, cartes_bancaires_payments={cartes_bancaires_payments!r}, eps_payments={eps_payments!r}, fpx_payments={fpx_payments!r}, giropay_payments={giropay_payments!r}, grabpay_payments={grabpay_payments!r}, ideal_payments={ideal_payments!r}, india_international_payments={india_international_payments!r}, jcb_payments={jcb_payments!r}, klarna_payments={klarna_payments!r}, konbini_payments={konbini_payments!r}, legacy_payments={legacy_payments!r}, link_payments={link_payments!r}, oxxo_payments={oxxo_payments!r}, p24_payments={p24_payments!r}, paynow_payments={paynow_payments!r}, promptpay_payments={promptpay_payments!r}, sepa_debit_payments={sepa_debit_payments!r}, sofort_payments={sofort_payments!r}, tax_reporting_us_1099_k={tax_reporting_us_1099_k!r}, tax_reporting_us_1099_misc={tax_reporting_us_1099_misc!r}, transfers={transfers!r}, treasury={treasury!r}, us_bank_account_ach_payments={us_bank_account_ach_payments!r}, id={id!r})".format(
             acss_debit_payments=self.acss_debit_payments,
             affirm_payments=self.affirm_payments,
             afterpay_clearpay_payments=self.afterpay_clearpay_payments,

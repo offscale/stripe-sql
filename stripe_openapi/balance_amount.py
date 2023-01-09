@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Balance_Amount(Base):
+class BalanceAmount(Base):
     __tablename__ = "balance_amount"
     amount = Column(Integer, comment="Balance amount")
     currency = Column(
@@ -9,9 +11,7 @@ class Balance_Amount(Base):
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",
     )
     source_types = Column(
-        balance_amount_by_source_type,
-        ForeignKey("balance_amount_by_source_type"),
-        nullable=True,
+        Integer, ForeignKey("balance_amount_by_source_type.id"), nullable=True
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
@@ -22,7 +22,7 @@ class Balance_Amount(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Balance_Amount(amount={amount!r}, currency={currency!r}, source_types={source_types!r}, id={id!r})".format(
+        return "BalanceAmount(amount={amount!r}, currency={currency!r}, source_types={source_types!r}, id={id!r})".format(
             amount=self.amount,
             currency=self.currency,
             source_types=self.source_types,

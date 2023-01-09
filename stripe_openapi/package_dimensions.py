@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Float, Integer
+from sqlalchemy import Column, Float, Identity, Integer
+
+from . import Base
 
 
-class Package_Dimensions(Base):
+class PackageDimensions(Base):
     __tablename__ = "package_dimensions"
     height = Column(Float, comment="Height, in inches")
     length = Column(Float, comment="Length, in inches")
@@ -16,7 +18,7 @@ class Package_Dimensions(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Package_Dimensions(height={height!r}, length={length!r}, weight={weight!r}, width={width!r}, id={id!r})".format(
+        return "PackageDimensions(height={height!r}, length={length!r}, weight={weight!r}, width={width!r}, id={id!r})".format(
             height=self.height,
             length=self.length,
             weight=self.weight,

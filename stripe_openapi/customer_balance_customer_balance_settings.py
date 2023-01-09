@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, Identity, Integer, String
+
+from . import Base
 
 
-class Customer_Balance_Customer_Balance_Settings(Base):
+class CustomerBalanceCustomerBalanceSettings(Base):
     __tablename__ = "customer_balance_customer_balance_settings"
     reconciliation_mode = Column(
         String,
@@ -20,7 +22,7 @@ class Customer_Balance_Customer_Balance_Settings(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Customer_Balance_Customer_Balance_Settings(reconciliation_mode={reconciliation_mode!r}, using_merchant_default={using_merchant_default!r}, id={id!r})".format(
+        return "CustomerBalanceCustomerBalanceSettings(reconciliation_mode={reconciliation_mode!r}, using_merchant_default={using_merchant_default!r}, id={id!r})".format(
             reconciliation_mode=self.reconciliation_mode,
             using_merchant_default=self.using_merchant_default,
             id=self.id,

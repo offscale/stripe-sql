@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Float, Integer
+from sqlalchemy import Column, Float, Identity, Integer
+
+from . import Base
 
 
-class Quotes_Resource_Transfer_Data(Base):
+class QuotesResourceTransferData(Base):
     __tablename__ = "quotes_resource_transfer_data"
     amount = Column(
         Integer,
@@ -14,8 +16,8 @@ class Quotes_Resource_Transfer_Data(Base):
         nullable=True,
     )
     destination = Column(
-        account,
-        comment="[[FK(account)]] The account where funds from the payment will be transferred to upon payment success",
+        Account,
+        comment="[[FK(Account)]] The account where funds from the payment will be transferred to upon payment success",
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
@@ -26,7 +28,7 @@ class Quotes_Resource_Transfer_Data(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Quotes_Resource_Transfer_Data(amount={amount!r}, amount_percent={amount_percent!r}, destination={destination!r}, id={id!r})".format(
+        return "QuotesResourceTransferData(amount={amount!r}, amount_percent={amount_percent!r}, destination={destination!r}, id={id!r})".format(
             amount=self.amount,
             amount_percent=self.amount_percent,
             destination=self.destination,

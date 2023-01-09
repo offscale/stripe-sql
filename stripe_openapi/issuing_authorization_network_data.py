@@ -1,7 +1,9 @@
 from sqlalchemy import Column, String
 
+from . import Base
 
-class Issuing_Authorization_Network_Data(Base):
+
+class IssuingAuthorizationNetworkData(Base):
     __tablename__ = "issuing_authorization_network_data"
     acquiring_institution_id = Column(
         String,
@@ -17,7 +19,7 @@ class Issuing_Authorization_Network_Data(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Issuing_Authorization_Network_Data(acquiring_institution_id={acquiring_institution_id!r})".format(
+        return "IssuingAuthorizationNetworkData(acquiring_institution_id={acquiring_institution_id!r})".format(
             acquiring_institution_id=self.acquiring_institution_id
         )
 

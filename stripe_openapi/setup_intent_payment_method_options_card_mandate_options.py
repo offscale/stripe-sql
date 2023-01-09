@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import ARRAY, Column, Identity, Integer, String
+
+from . import Base
 
 
-class Setup_Intent_Payment_Method_Options_Card_Mandate_Options(Base):
+class SetupIntentPaymentMethodOptionsCardMandateOptions(Base):
     __tablename__ = "setup_intent_payment_method_options_card_mandate_options"
     amount = Column(Integer, comment="Amount to be charged for future payments")
     amount_type = Column(
@@ -52,7 +54,7 @@ class Setup_Intent_Payment_Method_Options_Card_Mandate_Options(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Setup_Intent_Payment_Method_Options_Card_Mandate_Options(amount={amount!r}, amount_type={amount_type!r}, currency={currency!r}, description={description!r}, end_date={end_date!r}, interval={interval!r}, interval_count={interval_count!r}, reference={reference!r}, start_date={start_date!r}, supported_types={supported_types!r}, id={id!r})".format(
+        return "SetupIntentPaymentMethodOptionsCardMandateOptions(amount={amount!r}, amount_type={amount_type!r}, currency={currency!r}, description={description!r}, end_date={end_date!r}, interval={interval!r}, interval_count={interval_count!r}, reference={reference!r}, start_date={start_date!r}, supported_types={supported_types!r}, id={id!r})".format(
             amount=self.amount,
             amount_type=self.amount_type,
             currency=self.currency,

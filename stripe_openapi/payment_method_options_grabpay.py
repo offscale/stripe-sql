@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Method_Options_Grabpay(Base):
+class PaymentMethodOptionsGrabpay(Base):
     __tablename__ = "payment_method_options_grabpay"
     setup_future_usage = Column(
         String,
@@ -17,7 +19,7 @@ class Payment_Method_Options_Grabpay(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Options_Grabpay(setup_future_usage={setup_future_usage!r}, id={id!r})".format(
+        return "PaymentMethodOptionsGrabpay(setup_future_usage={setup_future_usage!r}, id={id!r})".format(
             setup_future_usage=self.setup_future_usage, id=self.id
         )
 

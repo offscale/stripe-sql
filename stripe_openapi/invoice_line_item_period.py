@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Invoice_Line_Item_Period(Base):
+class InvoiceLineItemPeriod(Base):
     __tablename__ = "invoice_line_item_period"
     end = Column(
         Integer,
@@ -17,10 +19,8 @@ class Invoice_Line_Item_Period(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return (
-            "Invoice_Line_Item_Period(end={end!r}, start={start!r}, id={id!r})".format(
-                end=self.end, start=self.start, id=self.id
-            )
+        return "InvoiceLineItemPeriod(end={end!r}, start={start!r}, id={id!r})".format(
+            end=self.end, start=self.start, id=self.id
         )
 
 

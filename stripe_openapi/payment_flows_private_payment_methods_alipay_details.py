@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Flows_Private_Payment_Methods_Alipay_Details(Base):
+class PaymentFlowsPrivatePaymentMethodsAlipayDetails(Base):
     __tablename__ = "payment_flows_private_payment_methods_alipay_details"
     buyer_id = Column(
         String,
@@ -27,7 +29,7 @@ class Payment_Flows_Private_Payment_Methods_Alipay_Details(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Flows_Private_Payment_Methods_Alipay_Details(buyer_id={buyer_id!r}, fingerprint={fingerprint!r}, transaction_id={transaction_id!r}, id={id!r})".format(
+        return "PaymentFlowsPrivatePaymentMethodsAlipayDetails(buyer_id={buyer_id!r}, fingerprint={fingerprint!r}, transaction_id={transaction_id!r}, id={id!r})".format(
             buyer_id=self.buyer_id,
             fingerprint=self.fingerprint,
             transaction_id=self.transaction_id,

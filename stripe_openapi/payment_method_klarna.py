@@ -1,11 +1,17 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from stripe_openapi.payment_flows_private_payment_methods_klarna_dob import (
+    PaymentFlowsPrivatePaymentMethodsKlarnaDob,
+)
+
+from . import Base
 
 
-class Payment_Method_Klarna(Base):
+class PaymentMethodKlarna(Base):
     __tablename__ = "payment_method_klarna"
     dob = Column(
-        payment_flows_private_payment_methods_klarna_dob,
-        comment="[[FK(payment_flows_private_payment_methods_klarna_dob)]] The customer's date of birth, if provided",
+        PaymentFlowsPrivatePaymentMethodsKlarnaDob,
+        comment="[[FK(PaymentFlowsPrivatePaymentMethodsKlarnaDob)]] The customer's date of birth, if provided",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -17,7 +23,7 @@ class Payment_Method_Klarna(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Klarna(dob={dob!r}, id={id!r})".format(
+        return "PaymentMethodKlarna(dob={dob!r}, id={id!r})".format(
             dob=self.dob, id=self.id
         )
 

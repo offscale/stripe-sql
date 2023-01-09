@@ -1,7 +1,20 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, Identity, Integer, String
+
+from stripe_openapi.payment_method_details_card_checks import (
+    PaymentMethodDetailsCardChecks,
+)
+from stripe_openapi.payment_method_details_card_installments import (
+    PaymentMethodDetailsCardInstallments,
+)
+from stripe_openapi.payment_method_details_card_wallet import (
+    PaymentMethodDetailsCardWallet,
+)
+from stripe_openapi.three_d_secure_details import ThreeDSecureDetails
+
+from . import Base
 
 
-class Payment_Method_Details_Card(Base):
+class PaymentMethodDetailsCard(Base):
     __tablename__ = "payment_method_details_card"
     brand = Column(
         String,
@@ -9,8 +22,8 @@ class Payment_Method_Details_Card(Base):
         nullable=True,
     )
     checks = Column(
-        payment_method_details_card_checks,
-        comment="[[FK(payment_method_details_card_checks)]] Check results by Card networks on Card address and CVC at time of payment",
+        PaymentMethodDetailsCardChecks,
+        comment="[[FK(PaymentMethodDetailsCardChecks)]] Check results by Card networks on Card address and CVC at time of payment",
         nullable=True,
     )
     country = Column(
@@ -45,8 +58,8 @@ class Payment_Method_Details_Card(Base):
         nullable=True,
     )
     installments = Column(
-        payment_method_details_card_installments,
-        comment="[[FK(payment_method_details_card_installments)]] Installment details for this payment (Mexico only).\n\nFor more information, see the [installments integration guide](https://stripe.com/docs/payments/installments)",
+        PaymentMethodDetailsCardInstallments,
+        comment="[[FK(PaymentMethodDetailsCardInstallments)]] Installment details for this payment (Mexico only).\n\nFor more information, see the [installments integration guide](https://stripe.com/docs/payments/installments)",
         nullable=True,
     )
     issuer = Column(
@@ -71,13 +84,13 @@ class Payment_Method_Details_Card(Base):
         nullable=True,
     )
     three_d_secure = Column(
-        three_d_secure_details,
-        comment="[[FK(three_d_secure_details)]] Populated if this transaction used 3D Secure authentication",
+        ThreeDSecureDetails,
+        comment="[[FK(ThreeDSecureDetails)]] Populated if this transaction used 3D Secure authentication",
         nullable=True,
     )
     wallet = Column(
-        payment_method_details_card_wallet,
-        comment="[[FK(payment_method_details_card_wallet)]] If this Card is part of a card wallet, this contains the details of the card wallet",
+        PaymentMethodDetailsCardWallet,
+        comment="[[FK(PaymentMethodDetailsCardWallet)]] If this Card is part of a card wallet, this contains the details of the card wallet",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -89,7 +102,7 @@ class Payment_Method_Details_Card(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Details_Card(brand={brand!r}, checks={checks!r}, country={country!r}, description={description!r}, exp_month={exp_month!r}, exp_year={exp_year!r}, fingerprint={fingerprint!r}, funding={funding!r}, iin={iin!r}, installments={installments!r}, issuer={issuer!r}, last4={last4!r}, mandate={mandate!r}, moto={moto!r}, network={network!r}, three_d_secure={three_d_secure!r}, wallet={wallet!r}, id={id!r})".format(
+        return "PaymentMethodDetailsCard(brand={brand!r}, checks={checks!r}, country={country!r}, description={description!r}, exp_month={exp_month!r}, exp_year={exp_year!r}, fingerprint={fingerprint!r}, funding={funding!r}, iin={iin!r}, installments={installments!r}, issuer={issuer!r}, last4={last4!r}, mandate={mandate!r}, moto={moto!r}, network={network!r}, three_d_secure={three_d_secure!r}, wallet={wallet!r}, id={id!r})".format(
             brand=self.brand,
             checks=self.checks,
             country=self.country,

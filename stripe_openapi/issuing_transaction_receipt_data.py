@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Float, Integer, String
+from sqlalchemy import Column, Float, Identity, Integer, String
+
+from . import Base
 
 
-class Issuing_Transaction_Receipt_Data(Base):
+class IssuingTransactionReceiptData(Base):
     __tablename__ = "issuing_transaction_receipt_data"
     description = Column(
         String,
@@ -24,7 +26,7 @@ class Issuing_Transaction_Receipt_Data(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Issuing_Transaction_Receipt_Data(description={description!r}, quantity={quantity!r}, total={total!r}, unit_cost={unit_cost!r}, id={id!r})".format(
+        return "IssuingTransactionReceiptData(description={description!r}, quantity={quantity!r}, total={total!r}, unit_cost={unit_cost!r}, id={id!r})".format(
             description=self.description,
             quantity=self.quantity,
             total=self.total,

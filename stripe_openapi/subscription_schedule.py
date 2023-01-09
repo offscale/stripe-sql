@@ -1,7 +1,14 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import JSON, Boolean, Column, ForeignKey, Integer, String, list
+
+from stripe_openapi.subscription_schedule_current_phase import (
+    SubscriptionScheduleCurrentPhase,
+)
+from stripe_openapi.test_helpers import TestHelpers
+
+from . import Base
 
 
-class Subscription_Schedule(Base):
+class SubscriptionSchedule(Base):
     """
     A subscription schedule allows you to create and manage the lifecycle of a subscription by predefining expected changes.
 
@@ -11,8 +18,8 @@ class Subscription_Schedule(Base):
 
     __tablename__ = "subscription_schedule"
     application = Column(
-        string | application,
-        comment="[[FK(deleted_application)]] ID of the Connect Application that created the schedule",
+        Application,
+        comment="[[FK(DeletedApplication)]] ID of the Connect Application that created the schedule",
         nullable=True,
     )
     canceled_at = Column(
@@ -30,17 +37,16 @@ class Subscription_Schedule(Base):
         comment="Time at which the object was created. Measured in seconds since the Unix epoch",
     )
     current_phase = Column(
-        subscription_schedule_current_phase,
-        comment="[[FK(subscription_schedule_current_phase)]] Object representing the start and end dates for the current phase of the subscription schedule, if it is `active`",
+        SubscriptionScheduleCurrentPhase,
+        comment="[[FK(SubscriptionScheduleCurrentPhase)]] Object representing the start and end dates for the current phase of the subscription schedule, if it is `active`",
         nullable=True,
     )
     customer = Column(
-        string | customer,
-        comment="[[FK(deleted_customer)]] ID of the customer who owns the subscription schedule",
+        Customer,
+        comment="[[FK(DeletedCustomer)]] ID of the customer who owns the subscription schedule",
     )
     default_settings = Column(
-        subscription_schedules_resource_default_settings,
-        ForeignKey("subscription_schedules_resource_default_settings"),
+        Integer, ForeignKey("subscription_schedules_resource_default_settings.id")
     )
     end_behavior = Column(
         String,
@@ -78,13 +84,13 @@ class Subscription_Schedule(Base):
         comment="The present status of the subscription schedule. Possible values are `not_started`, `active`, `completed`, `released`, and `canceled`. You can read more about the different states in our [behavior guide](https://stripe.com/docs/billing/subscriptions/subscription-schedules)",
     )
     subscription = Column(
-        subscription,
-        comment="[[FK(subscription)]] ID of the subscription managed by the subscription schedule",
+        Subscription,
+        comment="[[FK(Subscription)]] ID of the subscription managed by the subscription schedule",
         nullable=True,
     )
     test_clock = Column(
-        test_helpers.test_clock,
-        comment="[[FK(test_helpers.test_clock)]] ID of the test clock this subscription schedule belongs to",
+        TestHelpers.TestClock,
+        comment="[[FK(TestHelpers.TestClock)]] ID of the test clock this subscription schedule belongs to",
         nullable=True,
     )
 
@@ -95,7 +101,7 @@ class Subscription_Schedule(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Subscription_Schedule(application={application!r}, canceled_at={canceled_at!r}, completed_at={completed_at!r}, created={created!r}, current_phase={current_phase!r}, customer={customer!r}, default_settings={default_settings!r}, end_behavior={end_behavior!r}, id={id!r}, livemode={livemode!r}, metadata={metadata!r}, object={object!r}, phases={phases!r}, released_at={released_at!r}, released_subscription={released_subscription!r}, status={status!r}, subscription={subscription!r}, test_clock={test_clock!r})".format(
+        return "SubscriptionSchedule(application={application!r}, canceled_at={canceled_at!r}, completed_at={completed_at!r}, created={created!r}, current_phase={current_phase!r}, customer={customer!r}, default_settings={default_settings!r}, end_behavior={end_behavior!r}, id={id!r}, livemode={livemode!r}, metadata={metadata!r}, object={object!r}, phases={phases!r}, released_at={released_at!r}, released_subscription={released_subscription!r}, status={status!r}, subscription={subscription!r}, test_clock={test_clock!r})".format(
             application=self.application,
             canceled_at=self.canceled_at,
             completed_at=self.completed_at,

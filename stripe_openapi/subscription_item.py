@@ -1,7 +1,13 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import JSON, Column, ForeignKey, Integer, String, list
+
+from stripe_openapi.subscription_item_billing_thresholds import (
+    SubscriptionItemBillingThresholds,
+)
+
+from . import Base
 
 
-class Subscription_Item(Base):
+class SubscriptionItem(Base):
     """
     Subscription items allow you to create customer subscriptions with more than
 
@@ -11,8 +17,8 @@ class Subscription_Item(Base):
 
     __tablename__ = "subscription_item"
     billing_thresholds = Column(
-        subscription_item_billing_thresholds,
-        comment="[[FK(subscription_item_billing_thresholds)]] Define thresholds at which an invoice will be sent, and the related subscription advanced to a new billing period",
+        SubscriptionItemBillingThresholds,
+        comment="[[FK(SubscriptionItemBillingThresholds)]] Define thresholds at which an invoice will be sent, and the related subscription advanced to a new billing period",
         nullable=True,
     )
     created = Column(
@@ -28,8 +34,8 @@ class Subscription_Item(Base):
         String,
         comment="String representing the object's type. Objects of the same type share the same value",
     )
-    plan = Column(plan, ForeignKey("plan"))
-    price = Column(price, ForeignKey("price"))
+    plan = Column(Plan, ForeignKey("Plan"))
+    price = Column(Price, ForeignKey("Price"))
     quantity = Column(
         Integer,
         comment="The [quantity](https://stripe.com/docs/subscriptions/quantities) of the plan to which the customer should be subscribed",
@@ -51,7 +57,7 @@ class Subscription_Item(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Subscription_Item(billing_thresholds={billing_thresholds!r}, created={created!r}, id={id!r}, metadata={metadata!r}, object={object!r}, plan={plan!r}, price={price!r}, quantity={quantity!r}, subscription={subscription!r}, tax_rates={tax_rates!r})".format(
+        return "SubscriptionItem(billing_thresholds={billing_thresholds!r}, created={created!r}, id={id!r}, metadata={metadata!r}, object={object!r}, plan={plan!r}, price={price!r}, quantity={quantity!r}, subscription={subscription!r}, tax_rates={tax_rates!r})".format(
             billing_thresholds=self.billing_thresholds,
             created=self.created,
             id=self.id,

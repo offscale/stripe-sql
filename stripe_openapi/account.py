@@ -1,4 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import JSON, Boolean, Column, ForeignKey, Integer, String
+
+from stripe_openapi.account_business_profile import AccountBusinessProfile
+from stripe_openapi.account_settings import AccountSettings
+
+from . import Base
 
 
 class Account(Base):
@@ -15,24 +20,18 @@ class Account(Base):
 
     __tablename__ = "account"
     business_profile = Column(
-        account_business_profile,
-        comment="[[FK(account_business_profile)]] Business information about the account",
+        AccountBusinessProfile,
+        comment="[[FK(AccountBusinessProfile)]] Business information about the account",
         nullable=True,
     )
     business_type = Column(String, comment="The business type", nullable=True)
-    capabilities = Column(
-        account_capabilities, ForeignKey("account_capabilities"), nullable=True
-    )
+    capabilities = Column(Integer, ForeignKey("account_capabilities.id"), nullable=True)
     charges_enabled = Column(
         Boolean, comment="Whether the account can create live charges", nullable=True
     )
-    company = Column(
-        legal_entity_company, ForeignKey("legal_entity_company"), nullable=True
-    )
+    company = Column(Integer, ForeignKey("legal_entity_company.id"), nullable=True)
     controller = Column(
-        account_unification_account_controller,
-        ForeignKey("account_unification_account_controller"),
-        nullable=True,
+        Integer, ForeignKey("account_unification_account_controller.id"), nullable=True
     )
     country = Column(String, comment="The account's country", nullable=True)
     created = Column(
@@ -61,12 +60,10 @@ class Account(Base):
         nullable=True,
     )
     future_requirements = Column(
-        account_future_requirements,
-        ForeignKey("account_future_requirements"),
-        nullable=True,
+        Integer, ForeignKey("account_future_requirements.id"), nullable=True
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
-    individual = Column(person, ForeignKey("person"), nullable=True)
+    individual = Column(Person, ForeignKey("Person"), nullable=True)
     metadata = Column(
         JSON,
         comment="Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format",
@@ -81,16 +78,14 @@ class Account(Base):
         comment="Whether Stripe can send payouts to this account",
         nullable=True,
     )
-    requirements = Column(
-        account_requirements, ForeignKey("account_requirements"), nullable=True
-    )
+    requirements = Column(Integer, ForeignKey("account_requirements.id"), nullable=True)
     settings = Column(
-        account_settings,
-        comment="[[FK(account_settings)]] Options for customizing how the account functions within Stripe",
+        AccountSettings,
+        comment="[[FK(AccountSettings)]] Options for customizing how the account functions within Stripe",
         nullable=True,
     )
     tos_acceptance = Column(
-        account_tos_acceptance, ForeignKey("account_tos_acceptance"), nullable=True
+        Integer, ForeignKey("account_tos_acceptance.id"), nullable=True
     )
     type = Column(
         String,

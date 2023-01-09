@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Gelato_Report_Id_Number_Options(Base):
+class GelatoReportIdNumberOptions(Base):
     __tablename__ = "gelato_report_id_number_options"
     id = Column(Integer, primary_key=True, server_default=Identity())
 
@@ -12,7 +14,7 @@ class Gelato_Report_Id_Number_Options(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Gelato_Report_Id_Number_Options(id={id!r})".format(id=self.id)
+        return "GelatoReportIdNumberOptions(id={id!r})".format(id=self.id)
 
 
 __all__ = ["gelato_report_id_number_options"]

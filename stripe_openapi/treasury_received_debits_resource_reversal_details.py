@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Treasury_Received_Debits_Resource_Reversal_Details(Base):
+class TreasuryReceivedDebitsResourceReversalDetails(Base):
     __tablename__ = "treasury_received_debits_resource_reversal_details"
     deadline = Column(
         Integer,
@@ -20,7 +22,7 @@ class Treasury_Received_Debits_Resource_Reversal_Details(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Treasury_Received_Debits_Resource_Reversal_Details(deadline={deadline!r}, restricted_reason={restricted_reason!r}, id={id!r})".format(
+        return "TreasuryReceivedDebitsResourceReversalDetails(deadline={deadline!r}, restricted_reason={restricted_reason!r}, id={id!r})".format(
             deadline=self.deadline, restricted_reason=self.restricted_reason, id=self.id
         )
 

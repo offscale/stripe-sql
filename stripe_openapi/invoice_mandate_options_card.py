@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Invoice_Mandate_Options_Card(Base):
+class InvoiceMandateOptionsCard(Base):
     __tablename__ = "invoice_mandate_options_card"
     amount = Column(
         Integer, comment="Amount to be charged for future payments", nullable=True
@@ -25,7 +27,7 @@ class Invoice_Mandate_Options_Card(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Invoice_Mandate_Options_Card(amount={amount!r}, amount_type={amount_type!r}, description={description!r}, id={id!r})".format(
+        return "InvoiceMandateOptionsCard(amount={amount!r}, amount_type={amount_type!r}, description={description!r}, id={id!r})".format(
             amount=self.amount,
             amount_type=self.amount_type,
             description=self.description,

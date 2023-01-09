@@ -1,12 +1,14 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Invoice_Payment_Method_Options_Us_Bank_Account(Base):
+class InvoicePaymentMethodOptionsUsBankAccount(Base):
     __tablename__ = "invoice_payment_method_options_us_bank_account"
     financial_connections = Column(
-        invoice_payment_method_options_us_bank_account_linked_account_options,
+        Integer,
         ForeignKey(
-            "invoice_payment_method_options_us_bank_account_linked_account_options"
+            "invoice_payment_method_options_us_bank_account_linked_account_options.id"
         ),
         nullable=True,
     )
@@ -22,7 +24,7 @@ class Invoice_Payment_Method_Options_Us_Bank_Account(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Invoice_Payment_Method_Options_Us_Bank_Account(financial_connections={financial_connections!r}, verification_method={verification_method!r}, id={id!r})".format(
+        return "InvoicePaymentMethodOptionsUsBankAccount(financial_connections={financial_connections!r}, verification_method={verification_method!r}, id={id!r})".format(
             financial_connections=self.financial_connections,
             verification_method=self.verification_method,
             id=self.id,

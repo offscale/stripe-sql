@@ -1,7 +1,9 @@
 from sqlalchemy import Column, String
 
+from . import Base
 
-class Payment_Method_Details_Grabpay(Base):
+
+class PaymentMethodDetailsGrabpay(Base):
     __tablename__ = "payment_method_details_grabpay"
     transaction_id = Column(
         String,
@@ -17,10 +19,8 @@ class Payment_Method_Details_Grabpay(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return (
-            "Payment_Method_Details_Grabpay(transaction_id={transaction_id!r})".format(
-                transaction_id=self.transaction_id
-            )
+        return "PaymentMethodDetailsGrabpay(transaction_id={transaction_id!r})".format(
+            transaction_id=self.transaction_id
         )
 
 

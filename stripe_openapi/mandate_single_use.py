@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Mandate_Single_Use(Base):
+class MandateSingleUse(Base):
     __tablename__ = "mandate_single_use"
     amount = Column(
         Integer, comment="On a single use mandate, the amount of the payment"
@@ -18,7 +20,7 @@ class Mandate_Single_Use(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Mandate_Single_Use(amount={amount!r}, currency={currency!r}, id={id!r})".format(
+        return "MandateSingleUse(amount={amount!r}, currency={currency!r}, id={id!r})".format(
             amount=self.amount, currency=self.currency, id=self.id
         )
 

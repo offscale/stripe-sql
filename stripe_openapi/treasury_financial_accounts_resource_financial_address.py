@@ -1,15 +1,17 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import ARRAY, Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Treasury_Financial_Accounts_Resource_Financial_Address(Base):
+class TreasuryFinancialAccountsResourceFinancialAddress(Base):
     """
     FinancialAddresses contain identifying information that resolves to a FinancialAccount.
     """
 
     __tablename__ = "treasury_financial_accounts_resource_financial_address"
     aba = Column(
-        treasury_financial_accounts_resource_aba_record,
-        ForeignKey("treasury_financial_accounts_resource_aba_record"),
+        Integer,
+        ForeignKey("treasury_financial_accounts_resource_aba_record.id"),
         nullable=True,
     )
     supported_networks = Column(
@@ -27,7 +29,7 @@ class Treasury_Financial_Accounts_Resource_Financial_Address(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Treasury_Financial_Accounts_Resource_Financial_Address(aba={aba!r}, supported_networks={supported_networks!r}, type={type!r}, id={id!r})".format(
+        return "TreasuryFinancialAccountsResourceFinancialAddress(aba={aba!r}, supported_networks={supported_networks!r}, type={type!r}, id={id!r})".format(
             aba=self.aba,
             supported_networks=self.supported_networks,
             type=self.type,

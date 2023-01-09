@@ -1,7 +1,9 @@
 from sqlalchemy import Column, String
 
+from . import Base
 
-class Payment_Method_Options_Wechat_Pay(Base):
+
+class PaymentMethodOptionsWechatPay(Base):
     __tablename__ = "payment_method_options_wechat_pay"
     app_id = Column(
         String,
@@ -27,7 +29,7 @@ class Payment_Method_Options_Wechat_Pay(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Options_Wechat_Pay(app_id={app_id!r}, client={client!r}, setup_future_usage={setup_future_usage!r})".format(
+        return "PaymentMethodOptionsWechatPay(app_id={app_id!r}, client={client!r}, setup_future_usage={setup_future_usage!r})".format(
             app_id=self.app_id,
             client=self.client,
             setup_future_usage=self.setup_future_usage,

@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+
+from . import Base
 
 
-class Customer_Cash_Balance_Transaction(Base):
+class CustomerCashBalanceTransaction(Base):
     """
     Customers with certain payments enabled have a cash balance, representing funds that were paid
 
@@ -13,9 +15,9 @@ class Customer_Cash_Balance_Transaction(Base):
 
     __tablename__ = "customer_cash_balance_transaction"
     applied_to_payment = Column(
-        customer_balance_resource_cash_balance_transaction_resource_applied_to_payment_transaction,
+        Integer,
         ForeignKey(
-            "customer_balance_resource_cash_balance_transaction_resource_applied_to_payment_transaction"
+            "customer_balance_resource_cash_balance_transaction_resource_applied_to_payment_transaction.id"
         ),
         nullable=True,
     )
@@ -28,17 +30,17 @@ class Customer_Cash_Balance_Transaction(Base):
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",
     )
     customer = Column(
-        customer,
-        comment="[[FK(customer)]] The customer whose available cash balance changed as a result of this transaction",
+        Customer,
+        comment="[[FK(Customer)]] The customer whose available cash balance changed as a result of this transaction",
     )
     ending_balance = Column(
         Integer,
         comment="The total available cash balance for the specified currency after this transaction was applied. Represented in the [smallest currency unit](https://stripe.com/docs/currencies#zero-decimal)",
     )
     funded = Column(
-        customer_balance_resource_cash_balance_transaction_resource_funded_transaction,
+        Integer,
         ForeignKey(
-            "customer_balance_resource_cash_balance_transaction_resource_funded_transaction"
+            "customer_balance_resource_cash_balance_transaction_resource_funded_transaction.id"
         ),
         nullable=True,
     )
@@ -56,9 +58,9 @@ class Customer_Cash_Balance_Transaction(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     refunded_from_payment = Column(
-        customer_balance_resource_cash_balance_transaction_resource_refunded_from_payment_transaction,
+        Integer,
         ForeignKey(
-            "customer_balance_resource_cash_balance_transaction_resource_refunded_from_payment_transaction"
+            "customer_balance_resource_cash_balance_transaction_resource_refunded_from_payment_transaction.id"
         ),
         nullable=True,
     )
@@ -67,9 +69,9 @@ class Customer_Cash_Balance_Transaction(Base):
         comment="The type of the cash balance transaction. One of `applied_to_payment`, `unapplied_from_payment`, `refunded_from_payment`, `funded`, `return_initiated`, or `return_canceled`. New types may be added in future. See [Customer Balance](https://stripe.com/docs/payments/customer-balance#types) to learn more about these types",
     )
     unapplied_from_payment = Column(
-        customer_balance_resource_cash_balance_transaction_resource_unapplied_from_payment_transaction,
+        Integer,
         ForeignKey(
-            "customer_balance_resource_cash_balance_transaction_resource_unapplied_from_payment_transaction"
+            "customer_balance_resource_cash_balance_transaction_resource_unapplied_from_payment_transaction.id"
         ),
         nullable=True,
     )
@@ -81,7 +83,7 @@ class Customer_Cash_Balance_Transaction(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Customer_Cash_Balance_Transaction(applied_to_payment={applied_to_payment!r}, created={created!r}, currency={currency!r}, customer={customer!r}, ending_balance={ending_balance!r}, funded={funded!r}, id={id!r}, livemode={livemode!r}, net_amount={net_amount!r}, object={object!r}, refunded_from_payment={refunded_from_payment!r}, type={type!r}, unapplied_from_payment={unapplied_from_payment!r})".format(
+        return "CustomerCashBalanceTransaction(applied_to_payment={applied_to_payment!r}, created={created!r}, currency={currency!r}, customer={customer!r}, ending_balance={ending_balance!r}, funded={funded!r}, id={id!r}, livemode={livemode!r}, net_amount={net_amount!r}, object={object!r}, refunded_from_payment={refunded_from_payment!r}, type={type!r}, unapplied_from_payment={unapplied_from_payment!r})".format(
             applied_to_payment=self.applied_to_payment,
             created=self.created,
             currency=self.currency,

@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Treasury_Received_Debits_Resource_Debit_Reversal_Linked_Flows(Base):
+class TreasuryReceivedDebitsResourceDebitReversalLinkedFlows(Base):
     __tablename__ = "treasury_received_debits_resource_debit_reversal_linked_flows"
     issuing_dispute = Column(
         String,
@@ -17,7 +19,7 @@ class Treasury_Received_Debits_Resource_Debit_Reversal_Linked_Flows(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Treasury_Received_Debits_Resource_Debit_Reversal_Linked_Flows(issuing_dispute={issuing_dispute!r}, id={id!r})".format(
+        return "TreasuryReceivedDebitsResourceDebitReversalLinkedFlows(issuing_dispute={issuing_dispute!r}, id={id!r})".format(
             issuing_dispute=self.issuing_dispute, id=self.id
         )
 

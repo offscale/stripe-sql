@@ -1,4 +1,6 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer
+
+from . import Base
 
 
 class Error(Base):
@@ -7,7 +9,7 @@ class Error(Base):
     """
 
     __tablename__ = "error"
-    error = Column(api_errors, ForeignKey("api_errors"))
+    error = Column(Integer, ForeignKey("api_errors.id"))
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

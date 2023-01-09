@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Legal_Entity_Japan_Address(Base):
+class LegalEntityJapanAddress(Base):
     __tablename__ = "legal_entity_japan_address"
     city = Column(String, comment="City/Ward", nullable=True)
     country = Column(
@@ -23,7 +25,7 @@ class Legal_Entity_Japan_Address(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Legal_Entity_Japan_Address(city={city!r}, country={country!r}, line1={line1!r}, line2={line2!r}, postal_code={postal_code!r}, state={state!r}, town={town!r}, id={id!r})".format(
+        return "LegalEntityJapanAddress(city={city!r}, country={country!r}, line1={line1!r}, line2={line2!r}, postal_code={postal_code!r}, state={state!r}, town={town!r}, id={id!r})".format(
             city=self.city,
             country=self.country,
             line1=self.line1,

@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer
+from sqlalchemy import Boolean, Column, Identity, Integer
+
+from . import Base
 
 
-class Schedules_Phase_Automatic_Tax(Base):
+class SchedulesPhaseAutomaticTax(Base):
     __tablename__ = "schedules_phase_automatic_tax"
     enabled = Column(
         Boolean,
@@ -16,7 +18,7 @@ class Schedules_Phase_Automatic_Tax(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Schedules_Phase_Automatic_Tax(enabled={enabled!r}, id={id!r})".format(
+        return "SchedulesPhaseAutomaticTax(enabled={enabled!r}, id={id!r})".format(
             enabled=self.enabled, id=self.id
         )
 

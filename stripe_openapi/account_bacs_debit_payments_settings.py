@@ -1,7 +1,9 @@
 from sqlalchemy import Column, String
 
+from . import Base
 
-class Account_Bacs_Debit_Payments_Settings(Base):
+
+class AccountBacsDebitPaymentsSettings(Base):
     __tablename__ = "account_bacs_debit_payments_settings"
     display_name = Column(
         String,
@@ -17,7 +19,7 @@ class Account_Bacs_Debit_Payments_Settings(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Account_Bacs_Debit_Payments_Settings(display_name={display_name!r})".format(
+        return "AccountBacsDebitPaymentsSettings(display_name={display_name!r})".format(
             display_name=self.display_name
         )
 

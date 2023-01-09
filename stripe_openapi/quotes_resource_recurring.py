@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Quotes_Resource_Recurring(Base):
+class QuotesResourceRecurring(Base):
     __tablename__ = "quotes_resource_recurring"
     amount_subtotal = Column(
         Integer, comment="Total before any discounts or taxes are applied"
@@ -17,9 +19,7 @@ class Quotes_Resource_Recurring(Base):
         Integer,
         comment="The number of intervals (specified in the `interval` attribute) between subscription billings. For example, `interval=month` and `interval_count=3` bills every 3 months",
     )
-    total_details = Column(
-        quotes_resource_total_details, ForeignKey("quotes_resource_total_details")
-    )
+    total_details = Column(Integer, ForeignKey("quotes_resource_total_details.id"))
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):
@@ -29,7 +29,7 @@ class Quotes_Resource_Recurring(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Quotes_Resource_Recurring(amount_subtotal={amount_subtotal!r}, amount_total={amount_total!r}, interval={interval!r}, interval_count={interval_count!r}, total_details={total_details!r}, id={id!r})".format(
+        return "QuotesResourceRecurring(amount_subtotal={amount_subtotal!r}, amount_total={amount_total!r}, interval={interval!r}, interval_count={interval_count!r}, total_details={total_details!r}, id={id!r})".format(
             amount_subtotal=self.amount_subtotal,
             amount_total=self.amount_total,
             interval=self.interval,

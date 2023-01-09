@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Invoices_Resource_Invoice_Tax_Id(Base):
+class InvoicesResourceInvoiceTaxId(Base):
     __tablename__ = "invoices_resource_invoice_tax_id"
     type = Column(
         String,
@@ -17,7 +19,7 @@ class Invoices_Resource_Invoice_Tax_Id(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Invoices_Resource_Invoice_Tax_Id(type={type!r}, value={value!r}, id={id!r})".format(
+        return "InvoicesResourceInvoiceTaxId(type={type!r}, value={value!r}, id={id!r})".format(
             type=self.type, value=self.value, id=self.id
         )
 

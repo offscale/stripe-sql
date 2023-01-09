@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Mandate_Sepa_Debit(Base):
+class MandateSepaDebit(Base):
     __tablename__ = "mandate_sepa_debit"
     reference = Column(String, comment="The unique reference of the mandate")
     url = Column(
@@ -17,8 +19,10 @@ class Mandate_Sepa_Debit(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Mandate_Sepa_Debit(reference={reference!r}, url={url!r}, id={id!r})".format(
-            reference=self.reference, url=self.url, id=self.id
+        return (
+            "MandateSepaDebit(reference={reference!r}, url={url!r}, id={id!r})".format(
+                reference=self.reference, url=self.url, id=self.id
+            )
         )
 
 

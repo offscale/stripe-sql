@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, Identity, Integer, String
+
+from . import Base
 
 
-class Issuing_Transaction_Flight_Data_Leg(Base):
+class IssuingTransactionFlightDataLeg(Base):
     __tablename__ = "issuing_transaction_flight_data_leg"
     arrival_airport_code = Column(
         String,
@@ -28,7 +30,7 @@ class Issuing_Transaction_Flight_Data_Leg(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Issuing_Transaction_Flight_Data_Leg(arrival_airport_code={arrival_airport_code!r}, carrier={carrier!r}, departure_airport_code={departure_airport_code!r}, flight_number={flight_number!r}, service_class={service_class!r}, stopover_allowed={stopover_allowed!r}, id={id!r})".format(
+        return "IssuingTransactionFlightDataLeg(arrival_airport_code={arrival_airport_code!r}, carrier={carrier!r}, departure_airport_code={departure_airport_code!r}, flight_number={flight_number!r}, service_class={service_class!r}, stopover_allowed={stopover_allowed!r}, id={id!r})".format(
             arrival_airport_code=self.arrival_airport_code,
             carrier=self.carrier,
             departure_airport_code=self.departure_airport_code,

@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import JSON, Boolean, Column, Integer, String
+
+from . import Base
 
 
-class File_Link(Base):
+class FileLink(Base):
     """
     To share the contents of a `File` object with non-Stripe users, you can
 
@@ -19,7 +21,7 @@ class File_Link(Base):
     expires_at = Column(
         Integer, comment="Time at which the link expires", nullable=True
     )
-    file = Column(file, comment="[[FK(file)]] The file object this link points to")
+    file = Column(File, comment="[[FK(File)]] The file object this link points to")
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     livemode = Column(
         Boolean,
@@ -46,7 +48,7 @@ class File_Link(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "File_Link(created={created!r}, expired={expired!r}, expires_at={expires_at!r}, file={file!r}, id={id!r}, livemode={livemode!r}, metadata={metadata!r}, object={object!r}, url={url!r})".format(
+        return "FileLink(created={created!r}, expired={expired!r}, expires_at={expires_at!r}, file={file!r}, id={id!r}, livemode={livemode!r}, metadata={metadata!r}, object={object!r}, url={url!r})".format(
             created=self.created,
             expired=self.expired,
             expires_at=self.expires_at,

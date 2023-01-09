@@ -1,7 +1,11 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from stripe_openapi.gelato_selfie_report_error import GelatoSelfieReportError
+
+from . import Base
 
 
-class Gelato_Selfie_Report(Base):
+class GelatoSelfieReport(Base):
     """
     Result from a selfie check
     """
@@ -13,8 +17,8 @@ class Gelato_Selfie_Report(Base):
         nullable=True,
     )
     error = Column(
-        gelato_selfie_report_error,
-        comment="[[FK(gelato_selfie_report_error)]] Details on the verification error. Present when status is `unverified`",
+        GelatoSelfieReportError,
+        comment="[[FK(GelatoSelfieReportError)]] Details on the verification error. Present when status is `unverified`",
         nullable=True,
     )
     selfie = Column(
@@ -32,7 +36,7 @@ class Gelato_Selfie_Report(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Gelato_Selfie_Report(document={document!r}, error={error!r}, selfie={selfie!r}, status={status!r}, id={id!r})".format(
+        return "GelatoSelfieReport(document={document!r}, error={error!r}, selfie={selfie!r}, status={status!r}, id={id!r})".format(
             document=self.document,
             error=self.error,
             selfie=self.selfie,

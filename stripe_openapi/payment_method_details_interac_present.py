@@ -1,7 +1,13 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import ARRAY, Column, Integer, String
+
+from stripe_openapi.payment_method_details_interac_present_receipt import (
+    PaymentMethodDetailsInteracPresentReceipt,
+)
+
+from . import Base
 
 
-class Payment_Method_Details_Interac_Present(Base):
+class PaymentMethodDetailsInteracPresent(Base):
     __tablename__ = "payment_method_details_interac_present"
     brand = Column(
         String,
@@ -73,8 +79,8 @@ class Payment_Method_Details_Interac_Present(Base):
         String, comment="How card details were read in this transaction", nullable=True
     )
     receipt = Column(
-        payment_method_details_interac_present_receipt,
-        comment="[[FK(payment_method_details_interac_present_receipt)]] A collection of fields required to be displayed on receipts. Only required for EMV transactions",
+        PaymentMethodDetailsInteracPresentReceipt,
+        comment="[[FK(PaymentMethodDetailsInteracPresentReceipt)]] A collection of fields required to be displayed on receipts. Only required for EMV transactions",
         nullable=True,
     )
 
@@ -85,7 +91,7 @@ class Payment_Method_Details_Interac_Present(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Method_Details_Interac_Present(brand={brand!r}, cardholder_name={cardholder_name!r}, country={country!r}, description={description!r}, emv_auth_data={emv_auth_data!r}, exp_month={exp_month!r}, exp_year={exp_year!r}, fingerprint={fingerprint!r}, funding={funding!r}, generated_card={generated_card!r}, iin={iin!r}, issuer={issuer!r}, last4={last4!r}, network={network!r}, preferred_locales={preferred_locales!r}, read_method={read_method!r}, receipt={receipt!r})".format(
+        return "PaymentMethodDetailsInteracPresent(brand={brand!r}, cardholder_name={cardholder_name!r}, country={country!r}, description={description!r}, emv_auth_data={emv_auth_data!r}, exp_month={exp_month!r}, exp_year={exp_year!r}, fingerprint={fingerprint!r}, funding={funding!r}, generated_card={generated_card!r}, iin={iin!r}, issuer={issuer!r}, last4={last4!r}, network={network!r}, preferred_locales={preferred_locales!r}, read_method={read_method!r}, receipt={receipt!r})".format(
             brand=self.brand,
             cardholder_name=self.cardholder_name,
             country=self.country,

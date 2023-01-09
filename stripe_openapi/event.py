@@ -1,4 +1,8 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+
+from stripe_openapi.notification_event_request import NotificationEventRequest
+
+from . import Base
 
 
 class Event(Base):
@@ -49,7 +53,7 @@ class Event(Base):
         Integer,
         comment="Time at which the object was created. Measured in seconds since the Unix epoch",
     )
-    data = Column(notification_event_data, ForeignKey("notification_event_data"))
+    data = Column(Integer, ForeignKey("notification_event_data.id"))
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     livemode = Column(
         Boolean,
@@ -64,8 +68,8 @@ class Event(Base):
         comment="Number of webhooks that have yet to be successfully delivered (i.e., to return a 20x response) to the URLs you've specified",
     )
     request = Column(
-        notification_event_request,
-        comment="[[FK(notification_event_request)]] Information on the API request that instigated the event",
+        NotificationEventRequest,
+        comment="[[FK(NotificationEventRequest)]] Information on the API request that instigated the event",
         nullable=True,
     )
     type = Column(

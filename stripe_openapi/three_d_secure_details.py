@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Three_D_Secure_Details(Base):
+class ThreeDSecureDetails(Base):
     __tablename__ = "three_d_secure_details"
     authentication_flow = Column(
         String,
@@ -30,7 +32,7 @@ class Three_D_Secure_Details(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Three_D_Secure_Details(authentication_flow={authentication_flow!r}, result={result!r}, result_reason={result_reason!r}, version={version!r}, id={id!r})".format(
+        return "ThreeDSecureDetails(authentication_flow={authentication_flow!r}, result={result!r}, result_reason={result_reason!r}, version={version!r}, id={id!r})".format(
             authentication_flow=self.authentication_flow,
             result=self.result,
             result_reason=self.result_reason,

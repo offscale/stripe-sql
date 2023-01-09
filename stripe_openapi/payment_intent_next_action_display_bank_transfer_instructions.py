@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, list
+
+from . import Base
 
 
-class Payment_Intent_Next_Action_Display_Bank_Transfer_Instructions(Base):
+class PaymentIntentNextActionDisplayBankTransferInstructions(Base):
     __tablename__ = "payment_intent_next_action_display_bank_transfer_instructions"
     amount_remaining = Column(
         Integer,
@@ -38,7 +40,7 @@ class Payment_Intent_Next_Action_Display_Bank_Transfer_Instructions(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Intent_Next_Action_Display_Bank_Transfer_Instructions(amount_remaining={amount_remaining!r}, currency={currency!r}, financial_addresses={financial_addresses!r}, hosted_instructions_url={hosted_instructions_url!r}, reference={reference!r}, type={type!r}, id={id!r})".format(
+        return "PaymentIntentNextActionDisplayBankTransferInstructions(amount_remaining={amount_remaining!r}, currency={currency!r}, financial_addresses={financial_addresses!r}, hosted_instructions_url={hosted_instructions_url!r}, reference={reference!r}, type={type!r}, id={id!r})".format(
             amount_remaining=self.amount_remaining,
             currency=self.currency,
             financial_addresses=self.financial_addresses,

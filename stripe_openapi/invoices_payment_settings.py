@@ -1,7 +1,11 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import ARRAY, Column, Identity, Integer, String
+
+from stripe_openapi.invoices_payment_method_options import InvoicesPaymentMethodOptions
+
+from . import Base
 
 
-class Invoices_Payment_Settings(Base):
+class InvoicesPaymentSettings(Base):
     __tablename__ = "invoices_payment_settings"
     default_mandate = Column(
         String,
@@ -9,8 +13,8 @@ class Invoices_Payment_Settings(Base):
         nullable=True,
     )
     payment_method_options = Column(
-        invoices_payment_method_options,
-        comment="[[FK(invoices_payment_method_options)]] Payment-method-specific configuration to provide to the invoice’s PaymentIntent",
+        InvoicesPaymentMethodOptions,
+        comment="[[FK(InvoicesPaymentMethodOptions)]] Payment-method-specific configuration to provide to the invoice’s PaymentIntent",
         nullable=True,
     )
     payment_method_types = Column(
@@ -27,7 +31,7 @@ class Invoices_Payment_Settings(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Invoices_Payment_Settings(default_mandate={default_mandate!r}, payment_method_options={payment_method_options!r}, payment_method_types={payment_method_types!r}, id={id!r})".format(
+        return "InvoicesPaymentSettings(default_mandate={default_mandate!r}, payment_method_options={payment_method_options!r}, payment_method_types={payment_method_types!r}, id={id!r})".format(
             default_mandate=self.default_mandate,
             payment_method_options=self.payment_method_options,
             payment_method_types=self.payment_method_types,

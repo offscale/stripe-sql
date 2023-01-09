@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from . import Base
 
 
-class Checkout_Pix_Payment_Method_Options(Base):
+class CheckoutPixPaymentMethodOptions(Base):
     __tablename__ = "checkout_pix_payment_method_options"
     expires_after_seconds = Column(
         Integer,
@@ -17,7 +19,7 @@ class Checkout_Pix_Payment_Method_Options(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Checkout_Pix_Payment_Method_Options(expires_after_seconds={expires_after_seconds!r}, id={id!r})".format(
+        return "CheckoutPixPaymentMethodOptions(expires_after_seconds={expires_after_seconds!r}, id={id!r})".format(
             expires_after_seconds=self.expires_after_seconds, id=self.id
         )
 

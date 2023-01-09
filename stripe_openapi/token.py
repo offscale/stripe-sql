@@ -1,4 +1,6 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+
+from . import Base
 
 
 class Token(Base):
@@ -30,8 +32,8 @@ class Token(Base):
     """
 
     __tablename__ = "token"
-    bank_account = Column(bank_account, ForeignKey("bank_account"), nullable=True)
-    card = Column(card, ForeignKey("card"), nullable=True)
+    bank_account = Column(String, ForeignKey("bank_account.id"), nullable=True)
+    card = Column(Card, ForeignKey("Card"), nullable=True)
     client_ip = Column(
         String,
         comment="IP address of the client that generated the token",

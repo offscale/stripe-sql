@@ -1,16 +1,20 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Identity, Integer
+
+from stripe_openapi.setup_attempt import SetupAttempt
+
+from . import Base
 
 
-class Sepa_Debit_Generated_From(Base):
+class SepaDebitGeneratedFrom(Base):
     __tablename__ = "sepa_debit_generated_from"
     charge = Column(
-        charge,
-        comment="[[FK(charge)]] The ID of the Charge that generated this PaymentMethod, if any",
+        Charge,
+        comment="[[FK(Charge)]] The ID of the Charge that generated this PaymentMethod, if any",
         nullable=True,
     )
     setup_attempt = Column(
-        setup_attempt,
-        comment="[[FK(setup_attempt)]] The ID of the SetupAttempt that generated this PaymentMethod, if any",
+        SetupAttempt,
+        comment="[[FK(SetupAttempt)]] The ID of the SetupAttempt that generated this PaymentMethod, if any",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -22,7 +26,7 @@ class Sepa_Debit_Generated_From(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Sepa_Debit_Generated_From(charge={charge!r}, setup_attempt={setup_attempt!r}, id={id!r})".format(
+        return "SepaDebitGeneratedFrom(charge={charge!r}, setup_attempt={setup_attempt!r}, id={id!r})".format(
             charge=self.charge, setup_attempt=self.setup_attempt, id=self.id
         )
 

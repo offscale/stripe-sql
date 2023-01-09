@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import ARRAY, Boolean, Column, Identity, Integer, String, list
+
+from . import Base
 
 
-class Portal_Subscription_Update(Base):
+class PortalSubscriptionUpdate(Base):
     __tablename__ = "portal_subscription_update"
     default_allowed_updates = Column(
         ARRAY(String),
@@ -26,7 +28,7 @@ class Portal_Subscription_Update(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Portal_Subscription_Update(default_allowed_updates={default_allowed_updates!r}, enabled={enabled!r}, products={products!r}, proration_behavior={proration_behavior!r}, id={id!r})".format(
+        return "PortalSubscriptionUpdate(default_allowed_updates={default_allowed_updates!r}, enabled={enabled!r}, products={products!r}, proration_behavior={proration_behavior!r}, id={id!r})".format(
             default_allowed_updates=self.default_allowed_updates,
             enabled=self.enabled,
             products=self.products,

@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer
+from sqlalchemy import Boolean, Column, Identity, Integer
+
+from . import Base
 
 
-class Payment_Flows_Automatic_Payment_Methods_Payment_Intent(Base):
+class PaymentFlowsAutomaticPaymentMethodsPaymentIntent(Base):
     __tablename__ = "payment_flows_automatic_payment_methods_payment_intent"
     enabled = Column(
         Boolean, comment="Automatically calculates compatible payment methods"
@@ -15,7 +17,7 @@ class Payment_Flows_Automatic_Payment_Methods_Payment_Intent(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Payment_Flows_Automatic_Payment_Methods_Payment_Intent(enabled={enabled!r}, id={id!r})".format(
+        return "PaymentFlowsAutomaticPaymentMethodsPaymentIntent(enabled={enabled!r}, id={id!r})".format(
             enabled=self.enabled, id=self.id
         )
 

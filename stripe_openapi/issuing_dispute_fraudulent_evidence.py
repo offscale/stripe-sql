@@ -1,11 +1,13 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Issuing_Dispute_Fraudulent_Evidence(Base):
+class IssuingDisputeFraudulentEvidence(Base):
     __tablename__ = "issuing_dispute_fraudulent_evidence"
     additional_documentation = Column(
-        file,
-        comment="[[FK(file)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Additional documentation supporting the dispute",
+        File,
+        comment="[[FK(File)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Additional documentation supporting the dispute",
         nullable=True,
     )
     explanation = Column(
@@ -22,7 +24,7 @@ class Issuing_Dispute_Fraudulent_Evidence(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Issuing_Dispute_Fraudulent_Evidence(additional_documentation={additional_documentation!r}, explanation={explanation!r}, id={id!r})".format(
+        return "IssuingDisputeFraudulentEvidence(additional_documentation={additional_documentation!r}, explanation={explanation!r}, id={id!r})".format(
             additional_documentation=self.additional_documentation,
             explanation=self.explanation,
             id=self.id,

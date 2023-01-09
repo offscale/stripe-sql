@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import JSON, Column, Identity, Integer, String
+
+from . import Base
 
 
-class Shipping_Rate_Fixed_Amount(Base):
+class ShippingRateFixedAmount(Base):
     __tablename__ = "shipping_rate_fixed_amount"
     amount = Column(
         Integer,
@@ -25,7 +27,7 @@ class Shipping_Rate_Fixed_Amount(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Shipping_Rate_Fixed_Amount(amount={amount!r}, currency={currency!r}, currency_options={currency_options!r}, id={id!r})".format(
+        return "ShippingRateFixedAmount(amount={amount!r}, currency={currency!r}, currency_options={currency_options!r}, id={id!r})".format(
             amount=self.amount,
             currency=self.currency,
             currency_options=self.currency_options,

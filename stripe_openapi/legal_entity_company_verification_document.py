@@ -1,11 +1,13 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Legal_Entity_Company_Verification_Document(Base):
+class LegalEntityCompanyVerificationDocument(Base):
     __tablename__ = "legal_entity_company_verification_document"
     back = Column(
-        file,
-        comment="[[FK(file)]] The back of a document returned by a [file upload](https://stripe.com/docs/api#create_file) with a `purpose` value of `additional_verification`",
+        File,
+        comment="[[FK(File)]] The back of a document returned by a [file upload](https://stripe.com/docs/api#create_file) with a `purpose` value of `additional_verification`",
         nullable=True,
     )
     details = Column(
@@ -19,8 +21,8 @@ class Legal_Entity_Company_Verification_Document(Base):
         nullable=True,
     )
     front = Column(
-        file,
-        comment="[[FK(file)]] The front of a document returned by a [file upload](https://stripe.com/docs/api#create_file) with a `purpose` value of `additional_verification`",
+        File,
+        comment="[[FK(File)]] The front of a document returned by a [file upload](https://stripe.com/docs/api#create_file) with a `purpose` value of `additional_verification`",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
@@ -32,7 +34,7 @@ class Legal_Entity_Company_Verification_Document(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Legal_Entity_Company_Verification_Document(back={back!r}, details={details!r}, details_code={details_code!r}, front={front!r}, id={id!r})".format(
+        return "LegalEntityCompanyVerificationDocument(back={back!r}, details={details!r}, details_code={details_code!r}, front={front!r}, id={id!r})".format(
             back=self.back,
             details=self.details,
             details_code=self.details_code,

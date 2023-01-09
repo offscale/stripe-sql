@@ -1,16 +1,20 @@
-from sqlalchemy import Column
+from sqlalchemy import Column, ForeignKey
+
+from stripe_openapi.gelato_report_id_number_options import GelatoReportIdNumberOptions
+
+from . import Base
 
 
-class Gelato_Verification_Report_Options(Base):
+class GelatoVerificationReportOptions(Base):
     __tablename__ = "gelato_verification_report_options"
     document = Column(
-        gelato_report_document_options,
-        ForeignKey("gelato_report_document_options"),
+        Boolean,
+        ForeignKey("gelato_report_document_options.require_id_number"),
         nullable=True,
     )
     id_number = Column(
-        gelato_report_id_number_options,
-        comment="[FK(gelato_report_id_number_options)]",
+        GelatoReportIdNumberOptions,
+        comment="[FK(GelatoReportIdNumberOptions)]",
         nullable=True,
         primary_key=True,
     )
@@ -22,7 +26,7 @@ class Gelato_Verification_Report_Options(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Gelato_Verification_Report_Options(document={document!r}, id_number={id_number!r})".format(
+        return "GelatoVerificationReportOptions(document={document!r}, id_number={id_number!r})".format(
             document=self.document, id_number=self.id_number
         )
 

@@ -1,7 +1,9 @@
 from sqlalchemy import Column, String
 
+from . import Base
 
-class Customer_Balance_Resource_Cash_Balance_Transaction_Resource_Funded_Transaction_Resource_Bank_Transfer_Resource_Eu_Bank_Transfer(
+
+class CustomerBalanceResourceCashBalanceTransactionResourceFundedTransactionResourceBankTransferResourceEuBankTransfer(
     Base
 ):
     __tablename__ = "customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_eu_bank_transfer"
@@ -29,7 +31,7 @@ class Customer_Balance_Resource_Cash_Balance_Transaction_Resource_Funded_Transac
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Customer_Balance_Resource_Cash_Balance_Transaction_Resource_Funded_Transaction_Resource_Bank_Transfer_Resource_Eu_Bank_Transfer(bic={bic!r}, iban_last4={iban_last4!r}, sender_name={sender_name!r})".format(
+        return "CustomerBalanceResourceCashBalanceTransactionResourceFundedTransactionResourceBankTransferResourceEuBankTransfer(bic={bic!r}, iban_last4={iban_last4!r}, sender_name={sender_name!r})".format(
             bic=self.bic, iban_last4=self.iban_last4, sender_name=self.sender_name
         )
 

@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Plan_Tier(Base):
+class PlanTier(Base):
     __tablename__ = "plan_tier"
     flat_amount = Column(Integer, comment="Price for the entire tier", nullable=True)
     flat_amount_decimal = Column(
@@ -31,7 +33,7 @@ class Plan_Tier(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Plan_Tier(flat_amount={flat_amount!r}, flat_amount_decimal={flat_amount_decimal!r}, unit_amount={unit_amount!r}, unit_amount_decimal={unit_amount_decimal!r}, up_to={up_to!r}, id={id!r})".format(
+        return "PlanTier(flat_amount={flat_amount!r}, flat_amount_decimal={flat_amount_decimal!r}, unit_amount={unit_amount!r}, unit_amount_decimal={unit_amount_decimal!r}, up_to={up_to!r}, id={id!r})".format(
             flat_amount=self.flat_amount,
             flat_amount_decimal=self.flat_amount_decimal,
             unit_amount=self.unit_amount,

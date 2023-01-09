@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import ARRAY, Column, Identity, Integer, String
+
+from . import Base
 
 
-class Issuing_Card_Spending_Limit(Base):
+class IssuingCardSpendingLimit(Base):
     __tablename__ = "issuing_card_spending_limit"
     amount = Column(
         Integer,
@@ -22,7 +24,7 @@ class Issuing_Card_Spending_Limit(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Issuing_Card_Spending_Limit(amount={amount!r}, categories={categories!r}, interval={interval!r}, id={id!r})".format(
+        return "IssuingCardSpendingLimit(amount={amount!r}, categories={categories!r}, interval={interval!r}, id={id!r})".format(
             amount=self.amount,
             categories=self.categories,
             interval=self.interval,

@@ -1,7 +1,9 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, Integer, String, list
+
+from . import Base
 
 
-class Credit_Note_Line_Item(Base):
+class CreditNoteLineItem(Base):
     __tablename__ = "credit_note_line_item"
     amount = Column(
         Integer,
@@ -69,7 +71,7 @@ class Credit_Note_Line_Item(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Credit_Note_Line_Item(amount={amount!r}, amount_excluding_tax={amount_excluding_tax!r}, description={description!r}, discount_amount={discount_amount!r}, discount_amounts={discount_amounts!r}, id={id!r}, invoice_line_item={invoice_line_item!r}, livemode={livemode!r}, object={object!r}, quantity={quantity!r}, tax_amounts={tax_amounts!r}, tax_rates={tax_rates!r}, type={type!r}, unit_amount={unit_amount!r}, unit_amount_decimal={unit_amount_decimal!r}, unit_amount_excluding_tax={unit_amount_excluding_tax!r})".format(
+        return "CreditNoteLineItem(amount={amount!r}, amount_excluding_tax={amount_excluding_tax!r}, description={description!r}, discount_amount={discount_amount!r}, discount_amounts={discount_amounts!r}, id={id!r}, invoice_line_item={invoice_line_item!r}, livemode={livemode!r}, object={object!r}, quantity={quantity!r}, tax_amounts={tax_amounts!r}, tax_rates={tax_rates!r}, type={type!r}, unit_amount={unit_amount!r}, unit_amount_decimal={unit_amount_decimal!r}, unit_amount_excluding_tax={unit_amount_excluding_tax!r})".format(
             amount=self.amount,
             amount_excluding_tax=self.amount_excluding_tax,
             description=self.description,

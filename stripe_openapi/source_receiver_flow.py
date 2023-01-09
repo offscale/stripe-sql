@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Identity, Integer, String
+
+from . import Base
 
 
-class Source_Receiver_Flow(Base):
+class SourceReceiverFlow(Base):
     __tablename__ = "source_receiver_flow"
     address = Column(
         String,
@@ -37,7 +39,7 @@ class Source_Receiver_Flow(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Source_Receiver_Flow(address={address!r}, amount_charged={amount_charged!r}, amount_received={amount_received!r}, amount_returned={amount_returned!r}, refund_attributes_method={refund_attributes_method!r}, refund_attributes_status={refund_attributes_status!r}, id={id!r})".format(
+        return "SourceReceiverFlow(address={address!r}, amount_charged={amount_charged!r}, amount_received={amount_received!r}, amount_returned={amount_returned!r}, refund_attributes_method={refund_attributes_method!r}, refund_attributes_status={refund_attributes_status!r}, id={id!r})".format(
             address=self.address,
             amount_charged=self.amount_charged,
             amount_received=self.amount_received,

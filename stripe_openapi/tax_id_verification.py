@@ -1,7 +1,9 @@
 from sqlalchemy import Column, String
 
+from . import Base
 
-class Tax_Id_Verification(Base):
+
+class TaxIdVerification(Base):
     __tablename__ = "tax_id_verification"
     status = Column(
         String,
@@ -19,7 +21,7 @@ class Tax_Id_Verification(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "Tax_Id_Verification(status={status!r}, verified_address={verified_address!r}, verified_name={verified_name!r})".format(
+        return "TaxIdVerification(status={status!r}, verified_address={verified_address!r}, verified_name={verified_name!r})".format(
             status=self.status,
             verified_address=self.verified_address,
             verified_name=self.verified_name,

@@ -1,12 +1,12 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+
+from . import Base
 
 
-class Payment_Intent_Processing(Base):
+class PaymentIntentProcessing(Base):
     __tablename__ = "payment_intent_processing"
     card = Column(
-        payment_intent_card_processing,
-        ForeignKey("payment_intent_card_processing"),
-        nullable=True,
+        Integer, ForeignKey("payment_intent_card_processing.id"), nullable=True
     )
     type = Column(
         String,
@@ -22,7 +22,7 @@ class Payment_Intent_Processing(Base):
         :rtype: ```str```
         """
         return (
-            "Payment_Intent_Processing(card={card!r}, type={type!r}, id={id!r})".format(
+            "PaymentIntentProcessing(card={card!r}, type={type!r}, id={id!r})".format(
                 card=self.card, type=self.type, id=self.id
             )
         )
