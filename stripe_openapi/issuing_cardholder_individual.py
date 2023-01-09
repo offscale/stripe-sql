@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
 
 from stripe_openapi.issuing_cardholder_individual_dob import (
     IssuingCardholderIndividualDob,
@@ -10,6 +10,9 @@ from . import Base
 
 class IssuingCardholderIndividual(Base):
     __tablename__ = "issuing_cardholder_individual"
+    card_issuing = Column(
+        Integer, ForeignKey("issuing_cardholder_card_issuing.id"), nullable=True
+    )
     dob = Column(
         IssuingCardholderIndividualDob,
         comment="[[FK(IssuingCardholderIndividualDob)]] The date of birth of this cardholder",
@@ -31,7 +34,8 @@ class IssuingCardholderIndividual(Base):
         :return: String representation of instance
         :rtype: ```str```
         """
-        return "IssuingCardholderIndividual(dob={dob!r}, first_name={first_name!r}, last_name={last_name!r}, verification={verification!r}, id={id!r})".format(
+        return "IssuingCardholderIndividual(card_issuing={card_issuing!r}, dob={dob!r}, first_name={first_name!r}, last_name={last_name!r}, verification={verification!r}, id={id!r})".format(
+            card_issuing=self.card_issuing,
             dob=self.dob,
             first_name=self.first_name,
             last_name=self.last_name,

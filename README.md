@@ -13,6 +13,7 @@ None of the JSON-ref dereferencing tools I Google'd actually worked. So I wrote 
 
 ```sh
 $ ./scripts/get_stripe_openapi_gen_json_schema.bash
+# Cleanup with: `rm -r json_schema scripts/stripe-openapi*`
 ```
 
 (it downloads from https://github.com/stripe/openapi)

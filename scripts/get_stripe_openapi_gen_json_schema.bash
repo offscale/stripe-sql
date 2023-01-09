@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -euxo pipefail
+set -euo pipefail
 
 declare -r DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
@@ -10,7 +10,7 @@ for dep in unzip curl jq; do
      exit 1
    fi
 done
-exit 5
+
 declare -r zipfile="$DIR"'/stripe-openapi.zip'
 if [ ! -f "$zipfile" ]; then
   curl -L 'https://api.github.com/repos/stripe/openapi/zipball' -o "$zipfile"

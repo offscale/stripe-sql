@@ -99,7 +99,7 @@ class Product(Base):
     )
     unit_label = Column(
         String,
-        comment="A label that represents units of this product in Stripe and on customers’ receipts and invoices. When set, this will be included in associated invoice line item descriptions",
+        comment="A label that represents units of this product. When set, this will be included in customers' receipts, invoices, Checkout, and the customer portal",
         nullable=True,
     )
     updated = Column(

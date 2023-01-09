@@ -61,7 +61,7 @@ class PaymentMethodCard(Base):
     )
     three_d_secure_usage = Column(
         ThreeDSecureUsage,
-        comment="[[FK(ThreeDSecureUsage)]] Contains details on how this Card maybe be used for 3D Secure authentication",
+        comment="[[FK(ThreeDSecureUsage)]] Contains details on how this Card may be used for 3D Secure authentication",
         nullable=True,
     )
     wallet = Column(
