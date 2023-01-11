@@ -1,6 +1,4 @@
-from sqlalchemy import JSON, Boolean, Column, Integer, String
-
-from stripe_openapi.balance_transaction import BalanceTransaction
+from sqlalchemy import JSON, Boolean, Column, ForeignKey, Integer, String
 
 from . import Base
 
@@ -28,8 +26,9 @@ class Transfer(Base):
         comment="Amount in %s reversed (can be less than the amount attribute on the transfer if a partial reversal was issued)",
     )
     balance_transaction = Column(
-        BalanceTransaction,
-        comment="[[FK(BalanceTransaction)]] Balance transaction that describes the impact of this transfer on your account balance",
+        String,
+        ForeignKey("balance_transaction.id"),
+        comment="Balance transaction that describes the impact of this transfer on your account balance",
         nullable=True,
     )
     created = Column(
@@ -46,12 +45,14 @@ class Transfer(Base):
     )
     destination = Column(
         Account,
-        comment="[[FK(Account)]] ID of the Stripe account the transfer was sent to",
+        ForeignKey("Account"),
+        comment="ID of the Stripe account the transfer was sent to",
         nullable=True,
     )
     destination_payment = Column(
         Charge,
-        comment="[[FK(Charge)]] If the destination is a Stripe account, this will be the ID of the payment that the destination account received for the transfer",
+        ForeignKey("Charge"),
+        comment="If the destination is a Stripe account, this will be the ID of the payment that the destination account received for the transfer",
         nullable=True,
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
@@ -76,7 +77,8 @@ class Transfer(Base):
     )
     source_transaction = Column(
         Charge,
-        comment="[[FK(Charge)]] ID of the charge or payment that was used to fund the transfer. If null, the transfer was funded from the available balance",
+        ForeignKey("Charge"),
+        comment="ID of the charge or payment that was used to fund the transfer. If null, the transfer was funded from the available balance",
         nullable=True,
     )
     source_type = Column(

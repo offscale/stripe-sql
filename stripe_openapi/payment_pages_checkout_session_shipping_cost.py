@@ -1,6 +1,4 @@
-from sqlalchemy import Column, Identity, Integer, list
-
-from stripe_openapi.shipping_rate import ShippingRate
+from sqlalchemy import Column, ForeignKey, Identity, Integer, list
 
 from . import Base
 
@@ -18,8 +16,9 @@ class PaymentPagesCheckoutSessionShippingCost(Base):
         Integer, comment="Total shipping cost after discounts and taxes are applied"
     )
     shipping_rate = Column(
-        ShippingRate,
-        comment="[[FK(ShippingRate)]] The ID of the ShippingRate for this order",
+        String,
+        ForeignKey("shipping_rate.id"),
+        comment="The ID of the ShippingRate for this order",
         nullable=True,
     )
     taxes = Column(

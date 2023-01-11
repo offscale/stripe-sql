@@ -1,6 +1,4 @@
-from sqlalchemy import Column, Identity, Integer, String
-
-from stripe_openapi.customer_tax_location import CustomerTaxLocation
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
 
 from . import Base
 
@@ -17,8 +15,9 @@ class CustomerTax(Base):
         nullable=True,
     )
     location = Column(
-        CustomerTaxLocation,
-        comment="[[FK(CustomerTaxLocation)]] The customer's location as identified by Stripe Tax",
+        Integer,
+        ForeignKey("customer_tax_location.id"),
+        comment="The customer's location as identified by Stripe Tax",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

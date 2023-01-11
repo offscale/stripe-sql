@@ -1,8 +1,4 @@
-from sqlalchemy import Column, Identity, Integer
-
-from stripe_openapi.payment_method_details_card_installments_plan import (
-    PaymentMethodDetailsCardInstallmentsPlan,
-)
+from sqlalchemy import Column, ForeignKey, Identity, Integer
 
 from . import Base
 
@@ -10,8 +6,9 @@ from . import Base
 class PaymentMethodDetailsCardInstallments(Base):
     __tablename__ = "payment_method_details_card_installments"
     plan = Column(
-        PaymentMethodDetailsCardInstallmentsPlan,
-        comment="[[FK(PaymentMethodDetailsCardInstallmentsPlan)]] Installment plan selected for the payment",
+        Integer,
+        ForeignKey("payment_method_details_card_installments_plan.id"),
+        comment="Installment plan selected for the payment",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

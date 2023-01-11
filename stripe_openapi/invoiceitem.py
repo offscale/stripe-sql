@@ -1,6 +1,7 @@
 from sqlalchemy import JSON, Boolean, Column, ForeignKey, Integer, String, list
 
-from stripe_openapi.test_helpers import TestHelpers
+from stripe_openapi.invoice_line_item_period import InvoiceLineItemPeriod
+from stripe_openapi.test_helpers__test_clock import Test_Helpers__TestClock
 
 from . import Base
 
@@ -29,7 +30,8 @@ class Invoiceitem(Base):
     )
     customer = Column(
         Customer,
-        comment="[[FK(DeletedCustomer)]] The ID of the customer who will be billed when this invoice item is billed",
+        ForeignKey("DeletedCustomer"),
+        comment="The ID of the customer who will be billed when this invoice item is billed",
     )
     date = Column(
         Integer,
@@ -52,7 +54,8 @@ class Invoiceitem(Base):
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     invoice = Column(
         Invoice,
-        comment="[[FK(Invoice)]] The ID of the invoice this invoice item belongs to",
+        ForeignKey("Invoice"),
+        comment="The ID of the invoice this invoice item belongs to",
         nullable=True,
     )
     livemode = Column(
@@ -68,14 +71,18 @@ class Invoiceitem(Base):
         String,
         comment="String representing the object's type. Objects of the same type share the same value",
     )
-    period = Column(Integer, ForeignKey("invoice_line_item_period.id"))
+    period = Column(InvoiceLineItemPeriod, ForeignKey("InvoiceLineItemPeriod"))
     plan = Column(
         Plan,
-        comment="[[FK(Plan)]] If the invoice item is a proration, the plan of the subscription that the proration was computed for",
+        ForeignKey("Plan"),
+        comment="If the invoice item is a proration, the plan of the subscription that the proration was computed for",
         nullable=True,
     )
     price = Column(
-        Price, comment="[[FK(Price)]] The price of the invoice item", nullable=True
+        Price,
+        ForeignKey("Price"),
+        comment="The price of the invoice item",
+        nullable=True,
     )
     proration = Column(
         Boolean,
@@ -87,7 +94,8 @@ class Invoiceitem(Base):
     )
     subscription = Column(
         Subscription,
-        comment="[[FK(Subscription)]] The subscription that this invoice item has been created for, if any",
+        ForeignKey("Subscription"),
+        comment="The subscription that this invoice item has been created for, if any",
         nullable=True,
     )
     subscription_item = Column(
@@ -101,8 +109,9 @@ class Invoiceitem(Base):
         nullable=True,
     )
     test_clock = Column(
-        TestHelpers.TestClock,
-        comment="[[FK(TestHelpers.TestClock)]] ID of the test clock this invoice item belongs to",
+        Test_Helpers__TestClock,
+        ForeignKey("Test_Helpers__TestClock"),
+        comment="ID of the test clock this invoice item belongs to",
         nullable=True,
     )
     unit_amount = Column(

@@ -1,8 +1,4 @@
-from sqlalchemy import Column, Identity, Integer
-
-from stripe_openapi.invoices_line_items_credited_items import (
-    InvoicesLineItemsCreditedItems,
-)
+from sqlalchemy import Column, ForeignKey, Identity, Integer
 
 from . import Base
 
@@ -10,8 +6,9 @@ from . import Base
 class InvoicesLineItemsProrationDetails(Base):
     __tablename__ = "invoices_line_items_proration_details"
     credited_items = Column(
-        InvoicesLineItemsCreditedItems,
-        comment="[[FK(InvoicesLineItemsCreditedItems)]] For a credit proration `line_item`, the original debit line_items to which the credit proration applies",
+        Integer,
+        ForeignKey("invoices_line_items_credited_items.id"),
+        comment="For a credit proration `line_item`, the original debit line_items to which the credit proration applies",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

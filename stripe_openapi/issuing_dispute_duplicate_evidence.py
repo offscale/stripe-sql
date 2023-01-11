@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
 
 from . import Base
 
@@ -7,22 +7,26 @@ class IssuingDisputeDuplicateEvidence(Base):
     __tablename__ = "issuing_dispute_duplicate_evidence"
     additional_documentation = Column(
         File,
-        comment="[[FK(File)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Additional documentation supporting the dispute",
+        ForeignKey("File"),
+        comment="(ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Additional documentation supporting the dispute",
         nullable=True,
     )
     card_statement = Column(
         File,
-        comment="[[FK(File)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Copy of the card statement showing that the product had already been paid for",
+        ForeignKey("File"),
+        comment="(ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Copy of the card statement showing that the product had already been paid for",
         nullable=True,
     )
     cash_receipt = Column(
         File,
-        comment="[[FK(File)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Copy of the receipt showing that the product had been paid for in cash",
+        ForeignKey("File"),
+        comment="(ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Copy of the receipt showing that the product had been paid for in cash",
         nullable=True,
     )
     check_image = Column(
         File,
-        comment="[[FK(File)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Image of the front and back of the check that was used to pay for the product",
+        ForeignKey("File"),
+        comment="(ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Image of the front and back of the check that was used to pay for the product",
         nullable=True,
     )
     explanation = Column(

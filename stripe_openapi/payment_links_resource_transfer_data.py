@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Identity, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer
 
 from . import Base
 
@@ -11,7 +11,9 @@ class PaymentLinksResourceTransferData(Base):
         nullable=True,
     )
     destination = Column(
-        Account, comment="[[FK(Account)]] The connected account receiving the transfer"
+        Account,
+        ForeignKey("Account"),
+        comment="The connected account receiving the transfer",
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

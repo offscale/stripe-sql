@@ -1,6 +1,4 @@
-from sqlalchemy import Column, Identity, Integer, String
-
-from stripe_openapi.gelato_selfie_report_error import GelatoSelfieReportError
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
 
 from . import Base
 
@@ -17,8 +15,9 @@ class GelatoSelfieReport(Base):
         nullable=True,
     )
     error = Column(
-        GelatoSelfieReportError,
-        comment="[[FK(GelatoSelfieReportError)]] Details on the verification error. Present when status is `unverified`",
+        Integer,
+        ForeignKey("gelato_selfie_report_error.id"),
+        comment="Details on the verification error. Present when status is `unverified`",
         nullable=True,
     )
     selfie = Column(

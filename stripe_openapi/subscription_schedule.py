@@ -3,7 +3,10 @@ from sqlalchemy import JSON, Boolean, Column, ForeignKey, Integer, String, list
 from stripe_openapi.subscription_schedule_current_phase import (
     SubscriptionScheduleCurrentPhase,
 )
-from stripe_openapi.test_helpers import TestHelpers
+from stripe_openapi.subscription_schedules_resource_default_settings import (
+    SubscriptionSchedulesResourceDefaultSettings,
+)
+from stripe_openapi.test_helpers__test_clock import Test_Helpers__TestClock
 
 from . import Base
 
@@ -19,7 +22,8 @@ class SubscriptionSchedule(Base):
     __tablename__ = "subscription_schedule"
     application = Column(
         Application,
-        comment="[[FK(DeletedApplication)]] ID of the Connect Application that created the schedule",
+        ForeignKey("DeletedApplication"),
+        comment="ID of the Connect Application that created the schedule",
         nullable=True,
     )
     canceled_at = Column(
@@ -38,15 +42,18 @@ class SubscriptionSchedule(Base):
     )
     current_phase = Column(
         SubscriptionScheduleCurrentPhase,
-        comment="[[FK(SubscriptionScheduleCurrentPhase)]] Object representing the start and end dates for the current phase of the subscription schedule, if it is `active`",
+        ForeignKey("SubscriptionScheduleCurrentPhase"),
+        comment="Object representing the start and end dates for the current phase of the subscription schedule, if it is `active`",
         nullable=True,
     )
     customer = Column(
         Customer,
-        comment="[[FK(DeletedCustomer)]] ID of the customer who owns the subscription schedule",
+        ForeignKey("DeletedCustomer"),
+        comment="ID of the customer who owns the subscription schedule",
     )
     default_settings = Column(
-        Integer, ForeignKey("subscription_schedules_resource_default_settings.id")
+        SubscriptionSchedulesResourceDefaultSettings,
+        ForeignKey("SubscriptionSchedulesResourceDefaultSettings"),
     )
     end_behavior = Column(
         String,
@@ -85,12 +92,14 @@ class SubscriptionSchedule(Base):
     )
     subscription = Column(
         Subscription,
-        comment="[[FK(Subscription)]] ID of the subscription managed by the subscription schedule",
+        ForeignKey("Subscription"),
+        comment="ID of the subscription managed by the subscription schedule",
         nullable=True,
     )
     test_clock = Column(
-        TestHelpers.TestClock,
-        comment="[[FK(TestHelpers.TestClock)]] ID of the test clock this subscription schedule belongs to",
+        Test_Helpers__TestClock,
+        ForeignKey("Test_Helpers__TestClock"),
+        comment="ID of the test clock this subscription schedule belongs to",
         nullable=True,
     )
 

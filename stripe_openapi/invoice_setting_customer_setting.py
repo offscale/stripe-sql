@@ -1,9 +1,4 @@
-from sqlalchemy import Column, Identity, Integer, String, list
-
-from stripe_openapi.invoice_setting_rendering_options import (
-    InvoiceSettingRenderingOptions,
-)
-from stripe_openapi.payment_method import PaymentMethod
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String, list
 
 from . import Base
 
@@ -16,8 +11,9 @@ class InvoiceSettingCustomerSetting(Base):
         nullable=True,
     )
     default_payment_method = Column(
-        PaymentMethod,
-        comment="[[FK(PaymentMethod)]] ID of a payment method that's attached to the customer, to be used as the customer's default payment method for subscriptions and invoices",
+        String,
+        ForeignKey("payment_method.id"),
+        comment="ID of a payment method that's attached to the customer, to be used as the customer's default payment method for subscriptions and invoices",
         nullable=True,
     )
     footer = Column(
@@ -26,8 +22,9 @@ class InvoiceSettingCustomerSetting(Base):
         nullable=True,
     )
     rendering_options = Column(
-        InvoiceSettingRenderingOptions,
-        comment="[[FK(InvoiceSettingRenderingOptions)]] Default options for invoice PDF rendering for this customer",
+        Integer,
+        ForeignKey("invoice_setting_rendering_options.id"),
+        comment="Default options for invoice PDF rendering for this customer",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

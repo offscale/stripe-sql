@@ -1,8 +1,4 @@
-from sqlalchemy import Boolean, Column, Identity, Integer, String
-
-from stripe_openapi.issuing_authorization_amount_details import (
-    IssuingAuthorizationAmountDetails,
-)
+from sqlalchemy import Boolean, Column, ForeignKey, Identity, Integer, String
 
 from . import Base
 
@@ -14,8 +10,9 @@ class IssuingAuthorizationPendingRequest(Base):
         comment="The additional amount Stripe will hold if the authorization is approved, in the card's [currency](https://stripe.com/docs/api#issuing_authorization_object-pending-request-currency) and in the [smallest currency unit](https://stripe.com/docs/currencies#zero-decimal)",
     )
     amount_details = Column(
-        IssuingAuthorizationAmountDetails,
-        comment="[[FK(IssuingAuthorizationAmountDetails)]] Detailed breakdown of amount components. These amounts are denominated in `currency` and in the [smallest currency unit](https://stripe.com/docs/currencies#zero-decimal)",
+        Integer,
+        ForeignKey("issuing_authorization_amount_details.id"),
+        comment="Detailed breakdown of amount components. These amounts are denominated in `currency` and in the [smallest currency unit](https://stripe.com/docs/currencies#zero-decimal)",
         nullable=True,
     )
     currency = Column(

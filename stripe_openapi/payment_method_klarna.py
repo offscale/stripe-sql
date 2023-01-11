@@ -1,8 +1,4 @@
-from sqlalchemy import Column, Identity, Integer
-
-from stripe_openapi.payment_flows_private_payment_methods_klarna_dob import (
-    PaymentFlowsPrivatePaymentMethodsKlarnaDob,
-)
+from sqlalchemy import Column, ForeignKey, Identity, Integer
 
 from . import Base
 
@@ -10,8 +6,9 @@ from . import Base
 class PaymentMethodKlarna(Base):
     __tablename__ = "payment_method_klarna"
     dob = Column(
-        PaymentFlowsPrivatePaymentMethodsKlarnaDob,
-        comment="[[FK(PaymentFlowsPrivatePaymentMethodsKlarnaDob)]] The customer's date of birth, if provided",
+        Integer,
+        ForeignKey("payment_flows_private_payment_methods_klarna_dob.id"),
+        comment="The customer's date of birth, if provided",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

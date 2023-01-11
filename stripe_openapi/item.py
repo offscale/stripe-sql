@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, list
+from sqlalchemy import Column, ForeignKey, Integer, String, list
 
 from . import Base
 
@@ -39,7 +39,8 @@ class Item(Base):
     )
     price = Column(
         Price,
-        comment="[[FK(Price)]] The price used to generate the line item",
+        ForeignKey("Price"),
+        comment="The price used to generate the line item",
         nullable=True,
     )
     quantity = Column(

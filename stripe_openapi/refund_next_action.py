@@ -1,8 +1,4 @@
-from sqlalchemy import Column, Identity, Integer, String
-
-from stripe_openapi.refund_next_action_display_details import (
-    RefundNextActionDisplayDetails,
-)
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
 
 from . import Base
 
@@ -10,8 +6,9 @@ from . import Base
 class RefundNextAction(Base):
     __tablename__ = "refund_next_action"
     display_details = Column(
-        RefundNextActionDisplayDetails,
-        comment="[[FK(RefundNextActionDisplayDetails)]] Contains the refund details",
+        Integer,
+        ForeignKey("refund_next_action_display_details.id"),
+        comment="Contains the refund details",
         nullable=True,
     )
     type = Column(String, comment="Type of the next action to perform")

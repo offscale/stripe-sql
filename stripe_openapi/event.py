@@ -1,7 +1,5 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 
-from stripe_openapi.notification_event_request import NotificationEventRequest
-
 from . import Base
 
 
@@ -68,8 +66,9 @@ class Event(Base):
         comment="Number of webhooks that have yet to be successfully delivered (i.e., to return a 20x response) to the URLs you've specified",
     )
     request = Column(
-        NotificationEventRequest,
-        comment="[[FK(NotificationEventRequest)]] Information on the API request that instigated the event",
+        String,
+        ForeignKey("notification_event_request.id"),
+        comment="Information on the API request that instigated the event",
         nullable=True,
     )
     type = Column(

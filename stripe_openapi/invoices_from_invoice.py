@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
 
 from . import Base
 
@@ -8,7 +8,9 @@ class InvoicesFromInvoice(Base):
     action = Column(
         String, comment="The relation between this invoice and the cloned invoice"
     )
-    invoice = Column(Invoice, comment="[[FK(Invoice)]] The invoice that was cloned")
+    invoice = Column(
+        Invoice, ForeignKey("Invoice"), comment="The invoice that was cloned"
+    )
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

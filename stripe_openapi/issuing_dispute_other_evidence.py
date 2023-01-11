@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
 
 from . import Base
 
@@ -7,7 +7,8 @@ class IssuingDisputeOtherEvidence(Base):
     __tablename__ = "issuing_dispute_other_evidence"
     additional_documentation = Column(
         File,
-        comment="[[FK(File)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Additional documentation supporting the dispute",
+        ForeignKey("File"),
+        comment="(ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Additional documentation supporting the dispute",
         nullable=True,
     )
     explanation = Column(

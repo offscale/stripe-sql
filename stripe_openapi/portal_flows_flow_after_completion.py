@@ -1,11 +1,4 @@
-from sqlalchemy import Column, Identity, Integer, String
-
-from stripe_openapi.portal_flows_after_completion_hosted_confirmation import (
-    PortalFlowsAfterCompletionHostedConfirmation,
-)
-from stripe_openapi.portal_flows_after_completion_redirect import (
-    PortalFlowsAfterCompletionRedirect,
-)
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
 
 from . import Base
 
@@ -13,13 +6,15 @@ from . import Base
 class PortalFlowsFlowAfterCompletion(Base):
     __tablename__ = "portal_flows_flow_after_completion"
     hosted_confirmation = Column(
-        PortalFlowsAfterCompletionHostedConfirmation,
-        comment="[[FK(PortalFlowsAfterCompletionHostedConfirmation)]] Configuration when `after_completion.type=hosted_confirmation`",
+        Integer,
+        ForeignKey("portal_flows_after_completion_hosted_confirmation.id"),
+        comment="Configuration when `after_completion.type=hosted_confirmation`",
         nullable=True,
     )
     redirect = Column(
-        PortalFlowsAfterCompletionRedirect,
-        comment="[[FK(PortalFlowsAfterCompletionRedirect)]] Configuration when `after_completion.type=redirect`",
+        Integer,
+        ForeignKey("portal_flows_after_completion_redirect.id"),
+        comment="Configuration when `after_completion.type=redirect`",
         nullable=True,
     )
     type = Column(

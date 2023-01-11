@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Identity, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer
 
 from . import Base
 
@@ -12,7 +12,8 @@ class TransferData(Base):
     )
     destination = Column(
         Account,
-        comment="[[FK(Account)]] The account (if any) the payment will be attributed to for tax\nreporting, and where funds from the payment will be transferred to upon\npayment success",
+        ForeignKey("Account"),
+        comment="The account (if any) the payment will be attributed to for tax\nreporting, and where funds from the payment will be transferred to upon\npayment success",
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

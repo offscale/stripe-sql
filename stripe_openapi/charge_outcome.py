@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
 
 from . import Base
 
@@ -27,7 +27,8 @@ class ChargeOutcome(Base):
     )
     rule = Column(
         Rule,
-        comment="[[FK(Rule)]] The ID of the Radar rule that matched the payment, if applicable",
+        ForeignKey("Rule"),
+        comment="The ID of the Radar rule that matched the payment, if applicable",
         nullable=True,
     )
     seller_message = Column(

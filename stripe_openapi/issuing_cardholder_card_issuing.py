@@ -1,8 +1,4 @@
-from sqlalchemy import Column, Identity, Integer
-
-from stripe_openapi.issuing_cardholder_user_terms_acceptance import (
-    IssuingCardholderUserTermsAcceptance,
-)
+from sqlalchemy import Column, ForeignKey, Identity, Integer
 
 from . import Base
 
@@ -10,8 +6,9 @@ from . import Base
 class IssuingCardholderCardIssuing(Base):
     __tablename__ = "issuing_cardholder_card_issuing"
     user_terms_acceptance = Column(
-        IssuingCardholderUserTermsAcceptance,
-        comment="[[FK(IssuingCardholderUserTermsAcceptance)]] Information about cardholder acceptance of [Authorized User Terms](https://stripe.com/docs/issuing/cards)",
+        Integer,
+        ForeignKey("issuing_cardholder_user_terms_acceptance.id"),
+        comment="Information about cardholder acceptance of [Authorized User Terms](https://stripe.com/docs/issuing/cards)",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

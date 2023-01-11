@@ -1,8 +1,4 @@
-from sqlalchemy import Column, Identity, Integer
-
-from stripe_openapi.payment_links_resource_custom_text_position import (
-    PaymentLinksResourceCustomTextPosition,
-)
+from sqlalchemy import Column, ForeignKey, Identity, Integer
 
 from . import Base
 
@@ -10,13 +6,15 @@ from . import Base
 class PaymentLinksResourceCustomText(Base):
     __tablename__ = "payment_links_resource_custom_text"
     shipping_address = Column(
-        PaymentLinksResourceCustomTextPosition,
-        comment="[[FK(PaymentLinksResourceCustomTextPosition)]] Custom text that should be displayed alongside shipping address collection",
+        Integer,
+        ForeignKey("payment_links_resource_custom_text_position.id"),
+        comment="Custom text that should be displayed alongside shipping address collection",
         nullable=True,
     )
     submit = Column(
-        PaymentLinksResourceCustomTextPosition,
-        comment="[[FK(PaymentLinksResourceCustomTextPosition)]] Custom text that should be displayed alongside the payment confirmation button",
+        Integer,
+        ForeignKey("payment_links_resource_custom_text_position.id"),
+        comment="Custom text that should be displayed alongside the payment confirmation button",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

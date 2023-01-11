@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Identity, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer
 
 from . import Base
 
@@ -8,7 +8,8 @@ class DiscountsResourceDiscountAmount(Base):
     amount = Column(Integer, comment="The amount, in %s, of the discount")
     discount = Column(
         Discount,
-        comment="[[FK(DeletedDiscount)]] The discount that was applied to get this discount amount",
+        ForeignKey("DeletedDiscount"),
+        comment="The discount that was applied to get this discount amount",
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

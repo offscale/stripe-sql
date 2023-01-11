@@ -14,7 +14,8 @@ class Capability(Base):
     __tablename__ = "capability"
     account = Column(
         Account,
-        comment="[[FK(Account)]] The account for which the capability enables functionality",
+        ForeignKey("Account"),
+        comment="The account for which the capability enables functionality",
     )
     future_requirements = Column(
         Integer, ForeignKey("account_capability_future_requirements.id"), nullable=True

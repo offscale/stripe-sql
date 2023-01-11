@@ -1,7 +1,5 @@
 from sqlalchemy import JSON, Boolean, Column, ForeignKey, Integer, String
 
-from stripe_openapi.source_owner import SourceOwner
-
 from . import Base
 
 
@@ -96,8 +94,9 @@ class Source(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     owner = Column(
-        SourceOwner,
-        comment="[[FK(SourceOwner)]] Information about the owner of the payment instrument that may be used or required by particular source types",
+        String,
+        ForeignKey("source_owner.verified_name"),
+        comment="Information about the owner of the payment instrument that may be used or required by particular source types",
         nullable=True,
     )
     p24 = Column(Integer, ForeignKey("source_type_p24.id"), nullable=True)

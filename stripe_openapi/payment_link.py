@@ -10,22 +10,6 @@ from sqlalchemy import (
     list,
 )
 
-from stripe_openapi.payment_links_resource_consent_collection import (
-    PaymentLinksResourceConsentCollection,
-)
-from stripe_openapi.payment_links_resource_payment_intent_data import (
-    PaymentLinksResourcePaymentIntentData,
-)
-from stripe_openapi.payment_links_resource_shipping_address_collection import (
-    PaymentLinksResourceShippingAddressCollection,
-)
-from stripe_openapi.payment_links_resource_subscription_data import (
-    PaymentLinksResourceSubscriptionData,
-)
-from stripe_openapi.payment_links_resource_transfer_data import (
-    PaymentLinksResourceTransferData,
-)
-
 from . import Base
 
 
@@ -67,8 +51,9 @@ class PaymentLink(Base):
         String, comment="Configuration for collecting the customer's billing address"
     )
     consent_collection = Column(
-        PaymentLinksResourceConsentCollection,
-        comment="[[FK(PaymentLinksResourceConsentCollection)]] When set, provides configuration to gather active consent from customers",
+        Integer,
+        ForeignKey("payment_links_resource_consent_collection.id"),
+        comment="When set, provides configuration to gather active consent from customers",
         nullable=True,
     )
     currency = Column(
@@ -97,12 +82,14 @@ class PaymentLink(Base):
     )
     on_behalf_of = Column(
         Account,
-        comment="[[FK(Account)]] The account on behalf of which to charge. See the [Connect documentation](https://support.stripe.com/questions/sending-invoices-on-behalf-of-connected-accounts) for details",
+        ForeignKey("Account"),
+        comment="The account on behalf of which to charge. See the [Connect documentation](https://support.stripe.com/questions/sending-invoices-on-behalf-of-connected-accounts) for details",
         nullable=True,
     )
     payment_intent_data = Column(
-        PaymentLinksResourcePaymentIntentData,
-        comment="[[FK(PaymentLinksResourcePaymentIntentData)]] Indicates the parameters to be passed to PaymentIntent creation during checkout",
+        Integer,
+        ForeignKey("payment_links_resource_payment_intent_data.id"),
+        comment="Indicates the parameters to be passed to PaymentIntent creation during checkout",
         nullable=True,
     )
     payment_method_collection = Column(
@@ -117,8 +104,9 @@ class PaymentLink(Base):
         Integer, ForeignKey("payment_links_resource_phone_number_collection.id")
     )
     shipping_address_collection = Column(
-        PaymentLinksResourceShippingAddressCollection,
-        comment="[[FK(PaymentLinksResourceShippingAddressCollection)]] Configuration for collecting the customer's shipping address",
+        Integer,
+        ForeignKey("payment_links_resource_shipping_address_collection.id"),
+        comment="Configuration for collecting the customer's shipping address",
         nullable=True,
     )
     shipping_options = Column(
@@ -129,16 +117,18 @@ class PaymentLink(Base):
         comment="Indicates the type of transaction being performed which customizes relevant text on the page, such as the submit button",
     )
     subscription_data = Column(
-        PaymentLinksResourceSubscriptionData,
-        comment="[[FK(PaymentLinksResourceSubscriptionData)]] When creating a subscription, the specified configuration data will be used. There must be at least one line item with a recurring price to use `subscription_data`",
+        Integer,
+        ForeignKey("payment_links_resource_subscription_data.id"),
+        comment="When creating a subscription, the specified configuration data will be used. There must be at least one line item with a recurring price to use `subscription_data`",
         nullable=True,
     )
     tax_id_collection = Column(
         Integer, ForeignKey("payment_links_resource_tax_id_collection.id")
     )
     transfer_data = Column(
-        PaymentLinksResourceTransferData,
-        comment="[[FK(PaymentLinksResourceTransferData)]] The account (if any) the payments will be attributed to for tax reporting, and where funds from each payment will be transferred to",
+        Integer,
+        ForeignKey("payment_links_resource_transfer_data.id"),
+        comment="The account (if any) the payments will be attributed to for tax reporting, and where funds from each payment will be transferred to",
         nullable=True,
     )
     url = Column(String, comment="The public URL that can be shared with customers")

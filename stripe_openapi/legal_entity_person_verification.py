@@ -1,17 +1,14 @@
 from sqlalchemy import Column, ForeignKey, Identity, Integer, String
 
-from stripe_openapi.legal_entity_person_verification_document import (
-    LegalEntityPersonVerificationDocument,
-)
-
 from . import Base
 
 
 class LegalEntityPersonVerification(Base):
     __tablename__ = "legal_entity_person_verification"
     additional_document = Column(
-        LegalEntityPersonVerificationDocument,
-        comment="[[FK(LegalEntityPersonVerificationDocument)]] A document showing address, either a passport, local ID card, or utility bill from a well-known utility company",
+        Integer,
+        ForeignKey("legal_entity_person_verification_document.id"),
+        comment="A document showing address, either a passport, local ID card, or utility bill from a well-known utility company",
         nullable=True,
     )
     details = Column(

@@ -1,6 +1,4 @@
-from sqlalchemy import Column, Identity, Integer
-
-from stripe_openapi.setup_attempt import SetupAttempt
+from sqlalchemy import Column, ForeignKey, Identity, Integer
 
 from . import Base
 
@@ -9,12 +7,14 @@ class SepaDebitGeneratedFrom(Base):
     __tablename__ = "sepa_debit_generated_from"
     charge = Column(
         Charge,
-        comment="[[FK(Charge)]] The ID of the Charge that generated this PaymentMethod, if any",
+        ForeignKey("Charge"),
+        comment="The ID of the Charge that generated this PaymentMethod, if any",
         nullable=True,
     )
     setup_attempt = Column(
-        SetupAttempt,
-        comment="[[FK(SetupAttempt)]] The ID of the SetupAttempt that generated this PaymentMethod, if any",
+        String,
+        ForeignKey("setup_attempt.id"),
+        comment="The ID of the SetupAttempt that generated this PaymentMethod, if any",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

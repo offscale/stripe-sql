@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
 
 from . import Base
 
@@ -7,7 +7,8 @@ class PaymentMethodDetailsCardWalletVisaCheckout(Base):
     __tablename__ = "payment_method_details_card_wallet_visa_checkout"
     billing_address = Column(
         Address,
-        comment="[[FK(Address)]] Owner's verified billing address. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated",
+        ForeignKey("Address"),
+        comment="Owner's verified billing address. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated",
         nullable=True,
     )
     email = Column(
@@ -22,7 +23,8 @@ class PaymentMethodDetailsCardWalletVisaCheckout(Base):
     )
     shipping_address = Column(
         Address,
-        comment="[[FK(Address)]] Owner's verified shipping address. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated",
+        ForeignKey("Address"),
+        comment="Owner's verified shipping address. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

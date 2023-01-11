@@ -1,9 +1,5 @@
 from sqlalchemy import ARRAY, Boolean, Column, ForeignKey, Integer, String
 
-from stripe_openapi.api_errors import ApiErrors
-from stripe_openapi.payment_method import PaymentMethod
-from stripe_openapi.setup_intent import SetupIntent
-
 from . import Base
 
 
@@ -20,7 +16,8 @@ class SetupAttempt(Base):
     __tablename__ = "setup_attempt"
     application = Column(
         Application,
-        comment="[[FK(Application)]] The value of [application](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-application) on the SetupIntent at the time of this confirmation",
+        ForeignKey("Application"),
+        comment="The value of [application](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-application) on the SetupIntent at the time of this confirmation",
         nullable=True,
     )
     attach_to_self = Column(
@@ -34,7 +31,8 @@ class SetupAttempt(Base):
     )
     customer = Column(
         Customer,
-        comment="[[FK(DeletedCustomer)]] The value of [customer](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-customer) on the SetupIntent at the time of this confirmation",
+        ForeignKey("DeletedCustomer"),
+        comment="The value of [customer](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-customer) on the SetupIntent at the time of this confirmation",
         nullable=True,
     )
     flow_directions = Column(
@@ -53,24 +51,28 @@ class SetupAttempt(Base):
     )
     on_behalf_of = Column(
         Account,
-        comment="[[FK(Account)]] The value of [on_behalf_of](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-on_behalf_of) on the SetupIntent at the time of this confirmation",
+        ForeignKey("Account"),
+        comment="The value of [on_behalf_of](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-on_behalf_of) on the SetupIntent at the time of this confirmation",
         nullable=True,
     )
     payment_method = Column(
-        PaymentMethod,
-        comment="[[FK(PaymentMethod)]] ID of the payment method used with this SetupAttempt",
+        String,
+        ForeignKey("payment_method.id"),
+        comment="ID of the payment method used with this SetupAttempt",
     )
     payment_method_details = Column(
         Integer, ForeignKey("setup_attempt_payment_method_details.id")
     )
     setup_error = Column(
-        ApiErrors,
-        comment="[[FK(ApiErrors)]] The error encountered during this attempt to confirm the SetupIntent, if any",
+        Integer,
+        ForeignKey("api_errors.id"),
+        comment="The error encountered during this attempt to confirm the SetupIntent, if any",
         nullable=True,
     )
     setup_intent = Column(
-        SetupIntent,
-        comment="[[FK(SetupIntent)]] ID of the SetupIntent that this attempt belongs to",
+        String,
+        ForeignKey("setup_intent.id"),
+        comment="ID of the SetupIntent that this attempt belongs to",
     )
     status = Column(
         String,

@@ -1,15 +1,4 @@
-from sqlalchemy import Boolean, Column, Identity, Integer, String
-
-from stripe_openapi.payment_method_details_card_checks import (
-    PaymentMethodDetailsCardChecks,
-)
-from stripe_openapi.payment_method_details_card_installments import (
-    PaymentMethodDetailsCardInstallments,
-)
-from stripe_openapi.payment_method_details_card_wallet import (
-    PaymentMethodDetailsCardWallet,
-)
-from stripe_openapi.three_d_secure_details import ThreeDSecureDetails
+from sqlalchemy import Boolean, Column, ForeignKey, Identity, Integer, String
 
 from . import Base
 
@@ -22,8 +11,9 @@ class PaymentMethodDetailsCard(Base):
         nullable=True,
     )
     checks = Column(
-        PaymentMethodDetailsCardChecks,
-        comment="[[FK(PaymentMethodDetailsCardChecks)]] Check results by Card networks on Card address and CVC at time of payment",
+        Integer,
+        ForeignKey("payment_method_details_card_checks.id"),
+        comment="Check results by Card networks on Card address and CVC at time of payment",
         nullable=True,
     )
     country = Column(
@@ -58,8 +48,9 @@ class PaymentMethodDetailsCard(Base):
         nullable=True,
     )
     installments = Column(
-        PaymentMethodDetailsCardInstallments,
-        comment="[[FK(PaymentMethodDetailsCardInstallments)]] Installment details for this payment (Mexico only).\n\nFor more information, see the [installments integration guide](https://stripe.com/docs/payments/installments)",
+        Integer,
+        ForeignKey("payment_method_details_card_installments.id"),
+        comment="Installment details for this payment (Mexico only).\n\nFor more information, see the [installments integration guide](https://stripe.com/docs/payments/installments)",
         nullable=True,
     )
     issuer = Column(
@@ -84,13 +75,15 @@ class PaymentMethodDetailsCard(Base):
         nullable=True,
     )
     three_d_secure = Column(
-        ThreeDSecureDetails,
-        comment="[[FK(ThreeDSecureDetails)]] Populated if this transaction used 3D Secure authentication",
+        Integer,
+        ForeignKey("three_d_secure_details.id"),
+        comment="Populated if this transaction used 3D Secure authentication",
         nullable=True,
     )
     wallet = Column(
-        PaymentMethodDetailsCardWallet,
-        comment="[[FK(PaymentMethodDetailsCardWallet)]] If this Card is part of a card wallet, this contains the details of the card wallet",
+        Integer,
+        ForeignKey("payment_method_details_card_wallet.id"),
+        comment="If this Card is part of a card wallet, this contains the details of the card wallet",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

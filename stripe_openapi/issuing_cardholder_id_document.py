@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Identity, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer
 
 from . import Base
 
@@ -7,12 +7,14 @@ class IssuingCardholderIdDocument(Base):
     __tablename__ = "issuing_cardholder_id_document"
     back = Column(
         File,
-        comment="[[FK(File)]] The back of a document returned by a [file upload](https://stripe.com/docs/api#create_file) with a `purpose` value of `identity_document`",
+        ForeignKey("File"),
+        comment="The back of a document returned by a [file upload](https://stripe.com/docs/api#create_file) with a `purpose` value of `identity_document`",
         nullable=True,
     )
     front = Column(
         File,
-        comment="[[FK(File)]] The front of a document returned by a [file upload](https://stripe.com/docs/api#create_file) with a `purpose` value of `identity_document`",
+        ForeignKey("File"),
+        comment="The front of a document returned by a [file upload](https://stripe.com/docs/api#create_file) with a `purpose` value of `identity_document`",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

@@ -1,8 +1,5 @@
 from sqlalchemy import JSON, Boolean, Column, ForeignKey, Integer, String
 
-from stripe_openapi.shipping_rate_delivery_estimate import ShippingRateDeliveryEstimate
-from stripe_openapi.tax_code import TaxCode
-
 from . import Base
 
 
@@ -25,8 +22,9 @@ class ShippingRate(Base):
         comment="Time at which the object was created. Measured in seconds since the Unix epoch",
     )
     delivery_estimate = Column(
-        ShippingRateDeliveryEstimate,
-        comment="[[FK(ShippingRateDeliveryEstimate)]] The estimated range for how long shipping will take, meant to be displayable to the customer. This will appear on CheckoutSessions",
+        Integer,
+        ForeignKey("shipping_rate_delivery_estimate.id"),
+        comment="The estimated range for how long shipping will take, meant to be displayable to the customer. This will appear on CheckoutSessions",
         nullable=True,
     )
     display_name = Column(
@@ -56,8 +54,9 @@ class ShippingRate(Base):
         nullable=True,
     )
     tax_code = Column(
-        TaxCode,
-        comment="[[FK(TaxCode)]] A [tax code](https://stripe.com/docs/tax/tax-categories) ID. The Shipping tax code is `txcd_92010001`",
+        String,
+        ForeignKey("tax_code.id"),
+        comment="A [tax code](https://stripe.com/docs/tax/tax-categories) ID. The Shipping tax code is `txcd_92010001`",
         nullable=True,
     )
     type = Column(

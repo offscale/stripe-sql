@@ -1,6 +1,4 @@
-from sqlalchemy import Boolean, Column, Identity, Integer
-
-from stripe_openapi.tax_rate import TaxRate
+from sqlalchemy import Boolean, Column, ForeignKey, Identity, Integer
 
 from . import Base
 
@@ -12,8 +10,9 @@ class InvoiceTaxAmount(Base):
         Boolean, comment="Whether this tax amount is inclusive or exclusive"
     )
     tax_rate = Column(
-        TaxRate,
-        comment="[[FK(TaxRate)]] The tax rate that was applied to get this tax amount",
+        String,
+        ForeignKey("tax_rate.id"),
+        comment="The tax rate that was applied to get this tax amount",
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

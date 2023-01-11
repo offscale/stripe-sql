@@ -31,7 +31,8 @@ class CustomerCashBalanceTransaction(Base):
     )
     customer = Column(
         Customer,
-        comment="[[FK(Customer)]] The customer whose available cash balance changed as a result of this transaction",
+        ForeignKey("Customer"),
+        comment="The customer whose available cash balance changed as a result of this transaction",
     )
     ending_balance = Column(
         Integer,

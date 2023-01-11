@@ -1,8 +1,4 @@
-from sqlalchemy import Column, Identity, Integer, String
-
-from stripe_openapi.treasury_received_credits_resource_source_flows_details import (
-    TreasuryReceivedCreditsResourceSourceFlowsDetails,
-)
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
 
 from . import Base
 
@@ -30,8 +26,9 @@ class TreasuryReceivedCreditsResourceLinkedFlows(Base):
         nullable=True,
     )
     source_flow_details = Column(
-        TreasuryReceivedCreditsResourceSourceFlowsDetails,
-        comment="[[FK(TreasuryReceivedCreditsResourceSourceFlowsDetails)]] The expandable object of the source flow",
+        Integer,
+        ForeignKey("treasury_received_credits_resource_source_flows_details.id"),
+        comment="The expandable object of the source flow",
         nullable=True,
     )
     source_flow_type = Column(

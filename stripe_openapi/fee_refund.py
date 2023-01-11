@@ -1,7 +1,4 @@
-from sqlalchemy import JSON, Column, Integer, String
-
-from stripe_openapi.application_fee import ApplicationFee
-from stripe_openapi.balance_transaction import BalanceTransaction
+from sqlalchemy import JSON, Column, ForeignKey, Integer, String
 
 from . import Base
 
@@ -20,8 +17,9 @@ class FeeRefund(Base):
     __tablename__ = "fee_refund"
     amount = Column(Integer, comment="Amount, in %s")
     balance_transaction = Column(
-        BalanceTransaction,
-        comment="[[FK(BalanceTransaction)]] Balance transaction that describes the impact on your account balance",
+        String,
+        ForeignKey("balance_transaction.id"),
+        comment="Balance transaction that describes the impact on your account balance",
         nullable=True,
     )
     created = Column(
@@ -33,8 +31,9 @@ class FeeRefund(Base):
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",
     )
     fee = Column(
-        ApplicationFee,
-        comment="[[FK(ApplicationFee)]] ID of the application fee that was refunded",
+        String,
+        ForeignKey("application_fee.id"),
+        comment="ID of the application fee that was refunded",
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     metadata = Column(

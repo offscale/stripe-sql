@@ -1,8 +1,4 @@
-from sqlalchemy import Column, Identity, Integer
-
-from stripe_openapi.payment_pages_checkout_session_after_expiration_recovery import (
-    PaymentPagesCheckoutSessionAfterExpirationRecovery,
-)
+from sqlalchemy import Column, ForeignKey, Identity, Integer
 
 from . import Base
 
@@ -10,8 +6,9 @@ from . import Base
 class PaymentPagesCheckoutSessionAfterExpiration(Base):
     __tablename__ = "payment_pages_checkout_session_after_expiration"
     recovery = Column(
-        PaymentPagesCheckoutSessionAfterExpirationRecovery,
-        comment="[[FK(PaymentPagesCheckoutSessionAfterExpirationRecovery)]] When set, configuration used to recover the Checkout Session on expiry",
+        Integer,
+        ForeignKey("payment_pages_checkout_session_after_expiration_recovery.id"),
+        comment="When set, configuration used to recover the Checkout Session on expiry",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

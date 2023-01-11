@@ -1,6 +1,4 @@
-from sqlalchemy import Column, Identity, Integer, String, list
-
-from stripe_openapi.custom_unit_amount import CustomUnitAmount
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String, list
 
 from . import Base
 
@@ -8,8 +6,9 @@ from . import Base
 class CurrencyOption(Base):
     __tablename__ = "currency_option"
     custom_unit_amount = Column(
-        CustomUnitAmount,
-        comment="[[FK(CustomUnitAmount)]] When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links",
+        Integer,
+        ForeignKey("custom_unit_amount.id"),
+        comment="When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links",
         nullable=True,
     )
     tax_behavior = Column(

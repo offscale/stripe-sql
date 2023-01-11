@@ -1,8 +1,4 @@
-from sqlalchemy import Column, Identity, Integer, String
-
-from stripe_openapi.setup_intent_payment_method_options_card_mandate_options import (
-    SetupIntentPaymentMethodOptionsCardMandateOptions,
-)
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
 
 from . import Base
 
@@ -10,8 +6,9 @@ from . import Base
 class SetupIntentPaymentMethodOptionsCard(Base):
     __tablename__ = "setup_intent_payment_method_options_card"
     mandate_options = Column(
-        SetupIntentPaymentMethodOptionsCardMandateOptions,
-        comment="[[FK(SetupIntentPaymentMethodOptionsCardMandateOptions)]] Configuration options for setting up an eMandate for cards issued in India",
+        Integer,
+        ForeignKey("setup_intent_payment_method_options_card_mandate_options.id"),
+        comment="Configuration options for setting up an eMandate for cards issued in India",
         nullable=True,
     )
     network = Column(

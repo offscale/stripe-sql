@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Identity, Integer, list
+from sqlalchemy import Column, ForeignKey, Identity, Integer, list
 
 from . import Base
 
@@ -11,7 +11,8 @@ class SubscriptionScheduleAddInvoiceItem(Base):
     __tablename__ = "subscription_schedule_add_invoice_item"
     price = Column(
         Price,
-        comment="[[FK(DeletedPrice)]] ID of the price used to generate the invoice item",
+        ForeignKey("DeletedPrice"),
+        comment="ID of the price used to generate the invoice item",
     )
     quantity = Column(
         Integer, comment="The quantity of the invoice item", nullable=True

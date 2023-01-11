@@ -1,8 +1,4 @@
-from sqlalchemy import Column, Identity, Integer
-
-from stripe_openapi.payment_method_details_konbini_store import (
-    PaymentMethodDetailsKonbiniStore,
-)
+from sqlalchemy import Column, ForeignKey, Identity, Integer
 
 from . import Base
 
@@ -10,8 +6,9 @@ from . import Base
 class PaymentMethodDetailsKonbini(Base):
     __tablename__ = "payment_method_details_konbini"
     store = Column(
-        PaymentMethodDetailsKonbiniStore,
-        comment="[[FK(PaymentMethodDetailsKonbiniStore)]] If the payment succeeded, this contains the details of the convenience store where the payment was completed",
+        Integer,
+        ForeignKey("payment_method_details_konbini_store.id"),
+        comment="If the payment succeeded, this contains the details of the convenience store where the payment was completed",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

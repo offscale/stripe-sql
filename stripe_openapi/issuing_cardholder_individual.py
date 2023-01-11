@@ -1,10 +1,5 @@
 from sqlalchemy import Column, ForeignKey, Identity, Integer, String
 
-from stripe_openapi.issuing_cardholder_individual_dob import (
-    IssuingCardholderIndividualDob,
-)
-from stripe_openapi.issuing_cardholder_verification import IssuingCardholderVerification
-
 from . import Base
 
 
@@ -14,15 +9,17 @@ class IssuingCardholderIndividual(Base):
         Integer, ForeignKey("issuing_cardholder_card_issuing.id"), nullable=True
     )
     dob = Column(
-        IssuingCardholderIndividualDob,
-        comment="[[FK(IssuingCardholderIndividualDob)]] The date of birth of this cardholder",
+        Integer,
+        ForeignKey("issuing_cardholder_individual_dob.id"),
+        comment="The date of birth of this cardholder",
         nullable=True,
     )
     first_name = Column(String, comment="The first name of this cardholder")
     last_name = Column(String, comment="The last name of this cardholder")
     verification = Column(
-        IssuingCardholderVerification,
-        comment="[[FK(IssuingCardholderVerification)]] Government-issued ID document for this cardholder",
+        Integer,
+        ForeignKey("issuing_cardholder_verification.id"),
+        comment="Government-issued ID document for this cardholder",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

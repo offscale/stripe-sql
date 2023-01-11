@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Identity, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer
 
 from . import Base
 
@@ -12,7 +12,8 @@ class ChargeTransferData(Base):
     )
     destination = Column(
         Account,
-        comment="[[FK(Account)]] ID of an existing, connected Stripe account to transfer funds to if `transfer_data` was specified in the charge request",
+        ForeignKey("Account"),
+        comment="ID of an existing, connected Stripe account to transfer funds to if `transfer_data` was specified in the charge request",
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

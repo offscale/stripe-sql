@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Identity, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer
 
 from . import Base
 
@@ -9,7 +9,8 @@ class TerminalConfigurationConfigurationResourceDeviceTypeSpecificConfig(Base):
     )
     splashscreen = Column(
         File,
-        comment="[[FK(File)]] A File ID representing an image you would like displayed on the reader",
+        ForeignKey("File"),
+        comment="A File ID representing an image you would like displayed on the reader",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

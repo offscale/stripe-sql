@@ -1,7 +1,5 @@
 from sqlalchemy import JSON, Boolean, Column, ForeignKey, Integer, String, list
 
-from stripe_openapi.payment_intent import PaymentIntent
-
 from . import Base
 
 
@@ -27,7 +25,9 @@ class Dispute(Base):
         list,
         comment="List of zero, one, or two balance transactions that show funds withdrawn and reinstated to your Stripe account as a result of this dispute",
     )
-    charge = Column(Charge, comment="[[FK(Charge)]] ID of the charge that was disputed")
+    charge = Column(
+        Charge, ForeignKey("Charge"), comment="ID of the charge that was disputed"
+    )
     created = Column(
         Integer,
         comment="Time at which the object was created. Measured in seconds since the Unix epoch",
@@ -59,8 +59,9 @@ class Dispute(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     payment_intent = Column(
-        PaymentIntent,
-        comment="[[FK(PaymentIntent)]] ID of the PaymentIntent that was disputed",
+        String,
+        ForeignKey("payment_intent.id"),
+        comment="ID of the PaymentIntent that was disputed",
         nullable=True,
     )
     reason = Column(

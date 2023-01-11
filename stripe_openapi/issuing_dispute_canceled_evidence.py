@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, Identity, Integer, String
+from sqlalchemy import Boolean, Column, ForeignKey, Identity, Integer, String
 
 from . import Base
 
@@ -7,7 +7,8 @@ class IssuingDisputeCanceledEvidence(Base):
     __tablename__ = "issuing_dispute_canceled_evidence"
     additional_documentation = Column(
         File,
-        comment="[[FK(File)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Additional documentation supporting the dispute",
+        ForeignKey("File"),
+        comment="(ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Additional documentation supporting the dispute",
         nullable=True,
     )
     canceled_at = Column(Integer, comment="Date when order was canceled", nullable=True)

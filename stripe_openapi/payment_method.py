@@ -49,7 +49,8 @@ class PaymentMethod(Base):
     )
     customer = Column(
         Customer,
-        comment="[[FK(Customer)]] The ID of the Customer to which this PaymentMethod is saved. This will not be set when the PaymentMethod has not been saved to a Customer",
+        ForeignKey("Customer"),
+        comment="The ID of the Customer to which this PaymentMethod is saved. This will not be set when the PaymentMethod has not been saved to a Customer",
         nullable=True,
     )
     customer_balance = Column(

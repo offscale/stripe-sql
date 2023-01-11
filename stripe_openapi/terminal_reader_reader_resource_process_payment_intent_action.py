@@ -1,7 +1,5 @@
 from sqlalchemy import Column, ForeignKey, Identity, Integer
 
-from stripe_openapi.payment_intent import PaymentIntent
-
 from . import Base
 
 
@@ -12,8 +10,9 @@ class TerminalReaderReaderResourceProcessPaymentIntentAction(Base):
 
     __tablename__ = "terminal_reader_reader_resource_process_payment_intent_action"
     payment_intent = Column(
-        PaymentIntent,
-        comment="[[FK(PaymentIntent)]] Most recent PaymentIntent processed by the reader",
+        String,
+        ForeignKey("payment_intent.id"),
+        comment="Most recent PaymentIntent processed by the reader",
     )
     process_config = Column(
         Integer,

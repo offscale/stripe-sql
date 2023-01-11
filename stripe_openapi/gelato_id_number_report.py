@@ -1,9 +1,4 @@
-from sqlalchemy import Column, Identity, Integer, String
-
-from stripe_openapi.gelato_data_id_number_report_date import (
-    GelatoDataIdNumberReportDate,
-)
-from stripe_openapi.gelato_id_number_report_error import GelatoIdNumberReportError
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
 
 from . import Base
 
@@ -15,13 +10,15 @@ class GelatoIdNumberReport(Base):
 
     __tablename__ = "gelato_id_number_report"
     dob = Column(
-        GelatoDataIdNumberReportDate,
-        comment="[[FK(GelatoDataIdNumberReportDate)]] Date of birth",
+        Integer,
+        ForeignKey("gelato_data_id_number_report_date.id"),
+        comment="Date of birth",
         nullable=True,
     )
     error = Column(
-        GelatoIdNumberReportError,
-        comment="[[FK(GelatoIdNumberReportError)]] Details on the verification error. Present when status is `unverified`",
+        Integer,
+        ForeignKey("gelato_id_number_report_error.id"),
+        comment="Details on the verification error. Present when status is `unverified`",
         nullable=True,
     )
     first_name = Column(String, comment="First name", nullable=True)

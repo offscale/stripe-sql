@@ -1,6 +1,4 @@
-from sqlalchemy import JSON, Boolean, Column, Integer, String
-
-from stripe_openapi.balance_transaction import BalanceTransaction
+from sqlalchemy import JSON, Boolean, Column, ForeignKey, Integer, String
 
 from . import Base
 
@@ -9,7 +7,8 @@ class ApplicationFee(Base):
     __tablename__ = "application_fee"
     account = Column(
         Account,
-        comment="[[FK(Account)]] ID of the Stripe account this fee was taken from",
+        ForeignKey("Account"),
+        comment="ID of the Stripe account this fee was taken from",
     )
     amount = Column(Integer, comment="Amount earned, in %s")
     amount_refunded = Column(
@@ -18,16 +17,19 @@ class ApplicationFee(Base):
     )
     application = Column(
         Application,
-        comment="[[FK(Application)]] ID of the Connect application that earned the fee",
+        ForeignKey("Application"),
+        comment="ID of the Connect application that earned the fee",
     )
     balance_transaction = Column(
-        BalanceTransaction,
-        comment="[[FK(BalanceTransaction)]] Balance transaction that describes the impact of this collected application fee on your account balance (not including refunds)",
+        String,
+        ForeignKey("balance_transaction.id"),
+        comment="Balance transaction that describes the impact of this collected application fee on your account balance (not including refunds)",
         nullable=True,
     )
     charge = Column(
         Charge,
-        comment="[[FK(Charge)]] ID of the charge that the application fee was taken from",
+        ForeignKey("Charge"),
+        comment="ID of the charge that the application fee was taken from",
     )
     created = Column(
         Integer,
@@ -48,7 +50,8 @@ class ApplicationFee(Base):
     )
     originating_transaction = Column(
         Charge,
-        comment="[[FK(Charge)]] ID of the corresponding charge on the platform account, if this fee was the result of a charge using the `destination` parameter",
+        ForeignKey("Charge"),
+        comment="ID of the corresponding charge on the platform account, if this fee was the result of a charge using the `destination` parameter",
         nullable=True,
     )
     refunded = Column(

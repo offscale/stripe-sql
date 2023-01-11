@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
 
 from . import Base
 
@@ -7,12 +7,14 @@ class BankConnectionsResourceAccountholder(Base):
     __tablename__ = "bank_connections_resource_accountholder"
     account = Column(
         Account,
-        comment="[[FK(Account)]] The ID of the Stripe account this account belongs to. Should only be present if `account_holder.type` is `account`",
+        ForeignKey("Account"),
+        comment="The ID of the Stripe account this account belongs to. Should only be present if `account_holder.type` is `account`",
         nullable=True,
     )
     customer = Column(
         Customer,
-        comment="[[FK(Customer)]] ID of the Stripe customer this account belongs to. Present if and only if `account_holder.type` is `customer`",
+        ForeignKey("Customer"),
+        comment="ID of the Stripe customer this account belongs to. Present if and only if `account_holder.type` is `customer`",
         nullable=True,
     )
     type = Column(String, comment="Type of account holder that this account belongs to")

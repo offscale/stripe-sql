@@ -1,6 +1,4 @@
-from sqlalchemy import Column, Identity, Integer
-
-from stripe_openapi.payment_intent import PaymentIntent
+from sqlalchemy import Column, ForeignKey, Identity, Integer
 
 from . import Base
 
@@ -10,8 +8,9 @@ class CustomerBalanceResourceCashBalanceTransactionResourceUnappliedFromPaymentT
 ):
     __tablename__ = "customer_balance_resource_cash_balance_transaction_resource_unapplied_from_payment_transaction"
     payment_intent = Column(
-        PaymentIntent,
-        comment="[[FK(PaymentIntent)]] The [Payment Intent](https://stripe.com/docs/api/payment_intents/object) that funds were unapplied from",
+        String,
+        ForeignKey("payment_intent.id"),
+        comment="The [Payment Intent](https://stripe.com/docs/api/payment_intents/object) that funds were unapplied from",
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

@@ -1,14 +1,5 @@
 from sqlalchemy import JSON, Boolean, Column, ForeignKey, Integer, String
 
-from stripe_openapi.application_fee import ApplicationFee
-from stripe_openapi.balance_transaction import BalanceTransaction
-from stripe_openapi.charge_fraud_details import ChargeFraudDetails
-from stripe_openapi.charge_outcome import ChargeOutcome
-from stripe_openapi.charge_transfer_data import ChargeTransferData
-from stripe_openapi.payment_intent import PaymentIntent
-from stripe_openapi.payment_method_details import PaymentMethodDetails
-from stripe_openapi.payment_source import PaymentSource
-
 from . import Base
 
 
@@ -41,12 +32,14 @@ class Charge(Base):
     )
     application = Column(
         Application,
-        comment="[[FK(Application)]] ID of the Connect application that created the charge",
+        ForeignKey("Application"),
+        comment="ID of the Connect application that created the charge",
         nullable=True,
     )
     application_fee = Column(
-        ApplicationFee,
-        comment="[[FK(ApplicationFee)]] The application fee (if any) for the charge. [See the Connect documentation](https://stripe.com/docs/connect/direct-charges#collecting-fees) for details",
+        String,
+        ForeignKey("application_fee.id"),
+        comment="The application fee (if any) for the charge. [See the Connect documentation](https://stripe.com/docs/connect/direct-charges#collecting-fees) for details",
         nullable=True,
     )
     application_fee_amount = Column(
@@ -58,8 +51,9 @@ class Charge(Base):
         String, comment="Authorization code on the charge", nullable=True
     )
     balance_transaction = Column(
-        BalanceTransaction,
-        comment="[[FK(BalanceTransaction)]] ID of the balance transaction that describes the impact of this charge on your account balance (not including refunds or disputes)",
+        String,
+        ForeignKey("balance_transaction.id"),
+        comment="ID of the balance transaction that describes the impact of this charge on your account balance (not including refunds or disputes)",
         nullable=True,
     )
     billing_details = Column(Integer, ForeignKey("billing_details.id"))
@@ -82,7 +76,8 @@ class Charge(Base):
     )
     customer = Column(
         Customer,
-        comment="[[FK(DeletedCustomer)]] ID of the customer this charge is for if one exists",
+        ForeignKey("DeletedCustomer"),
+        comment="ID of the customer this charge is for if one exists",
         nullable=True,
     )
     description = Column(
@@ -92,18 +87,21 @@ class Charge(Base):
     )
     destination = Column(
         Account,
-        comment="[[FK(Account)]] ID of an existing, connected Stripe account to transfer funds to if `transfer_data` was specified in the charge request",
+        ForeignKey("Account"),
+        comment="ID of an existing, connected Stripe account to transfer funds to if `transfer_data` was specified in the charge request",
         nullable=True,
     )
     dispute = Column(
         Dispute,
-        comment="[[FK(Dispute)]] Details about the dispute if the charge has been disputed",
+        ForeignKey("Dispute"),
+        comment="Details about the dispute if the charge has been disputed",
         nullable=True,
     )
     disputed = Column(Boolean, comment="Whether the charge has been disputed")
     failure_balance_transaction = Column(
-        BalanceTransaction,
-        comment="[[FK(BalanceTransaction)]] ID of the balance transaction that describes the reversal of the balance on your account due to payment failure",
+        String,
+        ForeignKey("balance_transaction.id"),
+        comment="ID of the balance transaction that describes the reversal of the balance on your account due to payment failure",
         nullable=True,
     )
     failure_code = Column(
@@ -117,14 +115,16 @@ class Charge(Base):
         nullable=True,
     )
     fraud_details = Column(
-        ChargeFraudDetails,
-        comment="[[FK(ChargeFraudDetails)]] Information on fraud assessments for the charge",
+        Integer,
+        ForeignKey("charge_fraud_details.id"),
+        comment="Information on fraud assessments for the charge",
         nullable=True,
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     invoice = Column(
         Invoice,
-        comment="[[FK(Invoice)]] ID of the invoice this charge is for if one exists",
+        ForeignKey("Invoice"),
+        comment="ID of the invoice this charge is for if one exists",
         nullable=True,
     )
     level3 = Column(Level3, ForeignKey("Level3"), nullable=True)
@@ -142,12 +142,14 @@ class Charge(Base):
     )
     on_behalf_of = Column(
         Account,
-        comment="[[FK(Account)]] The account (if any) the charge was made on behalf of without triggering an automatic transfer. See the [Connect documentation](https://stripe.com/docs/connect/charges-transfers) for details",
+        ForeignKey("Account"),
+        comment="The account (if any) the charge was made on behalf of without triggering an automatic transfer. See the [Connect documentation](https://stripe.com/docs/connect/charges-transfers) for details",
         nullable=True,
     )
     outcome = Column(
-        ChargeOutcome,
-        comment="[[FK(ChargeOutcome)]] Details about whether the payment was accepted, and why. See [understanding declines](https://stripe.com/docs/declines) for details",
+        Integer,
+        ForeignKey("charge_outcome.id"),
+        comment="Details about whether the payment was accepted, and why. See [understanding declines](https://stripe.com/docs/declines) for details",
         nullable=True,
     )
     paid = Column(
@@ -155,16 +157,18 @@ class Charge(Base):
         comment="`true` if the charge succeeded, or was successfully authorized for later capture",
     )
     payment_intent = Column(
-        PaymentIntent,
-        comment="[[FK(PaymentIntent)]] ID of the PaymentIntent associated with this charge, if one exists",
+        String,
+        ForeignKey("payment_intent.id"),
+        comment="ID of the PaymentIntent associated with this charge, if one exists",
         nullable=True,
     )
     payment_method = Column(
         String, comment="ID of the payment method used in this charge", nullable=True
     )
     payment_method_details = Column(
-        PaymentMethodDetails,
-        comment="[[FK(PaymentMethodDetails)]] Details about the payment method at the time of the transaction",
+        Integer,
+        ForeignKey("payment_method_details.id"),
+        comment="Details about the payment method at the time of the transaction",
         nullable=True,
     )
     radar_options = Column(Integer, ForeignKey("radar_radar_options.id"), nullable=True)
@@ -194,22 +198,26 @@ class Charge(Base):
     )
     review = Column(
         Review,
-        comment="[[FK(Review)]] ID of the review associated with this charge if one exists",
+        ForeignKey("Review"),
+        comment="ID of the review associated with this charge if one exists",
         nullable=True,
     )
     shipping = Column(
         Shipping,
-        comment="[[FK(Shipping)]] Shipping information for the charge",
+        ForeignKey("Shipping"),
+        comment="Shipping information for the charge",
         nullable=True,
     )
     source = Column(
-        PaymentSource,
-        comment="[[FK(PaymentSource)]] This is a legacy field that will be removed in the future. It contains the Source, Card, or BankAccount object used for the charge. For details about the payment method used for this charge, refer to `payment_method` or `payment_method_details` instead",
+        Integer,
+        ForeignKey("payment_source.id"),
+        comment="This is a legacy field that will be removed in the future. It contains the Source, Card, or BankAccount object used for the charge. For details about the payment method used for this charge, refer to `payment_method` or `payment_method_details` instead",
         nullable=True,
     )
     source_transfer = Column(
         Transfer,
-        comment="[[FK(Transfer)]] The transfer ID which created this charge. Only present if the charge came from another Stripe account. [See the Connect documentation](https://stripe.com/docs/connect/destination-charges) for details",
+        ForeignKey("Transfer"),
+        comment="The transfer ID which created this charge. Only present if the charge came from another Stripe account. [See the Connect documentation](https://stripe.com/docs/connect/destination-charges) for details",
         nullable=True,
     )
     statement_descriptor = Column(
@@ -228,12 +236,14 @@ class Charge(Base):
     )
     transfer = Column(
         Transfer,
-        comment="[[FK(Transfer)]] ID of the transfer to the `destination` account (only applicable if the charge was created using the `destination` parameter)",
+        ForeignKey("Transfer"),
+        comment="ID of the transfer to the `destination` account (only applicable if the charge was created using the `destination` parameter)",
         nullable=True,
     )
     transfer_data = Column(
-        ChargeTransferData,
-        comment="[[FK(ChargeTransferData)]] An optional dictionary including the account to automatically transfer to as part of a destination charge. [See the Connect documentation](https://stripe.com/docs/connect/destination-charges) for details",
+        Integer,
+        ForeignKey("charge_transfer_data.id"),
+        comment="An optional dictionary including the account to automatically transfer to as part of a destination charge. [See the Connect documentation](https://stripe.com/docs/connect/destination-charges) for details",
         nullable=True,
     )
     transfer_group = Column(

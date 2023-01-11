@@ -1,6 +1,4 @@
-from sqlalchemy import Column, Identity, Integer
-
-from stripe_openapi.shipping_rate import ShippingRate
+from sqlalchemy import Column, ForeignKey, Identity, Integer
 
 from . import Base
 
@@ -12,7 +10,7 @@ class PaymentPagesCheckoutSessionShippingOption(Base):
         comment="A non-negative integer in cents representing how much to charge",
     )
     shipping_rate = Column(
-        ShippingRate, comment="[[FK(ShippingRate)]] The shipping rate"
+        String, ForeignKey("shipping_rate.id"), comment="The shipping rate"
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

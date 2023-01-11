@@ -1,6 +1,4 @@
-from sqlalchemy import Column, String
-
-from stripe_openapi.us_bank_account_networks import UsBankAccountNetworks
+from sqlalchemy import Column, ForeignKey, String
 
 from . import Base
 
@@ -32,8 +30,9 @@ class PaymentMethodUsBankAccount(Base):
         String, comment="Last four digits of the bank account number", nullable=True
     )
     networks = Column(
-        UsBankAccountNetworks,
-        comment="[[FK(UsBankAccountNetworks)]] Contains information about US bank account networks that can be used",
+        Integer,
+        ForeignKey("us_bank_account_networks.id"),
+        comment="Contains information about US bank account networks that can be used",
         nullable=True,
     )
     routing_number = Column(

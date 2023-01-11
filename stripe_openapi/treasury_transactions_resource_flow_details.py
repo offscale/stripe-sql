@@ -1,35 +1,47 @@
 from sqlalchemy import Column, ForeignKey, Identity, Integer, String
 
+from stripe_openapi.treasury__credit_reversal import Treasury__CreditReversal
+from stripe_openapi.treasury__debit_reversal import Treasury__DebitReversal
+from stripe_openapi.treasury__inbound_transfer import Treasury__InboundTransfer
+from stripe_openapi.treasury__outbound_payment import Treasury__OutboundPayment
+from stripe_openapi.treasury__outbound_transfer import Treasury__OutboundTransfer
+from stripe_openapi.treasury__received_credit import Treasury__ReceivedCredit
+from stripe_openapi.treasury__received_debit import Treasury__ReceivedDebit
+
 from . import Base
 
 
 class TreasuryTransactionsResourceFlowDetails(Base):
     __tablename__ = "treasury_transactions_resource_flow_details"
     credit_reversal = Column(
-        Treasury.CreditReversal, ForeignKey("Treasury.CreditReversal"), nullable=True
+        Treasury__CreditReversal, ForeignKey("Treasury__CreditReversal"), nullable=True
     )
     debit_reversal = Column(
-        Treasury.DebitReversal, ForeignKey("Treasury.DebitReversal"), nullable=True
+        Treasury__DebitReversal, ForeignKey("Treasury__DebitReversal"), nullable=True
     )
     inbound_transfer = Column(
-        Treasury.InboundTransfer, ForeignKey("Treasury.InboundTransfer"), nullable=True
+        Treasury__InboundTransfer,
+        ForeignKey("Treasury__InboundTransfer"),
+        nullable=True,
     )
     issuing_authorization = Column(
-        Issuing.Authorization, ForeignKey("Issuing.Authorization"), nullable=True
+        Issuing__Authorization, ForeignKey("Issuing__Authorization"), nullable=True
     )
     outbound_payment = Column(
-        Treasury.OutboundPayment, ForeignKey("Treasury.OutboundPayment"), nullable=True
+        Treasury__OutboundPayment,
+        ForeignKey("Treasury__OutboundPayment"),
+        nullable=True,
     )
     outbound_transfer = Column(
-        Treasury.OutboundTransfer,
-        ForeignKey("Treasury.OutboundTransfer"),
+        Treasury__OutboundTransfer,
+        ForeignKey("Treasury__OutboundTransfer"),
         nullable=True,
     )
     received_credit = Column(
-        Treasury.ReceivedCredit, ForeignKey("Treasury.ReceivedCredit"), nullable=True
+        Treasury__ReceivedCredit, ForeignKey("Treasury__ReceivedCredit"), nullable=True
     )
     received_debit = Column(
-        Treasury.ReceivedDebit, ForeignKey("Treasury.ReceivedDebit"), nullable=True
+        Treasury__ReceivedDebit, ForeignKey("Treasury__ReceivedDebit"), nullable=True
     )
     type = Column(
         String,

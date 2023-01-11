@@ -1,8 +1,4 @@
-from sqlalchemy import Boolean, Column, Identity, Integer, list
-
-from stripe_openapi.payment_method_details_card_installments_plan import (
-    PaymentMethodDetailsCardInstallmentsPlan,
-)
+from sqlalchemy import Boolean, Column, ForeignKey, Identity, Integer, list
 
 from . import Base
 
@@ -18,8 +14,9 @@ class PaymentMethodOptionsCardInstallments(Base):
         Boolean, comment="Whether Installments are enabled for this PaymentIntent"
     )
     plan = Column(
-        PaymentMethodDetailsCardInstallmentsPlan,
-        comment="[[FK(PaymentMethodDetailsCardInstallmentsPlan)]] Installment plan selected for this PaymentIntent",
+        Integer,
+        ForeignKey("payment_method_details_card_installments_plan.id"),
+        comment="Installment plan selected for this PaymentIntent",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

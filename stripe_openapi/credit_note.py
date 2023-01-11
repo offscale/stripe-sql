@@ -1,6 +1,4 @@
-from sqlalchemy import JSON, Boolean, Column, Integer, String, list
-
-from stripe_openapi.customer_balance_transaction import CustomerBalanceTransaction
+from sqlalchemy import JSON, Boolean, Column, ForeignKey, Integer, String, list
 
 from . import Base
 
@@ -26,10 +24,13 @@ class CreditNote(Base):
         String,
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",
     )
-    customer = Column(Customer, comment="[[FK(DeletedCustomer)]] ID of the customer")
+    customer = Column(
+        Customer, ForeignKey("DeletedCustomer"), comment="ID of the customer"
+    )
     customer_balance_transaction = Column(
-        CustomerBalanceTransaction,
-        comment="[[FK(CustomerBalanceTransaction)]] Customer balance transaction related to this credit note",
+        String,
+        ForeignKey("customer_balance_transaction.id"),
+        comment="Customer balance transaction related to this credit note",
         nullable=True,
     )
     discount_amount = Column(
@@ -40,7 +41,7 @@ class CreditNote(Base):
         list, comment="The aggregate amounts calculated per discount for all line items"
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
-    invoice = Column(Invoice, comment="[[FK(Invoice)]] ID of the invoice")
+    invoice = Column(Invoice, ForeignKey("Invoice"), comment="ID of the invoice")
     lines = Column(JSON, comment="Line items that make up the credit note")
     livemode = Column(
         Boolean,
@@ -75,7 +76,8 @@ class CreditNote(Base):
     )
     refund = Column(
         Refund,
-        comment="[[FK(Refund)]] Refund related to this credit note",
+        ForeignKey("Refund"),
+        comment="Refund related to this credit note",
         nullable=True,
     )
     status = Column(

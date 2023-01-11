@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
 
 from . import Base
 
@@ -7,8 +7,9 @@ class TreasuryOutboundPaymentsResourceReturnedStatus(Base):
     __tablename__ = "treasury_outbound_payments_resource_returned_status"
     code = Column(String, comment="Reason for the return")
     transaction = Column(
-        Treasury.Transaction,
-        comment="[[FK(Treasury.Transaction)]] The Transaction associated with this object",
+        Treasury__Transaction,
+        ForeignKey("Treasury__Transaction"),
+        comment="The Transaction associated with this object",
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

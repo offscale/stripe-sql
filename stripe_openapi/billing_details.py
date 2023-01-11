@@ -1,11 +1,13 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
 
 from . import Base
 
 
 class BillingDetails(Base):
     __tablename__ = "billing_details"
-    address = Column(Address, comment="[[FK(Address)]] Billing address", nullable=True)
+    address = Column(
+        Address, ForeignKey("Address"), comment="Billing address", nullable=True
+    )
     email = Column(String, comment="Email address", nullable=True)
     name = Column(String, comment="Full name", nullable=True)
     phone = Column(

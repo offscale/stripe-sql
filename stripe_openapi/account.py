@@ -1,8 +1,5 @@
 from sqlalchemy import JSON, Boolean, Column, ForeignKey, Integer, String
 
-from stripe_openapi.account_business_profile import AccountBusinessProfile
-from stripe_openapi.account_settings import AccountSettings
-
 from . import Base
 
 
@@ -20,8 +17,9 @@ class Account(Base):
 
     __tablename__ = "account"
     business_profile = Column(
-        AccountBusinessProfile,
-        comment="[[FK(AccountBusinessProfile)]] Business information about the account",
+        Integer,
+        ForeignKey("account_business_profile.id"),
+        comment="Business information about the account",
         nullable=True,
     )
     business_type = Column(String, comment="The business type", nullable=True)
@@ -80,8 +78,9 @@ class Account(Base):
     )
     requirements = Column(Integer, ForeignKey("account_requirements.id"), nullable=True)
     settings = Column(
-        AccountSettings,
-        comment="[[FK(AccountSettings)]] Options for customizing how the account functions within Stripe",
+        Integer,
+        ForeignKey("account_settings.id"),
+        comment="Options for customizing how the account functions within Stripe",
         nullable=True,
     )
     tos_acceptance = Column(

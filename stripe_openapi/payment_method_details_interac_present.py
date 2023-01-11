@@ -1,8 +1,4 @@
-from sqlalchemy import ARRAY, Column, Integer, String
-
-from stripe_openapi.payment_method_details_interac_present_receipt import (
-    PaymentMethodDetailsInteracPresentReceipt,
-)
+from sqlalchemy import ARRAY, Column, ForeignKey, Integer, String
 
 from . import Base
 
@@ -79,8 +75,9 @@ class PaymentMethodDetailsInteracPresent(Base):
         String, comment="How card details were read in this transaction", nullable=True
     )
     receipt = Column(
-        PaymentMethodDetailsInteracPresentReceipt,
-        comment="[[FK(PaymentMethodDetailsInteracPresentReceipt)]] A collection of fields required to be displayed on receipts. Only required for EMV transactions",
+        Integer,
+        ForeignKey("payment_method_details_interac_present_receipt.id"),
+        comment="A collection of fields required to be displayed on receipts. Only required for EMV transactions",
         nullable=True,
     )
 

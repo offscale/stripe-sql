@@ -1,7 +1,5 @@
 from sqlalchemy import Column, ForeignKey, Integer, String
 
-from stripe_openapi.promotion_code import PromotionCode
-
 from . import Base
 
 
@@ -24,7 +22,8 @@ class Discount(Base):
     coupon = Column(Coupon, ForeignKey("Coupon"))
     customer = Column(
         Customer,
-        comment="[[FK(DeletedCustomer)]] The ID of the customer associated with this discount",
+        ForeignKey("DeletedCustomer"),
+        comment="The ID of the customer associated with this discount",
         nullable=True,
     )
     end = Column(
@@ -52,8 +51,9 @@ class Discount(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     promotion_code = Column(
-        PromotionCode,
-        comment="[[FK(PromotionCode)]] The promotion code applied to create this discount",
+        String,
+        ForeignKey("promotion_code.id"),
+        comment="The promotion code applied to create this discount",
         nullable=True,
     )
     start = Column(Integer, comment="Date that the coupon was applied")

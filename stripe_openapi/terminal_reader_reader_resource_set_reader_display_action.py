@@ -1,8 +1,4 @@
-from sqlalchemy import Column, Identity, Integer, String
-
-from stripe_openapi.terminal_reader_reader_resource_cart import (
-    TerminalReaderReaderResourceCart,
-)
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
 
 from . import Base
 
@@ -14,8 +10,9 @@ class TerminalReaderReaderResourceSetReaderDisplayAction(Base):
 
     __tablename__ = "terminal_reader_reader_resource_set_reader_display_action"
     cart = Column(
-        TerminalReaderReaderResourceCart,
-        comment="[[FK(TerminalReaderReaderResourceCart)]] Cart object to be displayed by the reader",
+        Integer,
+        ForeignKey("terminal_reader_reader_resource_cart.id"),
+        comment="Cart object to be displayed by the reader",
         nullable=True,
     )
     type = Column(String, comment="Type of information to be displayed by the reader")

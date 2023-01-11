@@ -1,8 +1,4 @@
-from sqlalchemy import Boolean, Column, Integer, String
-
-from stripe_openapi.payment_intent import PaymentIntent
-from stripe_openapi.radar_review_resource_location import RadarReviewResourceLocation
-from stripe_openapi.radar_review_resource_session import RadarReviewResourceSession
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 
 from . import Base
 
@@ -24,7 +20,8 @@ class Review(Base):
     )
     charge = Column(
         Charge,
-        comment="[[FK(Charge)]] The charge associated with this review",
+        ForeignKey("Charge"),
+        comment="The charge associated with this review",
         nullable=True,
     )
     closed_reason = Column(
@@ -41,8 +38,9 @@ class Review(Base):
         String, comment="The IP address where the payment originated", nullable=True
     )
     ip_address_location = Column(
-        RadarReviewResourceLocation,
-        comment="[[FK(RadarReviewResourceLocation)]] Information related to the location of the payment. Note that this information is an approximation and attempts to locate the nearest population center - it should not be used to determine a specific address",
+        Integer,
+        ForeignKey("radar_review_resource_location.id"),
+        comment="Information related to the location of the payment. Note that this information is an approximation and attempts to locate the nearest population center - it should not be used to determine a specific address",
         nullable=True,
     )
     livemode = Column(
@@ -58,8 +56,9 @@ class Review(Base):
         String, comment="The reason the review was opened. One of `rule` or `manual`"
     )
     payment_intent = Column(
-        PaymentIntent,
-        comment="[[FK(PaymentIntent)]] The PaymentIntent ID associated with this review, if one exists",
+        String,
+        ForeignKey("payment_intent.id"),
+        comment="The PaymentIntent ID associated with this review, if one exists",
         nullable=True,
     )
     reason = Column(
@@ -67,8 +66,9 @@ class Review(Base):
         comment="The reason the review is currently open or closed. One of `rule`, `manual`, `approved`, `refunded`, `refunded_as_fraud`, `disputed`, or `redacted`",
     )
     session = Column(
-        RadarReviewResourceSession,
-        comment="[[FK(RadarReviewResourceSession)]] Information related to the browsing session of the user who initiated the payment",
+        Integer,
+        ForeignKey("radar_review_resource_session.id"),
+        comment="Information related to the browsing session of the user who initiated the payment",
         nullable=True,
     )
 

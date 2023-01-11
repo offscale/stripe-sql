@@ -1,6 +1,4 @@
-from sqlalchemy import ARRAY, Column, Identity, Integer, String
-
-from stripe_openapi.invoices_payment_method_options import InvoicesPaymentMethodOptions
+from sqlalchemy import ARRAY, Column, ForeignKey, Identity, Integer, String
 
 from . import Base
 
@@ -13,8 +11,9 @@ class InvoicesPaymentSettings(Base):
         nullable=True,
     )
     payment_method_options = Column(
-        InvoicesPaymentMethodOptions,
-        comment="[[FK(InvoicesPaymentMethodOptions)]] Payment-method-specific configuration to provide to the invoice’s PaymentIntent",
+        Integer,
+        ForeignKey("invoices_payment_method_options.id"),
+        comment="Payment-method-specific configuration to provide to the invoice’s PaymentIntent",
         nullable=True,
     )
     payment_method_types = Column(

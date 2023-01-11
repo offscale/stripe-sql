@@ -1,6 +1,4 @@
-from sqlalchemy import Column, Identity, Integer, String
-
-from stripe_openapi.setup_intent import SetupIntent
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
 
 from . import Base
 
@@ -17,8 +15,9 @@ class TerminalReaderReaderResourceProcessSetupIntentAction(Base):
         nullable=True,
     )
     setup_intent = Column(
-        SetupIntent,
-        comment="[[FK(SetupIntent)]] Most recent SetupIntent processed by the reader",
+        String,
+        ForeignKey("setup_intent.id"),
+        comment="Most recent SetupIntent processed by the reader",
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

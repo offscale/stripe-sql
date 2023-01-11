@@ -1,7 +1,5 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Identity, Integer, String
 
-from stripe_openapi.issuing_card_shipping_customs import IssuingCardShippingCustoms
-
 from . import Base
 
 
@@ -12,8 +10,9 @@ class IssuingCardShipping(Base):
         String, comment="The delivery company that shipped a card", nullable=True
     )
     customs = Column(
-        IssuingCardShippingCustoms,
-        comment="[[FK(IssuingCardShippingCustoms)]] Additional information that may be required for clearing customs",
+        Integer,
+        ForeignKey("issuing_card_shipping_customs.id"),
+        comment="Additional information that may be required for clearing customs",
         nullable=True,
     )
     eta = Column(

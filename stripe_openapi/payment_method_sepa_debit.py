@@ -1,6 +1,4 @@
-from sqlalchemy import Column, Identity, Integer, String
-
-from stripe_openapi.sepa_debit_generated_from import SepaDebitGeneratedFrom
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
 
 from . import Base
 
@@ -28,8 +26,9 @@ class PaymentMethodSepaDebit(Base):
         nullable=True,
     )
     generated_from = Column(
-        SepaDebitGeneratedFrom,
-        comment="[[FK(SepaDebitGeneratedFrom)]] Information about the object that generated this PaymentMethod",
+        Integer,
+        ForeignKey("sepa_debit_generated_from.id"),
+        comment="Information about the object that generated this PaymentMethod",
         nullable=True,
     )
     last4 = Column(String, comment="Last four characters of the IBAN", nullable=True)

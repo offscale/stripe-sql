@@ -1,4 +1,4 @@
-from sqlalchemy import ARRAY, JSON, Boolean, Column, Integer, String
+from sqlalchemy import ARRAY, JSON, Boolean, Column, ForeignKey, Integer, String
 
 from . import Base
 
@@ -17,7 +17,8 @@ class Card(Base):
     __tablename__ = "card"
     account = Column(
         Account,
-        comment="[[FK(Account)]] The account this card belongs to. This attribute will not be in the card object if the card belongs to a customer or recipient instead",
+        ForeignKey("Account"),
+        comment="The account this card belongs to. This attribute will not be in the card object if the card belongs to a customer or recipient instead",
         nullable=True,
     )
     address_city = Column(
@@ -71,7 +72,8 @@ class Card(Base):
     )
     customer = Column(
         Customer,
-        comment="[[FK(DeletedCustomer)]] The customer that this card belongs to. This attribute will not be in the card object if the card belongs to an account or recipient instead",
+        ForeignKey("DeletedCustomer"),
+        comment="The customer that this card belongs to. This attribute will not be in the card object if the card belongs to an account or recipient instead",
         nullable=True,
     )
     cvc_check = Column(

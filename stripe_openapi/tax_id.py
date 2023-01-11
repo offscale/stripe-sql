@@ -1,6 +1,4 @@
-from sqlalchemy import Boolean, Column, Integer, String
-
-from stripe_openapi.tax_id_verification import TaxIdVerification
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 
 from . import Base
 
@@ -26,7 +24,7 @@ class TaxId(Base):
         comment="Time at which the object was created. Measured in seconds since the Unix epoch",
     )
     customer = Column(
-        Customer, comment="[[FK(Customer)]] ID of the customer", nullable=True
+        Customer, ForeignKey("Customer"), comment="ID of the customer", nullable=True
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     livemode = Column(
@@ -43,8 +41,9 @@ class TaxId(Base):
     )
     value = Column(String, comment="Value of the tax ID")
     verification = Column(
-        TaxIdVerification,
-        comment="[[FK(TaxIdVerification)]] Tax ID verification information",
+        String,
+        ForeignKey("tax_id_verification.verified_name"),
+        comment="Tax ID verification information",
         nullable=True,
     )
 

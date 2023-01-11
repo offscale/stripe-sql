@@ -1,8 +1,4 @@
-from sqlalchemy import Column, Identity, Integer, String
-
-from stripe_openapi.payment_method_card_checks import PaymentMethodCardChecks
-from stripe_openapi.payment_method_card_wallet import PaymentMethodCardWallet
-from stripe_openapi.three_d_secure_usage import ThreeDSecureUsage
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
 
 from . import Base
 
@@ -14,8 +10,9 @@ class PaymentMethodCard(Base):
         comment="Card brand. Can be `amex`, `diners`, `discover`, `jcb`, `mastercard`, `unionpay`, `visa`, or `unknown`",
     )
     checks = Column(
-        PaymentMethodCardChecks,
-        comment="[[FK(PaymentMethodCardChecks)]] Checks on Card address and CVC if provided",
+        Integer,
+        ForeignKey("payment_method_card_checks.id"),
+        comment="Checks on Card address and CVC if provided",
         nullable=True,
     )
     country = Column(
@@ -56,17 +53,20 @@ class PaymentMethodCard(Base):
     last4 = Column(String, comment="The last four digits of the card")
     networks = Column(
         Networks,
-        comment="[[FK(Networks)]] Contains information about card networks that can be used to process the payment",
+        ForeignKey("Networks"),
+        comment="Contains information about card networks that can be used to process the payment",
         nullable=True,
     )
     three_d_secure_usage = Column(
-        ThreeDSecureUsage,
-        comment="[[FK(ThreeDSecureUsage)]] Contains details on how this Card may be used for 3D Secure authentication",
+        Integer,
+        ForeignKey("three_d_secure_usage.id"),
+        comment="Contains details on how this Card may be used for 3D Secure authentication",
         nullable=True,
     )
     wallet = Column(
-        PaymentMethodCardWallet,
-        comment="[[FK(PaymentMethodCardWallet)]] If this Card is part of a card wallet, this contains the details of the card wallet",
+        Integer,
+        ForeignKey("payment_method_card_wallet.id"),
+        comment="If this Card is part of a card wallet, this contains the details of the card wallet",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

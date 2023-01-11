@@ -1,11 +1,13 @@
-from sqlalchemy import Column, String
+from sqlalchemy import Column, ForeignKey, String
 
 from . import Base
 
 
 class SourceOwner(Base):
     __tablename__ = "source_owner"
-    address = Column(Address, comment="[[FK(Address)]] Owner's address", nullable=True)
+    address = Column(
+        Address, ForeignKey("Address"), comment="Owner's address", nullable=True
+    )
     email = Column(String, comment="Owner's email address", nullable=True)
     name = Column(String, comment="Owner's full name", nullable=True)
     phone = Column(
@@ -13,7 +15,8 @@ class SourceOwner(Base):
     )
     verified_address = Column(
         Address,
-        comment="[[FK(Address)]] Verified owner's address. Verified values are verified or provided by the payment method directly (and if supported) at the time of authorization or settlement. They cannot be set or mutated",
+        ForeignKey("Address"),
+        comment="Verified owner's address. Verified values are verified or provided by the payment method directly (and if supported) at the time of authorization or settlement. They cannot be set or mutated",
         nullable=True,
     )
     verified_email = Column(

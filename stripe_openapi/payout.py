@@ -1,7 +1,4 @@
-from sqlalchemy import JSON, Boolean, Column, Integer, String
-
-from stripe_openapi.balance_transaction import BalanceTransaction
-from stripe_openapi.external_account import ExternalAccount
+from sqlalchemy import JSON, Boolean, Column, ForeignKey, Integer, String
 
 from . import Base
 
@@ -34,8 +31,9 @@ class Payout(Base):
         comment="Returns `true` if the payout was created by an [automated payout schedule](https://stripe.com/docs/payouts#payout-schedule), and `false` if it was [requested manually](https://stripe.com/docs/payouts#manual-payouts)",
     )
     balance_transaction = Column(
-        BalanceTransaction,
-        comment="[[FK(BalanceTransaction)]] ID of the balance transaction that describes the impact of this payout on your account balance",
+        String,
+        ForeignKey("balance_transaction.id"),
+        comment="ID of the balance transaction that describes the impact of this payout on your account balance",
         nullable=True,
     )
     created = Column(
@@ -52,13 +50,15 @@ class Payout(Base):
         nullable=True,
     )
     destination = Column(
-        ExternalAccount,
-        comment="[[FK(DeletedExternalAccount)]] ID of the bank account or card the payout was sent to",
+        Integer,
+        ForeignKey("external_account.id"),
+        comment="ID of the bank account or card the payout was sent to",
         nullable=True,
     )
     failure_balance_transaction = Column(
-        BalanceTransaction,
-        comment="[[FK(BalanceTransaction)]] If the payout failed or was canceled, this will be the ID of the balance transaction that reversed the initial balance transaction, and puts the funds from the failed payout back in your balance",
+        String,
+        ForeignKey("balance_transaction.id"),
+        comment="If the payout failed or was canceled, this will be the ID of the balance transaction that reversed the initial balance transaction, and puts the funds from the failed payout back in your balance",
         nullable=True,
     )
     failure_code = Column(
@@ -91,12 +91,14 @@ class Payout(Base):
     )
     original_payout = Column(
         Payout,
-        comment="[[FK(Payout)]] If the payout reverses another, this is the ID of the original payout",
+        ForeignKey("Payout"),
+        comment="If the payout reverses another, this is the ID of the original payout",
         nullable=True,
     )
     reversed_by = Column(
         Payout,
-        comment="[[FK(Payout)]] If the payout was reversed, this is the ID of the payout that reverses this payout",
+        ForeignKey("Payout"),
+        comment="If the payout was reversed, this is the ID of the payout that reverses this payout",
         nullable=True,
     )
     source_type = Column(

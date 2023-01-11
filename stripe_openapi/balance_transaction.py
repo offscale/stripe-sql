@@ -1,6 +1,4 @@
-from sqlalchemy import Column, Float, Integer, String, list
-
-from stripe_openapi.balance_transaction_source import BalanceTransactionSource
+from sqlalchemy import Column, Float, ForeignKey, Integer, String, list
 
 from . import Base
 
@@ -54,8 +52,9 @@ class BalanceTransaction(Base):
         comment="[Learn more](https://stripe.com/docs/reports/reporting-categories) about how reporting categories can help you understand balance transactions from an accounting perspective",
     )
     source = Column(
-        BalanceTransactionSource,
-        comment="[[FK(BalanceTransactionSource)]] The Stripe object to which this transaction is related",
+        Integer,
+        ForeignKey("balance_transaction_source.id"),
+        comment="The Stripe object to which this transaction is related",
         nullable=True,
     )
     status = Column(

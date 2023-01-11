@@ -1,6 +1,4 @@
-from sqlalchemy import Column, Identity, Integer
-
-from stripe_openapi.three_d_secure_details import ThreeDSecureDetails
+from sqlalchemy import Column, ForeignKey, Identity, Integer
 
 from . import Base
 
@@ -8,8 +6,9 @@ from . import Base
 class SetupAttemptPaymentMethodDetailsCard(Base):
     __tablename__ = "setup_attempt_payment_method_details_card"
     three_d_secure = Column(
-        ThreeDSecureDetails,
-        comment="[[FK(ThreeDSecureDetails)]] Populated if this authorization used 3D Secure authentication",
+        Integer,
+        ForeignKey("three_d_secure_details.id"),
+        comment="Populated if this authorization used 3D Secure authentication",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

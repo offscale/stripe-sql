@@ -1,8 +1,4 @@
-from sqlalchemy import Column, Identity, Integer
-
-from stripe_openapi.treasury_financial_accounts_resource_closed_status_details import (
-    TreasuryFinancialAccountsResourceClosedStatusDetails,
-)
+from sqlalchemy import Column, ForeignKey, Identity, Integer
 
 from . import Base
 
@@ -10,8 +6,9 @@ from . import Base
 class TreasuryFinancialAccountsResourceStatusDetails(Base):
     __tablename__ = "treasury_financial_accounts_resource_status_details"
     closed = Column(
-        TreasuryFinancialAccountsResourceClosedStatusDetails,
-        comment="[[FK(TreasuryFinancialAccountsResourceClosedStatusDetails)]] Details related to the closure of this FinancialAccount",
+        Integer,
+        ForeignKey("treasury_financial_accounts_resource_closed_status_details.id"),
+        comment="Details related to the closure of this FinancialAccount",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

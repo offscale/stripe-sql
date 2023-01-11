@@ -1,11 +1,4 @@
-from sqlalchemy import Column, Identity, Integer, String
-
-from stripe_openapi.payment_method_options_card_installments import (
-    PaymentMethodOptionsCardInstallments,
-)
-from stripe_openapi.payment_method_options_card_mandate_options import (
-    PaymentMethodOptionsCardMandateOptions,
-)
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
 
 from . import Base
 
@@ -18,13 +11,15 @@ class PaymentIntentPaymentMethodOptionsCard(Base):
         nullable=True,
     )
     installments = Column(
-        PaymentMethodOptionsCardInstallments,
-        comment="[[FK(PaymentMethodOptionsCardInstallments)]] Installment details for this payment (Mexico only).\n\nFor more information, see the [installments integration guide](https://stripe.com/docs/payments/installments)",
+        Integer,
+        ForeignKey("payment_method_options_card_installments.id"),
+        comment="Installment details for this payment (Mexico only).\n\nFor more information, see the [installments integration guide](https://stripe.com/docs/payments/installments)",
         nullable=True,
     )
     mandate_options = Column(
-        PaymentMethodOptionsCardMandateOptions,
-        comment="[[FK(PaymentMethodOptionsCardMandateOptions)]] Configuration options for setting up an eMandate for cards issued in India",
+        Integer,
+        ForeignKey("payment_method_options_card_mandate_options.id"),
+        comment="Configuration options for setting up an eMandate for cards issued in India",
         nullable=True,
     )
     network = Column(

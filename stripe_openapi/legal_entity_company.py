@@ -1,11 +1,5 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Identity, Integer, String
 
-from stripe_openapi.legal_entity_company_verification import (
-    LegalEntityCompanyVerification,
-)
-from stripe_openapi.legal_entity_japan_address import LegalEntityJapanAddress
-from stripe_openapi.legal_entity_ubo_declaration import LegalEntityUboDeclaration
-
 from . import Base
 
 
@@ -13,13 +7,15 @@ class LegalEntityCompany(Base):
     __tablename__ = "legal_entity_company"
     address = Column(Address, ForeignKey("Address"), nullable=True)
     address_kana = Column(
-        LegalEntityJapanAddress,
-        comment="[[FK(LegalEntityJapanAddress)]] The Kana variation of the company's primary address (Japan only)",
+        Integer,
+        ForeignKey("legal_entity_japan_address.id"),
+        comment="The Kana variation of the company's primary address (Japan only)",
         nullable=True,
     )
     address_kanji = Column(
-        LegalEntityJapanAddress,
-        comment="[[FK(LegalEntityJapanAddress)]] The Kanji variation of the company's primary address (Japan only)",
+        Integer,
+        ForeignKey("legal_entity_japan_address.id"),
+        comment="The Kanji variation of the company's primary address (Japan only)",
         nullable=True,
     )
     directors_provided = Column(
@@ -49,8 +45,9 @@ class LegalEntityCompany(Base):
         nullable=True,
     )
     ownership_declaration = Column(
-        LegalEntityUboDeclaration,
-        comment="[[FK(LegalEntityUboDeclaration)]] This hash is used to attest that the beneficial owner information provided to Stripe is both current and correct",
+        Integer,
+        ForeignKey("legal_entity_ubo_declaration.id"),
+        comment="This hash is used to attest that the beneficial owner information provided to Stripe is both current and correct",
         nullable=True,
     )
     phone = Column(
@@ -79,8 +76,9 @@ class LegalEntityCompany(Base):
         nullable=True,
     )
     verification = Column(
-        LegalEntityCompanyVerification,
-        comment="[[FK(LegalEntityCompanyVerification)]] Information on the verification state of the company",
+        Integer,
+        ForeignKey("legal_entity_company_verification.id"),
+        comment="Information on the verification state of the company",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

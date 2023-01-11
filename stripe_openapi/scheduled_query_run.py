@@ -27,7 +27,8 @@ class ScheduledQueryRun(Base):
     )
     file = Column(
         File,
-        comment="[[FK(File)]] The file object representing the results of the query",
+        ForeignKey("File"),
+        comment="The file object representing the results of the query",
         nullable=True,
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)

@@ -1,9 +1,5 @@
 from sqlalchemy import ARRAY, JSON, Boolean, Column, ForeignKey, Integer, String
 
-from stripe_openapi.legal_entity_japan_address import LegalEntityJapanAddress
-from stripe_openapi.person_future_requirements import PersonFutureRequirements
-from stripe_openapi.person_requirements import PersonRequirements
-
 from . import Base
 
 
@@ -24,13 +20,15 @@ class Person(Base):
     )
     address = Column(Address, ForeignKey("Address"), nullable=True)
     address_kana = Column(
-        LegalEntityJapanAddress,
-        comment="[[FK(LegalEntityJapanAddress)]] The Kana variation of the person's address (Japan only)",
+        Integer,
+        ForeignKey("legal_entity_japan_address.id"),
+        comment="The Kana variation of the person's address (Japan only)",
         nullable=True,
     )
     address_kanji = Column(
-        LegalEntityJapanAddress,
-        comment="[[FK(LegalEntityJapanAddress)]] The Kanji variation of the person's address (Japan only)",
+        Integer,
+        ForeignKey("legal_entity_japan_address.id"),
+        comment="The Kanji variation of the person's address (Japan only)",
         nullable=True,
     )
     created = Column(
@@ -56,8 +54,9 @@ class Person(Base):
         nullable=True,
     )
     future_requirements = Column(
-        PersonFutureRequirements,
-        comment="[[FK(PersonFutureRequirements)]] Information about the upcoming new requirements for this person, including what information needs to be collected, and by when",
+        Integer,
+        ForeignKey("person_future_requirements.id"),
+        comment="Information about the upcoming new requirements for this person, including what information needs to be collected, and by when",
         nullable=True,
     )
     gender = Column(
@@ -107,8 +106,9 @@ class Person(Base):
     registered_address = Column(Address, ForeignKey("Address"), nullable=True)
     relationship = Column(Integer, ForeignKey("person_relationship.id"), nullable=True)
     requirements = Column(
-        PersonRequirements,
-        comment="[[FK(PersonRequirements)]] Information about the requirements for this person, including what information needs to be collected, and by when",
+        Integer,
+        ForeignKey("person_requirements.id"),
+        comment="Information about the requirements for this person, including what information needs to be collected, and by when",
         nullable=True,
     )
     ssn_last_4_provided = Column(

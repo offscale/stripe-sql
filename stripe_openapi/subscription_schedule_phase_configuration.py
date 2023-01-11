@@ -1,12 +1,5 @@
 from sqlalchemy import JSON, Column, Float, ForeignKey, Identity, Integer, String, list
 
-from stripe_openapi.invoice_setting_subscription_schedule_setting import (
-    InvoiceSettingSubscriptionScheduleSetting,
-)
-from stripe_openapi.payment_method import PaymentMethod
-from stripe_openapi.subscription_billing_thresholds import SubscriptionBillingThresholds
-from stripe_openapi.subscription_transfer_data import SubscriptionTransferData
-
 from . import Base
 
 
@@ -34,8 +27,9 @@ class SubscriptionSchedulePhaseConfiguration(Base):
         nullable=True,
     )
     billing_thresholds = Column(
-        SubscriptionBillingThresholds,
-        comment="[[FK(SubscriptionBillingThresholds)]] Define thresholds at which an invoice will be sent, and the subscription advanced to a new billing period",
+        Integer,
+        ForeignKey("subscription_billing_thresholds.id"),
+        comment="Define thresholds at which an invoice will be sent, and the subscription advanced to a new billing period",
         nullable=True,
     )
     collection_method = Column(
@@ -45,7 +39,8 @@ class SubscriptionSchedulePhaseConfiguration(Base):
     )
     coupon = Column(
         Coupon,
-        comment="[[FK(DeletedCoupon)]] ID of the coupon to use during this phase of the subscription schedule",
+        ForeignKey("DeletedCoupon"),
+        comment="ID of the coupon to use during this phase of the subscription schedule",
         nullable=True,
     )
     currency = Column(
@@ -53,8 +48,9 @@ class SubscriptionSchedulePhaseConfiguration(Base):
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",
     )
     default_payment_method = Column(
-        PaymentMethod,
-        comment="[[FK(PaymentMethod)]] ID of the default payment method for the subscription schedule. It must belong to the customer associated with the subscription schedule. If not set, invoices will use the default payment method in the customer's invoice settings",
+        String,
+        ForeignKey("payment_method.id"),
+        comment="ID of the default payment method for the subscription schedule. It must belong to the customer associated with the subscription schedule. If not set, invoices will use the default payment method in the customer's invoice settings",
         nullable=True,
     )
     default_tax_rates = Column(
@@ -71,8 +67,9 @@ class SubscriptionSchedulePhaseConfiguration(Base):
         Integer, comment="The end of this phase of the subscription schedule"
     )
     invoice_settings = Column(
-        InvoiceSettingSubscriptionScheduleSetting,
-        comment="[[FK(InvoiceSettingSubscriptionScheduleSetting)]] The invoice settings applicable during this phase",
+        Integer,
+        ForeignKey("invoice_setting_subscription_schedule_setting.id"),
+        comment="The invoice settings applicable during this phase",
         nullable=True,
     )
     items = Column(
@@ -86,7 +83,8 @@ class SubscriptionSchedulePhaseConfiguration(Base):
     )
     on_behalf_of = Column(
         Account,
-        comment="[[FK(Account)]] The account (if any) the charge was made on behalf of for charges associated with the schedule's subscription. See the Connect documentation for details",
+        ForeignKey("Account"),
+        comment="The account (if any) the charge was made on behalf of for charges associated with the schedule's subscription. See the Connect documentation for details",
         nullable=True,
     )
     proration_behavior = Column(
@@ -97,8 +95,9 @@ class SubscriptionSchedulePhaseConfiguration(Base):
         Integer, comment="The start of this phase of the subscription schedule"
     )
     transfer_data = Column(
-        SubscriptionTransferData,
-        comment="[[FK(SubscriptionTransferData)]] The account (if any) the associated subscription's payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the subscription's invoices",
+        Integer,
+        ForeignKey("subscription_transfer_data.id"),
+        comment="The account (if any) the associated subscription's payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the subscription's invoices",
         nullable=True,
     )
     trial_end = Column(

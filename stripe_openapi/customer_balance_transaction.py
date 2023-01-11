@@ -1,6 +1,4 @@
-from sqlalchemy import JSON, Boolean, Column, Integer, String
-
-from stripe_openapi.credit_note import CreditNote
+from sqlalchemy import JSON, Boolean, Column, ForeignKey, Integer, String
 
 from . import Base
 
@@ -27,8 +25,9 @@ class CustomerBalanceTransaction(Base):
         comment="Time at which the object was created. Measured in seconds since the Unix epoch",
     )
     credit_note = Column(
-        CreditNote,
-        comment="[[FK(CreditNote)]] The ID of the credit note (if any) related to the transaction",
+        String,
+        ForeignKey("credit_note.id"),
+        comment="The ID of the credit note (if any) related to the transaction",
         nullable=True,
     )
     currency = Column(
@@ -37,7 +36,8 @@ class CustomerBalanceTransaction(Base):
     )
     customer = Column(
         Customer,
-        comment="[[FK(Customer)]] The ID of the customer the transaction belongs to",
+        ForeignKey("Customer"),
+        comment="The ID of the customer the transaction belongs to",
     )
     description = Column(
         String,
@@ -51,7 +51,8 @@ class CustomerBalanceTransaction(Base):
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     invoice = Column(
         Invoice,
-        comment="[[FK(Invoice)]] The ID of the invoice (if any) related to the transaction",
+        ForeignKey("Invoice"),
+        comment="The ID of the invoice (if any) related to the transaction",
         nullable=True,
     )
     livemode = Column(

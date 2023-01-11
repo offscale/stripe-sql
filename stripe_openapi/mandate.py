@@ -1,7 +1,5 @@
 from sqlalchemy import Boolean, Column, ForeignKey, String
 
-from stripe_openapi.payment_method import PaymentMethod
-
 from . import Base
 
 
@@ -23,8 +21,9 @@ class Mandate(Base):
         comment="String representing the object's type. Objects of the same type share the same value",
     )
     payment_method = Column(
-        PaymentMethod,
-        comment="[[FK(PaymentMethod)]] ID of the payment method associated with this mandate",
+        String,
+        ForeignKey("payment_method.id"),
+        comment="ID of the payment method associated with this mandate",
     )
     payment_method_details = Column(
         Integer, ForeignKey("mandate_payment_method_details.id")

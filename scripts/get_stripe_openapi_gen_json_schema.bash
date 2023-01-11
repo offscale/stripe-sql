@@ -4,8 +4,8 @@ set -euo pipefail
 
 declare -r DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-for dep in unzip curl jq; do
-   if ! command -v "$dep"; then
+for dep in unzip curl jq sort sed mkdir; do
+   if ! command -v "$dep" &>/dev/null; then
      printf 'Missing dependency: %s\n' "$dep" 1>&2
      exit 1
    fi

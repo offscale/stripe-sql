@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, list
+from sqlalchemy import Column, ForeignKey, String, list
 
 from . import Base
 
@@ -7,7 +7,8 @@ class PaymentPagesCheckoutSessionCustomerDetails(Base):
     __tablename__ = "payment_pages_checkout_session_customer_details"
     address = Column(
         Address,
-        comment="[[FK(Address)]] The customer's address after a completed Checkout Session. Note: This property is populated only for sessions on or after March 30, 2022",
+        ForeignKey("Address"),
+        comment="The customer's address after a completed Checkout Session. Note: This property is populated only for sessions on or after March 30, 2022",
         nullable=True,
     )
     email = Column(

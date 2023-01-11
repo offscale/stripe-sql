@@ -1,6 +1,4 @@
-from sqlalchemy import JSON, Column, Integer, String
-
-from stripe_openapi.balance_transaction import BalanceTransaction
+from sqlalchemy import JSON, Column, ForeignKey, Integer, String
 
 from . import Base
 
@@ -27,8 +25,9 @@ class TransferReversal(Base):
     __tablename__ = "transfer_reversal"
     amount = Column(Integer, comment="Amount, in %s")
     balance_transaction = Column(
-        BalanceTransaction,
-        comment="[[FK(BalanceTransaction)]] Balance transaction that describes the impact on your account balance",
+        String,
+        ForeignKey("balance_transaction.id"),
+        comment="Balance transaction that describes the impact on your account balance",
         nullable=True,
     )
     created = Column(
@@ -41,7 +40,8 @@ class TransferReversal(Base):
     )
     destination_payment_refund = Column(
         Refund,
-        comment="[[FK(Refund)]] Linked payment refund for the transfer reversal",
+        ForeignKey("Refund"),
+        comment="Linked payment refund for the transfer reversal",
         nullable=True,
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
@@ -56,11 +56,12 @@ class TransferReversal(Base):
     )
     source_refund = Column(
         Refund,
-        comment="[[FK(Refund)]] ID of the refund responsible for the transfer reversal",
+        ForeignKey("Refund"),
+        comment="ID of the refund responsible for the transfer reversal",
         nullable=True,
     )
     transfer = Column(
-        Transfer, comment="[[FK(Transfer)]] ID of the transfer that was reversed"
+        Transfer, ForeignKey("Transfer"), comment="ID of the transfer that was reversed"
     )
 
     def __repr__(self):

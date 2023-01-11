@@ -1,15 +1,4 @@
-from sqlalchemy import ARRAY, Column, Identity, Integer, String
-
-from stripe_openapi.gelato_data_document_report_date_of_birth import (
-    GelatoDataDocumentReportDateOfBirth,
-)
-from stripe_openapi.gelato_data_document_report_expiration_date import (
-    GelatoDataDocumentReportExpirationDate,
-)
-from stripe_openapi.gelato_data_document_report_issued_date import (
-    GelatoDataDocumentReportIssuedDate,
-)
-from stripe_openapi.gelato_document_report_error import GelatoDocumentReportError
+from sqlalchemy import ARRAY, Column, ForeignKey, Identity, Integer, String
 
 from . import Base
 
@@ -22,22 +11,26 @@ class GelatoDocumentReport(Base):
     __tablename__ = "gelato_document_report"
     address = Column(
         Address,
-        comment="[[FK(Address)]] Address as it appears in the document",
+        ForeignKey("Address"),
+        comment="Address as it appears in the document",
         nullable=True,
     )
     dob = Column(
-        GelatoDataDocumentReportDateOfBirth,
-        comment="[[FK(GelatoDataDocumentReportDateOfBirth)]] Date of birth as it appears in the document",
+        Integer,
+        ForeignKey("gelato_data_document_report_date_of_birth.id"),
+        comment="Date of birth as it appears in the document",
         nullable=True,
     )
     error = Column(
-        GelatoDocumentReportError,
-        comment="[[FK(GelatoDocumentReportError)]] Details on the verification error. Present when status is `unverified`",
+        Integer,
+        ForeignKey("gelato_document_report_error.id"),
+        comment="Details on the verification error. Present when status is `unverified`",
         nullable=True,
     )
     expiration_date = Column(
-        GelatoDataDocumentReportExpirationDate,
-        comment="[[FK(GelatoDataDocumentReportExpirationDate)]] Expiration date of the document",
+        Integer,
+        ForeignKey("gelato_data_document_report_expiration_date.id"),
+        comment="Expiration date of the document",
         nullable=True,
     )
     files = Column(
@@ -49,8 +42,9 @@ class GelatoDocumentReport(Base):
         String, comment="First name as it appears in the document", nullable=True
     )
     issued_date = Column(
-        GelatoDataDocumentReportIssuedDate,
-        comment="[[FK(GelatoDataDocumentReportIssuedDate)]] Issued date of the document",
+        Integer,
+        ForeignKey("gelato_data_document_report_issued_date.id"),
+        comment="Issued date of the document",
         nullable=True,
     )
     issuing_country = Column(

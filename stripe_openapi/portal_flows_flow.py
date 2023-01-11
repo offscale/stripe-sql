@@ -1,9 +1,5 @@
 from sqlalchemy import Column, ForeignKey, Identity, Integer, String
 
-from stripe_openapi.portal_flows_flow_subscription_cancel import (
-    PortalFlowsFlowSubscriptionCancel,
-)
-
 from . import Base
 
 
@@ -13,8 +9,9 @@ class PortalFlowsFlow(Base):
         Integer, ForeignKey("portal_flows_flow_after_completion.id")
     )
     subscription_cancel = Column(
-        PortalFlowsFlowSubscriptionCancel,
-        comment="[[FK(PortalFlowsFlowSubscriptionCancel)]] Configuration when `flow.type=subscription_cancel`",
+        Integer,
+        ForeignKey("portal_flows_flow_subscription_cancel.id"),
+        comment="Configuration when `flow.type=subscription_cancel`",
         nullable=True,
     )
     type = Column(String, comment="Type of flow that the customer will go through")

@@ -1,8 +1,4 @@
-from sqlalchemy import JSON, Column, String, list
-
-from stripe_openapi.invoice_setting_rendering_options import (
-    InvoiceSettingRenderingOptions,
-)
+from sqlalchemy import JSON, Column, ForeignKey, String, list
 
 from . import Base
 
@@ -30,8 +26,9 @@ class PaymentPagesCheckoutSessionInvoiceSettings(Base):
         nullable=True,
     )
     rendering_options = Column(
-        InvoiceSettingRenderingOptions,
-        comment="[[FK(InvoiceSettingRenderingOptions)]] Options for invoice PDF rendering",
+        Integer,
+        ForeignKey("invoice_setting_rendering_options.id"),
+        comment="Options for invoice PDF rendering",
         nullable=True,
     )
 

@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, Identity, Integer
+from sqlalchemy import Boolean, Column, ForeignKey, Identity, Integer
 
 from . import Base
 
@@ -8,7 +8,7 @@ class QuotesResourceFromQuote(Base):
     is_revision = Column(
         Boolean, comment="Whether this quote is a revision of a different quote"
     )
-    quote = Column(Quote, comment="[[FK(Quote)]] The quote that was cloned")
+    quote = Column(Quote, ForeignKey("Quote"), comment="The quote that was cloned")
     id = Column(Integer, primary_key=True, server_default=Identity())
 
     def __repr__(self):

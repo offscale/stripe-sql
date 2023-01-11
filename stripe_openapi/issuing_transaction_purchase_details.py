@@ -1,10 +1,4 @@
-from sqlalchemy import Column, Identity, Integer, String, list
-
-from stripe_openapi.issuing_transaction_flight_data import IssuingTransactionFlightData
-from stripe_openapi.issuing_transaction_fuel_data import IssuingTransactionFuelData
-from stripe_openapi.issuing_transaction_lodging_data import (
-    IssuingTransactionLodgingData,
-)
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String, list
 
 from . import Base
 
@@ -12,18 +6,21 @@ from . import Base
 class IssuingTransactionPurchaseDetails(Base):
     __tablename__ = "issuing_transaction_purchase_details"
     flight = Column(
-        IssuingTransactionFlightData,
-        comment="[[FK(IssuingTransactionFlightData)]] Information about the flight that was purchased with this transaction",
+        String,
+        ForeignKey("issuing_transaction_flight_data.passenger_name"),
+        comment="Information about the flight that was purchased with this transaction",
         nullable=True,
     )
     fuel = Column(
-        IssuingTransactionFuelData,
-        comment="[[FK(IssuingTransactionFuelData)]] Information about fuel that was purchased with this transaction",
+        Integer,
+        ForeignKey("issuing_transaction_fuel_data.id"),
+        comment="Information about fuel that was purchased with this transaction",
         nullable=True,
     )
     lodging = Column(
-        IssuingTransactionLodgingData,
-        comment="[[FK(IssuingTransactionLodgingData)]] Information about lodging that was purchased with this transaction",
+        Integer,
+        ForeignKey("issuing_transaction_lodging_data.id"),
+        comment="Information about lodging that was purchased with this transaction",
         nullable=True,
     )
     receipt = Column(list, comment="The line items in the purchase", nullable=True)

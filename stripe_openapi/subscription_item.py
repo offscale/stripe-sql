@@ -1,9 +1,5 @@
 from sqlalchemy import JSON, Column, ForeignKey, Integer, String, list
 
-from stripe_openapi.subscription_item_billing_thresholds import (
-    SubscriptionItemBillingThresholds,
-)
-
 from . import Base
 
 
@@ -17,8 +13,9 @@ class SubscriptionItem(Base):
 
     __tablename__ = "subscription_item"
     billing_thresholds = Column(
-        SubscriptionItemBillingThresholds,
-        comment="[[FK(SubscriptionItemBillingThresholds)]] Define thresholds at which an invoice will be sent, and the related subscription advanced to a new billing period",
+        Integer,
+        ForeignKey("subscription_item_billing_thresholds.id"),
+        comment="Define thresholds at which an invoice will be sent, and the related subscription advanced to a new billing period",
         nullable=True,
     )
     created = Column(

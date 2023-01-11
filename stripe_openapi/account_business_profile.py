@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
 
 from . import Base
 
@@ -18,7 +18,8 @@ class AccountBusinessProfile(Base):
     )
     support_address = Column(
         Address,
-        comment="[[FK(Address)]] A publicly available mailing address for sending support issues to",
+        ForeignKey("Address"),
+        comment="A publicly available mailing address for sending support issues to",
         nullable=True,
     )
     support_email = Column(

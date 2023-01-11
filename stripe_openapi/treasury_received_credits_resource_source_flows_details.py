@@ -1,15 +1,20 @@
 from sqlalchemy import Column, ForeignKey, Identity, Integer, String
 
+from stripe_openapi.treasury__credit_reversal import Treasury__CreditReversal
+from stripe_openapi.treasury__outbound_payment import Treasury__OutboundPayment
+
 from . import Base
 
 
 class TreasuryReceivedCreditsResourceSourceFlowsDetails(Base):
     __tablename__ = "treasury_received_credits_resource_source_flows_details"
     credit_reversal = Column(
-        Treasury.CreditReversal, ForeignKey("Treasury.CreditReversal"), nullable=True
+        Treasury__CreditReversal, ForeignKey("Treasury__CreditReversal"), nullable=True
     )
     outbound_payment = Column(
-        Treasury.OutboundPayment, ForeignKey("Treasury.OutboundPayment"), nullable=True
+        Treasury__OutboundPayment,
+        ForeignKey("Treasury__OutboundPayment"),
+        nullable=True,
     )
     payout = Column(Payout, ForeignKey("Payout"), nullable=True)
     type = Column(

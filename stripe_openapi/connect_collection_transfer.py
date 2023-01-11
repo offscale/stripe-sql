@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 
 from . import Base
 
@@ -12,7 +12,8 @@ class ConnectCollectionTransfer(Base):
     )
     destination = Column(
         Account,
-        comment="[[FK(Account)]] ID of the account that funds are being collected for",
+        ForeignKey("Account"),
+        comment="ID of the account that funds are being collected for",
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     livemode = Column(

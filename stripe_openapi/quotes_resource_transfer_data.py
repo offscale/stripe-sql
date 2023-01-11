@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Float, Identity, Integer
+from sqlalchemy import Column, Float, ForeignKey, Identity, Integer
 
 from . import Base
 
@@ -17,7 +17,8 @@ class QuotesResourceTransferData(Base):
     )
     destination = Column(
         Account,
-        comment="[[FK(Account)]] The account where funds from the payment will be transferred to upon payment success",
+        ForeignKey("Account"),
+        comment="The account where funds from the payment will be transferred to upon payment success",
     )
     id = Column(Integer, primary_key=True, server_default=Identity())
 

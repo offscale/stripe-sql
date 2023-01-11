@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
 
 from . import Base
 
@@ -7,7 +7,8 @@ class LegalEntityCompanyVerificationDocument(Base):
     __tablename__ = "legal_entity_company_verification_document"
     back = Column(
         File,
-        comment="[[FK(File)]] The back of a document returned by a [file upload](https://stripe.com/docs/api#create_file) with a `purpose` value of `additional_verification`",
+        ForeignKey("File"),
+        comment="The back of a document returned by a [file upload](https://stripe.com/docs/api#create_file) with a `purpose` value of `additional_verification`",
         nullable=True,
     )
     details = Column(
@@ -22,7 +23,8 @@ class LegalEntityCompanyVerificationDocument(Base):
     )
     front = Column(
         File,
-        comment="[[FK(File)]] The front of a document returned by a [file upload](https://stripe.com/docs/api#create_file) with a `purpose` value of `additional_verification`",
+        ForeignKey("File"),
+        comment="The front of a document returned by a [file upload](https://stripe.com/docs/api#create_file) with a `purpose` value of `additional_verification`",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

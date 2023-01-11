@@ -1,4 +1,4 @@
-from sqlalchemy import ARRAY, JSON, Boolean, Column, String
+from sqlalchemy import ARRAY, JSON, Boolean, Column, ForeignKey, String
 
 from . import Base
 
@@ -18,7 +18,8 @@ class BankAccount(Base):
     __tablename__ = "bank_account"
     account = Column(
         Account,
-        comment="[[FK(Account)]] The ID of the account that the bank account is associated with",
+        ForeignKey("Account"),
+        comment="The ID of the account that the bank account is associated with",
         nullable=True,
     )
     account_holder_name = Column(
@@ -56,7 +57,8 @@ class BankAccount(Base):
     )
     customer = Column(
         Customer,
-        comment="[[FK(DeletedCustomer)]] The ID of the customer that the bank account is associated with",
+        ForeignKey("DeletedCustomer"),
+        comment="The ID of the customer that the bank account is associated with",
         nullable=True,
     )
     default_for_currency = Column(

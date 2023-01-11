@@ -1,4 +1,4 @@
-from sqlalchemy import JSON, Boolean, Column, Integer, String
+from sqlalchemy import JSON, Boolean, Column, ForeignKey, Integer, String
 
 from . import Base
 
@@ -21,7 +21,9 @@ class FileLink(Base):
     expires_at = Column(
         Integer, comment="Time at which the link expires", nullable=True
     )
-    file = Column(File, comment="[[FK(File)]] The file object this link points to")
+    file = Column(
+        File, ForeignKey("File"), comment="The file object this link points to"
+    )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     livemode = Column(
         Boolean,

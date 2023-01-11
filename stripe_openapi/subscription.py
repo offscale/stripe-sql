@@ -3,6 +3,7 @@ from sqlalchemy import JSON, Boolean, Column, Float, ForeignKey, Integer, String
 from stripe_openapi.payment_method import PaymentMethod
 from stripe_openapi.payment_source import PaymentSource
 from stripe_openapi.setup_intent import SetupIntent
+from stripe_openapi.subscription_automatic_tax import SubscriptionAutomaticTax
 from stripe_openapi.subscription_billing_thresholds import SubscriptionBillingThresholds
 from stripe_openapi.subscription_pending_invoice_item_interval import (
     SubscriptionPendingInvoiceItemInterval,
@@ -18,7 +19,7 @@ from stripe_openapi.subscriptions_resource_payment_settings import (
 from stripe_openapi.subscriptions_resource_pending_update import (
     SubscriptionsResourcePendingUpdate,
 )
-from stripe_openapi.test_helpers import TestHelpers
+from stripe_openapi.test_helpers__test_clock import Test_Helpers__TestClock
 
 from . import Base
 
@@ -34,7 +35,8 @@ class Subscription(Base):
     __tablename__ = "subscription"
     application = Column(
         Application,
-        comment="[[FK(DeletedApplication)]] ID of the Connect Application that created the subscription",
+        ForeignKey("DeletedApplication"),
+        comment="ID of the Connect Application that created the subscription",
         nullable=True,
     )
     application_fee_percent = Column(
@@ -42,14 +44,17 @@ class Subscription(Base):
         comment="A non-negative decimal between 0 and 100, with at most two decimal places. This represents the percentage of the subscription invoice subtotal that will be transferred to the application owner's Stripe account",
         nullable=True,
     )
-    automatic_tax = Column(Integer, ForeignKey("subscription_automatic_tax.id"))
+    automatic_tax = Column(
+        SubscriptionAutomaticTax, ForeignKey("SubscriptionAutomaticTax")
+    )
     billing_cycle_anchor = Column(
         Integer,
         comment="Determines the date of the first full invoice, and, for plans with `month` or `year` intervals, the day of the month for subsequent invoices. The timestamp is in UTC format",
     )
     billing_thresholds = Column(
         SubscriptionBillingThresholds,
-        comment="[[FK(SubscriptionBillingThresholds)]] Define thresholds at which an invoice will be sent, and the subscription advanced to a new billing period",
+        ForeignKey("SubscriptionBillingThresholds"),
+        comment="Define thresholds at which an invoice will be sent, and the subscription advanced to a new billing period",
         nullable=True,
     )
     cancel_at = Column(
@@ -88,7 +93,8 @@ class Subscription(Base):
     )
     customer = Column(
         Customer,
-        comment="[[FK(DeletedCustomer)]] ID of the customer who owns the subscription",
+        ForeignKey("DeletedCustomer"),
+        comment="ID of the customer who owns the subscription",
     )
     days_until_due = Column(
         Integer,
@@ -97,12 +103,14 @@ class Subscription(Base):
     )
     default_payment_method = Column(
         PaymentMethod,
-        comment="[[FK(PaymentMethod)]] ID of the default payment method for the subscription. It must belong to the customer associated with the subscription. This takes precedence over `default_source`. If neither are set, invoices will use the customer's [invoice_settings.default_payment_method](https://stripe.com/docs/api/customers/object#customer_object-invoice_settings-default_payment_method) or [default_source](https://stripe.com/docs/api/customers/object#customer_object-default_source)",
+        ForeignKey("PaymentMethod"),
+        comment="ID of the default payment method for the subscription. It must belong to the customer associated with the subscription. This takes precedence over `default_source`. If neither are set, invoices will use the customer's [invoice_settings.default_payment_method](https://stripe.com/docs/api/customers/object#customer_object-invoice_settings-default_payment_method) or [default_source](https://stripe.com/docs/api/customers/object#customer_object-default_source)",
         nullable=True,
     )
     default_source = Column(
         PaymentSource,
-        comment="[[FK(PaymentSource)]] ID of the default payment source for the subscription. It must belong to the customer associated with the subscription and be in a chargeable state. If `default_payment_method` is also set, `default_payment_method` will take precedence. If neither are set, invoices will use the customer's [invoice_settings.default_payment_method](https://stripe.com/docs/api/customers/object#customer_object-invoice_settings-default_payment_method) or [default_source](https://stripe.com/docs/api/customers/object#customer_object-default_source)",
+        ForeignKey("PaymentSource"),
+        comment="ID of the default payment source for the subscription. It must belong to the customer associated with the subscription and be in a chargeable state. If `default_payment_method` is also set, `default_payment_method` will take precedence. If neither are set, invoices will use the customer's [invoice_settings.default_payment_method](https://stripe.com/docs/api/customers/object#customer_object-invoice_settings-default_payment_method) or [default_source](https://stripe.com/docs/api/customers/object#customer_object-default_source)",
         nullable=True,
     )
     default_tax_rates = Column(
@@ -117,7 +125,8 @@ class Subscription(Base):
     )
     discount = Column(
         Discount,
-        comment="[[FK(Discount)]] Describes the current discount applied to this subscription, if there is one. When billing, a discount applied to a subscription overrides a discount applied on a customer-wide basis",
+        ForeignKey("Discount"),
+        comment="Describes the current discount applied to this subscription, if there is one. When billing, a discount applied to a subscription overrides a discount applied on a customer-wide basis",
         nullable=True,
     )
     ended_at = Column(
@@ -131,7 +140,8 @@ class Subscription(Base):
     )
     latest_invoice = Column(
         Invoice,
-        comment="[[FK(Invoice)]] The most recent invoice this subscription has generated",
+        ForeignKey("Invoice"),
+        comment="The most recent invoice this subscription has generated",
         nullable=True,
     )
     livemode = Column(
@@ -153,37 +163,44 @@ class Subscription(Base):
     )
     on_behalf_of = Column(
         Account,
-        comment="[[FK(Account)]] The account (if any) the charge was made on behalf of for charges associated with this subscription. See the Connect documentation for details",
+        ForeignKey("Account"),
+        comment="The account (if any) the charge was made on behalf of for charges associated with this subscription. See the Connect documentation for details",
         nullable=True,
     )
     pause_collection = Column(
         SubscriptionsResourcePauseCollection,
-        comment="[[FK(SubscriptionsResourcePauseCollection)]] If specified, payment collection for this subscription will be paused",
+        ForeignKey("SubscriptionsResourcePauseCollection"),
+        comment="If specified, payment collection for this subscription will be paused",
         nullable=True,
     )
     payment_settings = Column(
         SubscriptionsResourcePaymentSettings,
-        comment="[[FK(SubscriptionsResourcePaymentSettings)]] Payment settings passed on to invoices created by the subscription",
+        ForeignKey("SubscriptionsResourcePaymentSettings"),
+        comment="Payment settings passed on to invoices created by the subscription",
         nullable=True,
     )
     pending_invoice_item_interval = Column(
         SubscriptionPendingInvoiceItemInterval,
-        comment="[[FK(SubscriptionPendingInvoiceItemInterval)]] Specifies an interval for how often to bill for any pending invoice items. It is analogous to calling [Create an invoice](https://stripe.com/docs/api#create_invoice) for the given subscription at the specified interval",
+        ForeignKey("SubscriptionPendingInvoiceItemInterval"),
+        comment="Specifies an interval for how often to bill for any pending invoice items. It is analogous to calling [Create an invoice](https://stripe.com/docs/api#create_invoice) for the given subscription at the specified interval",
         nullable=True,
     )
     pending_setup_intent = Column(
         SetupIntent,
-        comment="[[FK(SetupIntent)]] You can use this [SetupIntent](https://stripe.com/docs/api/setup_intents) to collect user authentication when creating a subscription without immediate payment or updating a subscription's payment method, allowing you to optimize for off-session payments. Learn more in the [SCA Migration Guide](https://stripe.com/docs/billing/migration/strong-customer-authentication#scenario-2)",
+        ForeignKey("SetupIntent"),
+        comment="You can use this [SetupIntent](https://stripe.com/docs/api/setup_intents) to collect user authentication when creating a subscription without immediate payment or updating a subscription's payment method, allowing you to optimize for off-session payments. Learn more in the [SCA Migration Guide](https://stripe.com/docs/billing/migration/strong-customer-authentication#scenario-2)",
         nullable=True,
     )
     pending_update = Column(
         SubscriptionsResourcePendingUpdate,
-        comment="[[FK(SubscriptionsResourcePendingUpdate)]] If specified, [pending updates](https://stripe.com/docs/billing/subscriptions/pending-updates) that will be applied to the subscription once the `latest_invoice` has been paid",
+        ForeignKey("SubscriptionsResourcePendingUpdate"),
+        comment="If specified, [pending updates](https://stripe.com/docs/billing/subscriptions/pending-updates) that will be applied to the subscription once the `latest_invoice` has been paid",
         nullable=True,
     )
     schedule = Column(
         SubscriptionSchedule,
-        comment="[[FK(SubscriptionSchedule)]] The schedule attached to the subscription",
+        ForeignKey("SubscriptionSchedule"),
+        comment="The schedule attached to the subscription",
         nullable=True,
     )
     start_date = Column(
@@ -195,13 +212,15 @@ class Subscription(Base):
         comment="Possible values are `incomplete`, `incomplete_expired`, `trialing`, `active`, `past_due`, `canceled`, or `unpaid`. \n\nFor `collection_method=charge_automatically` a subscription moves into `incomplete` if the initial payment attempt fails. A subscription in this state can only have metadata and default_source updated. Once the first invoice is paid, the subscription moves into an `active` state. If the first invoice is not paid within 23 hours, the subscription transitions to `incomplete_expired`. This is a terminal state, the open invoice will be voided and no further invoices will be generated. \n\nA subscription that is currently in a trial period is `trialing` and moves to `active` when the trial period is over. \n\nIf subscription `collection_method=charge_automatically` it becomes `past_due` when payment to renew it fails and `canceled` or `unpaid` (depending on your subscriptions settings) when Stripe has exhausted all payment retry attempts. \n\nIf subscription `collection_method=send_invoice` it becomes `past_due` when its invoice is not paid by the due date, and `canceled` or `unpaid` if it is still not paid by an additional deadline after that. Note that when a subscription has a status of `unpaid`, no subsequent invoices will be attempted (invoices will be created, but then immediately automatically closed). After receiving updated payment information from a customer, you may choose to reopen and pay their closed invoices",
     )
     test_clock = Column(
-        TestHelpers.TestClock,
-        comment="[[FK(TestHelpers.TestClock)]] ID of the test clock this subscription belongs to",
+        Test_Helpers__TestClock,
+        ForeignKey("Test_Helpers__TestClock"),
+        comment="ID of the test clock this subscription belongs to",
         nullable=True,
     )
     transfer_data = Column(
         SubscriptionTransferData,
-        comment="[[FK(SubscriptionTransferData)]] The account (if any) the subscription's payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the subscription's invoices",
+        ForeignKey("SubscriptionTransferData"),
+        comment="The account (if any) the subscription's payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the subscription's invoices",
         nullable=True,
     )
     trial_end = Column(

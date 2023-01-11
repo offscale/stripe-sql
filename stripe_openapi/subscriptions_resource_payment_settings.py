@@ -1,8 +1,4 @@
-from sqlalchemy import ARRAY, Column, Identity, Integer, String
-
-from stripe_openapi.subscriptions_resource_payment_method_options import (
-    SubscriptionsResourcePaymentMethodOptions,
-)
+from sqlalchemy import ARRAY, Column, ForeignKey, Identity, Integer, String
 
 from . import Base
 
@@ -10,8 +6,9 @@ from . import Base
 class SubscriptionsResourcePaymentSettings(Base):
     __tablename__ = "subscriptions_resource_payment_settings"
     payment_method_options = Column(
-        SubscriptionsResourcePaymentMethodOptions,
-        comment="[[FK(SubscriptionsResourcePaymentMethodOptions)]] Payment-method-specific configuration to provide to invoices created by the subscription",
+        Integer,
+        ForeignKey("subscriptions_resource_payment_method_options.id"),
+        comment="Payment-method-specific configuration to provide to invoices created by the subscription",
         nullable=True,
     )
     payment_method_types = Column(

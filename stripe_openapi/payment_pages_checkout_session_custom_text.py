@@ -1,8 +1,4 @@
-from sqlalchemy import Column, Identity, Integer
-
-from stripe_openapi.payment_pages_checkout_session_custom_text_position import (
-    PaymentPagesCheckoutSessionCustomTextPosition,
-)
+from sqlalchemy import Column, ForeignKey, Identity, Integer
 
 from . import Base
 
@@ -10,13 +6,15 @@ from . import Base
 class PaymentPagesCheckoutSessionCustomText(Base):
     __tablename__ = "payment_pages_checkout_session_custom_text"
     shipping_address = Column(
-        PaymentPagesCheckoutSessionCustomTextPosition,
-        comment="[[FK(PaymentPagesCheckoutSessionCustomTextPosition)]] Custom text that should be displayed alongside shipping address collection",
+        Integer,
+        ForeignKey("payment_pages_checkout_session_custom_text_position.id"),
+        comment="Custom text that should be displayed alongside shipping address collection",
         nullable=True,
     )
     submit = Column(
-        PaymentPagesCheckoutSessionCustomTextPosition,
-        comment="[[FK(PaymentPagesCheckoutSessionCustomTextPosition)]] Custom text that should be displayed alongside the payment confirmation button",
+        Integer,
+        ForeignKey("payment_pages_checkout_session_custom_text_position.id"),
+        comment="Custom text that should be displayed alongside the payment confirmation button",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

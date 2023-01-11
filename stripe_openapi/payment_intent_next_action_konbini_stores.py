@@ -1,17 +1,4 @@
-from sqlalchemy import Column, Identity, Integer
-
-from stripe_openapi.payment_intent_next_action_konbini_familymart import (
-    PaymentIntentNextActionKonbiniFamilymart,
-)
-from stripe_openapi.payment_intent_next_action_konbini_lawson import (
-    PaymentIntentNextActionKonbiniLawson,
-)
-from stripe_openapi.payment_intent_next_action_konbini_ministop import (
-    PaymentIntentNextActionKonbiniMinistop,
-)
-from stripe_openapi.payment_intent_next_action_konbini_seicomart import (
-    PaymentIntentNextActionKonbiniSeicomart,
-)
+from sqlalchemy import Column, ForeignKey, Identity, Integer
 
 from . import Base
 
@@ -19,23 +6,27 @@ from . import Base
 class PaymentIntentNextActionKonbiniStores(Base):
     __tablename__ = "payment_intent_next_action_konbini_stores"
     familymart = Column(
-        PaymentIntentNextActionKonbiniFamilymart,
-        comment="[[FK(PaymentIntentNextActionKonbiniFamilymart)]] FamilyMart instruction details",
+        Integer,
+        ForeignKey("payment_intent_next_action_konbini_familymart.id"),
+        comment="FamilyMart instruction details",
         nullable=True,
     )
     lawson = Column(
-        PaymentIntentNextActionKonbiniLawson,
-        comment="[[FK(PaymentIntentNextActionKonbiniLawson)]] Lawson instruction details",
+        Integer,
+        ForeignKey("payment_intent_next_action_konbini_lawson.id"),
+        comment="Lawson instruction details",
         nullable=True,
     )
     ministop = Column(
-        PaymentIntentNextActionKonbiniMinistop,
-        comment="[[FK(PaymentIntentNextActionKonbiniMinistop)]] Ministop instruction details",
+        Integer,
+        ForeignKey("payment_intent_next_action_konbini_ministop.id"),
+        comment="Ministop instruction details",
         nullable=True,
     )
     seicomart = Column(
-        PaymentIntentNextActionKonbiniSeicomart,
-        comment="[[FK(PaymentIntentNextActionKonbiniSeicomart)]] Seicomart instruction details",
+        Integer,
+        ForeignKey("payment_intent_next_action_konbini_seicomart.id"),
+        comment="Seicomart instruction details",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

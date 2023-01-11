@@ -27,7 +27,8 @@ class PromotionCode(Base):
     )
     customer = Column(
         Customer,
-        comment="[[FK(DeletedCustomer)]] The customer that this promotion code can be used by",
+        ForeignKey("DeletedCustomer"),
+        comment="The customer that this promotion code can be used by",
         nullable=True,
     )
     expires_at = Column(

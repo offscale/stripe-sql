@@ -1,12 +1,5 @@
 from sqlalchemy import Column, Float, ForeignKey, Identity, Integer, String
 
-from stripe_openapi.invoice_setting_subscription_schedule_setting import (
-    InvoiceSettingSubscriptionScheduleSetting,
-)
-from stripe_openapi.payment_method import PaymentMethod
-from stripe_openapi.subscription_billing_thresholds import SubscriptionBillingThresholds
-from stripe_openapi.subscription_transfer_data import SubscriptionTransferData
-
 from . import Base
 
 
@@ -27,8 +20,9 @@ class SubscriptionSchedulesResourceDefaultSettings(Base):
         comment="Possible values are `phase_start` or `automatic`. If `phase_start` then billing cycle anchor of the subscription is set to the start of the phase when entering the phase. If `automatic` then the billing cycle anchor is automatically modified as needed when entering the phase. For more information, see the billing cycle [documentation](https://stripe.com/docs/billing/subscriptions/billing-cycle)",
     )
     billing_thresholds = Column(
-        SubscriptionBillingThresholds,
-        comment="[[FK(SubscriptionBillingThresholds)]] Define thresholds at which an invoice will be sent, and the subscription advanced to a new billing period",
+        Integer,
+        ForeignKey("subscription_billing_thresholds.id"),
+        comment="Define thresholds at which an invoice will be sent, and the subscription advanced to a new billing period",
         nullable=True,
     )
     collection_method = Column(
@@ -37,8 +31,9 @@ class SubscriptionSchedulesResourceDefaultSettings(Base):
         nullable=True,
     )
     default_payment_method = Column(
-        PaymentMethod,
-        comment="[[FK(PaymentMethod)]] ID of the default payment method for the subscription schedule. If not set, invoices will use the default payment method in the customer's invoice settings",
+        String,
+        ForeignKey("payment_method.id"),
+        comment="ID of the default payment method for the subscription schedule. If not set, invoices will use the default payment method in the customer's invoice settings",
         nullable=True,
     )
     description = Column(
@@ -47,18 +42,21 @@ class SubscriptionSchedulesResourceDefaultSettings(Base):
         nullable=True,
     )
     invoice_settings = Column(
-        InvoiceSettingSubscriptionScheduleSetting,
-        comment="[[FK(InvoiceSettingSubscriptionScheduleSetting)]] The subscription schedule's default invoice settings",
+        Integer,
+        ForeignKey("invoice_setting_subscription_schedule_setting.id"),
+        comment="The subscription schedule's default invoice settings",
         nullable=True,
     )
     on_behalf_of = Column(
         Account,
-        comment="[[FK(Account)]] The account (if any) the charge was made on behalf of for charges associated with the schedule's subscription. See the Connect documentation for details",
+        ForeignKey("Account"),
+        comment="The account (if any) the charge was made on behalf of for charges associated with the schedule's subscription. See the Connect documentation for details",
         nullable=True,
     )
     transfer_data = Column(
-        SubscriptionTransferData,
-        comment="[[FK(SubscriptionTransferData)]] The account (if any) the associated subscription's payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the subscription's invoices",
+        Integer,
+        ForeignKey("subscription_transfer_data.id"),
+        comment="The account (if any) the associated subscription's payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the subscription's invoices",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

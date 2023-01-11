@@ -1,18 +1,5 @@
 from sqlalchemy import ARRAY, JSON, Boolean, Column, ForeignKey, Integer, String
 
-from stripe_openapi.api_errors import ApiErrors
-from stripe_openapi.payment_flows_automatic_payment_methods_payment_intent import (
-    PaymentFlowsAutomaticPaymentMethodsPaymentIntent,
-)
-from stripe_openapi.payment_intent_next_action import PaymentIntentNextAction
-from stripe_openapi.payment_intent_payment_method_options import (
-    PaymentIntentPaymentMethodOptions,
-)
-from stripe_openapi.payment_intent_processing import PaymentIntentProcessing
-from stripe_openapi.payment_method import PaymentMethod
-from stripe_openapi.payment_source import PaymentSource
-from stripe_openapi.transfer_data import TransferData
-
 from . import Base
 
 
@@ -49,7 +36,8 @@ class PaymentIntent(Base):
     )
     application = Column(
         Application,
-        comment="[[FK(Application)]] ID of the Connect application that created the PaymentIntent",
+        ForeignKey("Application"),
+        comment="ID of the Connect application that created the PaymentIntent",
         nullable=True,
     )
     application_fee_amount = Column(
@@ -58,8 +46,9 @@ class PaymentIntent(Base):
         nullable=True,
     )
     automatic_payment_methods = Column(
-        PaymentFlowsAutomaticPaymentMethodsPaymentIntent,
-        comment="[[FK(PaymentFlowsAutomaticPaymentMethodsPaymentIntent)]] Settings to configure compatible payment methods from the [Stripe Dashboard](https://dashboard.stripe.com/settings/payment_methods)",
+        Integer,
+        ForeignKey("payment_flows_automatic_payment_methods_payment_intent.id"),
+        comment="Settings to configure compatible payment methods from the [Stripe Dashboard](https://dashboard.stripe.com/settings/payment_methods)",
         nullable=True,
     )
     canceled_at = Column(
@@ -92,7 +81,8 @@ class PaymentIntent(Base):
     )
     customer = Column(
         Customer,
-        comment="[[FK(DeletedCustomer)]] ID of the Customer this PaymentIntent belongs to, if one exists.\n\nPayment methods attached to other Customers cannot be used with this PaymentIntent.\n\nIf present in combination with [setup_future_usage](https://stripe.com/docs/api#payment_intent_object-setup_future_usage), this PaymentIntent's payment method will be attached to the Customer after the PaymentIntent has been confirmed and any required actions from the user are complete",
+        ForeignKey("DeletedCustomer"),
+        comment="ID of the Customer this PaymentIntent belongs to, if one exists.\n\nPayment methods attached to other Customers cannot be used with this PaymentIntent.\n\nIf present in combination with [setup_future_usage](https://stripe.com/docs/api#payment_intent_object-setup_future_usage), this PaymentIntent's payment method will be attached to the Customer after the PaymentIntent has been confirmed and any required actions from the user are complete",
         nullable=True,
     )
     description = Column(
@@ -103,17 +93,20 @@ class PaymentIntent(Base):
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
     invoice = Column(
         Invoice,
-        comment="[[FK(Invoice)]] ID of the invoice that created this PaymentIntent, if it exists",
+        ForeignKey("Invoice"),
+        comment="ID of the invoice that created this PaymentIntent, if it exists",
         nullable=True,
     )
     last_payment_error = Column(
-        ApiErrors,
-        comment="[[FK(ApiErrors)]] The payment error encountered in the previous PaymentIntent confirmation. It will be cleared if the PaymentIntent is later updated for any reason",
+        Integer,
+        ForeignKey("api_errors.id"),
+        comment="The payment error encountered in the previous PaymentIntent confirmation. It will be cleared if the PaymentIntent is later updated for any reason",
         nullable=True,
     )
     latest_charge = Column(
         Charge,
-        comment="[[FK(Charge)]] The latest charge created by this payment intent",
+        ForeignKey("Charge"),
+        comment="The latest charge created by this payment intent",
         nullable=True,
     )
     livemode = Column(
@@ -125,8 +118,9 @@ class PaymentIntent(Base):
         comment="Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. For more information, see the [documentation](https://stripe.com/docs/payments/payment-intents/creating-payment-intents#storing-information-in-metadata)",
     )
     next_action = Column(
-        PaymentIntentNextAction,
-        comment="[[FK(PaymentIntentNextAction)]] If present, this property tells you what actions you need to take in order for your customer to fulfill a payment using the provided source",
+        PaymentIntentNextActionWechatPayRedirectToAndroidApp,
+        ForeignKey("payment_intent_next_action.wechat_pay_redirect_to_android_app"),
+        comment="If present, this property tells you what actions you need to take in order for your customer to fulfill a payment using the provided source",
         nullable=True,
     )
     object = Column(
@@ -135,17 +129,20 @@ class PaymentIntent(Base):
     )
     on_behalf_of = Column(
         Account,
-        comment="[[FK(Account)]] The account (if any) for which the funds of the PaymentIntent are intended. See the PaymentIntents [use case for connected accounts](https://stripe.com/docs/payments/connected-accounts) for details",
+        ForeignKey("Account"),
+        comment="The account (if any) for which the funds of the PaymentIntent are intended. See the PaymentIntents [use case for connected accounts](https://stripe.com/docs/payments/connected-accounts) for details",
         nullable=True,
     )
     payment_method = Column(
-        PaymentMethod,
-        comment="[[FK(PaymentMethod)]] ID of the payment method used in this PaymentIntent",
+        String,
+        ForeignKey("payment_method.id"),
+        comment="ID of the payment method used in this PaymentIntent",
         nullable=True,
     )
     payment_method_options = Column(
-        PaymentIntentPaymentMethodOptions,
-        comment="[[FK(PaymentIntentPaymentMethodOptions)]] Payment-method-specific configuration for this PaymentIntent",
+        Integer,
+        ForeignKey("payment_intent_payment_method_options.id"),
+        comment="Payment-method-specific configuration for this PaymentIntent",
         nullable=True,
     )
     payment_method_types = Column(
@@ -153,8 +150,9 @@ class PaymentIntent(Base):
         comment="The list of payment method types (e.g. card) that this PaymentIntent is allowed to use",
     )
     processing = Column(
-        PaymentIntentProcessing,
-        comment="[[FK(PaymentIntentProcessing)]] If present, this property tells you about the processing state of the payment",
+        Integer,
+        ForeignKey("payment_intent_processing.id"),
+        comment="If present, this property tells you about the processing state of the payment",
         nullable=True,
     )
     receipt_email = Column(
@@ -164,7 +162,8 @@ class PaymentIntent(Base):
     )
     review = Column(
         Review,
-        comment="[[FK(Review)]] ID of the review associated with this PaymentIntent, if any",
+        ForeignKey("Review"),
+        comment="ID of the review associated with this PaymentIntent, if any",
         nullable=True,
     )
     setup_future_usage = Column(
@@ -174,12 +173,14 @@ class PaymentIntent(Base):
     )
     shipping = Column(
         Shipping,
-        comment="[[FK(Shipping)]] Shipping information for this PaymentIntent",
+        ForeignKey("Shipping"),
+        comment="Shipping information for this PaymentIntent",
         nullable=True,
     )
     source = Column(
-        PaymentSource,
-        comment="[[FK(DeletedPaymentSource)]] This is a legacy field that will be removed in the future. It is the ID of the Source object that is associated with this PaymentIntent, if one was supplied",
+        Integer,
+        ForeignKey("payment_source.id"),
+        comment="This is a legacy field that will be removed in the future. It is the ID of the Source object that is associated with this PaymentIntent, if one was supplied",
         nullable=True,
     )
     statement_descriptor = Column(
@@ -197,8 +198,9 @@ class PaymentIntent(Base):
         comment="Status of this PaymentIntent, one of `requires_payment_method`, `requires_confirmation`, `requires_action`, `processing`, `requires_capture`, `canceled`, or `succeeded`. Read more about each PaymentIntent [status](https://stripe.com/docs/payments/intents#intent-statuses)",
     )
     transfer_data = Column(
-        TransferData,
-        comment="[[FK(TransferData)]] The data with which to automatically create a Transfer when the payment is finalized. See the PaymentIntents [use case for connected accounts](https://stripe.com/docs/payments/connected-accounts) for details",
+        Integer,
+        ForeignKey("transfer_data.id"),
+        comment="The data with which to automatically create a Transfer when the payment is finalized. See the PaymentIntents [use case for connected accounts](https://stripe.com/docs/payments/connected-accounts) for details",
         nullable=True,
     )
     transfer_group = Column(

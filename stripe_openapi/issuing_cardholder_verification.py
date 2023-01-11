@@ -1,6 +1,4 @@
-from sqlalchemy import Column, Identity, Integer
-
-from stripe_openapi.issuing_cardholder_id_document import IssuingCardholderIdDocument
+from sqlalchemy import Column, ForeignKey, Identity, Integer
 
 from . import Base
 
@@ -8,8 +6,9 @@ from . import Base
 class IssuingCardholderVerification(Base):
     __tablename__ = "issuing_cardholder_verification"
     document = Column(
-        IssuingCardholderIdDocument,
-        comment="[[FK(IssuingCardholderIdDocument)]] An identifying document, either a passport or local ID card",
+        Integer,
+        ForeignKey("issuing_cardholder_id_document.id"),
+        comment="An identifying document, either a passport or local ID card",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

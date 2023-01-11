@@ -1,15 +1,14 @@
 from sqlalchemy import Column, ForeignKey, Identity, Integer
 
-from stripe_openapi.quotes_resource_recurring import QuotesResourceRecurring
-
 from . import Base
 
 
 class QuotesResourceComputed(Base):
     __tablename__ = "quotes_resource_computed"
     recurring = Column(
-        QuotesResourceRecurring,
-        comment="[[FK(QuotesResourceRecurring)]] The definitive totals and line items the customer will be charged on a recurring basis. Takes into account the line items with recurring prices and discounts with `duration=forever` coupons only. Defaults to `null` if no inputted line items with recurring prices",
+        Integer,
+        ForeignKey("quotes_resource_recurring.id"),
+        comment="The definitive totals and line items the customer will be charged on a recurring basis. Takes into account the line items with recurring prices and discounts with `duration=forever` coupons only. Defaults to `null` if no inputted line items with recurring prices",
         nullable=True,
     )
     upfront = Column(Integer, ForeignKey("quotes_resource_upfront.id"))

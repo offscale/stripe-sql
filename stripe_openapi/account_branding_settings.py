@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
 
 from . import Base
 
@@ -7,12 +7,14 @@ class AccountBrandingSettings(Base):
     __tablename__ = "account_branding_settings"
     icon = Column(
         File,
-        comment="[[FK(File)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) An icon for the account. Must be square and at least 128px x 128px",
+        ForeignKey("File"),
+        comment="(ID of a [file upload](https://stripe.com/docs/guides/file-upload)) An icon for the account. Must be square and at least 128px x 128px",
         nullable=True,
     )
     logo = Column(
         File,
-        comment="[[FK(File)]] (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) A logo for the account that will be used in Checkout instead of the icon and without the account's name next to it if provided. Must be at least 128px x 128px",
+        ForeignKey("File"),
+        comment="(ID of a [file upload](https://stripe.com/docs/guides/file-upload)) A logo for the account that will be used in Checkout instead of the icon and without the account's name next to it if provided. Must be at least 128px x 128px",
         nullable=True,
     )
     primary_color = Column(

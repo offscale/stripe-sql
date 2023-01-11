@@ -1,7 +1,4 @@
-from sqlalchemy import JSON, Boolean, Column, Integer, String, list
-
-from stripe_openapi.custom_unit_amount import CustomUnitAmount
-from stripe_openapi.transform_quantity import TransformQuantity
+from sqlalchemy import JSON, Boolean, Column, ForeignKey, Integer, String, list
 
 from . import Base
 
@@ -38,8 +35,9 @@ class Price(Base):
         nullable=True,
     )
     custom_unit_amount = Column(
-        CustomUnitAmount,
-        comment="[[FK(CustomUnitAmount)]] When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links",
+        Integer,
+        ForeignKey("custom_unit_amount.id"),
+        comment="When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links",
         nullable=True,
     )
     id = Column(String, comment="Unique identifier for the object", primary_key=True)
@@ -67,11 +65,13 @@ class Price(Base):
     )
     product = Column(
         Product,
-        comment="[[FK(DeletedProduct)]] The ID of the product this price is associated with",
+        ForeignKey("DeletedProduct"),
+        comment="The ID of the product this price is associated with",
     )
     recurring = Column(
         Recurring,
-        comment="[[FK(Recurring)]] The recurring components of a price such as `interval` and `usage_type`",
+        ForeignKey("Recurring"),
+        comment="The recurring components of a price such as `interval` and `usage_type`",
         nullable=True,
     )
     tax_behavior = Column(
@@ -90,8 +90,9 @@ class Price(Base):
         nullable=True,
     )
     transform_quantity = Column(
-        TransformQuantity,
-        comment="[[FK(TransformQuantity)]] Apply a transformation to the reported usage or set quantity before computing the amount billed. Cannot be combined with `tiers`",
+        Integer,
+        ForeignKey("transform_quantity.id"),
+        comment="Apply a transformation to the reported usage or set quantity before computing the amount billed. Cannot be combined with `tiers`",
         nullable=True,
     )
     type = Column(

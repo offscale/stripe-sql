@@ -1,8 +1,4 @@
-from sqlalchemy import Column, Identity, Integer
-
-from stripe_openapi.shipping_rate_delivery_estimate_bound import (
-    ShippingRateDeliveryEstimateBound,
-)
+from sqlalchemy import Column, ForeignKey, Identity, Integer
 
 from . import Base
 
@@ -10,13 +6,15 @@ from . import Base
 class ShippingRateDeliveryEstimate(Base):
     __tablename__ = "shipping_rate_delivery_estimate"
     maximum = Column(
-        ShippingRateDeliveryEstimateBound,
-        comment="[[FK(ShippingRateDeliveryEstimateBound)]] The upper bound of the estimated range. If empty, represents no upper bound i.e., infinite",
+        Integer,
+        ForeignKey("shipping_rate_delivery_estimate_bound.id"),
+        comment="The upper bound of the estimated range. If empty, represents no upper bound i.e., infinite",
         nullable=True,
     )
     minimum = Column(
-        ShippingRateDeliveryEstimateBound,
-        comment="[[FK(ShippingRateDeliveryEstimateBound)]] The lower bound of the estimated range. If empty, represents no lower bound",
+        Integer,
+        ForeignKey("shipping_rate_delivery_estimate_bound.id"),
+        comment="The lower bound of the estimated range. If empty, represents no lower bound",
         nullable=True,
     )
     id = Column(Integer, primary_key=True, server_default=Identity())

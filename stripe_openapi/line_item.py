@@ -1,9 +1,5 @@
 from sqlalchemy import JSON, Boolean, Column, ForeignKey, Integer, String, list
 
-from stripe_openapi.invoices_line_items_proration_details import (
-    InvoicesLineItemsProrationDetails,
-)
-
 from . import Base
 
 
@@ -59,16 +55,18 @@ class LineItem(Base):
     period = Column(Integer, ForeignKey("invoice_line_item_period.id"))
     plan = Column(
         Plan,
-        comment="[[FK(Plan)]] The plan of the subscription, if the line item is a subscription or a proration",
+        ForeignKey("Plan"),
+        comment="The plan of the subscription, if the line item is a subscription or a proration",
         nullable=True,
     )
     price = Column(
-        Price, comment="[[FK(Price)]] The price of the line item", nullable=True
+        Price, ForeignKey("Price"), comment="The price of the line item", nullable=True
     )
     proration = Column(Boolean, comment="Whether this is a proration")
     proration_details = Column(
-        InvoicesLineItemsProrationDetails,
-        comment="[[FK(InvoicesLineItemsProrationDetails)]] Additional details for proration line items",
+        Integer,
+        ForeignKey("invoices_line_items_proration_details.id"),
+        comment="Additional details for proration line items",
         nullable=True,
     )
     quantity = Column(

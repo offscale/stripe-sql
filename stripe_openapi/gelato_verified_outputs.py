@@ -1,8 +1,4 @@
-from sqlalchemy import Column, Identity, Integer, String
-
-from stripe_openapi.gelato_data_verified_outputs_date import (
-    GelatoDataVerifiedOutputsDate,
-)
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String
 
 from . import Base
 
@@ -10,11 +6,15 @@ from . import Base
 class GelatoVerifiedOutputs(Base):
     __tablename__ = "gelato_verified_outputs"
     address = Column(
-        Address, comment="[[FK(Address)]] The user's verified address", nullable=True
+        Address,
+        ForeignKey("Address"),
+        comment="The user's verified address",
+        nullable=True,
     )
     dob = Column(
-        GelatoDataVerifiedOutputsDate,
-        comment="[[FK(GelatoDataVerifiedOutputsDate)]] The user’s verified date of birth",
+        Integer,
+        ForeignKey("gelato_data_verified_outputs_date.id"),
+        comment="The user’s verified date of birth",
         nullable=True,
     )
     first_name = Column(String, comment="The user's verified first name", nullable=True)
