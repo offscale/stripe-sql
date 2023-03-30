@@ -1,26 +1,23 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class PaymentMethodLink(Base):
-    __tablename__ = "payment_method_link"
-    email = Column(String, comment="Account owner's email address", nullable=True)
-    persistent_token = Column(
-        String, comment="Token used for persistent Link logins", nullable=True
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "PaymentMethodLink(email={email!r}, persistent_token={persistent_token!r}, id={id!r})".format(
-            email=self.email, persistent_token=self.persistent_token, id=self.id
-        )
-
-
-__all__ = ["payment_method_link"]
+PaymentMethodLink.Json = Table(
+    "payment_method_link.json",
+    metadata,
+    Column(
+        "country",
+        String,
+        comment="Two-letter ISO code representing the funding source (i.e. card, bank) country beneath the Link payment method.\nYou could use this attribute to get a sense of the international breakdown of funding sources you've collected",
+        nullable=True,
+    ),
+    Column("email", String, comment="Account owner's email address", nullable=True),
+    Column(
+        "persistent_token",
+        String,
+        comment="Token used for persistent Link logins",
+        nullable=True,
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["payment_method_link.json"]

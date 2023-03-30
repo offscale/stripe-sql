@@ -1,34 +1,27 @@
-from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table
 
-from . import Base
+from stripe_openapi.address import Address
 
+from . import metadata
 
-class BillingDetails(Base):
-    __tablename__ = "billing_details"
-    address = Column(
-        Address, ForeignKey("Address"), comment="Billing address", nullable=True
-    )
-    email = Column(String, comment="Email address", nullable=True)
-    name = Column(String, comment="Full name", nullable=True)
-    phone = Column(
-        String, comment="Billing phone number (including extension)", nullable=True
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "BillingDetails(address={address!r}, email={email!r}, name={name!r}, phone={phone!r}, id={id!r})".format(
-            address=self.address,
-            email=self.email,
-            name=self.name,
-            phone=self.phone,
-            id=self.id,
-        )
-
-
-__all__ = ["billing_details"]
+BillingDetails.Json = Table(
+    "billing_details.json",
+    metadata,
+    Column(
+        "address",
+        Address,
+        ForeignKey("Address"),
+        comment="Billing address",
+        nullable=True,
+    ),
+    Column("email", String, comment="Email address", nullable=True),
+    Column("name", String, comment="Full name", nullable=True),
+    Column(
+        "phone",
+        String,
+        comment="Billing phone number (including extension)",
+        nullable=True,
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["billing_details.json"]

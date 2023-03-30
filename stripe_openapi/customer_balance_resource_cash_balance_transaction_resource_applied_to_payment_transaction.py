@@ -1,31 +1,18 @@
-from sqlalchemy import Column, ForeignKey, Identity, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer, Table
 
-from . import Base
+from . import metadata
 
-
-class CustomerBalanceResourceCashBalanceTransactionResourceAppliedToPaymentTransaction(
-    Base
-):
-    __tablename__ = "customer_balance_resource_cash_balance_transaction_resource_applied_to_payment_transaction"
-    payment_intent = Column(
-        String,
-        ForeignKey("payment_intent.id"),
+CustomerBalanceResourceCashBalanceTransactionResourceAppliedToPaymentTransaction.Json = Table(
+    "customer_balance_resource_cash_balance_transaction_resource_applied_to_payment_transaction.json",
+    metadata,
+    Column(
+        "payment_intent",
+        PaymentIntent,
+        ForeignKey("PaymentIntent"),
         comment="The [Payment Intent](https://stripe.com/docs/api/payment_intents/object) that funds were applied to",
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "CustomerBalanceResourceCashBalanceTransactionResourceAppliedToPaymentTransaction(payment_intent={payment_intent!r}, id={id!r})".format(
-            payment_intent=self.payment_intent, id=self.id
-        )
-
-
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
 __all__ = [
-    "customer_balance_resource_cash_balance_transaction_resource_applied_to_payment_transaction"
+    "customer_balance_resource_cash_balance_transaction_resource_applied_to_payment_transaction.json"
 ]

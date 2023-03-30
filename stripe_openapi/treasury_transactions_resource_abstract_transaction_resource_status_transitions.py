@@ -1,34 +1,24 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Integer, Table
 
-from . import Base
+from . import metadata
 
-
-class TreasuryTransactionsResourceAbstractTransactionResourceStatusTransitions(Base):
-    __tablename__ = "treasury_transactions_resource_abstract_transaction_resource_status_transitions"
-    posted_at = Column(
+TreasuryTransactionsResourceAbstractTransactionResourceStatusTransitions.Json = Table(
+    "treasury_transactions_resource_abstract_transaction_resource_status_transitions.json",
+    metadata,
+    Column(
+        "posted_at",
         Integer,
         comment="Timestamp describing when the Transaction changed status to `posted`",
         nullable=True,
-    )
-    void_at = Column(
+    ),
+    Column(
+        "void_at",
         Integer,
         comment="Timestamp describing when the Transaction changed status to `void`",
         nullable=True,
         primary_key=True,
-    )
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "TreasuryTransactionsResourceAbstractTransactionResourceStatusTransitions(posted_at={posted_at!r}, void_at={void_at!r})".format(
-            posted_at=self.posted_at, void_at=self.void_at
-        )
-
-
+    ),
+)
 __all__ = [
-    "treasury_transactions_resource_abstract_transaction_resource_status_transitions"
+    "treasury_transactions_resource_abstract_transaction_resource_status_transitions.json"
 ]

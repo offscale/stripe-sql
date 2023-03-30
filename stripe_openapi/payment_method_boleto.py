@@ -1,24 +1,15 @@
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, Table
 
-from . import Base
+from . import metadata
 
-
-class PaymentMethodBoleto(Base):
-    __tablename__ = "payment_method_boleto"
-    tax_id = Column(
+PaymentMethodBoleto.Json = Table(
+    "payment_method_boleto.json",
+    metadata,
+    Column(
+        "tax_id",
         String,
         comment="Uniquely identifies the customer tax id (CNPJ or CPF)",
         primary_key=True,
-    )
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "PaymentMethodBoleto(tax_id={tax_id!r})".format(tax_id=self.tax_id)
-
-
-__all__ = ["payment_method_boleto"]
+    ),
+)
+__all__ = ["payment_method_boleto.json"]

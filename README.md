@@ -27,11 +27,11 @@ $ for phase in {0..2}; do
                         --name-tpl '{name}' \
                         --input-mapping "$json_file" \
                         --parse 'json_schema' \
-                        --emit 'sqlalchemy' \
+                        --emit 'sqlalchemy_table' \
                         --output-filename "$py_file" \
                         --phase "$phase"
       if [ "$phase" -eq 0 ]; then
-        echo -e 'from . import Base' | cat - "$py_file" | sponge "$py_file"
+        echo -e 'from . import metadata' | cat - "$py_file" | sponge "$py_file"
       fi
     done
   done

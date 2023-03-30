@@ -1,45 +1,27 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class TreasuryFinancialAccountsResourceTogglesSettingStatusDetails(Base):
-    """
-    Additional details on the FinancialAccount Features information.
-    """
-
-    __tablename__ = (
-        "treasury_financial_accounts_resource_toggles_setting_status_details"
-    )
-    code = Column(
+TreasuryFinancialAccountsResourceTogglesSettingStatusDetails.Json = Table(
+    "treasury_financial_accounts_resource_toggles_setting_status_details.json",
+    metadata,
+    Column(
+        "code",
         String,
         comment="Represents the reason why the status is `pending` or `restricted`",
-    )
-    resolution = Column(
+    ),
+    Column(
+        "resolution",
         String,
         comment="Represents what the user should do, if anything, to activate the Feature",
         nullable=True,
-    )
-    restriction = Column(
+    ),
+    Column(
+        "restriction",
         String,
         comment="The `platform_restrictions` that are restricting this Feature",
         nullable=True,
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "TreasuryFinancialAccountsResourceTogglesSettingStatusDetails(code={code!r}, resolution={resolution!r}, restriction={restriction!r}, id={id!r})".format(
-            code=self.code,
-            resolution=self.resolution,
-            restriction=self.restriction,
-            id=self.id,
-        )
-
-
-__all__ = ["treasury_financial_accounts_resource_toggles_setting_status_details"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["treasury_financial_accounts_resource_toggles_setting_status_details.json"]

@@ -1,46 +1,34 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class PaymentIntentNextActionAlipayHandleRedirect(Base):
-    __tablename__ = "payment_intent_next_action_alipay_handle_redirect"
-    native_data = Column(
+PaymentIntentNextActionAlipayHandleRedirect.Json = Table(
+    "payment_intent_next_action_alipay_handle_redirect.json",
+    metadata,
+    Column(
+        "native_data",
         String,
         comment="The native data to be used with Alipay SDK you must redirect your customer to in order to authenticate the payment in an Android App",
         nullable=True,
-    )
-    native_url = Column(
+    ),
+    Column(
+        "native_url",
         String,
         comment="The native URL you must redirect your customer to in order to authenticate the payment in an iOS App",
         nullable=True,
-    )
-    return_url = Column(
+    ),
+    Column(
+        "return_url",
         String,
         comment="If the customer does not exit their browser while authenticating, they will be redirected to this specified URL after completion",
         nullable=True,
-    )
-    url = Column(
+    ),
+    Column(
+        "url",
         String,
         comment="The URL you must redirect your customer to in order to authenticate the payment",
         nullable=True,
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "PaymentIntentNextActionAlipayHandleRedirect(native_data={native_data!r}, native_url={native_url!r}, return_url={return_url!r}, url={url!r}, id={id!r})".format(
-            native_data=self.native_data,
-            native_url=self.native_url,
-            return_url=self.return_url,
-            url=self.url,
-            id=self.id,
-        )
-
-
-__all__ = ["payment_intent_next_action_alipay_handle_redirect"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["payment_intent_next_action_alipay_handle_redirect.json"]

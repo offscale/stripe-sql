@@ -1,40 +1,34 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class PaymentMethodDetailsAuBecsDebit(Base):
-    __tablename__ = "payment_method_details_au_becs_debit"
-    bsb_number = Column(
-        String, comment="Bank-State-Branch number of the bank account", nullable=True
-    )
-    fingerprint = Column(
+PaymentMethodDetailsAuBecsDebit.Json = Table(
+    "payment_method_details_au_becs_debit.json",
+    metadata,
+    Column(
+        "bsb_number",
+        String,
+        comment="Bank-State-Branch number of the bank account",
+        nullable=True,
+    ),
+    Column(
+        "fingerprint",
         String,
         comment="Uniquely identifies this particular bank account. You can use this attribute to check whether two bank accounts are the same",
         nullable=True,
-    )
-    last4 = Column(
-        String, comment="Last four digits of the bank account number", nullable=True
-    )
-    mandate = Column(
-        String, comment="ID of the mandate used to make this payment", nullable=True
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "PaymentMethodDetailsAuBecsDebit(bsb_number={bsb_number!r}, fingerprint={fingerprint!r}, last4={last4!r}, mandate={mandate!r}, id={id!r})".format(
-            bsb_number=self.bsb_number,
-            fingerprint=self.fingerprint,
-            last4=self.last4,
-            mandate=self.mandate,
-            id=self.id,
-        )
-
-
-__all__ = ["payment_method_details_au_becs_debit"]
+    ),
+    Column(
+        "last4",
+        String,
+        comment="Last four digits of the bank account number",
+        nullable=True,
+    ),
+    Column(
+        "mandate",
+        String,
+        comment="ID of the mandate used to make this payment",
+        nullable=True,
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["payment_method_details_au_becs_debit.json"]

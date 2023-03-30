@@ -1,111 +1,105 @@
-from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class SetupAttemptPaymentMethodDetails(Base):
-    __tablename__ = "setup_attempt_payment_method_details"
-    acss_debit = Column(
-        Integer,
-        ForeignKey("setup_attempt_payment_method_details_acss_debit.id"),
+SetupAttemptPaymentMethodDetails.Json = Table(
+    "setup_attempt_payment_method_details.json",
+    metadata,
+    Column(
+        "acss_debit",
+        SetupAttemptPaymentMethodDetailsAcssDebit,
+        ForeignKey("SetupAttemptPaymentMethodDetailsAcssDebit"),
         nullable=True,
-    )
-    au_becs_debit = Column(
-        Integer,
-        ForeignKey("setup_attempt_payment_method_details_au_becs_debit.id"),
+    ),
+    Column(
+        "au_becs_debit",
+        SetupAttemptPaymentMethodDetailsAuBecsDebit,
+        ForeignKey("SetupAttemptPaymentMethodDetailsAuBecsDebit"),
         nullable=True,
-    )
-    bacs_debit = Column(
-        Integer,
-        ForeignKey("setup_attempt_payment_method_details_bacs_debit.id"),
+    ),
+    Column(
+        "bacs_debit",
+        SetupAttemptPaymentMethodDetailsBacsDebit,
+        ForeignKey("SetupAttemptPaymentMethodDetailsBacsDebit"),
         nullable=True,
-    )
-    bancontact = Column(
-        Integer,
-        ForeignKey("setup_attempt_payment_method_details_bancontact.id"),
+    ),
+    Column(
+        "bancontact",
+        SetupAttemptPaymentMethodDetailsBancontact,
+        ForeignKey("SetupAttemptPaymentMethodDetailsBancontact"),
         nullable=True,
-    )
-    blik = Column(
-        Integer,
-        ForeignKey("setup_attempt_payment_method_details_blik.id"),
+    ),
+    Column(
+        "blik",
+        SetupAttemptPaymentMethodDetailsBlik,
+        ForeignKey("SetupAttemptPaymentMethodDetailsBlik"),
         nullable=True,
-    )
-    boleto = Column(
-        Integer,
-        ForeignKey("setup_attempt_payment_method_details_boleto.id"),
+    ),
+    Column(
+        "boleto",
+        SetupAttemptPaymentMethodDetailsBoleto,
+        ForeignKey("SetupAttemptPaymentMethodDetailsBoleto"),
         nullable=True,
-    )
-    card = Column(
-        Integer,
-        ForeignKey("setup_attempt_payment_method_details_card.id"),
+    ),
+    Column(
+        "card",
+        SetupAttemptPaymentMethodDetailsCard,
+        ForeignKey("SetupAttemptPaymentMethodDetailsCard"),
         nullable=True,
-    )
-    card_present = Column(
-        Integer,
-        ForeignKey("setup_attempt_payment_method_details_card_present.id"),
+    ),
+    Column(
+        "card_present",
+        SetupAttemptPaymentMethodDetailsCardPresent,
+        ForeignKey("SetupAttemptPaymentMethodDetailsCardPresent"),
         nullable=True,
-    )
-    ideal = Column(
-        String,
-        ForeignKey("setup_attempt_payment_method_details_ideal.verified_name"),
+    ),
+    Column(
+        "cashapp",
+        SetupAttemptPaymentMethodDetailsCashapp,
+        ForeignKey("SetupAttemptPaymentMethodDetailsCashapp"),
         nullable=True,
-    )
-    klarna = Column(
-        Integer,
-        ForeignKey("setup_attempt_payment_method_details_klarna.id"),
+    ),
+    Column(
+        "ideal",
+        SetupAttemptPaymentMethodDetailsIdeal,
+        ForeignKey("SetupAttemptPaymentMethodDetailsIdeal"),
         nullable=True,
-    )
-    link = Column(
-        Integer,
-        ForeignKey("setup_attempt_payment_method_details_link.id"),
+    ),
+    Column(
+        "klarna",
+        SetupAttemptPaymentMethodDetailsKlarna,
+        ForeignKey("SetupAttemptPaymentMethodDetailsKlarna"),
         nullable=True,
-    )
-    sepa_debit = Column(
-        Integer,
-        ForeignKey("setup_attempt_payment_method_details_sepa_debit.id"),
+    ),
+    Column(
+        "link",
+        SetupAttemptPaymentMethodDetailsLink,
+        ForeignKey("SetupAttemptPaymentMethodDetailsLink"),
         nullable=True,
-    )
-    sofort = Column(
-        Integer,
-        ForeignKey("setup_attempt_payment_method_details_sofort.id"),
+    ),
+    Column(
+        "sepa_debit",
+        SetupAttemptPaymentMethodDetailsSepaDebit,
+        ForeignKey("SetupAttemptPaymentMethodDetailsSepaDebit"),
         nullable=True,
-    )
-    type = Column(
+    ),
+    Column(
+        "sofort",
+        SetupAttemptPaymentMethodDetailsSofort,
+        ForeignKey("SetupAttemptPaymentMethodDetailsSofort"),
+        nullable=True,
+    ),
+    Column(
+        "type",
         String,
         comment="The type of the payment method used in the SetupIntent (e.g., `card`). An additional hash is included on `payment_method_details` with a name matching this value. It contains confirmation-specific information for the payment method",
-    )
-    us_bank_account = Column(
-        Integer,
-        ForeignKey("setup_attempt_payment_method_details_us_bank_account.id"),
+    ),
+    Column(
+        "us_bank_account",
+        SetupAttemptPaymentMethodDetailsUsBankAccount,
+        ForeignKey("SetupAttemptPaymentMethodDetailsUsBankAccount"),
         nullable=True,
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "SetupAttemptPaymentMethodDetails(acss_debit={acss_debit!r}, au_becs_debit={au_becs_debit!r}, bacs_debit={bacs_debit!r}, bancontact={bancontact!r}, blik={blik!r}, boleto={boleto!r}, card={card!r}, card_present={card_present!r}, ideal={ideal!r}, klarna={klarna!r}, link={link!r}, sepa_debit={sepa_debit!r}, sofort={sofort!r}, type={type!r}, us_bank_account={us_bank_account!r}, id={id!r})".format(
-            acss_debit=self.acss_debit,
-            au_becs_debit=self.au_becs_debit,
-            bacs_debit=self.bacs_debit,
-            bancontact=self.bancontact,
-            blik=self.blik,
-            boleto=self.boleto,
-            card=self.card,
-            card_present=self.card_present,
-            ideal=self.ideal,
-            klarna=self.klarna,
-            link=self.link,
-            sepa_debit=self.sepa_debit,
-            sofort=self.sofort,
-            type=self.type,
-            us_bank_account=self.us_bank_account,
-            id=self.id,
-        )
-
-
-__all__ = ["setup_attempt_payment_method_details"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["setup_attempt_payment_method_details.json"]

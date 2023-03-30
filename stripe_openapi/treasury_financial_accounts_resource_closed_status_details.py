@@ -1,26 +1,15 @@
-from sqlalchemy import ARRAY, Column, Identity, Integer, String
+from sqlalchemy import ARRAY, Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class TreasuryFinancialAccountsResourceClosedStatusDetails(Base):
-    __tablename__ = "treasury_financial_accounts_resource_closed_status_details"
-    reasons = Column(
+TreasuryFinancialAccountsResourceClosedStatusDetails.Json = Table(
+    "treasury_financial_accounts_resource_closed_status_details.json",
+    metadata,
+    Column(
+        "reasons",
         ARRAY(String),
         comment="The array that contains reasons for a FinancialAccount closure",
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "TreasuryFinancialAccountsResourceClosedStatusDetails(reasons={reasons!r}, id={id!r})".format(
-            reasons=self.reasons, id=self.id
-        )
-
-
-__all__ = ["treasury_financial_accounts_resource_closed_status_details"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["treasury_financial_accounts_resource_closed_status_details.json"]

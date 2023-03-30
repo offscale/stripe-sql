@@ -1,35 +1,21 @@
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, Table
 
-from . import Base
+from . import metadata
 
-
-class TaxCode(Base):
-    """
-    [Tax codes](https://stripe.com/docs/tax/tax-categories) classify goods and services for tax purposes.
-    """
-
-    __tablename__ = "tax_code"
-    description = Column(
+TaxCode.Json = Table(
+    "tax_code.json",
+    metadata,
+    Column(
+        "description",
         String,
         comment="A detailed description of which types of products the tax code represents",
-    )
-    id = Column(String, comment="Unique identifier for the object", primary_key=True)
-    name = Column(String, comment="A short name for the tax code")
-    object = Column(
+    ),
+    Column("id", String, comment="Unique identifier for the object", primary_key=True),
+    Column("name", String, comment="A short name for the tax code"),
+    Column(
+        "object",
         String,
         comment="String representing the object's type. Objects of the same type share the same value",
-    )
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "TaxCode(description={description!r}, id={id!r}, name={name!r}, object={object!r})".format(
-            description=self.description, id=self.id, name=self.name, object=self.object
-        )
-
-
-__all__ = ["tax_code"]
+    ),
+)
+__all__ = ["tax_code.json"]

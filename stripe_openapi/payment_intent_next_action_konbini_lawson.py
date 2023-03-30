@@ -1,28 +1,14 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class PaymentIntentNextActionKonbiniLawson(Base):
-    __tablename__ = "payment_intent_next_action_konbini_lawson"
-    confirmation_number = Column(
-        String, comment="The confirmation number", nullable=True
-    )
-    payment_code = Column(String, comment="The payment code")
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "PaymentIntentNextActionKonbiniLawson(confirmation_number={confirmation_number!r}, payment_code={payment_code!r}, id={id!r})".format(
-            confirmation_number=self.confirmation_number,
-            payment_code=self.payment_code,
-            id=self.id,
-        )
-
-
-__all__ = ["payment_intent_next_action_konbini_lawson"]
+PaymentIntentNextActionKonbiniLawson.Json = Table(
+    "payment_intent_next_action_konbini_lawson.json",
+    metadata,
+    Column(
+        "confirmation_number", String, comment="The confirmation number", nullable=True
+    ),
+    Column("payment_code", String, comment="The payment code"),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["payment_intent_next_action_konbini_lawson.json"]

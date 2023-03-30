@@ -1,26 +1,15 @@
-from sqlalchemy import Boolean, Column, Identity, Integer
+from sqlalchemy import Boolean, Column, Identity, Integer, Table
 
-from . import Base
+from . import metadata
 
-
-class SubscriptionSchedulesResourceDefaultSettingsAutomaticTax(Base):
-    __tablename__ = "subscription_schedules_resource_default_settings_automatic_tax"
-    enabled = Column(
+SubscriptionSchedulesResourceDefaultSettingsAutomaticTax.Json = Table(
+    "subscription_schedules_resource_default_settings_automatic_tax.json",
+    metadata,
+    Column(
+        "enabled",
         Boolean,
         comment="Whether Stripe automatically computes tax on invoices created during this phase",
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "SubscriptionSchedulesResourceDefaultSettingsAutomaticTax(enabled={enabled!r}, id={id!r})".format(
-            enabled=self.enabled, id=self.id
-        )
-
-
-__all__ = ["subscription_schedules_resource_default_settings_automatic_tax"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["subscription_schedules_resource_default_settings_automatic_tax.json"]

@@ -1,28 +1,19 @@
-from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table
 
-from . import Base
+from stripe_openapi.treasury__transaction import Treasury__Transaction
 
+from . import metadata
 
-class TreasuryOutboundTransfersResourceReturnedDetails(Base):
-    __tablename__ = "treasury_outbound_transfers_resource_returned_details"
-    code = Column(String, comment="Reason for the return")
-    transaction = Column(
+TreasuryOutboundTransfersResourceReturnedDetails.Json = Table(
+    "treasury_outbound_transfers_resource_returned_details.json",
+    metadata,
+    Column("code", String, comment="Reason for the return"),
+    Column(
+        "transaction",
         Treasury__Transaction,
         ForeignKey("Treasury__Transaction"),
         comment="The Transaction associated with this object",
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "TreasuryOutboundTransfersResourceReturnedDetails(code={code!r}, transaction={transaction!r}, id={id!r})".format(
-            code=self.code, transaction=self.transaction, id=self.id
-        )
-
-
-__all__ = ["treasury_outbound_transfers_resource_returned_details"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["treasury_outbound_transfers_resource_returned_details.json"]

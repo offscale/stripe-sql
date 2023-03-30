@@ -1,26 +1,17 @@
-from sqlalchemy import Boolean, Column, Identity, Integer, String
+from sqlalchemy import Boolean, Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class IssuingCardGooglePay(Base):
-    __tablename__ = "issuing_card_google_pay"
-    eligible = Column(Boolean, comment="Google Pay Eligibility")
-    ineligible_reason = Column(
-        String, comment="Reason the card is ineligible for Google Pay", nullable=True
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "IssuingCardGooglePay(eligible={eligible!r}, ineligible_reason={ineligible_reason!r}, id={id!r})".format(
-            eligible=self.eligible, ineligible_reason=self.ineligible_reason, id=self.id
-        )
-
-
-__all__ = ["issuing_card_google_pay"]
+IssuingCardGooglePay.Json = Table(
+    "issuing_card_google_pay.json",
+    metadata,
+    Column("eligible", Boolean, comment="Google Pay Eligibility"),
+    Column(
+        "ineligible_reason",
+        String,
+        comment="Reason the card is ineligible for Google Pay",
+        nullable=True,
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["issuing_card_google_pay.json"]

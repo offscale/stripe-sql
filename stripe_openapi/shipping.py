@@ -1,42 +1,29 @@
-from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table
 
-from . import Base
+from stripe_openapi.address import Address
 
+from . import metadata
 
-class Shipping(Base):
-    __tablename__ = "shipping"
-    address = Column(Address, ForeignKey("Address"), nullable=True)
-    carrier = Column(
+Shipping.Json = Table(
+    "shipping.json",
+    metadata,
+    Column("address", Address, ForeignKey("Address"), nullable=True),
+    Column(
+        "carrier",
         String,
         comment="The delivery service that shipped a physical product, such as Fedex, UPS, USPS, etc",
         nullable=True,
-    )
-    name = Column(String, comment="Recipient name", nullable=True)
-    phone = Column(
-        String, comment="Recipient phone (including extension)", nullable=True
-    )
-    tracking_number = Column(
+    ),
+    Column("name", String, comment="Recipient name", nullable=True),
+    Column(
+        "phone", String, comment="Recipient phone (including extension)", nullable=True
+    ),
+    Column(
+        "tracking_number",
         String,
         comment="The tracking number for a physical product, obtained from the delivery service. If multiple tracking numbers were generated for this purchase, please separate them with commas",
         nullable=True,
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "Shipping(address={address!r}, carrier={carrier!r}, name={name!r}, phone={phone!r}, tracking_number={tracking_number!r}, id={id!r})".format(
-            address=self.address,
-            carrier=self.carrier,
-            name=self.name,
-            phone=self.phone,
-            tracking_number=self.tracking_number,
-            id=self.id,
-        )
-
-
-__all__ = ["shipping"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["shipping.json"]

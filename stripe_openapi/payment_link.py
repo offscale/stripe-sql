@@ -5,171 +5,179 @@ from sqlalchemy import (
     Column,
     Float,
     ForeignKey,
+    Identity,
     Integer,
     String,
+    Table,
     list,
 )
 
-from . import Base
+from stripe_openapi.account import Account
 
+from . import metadata
 
-class PaymentLink(Base):
-    """
-    A payment link is a shareable URL that will take your customers to a hosted payment page. A payment link can be shared and used multiple times.
-
-    When a customer opens a payment link it will open a new [checkout session](https://stripe.com/docs/api/checkout/sessions) to render the payment page. You can use [checkout session events](https://stripe.com/docs/api/events/types#event_types-checkout.session.completed) to track payments through payment links.
-
-    Related guide: [Payment Links API](https://stripe.com/docs/payments/payment-links/api)
-
-    """
-
-    __tablename__ = "payment_link"
-    active = Column(
+PaymentLink.Json = Table(
+    "payment_link.json",
+    metadata,
+    Column(
+        "active",
         Boolean,
         comment="Whether the payment link's `url` is active. If `false`, customers visiting the URL will be shown a page saying that the link has been deactivated",
-    )
-    after_completion = Column(
-        Integer, ForeignKey("payment_links_resource_after_completion.id")
-    )
-    allow_promotion_codes = Column(
-        Boolean, comment="Whether user redeemable promotion codes are enabled"
-    )
-    application_fee_amount = Column(
+    ),
+    Column(
+        "after_completion",
+        PaymentLinksResourceAfterCompletion,
+        ForeignKey("PaymentLinksResourceAfterCompletion"),
+    ),
+    Column(
+        "allow_promotion_codes",
+        Boolean,
+        comment="Whether user redeemable promotion codes are enabled",
+    ),
+    Column(
+        "application_fee_amount",
         Integer,
         comment="The amount of the application fee (if any) that will be requested to be applied to the payment and transferred to the application owner's Stripe account",
         nullable=True,
-    )
-    application_fee_percent = Column(
+    ),
+    Column(
+        "application_fee_percent",
         Float,
         comment="This represents the percentage of the subscription invoice subtotal that will be transferred to the application owner's Stripe account",
         nullable=True,
-    )
-    automatic_tax = Column(
-        Integer, ForeignKey("payment_links_resource_automatic_tax.id")
-    )
-    billing_address_collection = Column(
-        String, comment="Configuration for collecting the customer's billing address"
-    )
-    consent_collection = Column(
-        Integer,
-        ForeignKey("payment_links_resource_consent_collection.id"),
+    ),
+    Column(
+        "automatic_tax",
+        PaymentLinksResourceAutomaticTax,
+        ForeignKey("PaymentLinksResourceAutomaticTax"),
+    ),
+    Column(
+        "billing_address_collection",
+        String,
+        comment="Configuration for collecting the customer's billing address",
+    ),
+    Column(
+        "consent_collection",
+        PaymentLinksResourceConsentCollection,
+        ForeignKey("PaymentLinksResourceConsentCollection"),
         comment="When set, provides configuration to gather active consent from customers",
         nullable=True,
-    )
-    currency = Column(
+    ),
+    Column(
+        "currency",
         String,
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",
-    )
-    custom_text = Column(Integer, ForeignKey("payment_links_resource_custom_text.id"))
-    customer_creation = Column(
-        String, comment="Configuration for Customer creation during checkout"
-    )
-    id = Column(String, comment="Unique identifier for the object", primary_key=True)
-    line_items = Column(
-        JSON, comment="The line items representing what is being sold", nullable=True
-    )
-    livemode = Column(
+    ),
+    Column(
+        "custom_fields",
+        list,
+        comment="Collect additional information from your customer using custom fields. Up to 2 fields are supported",
+    ),
+    Column(
+        "custom_text",
+        PaymentLinksResourceCustomText,
+        ForeignKey("PaymentLinksResourceCustomText"),
+    ),
+    Column(
+        "customer_creation",
+        String,
+        comment="Configuration for Customer creation during checkout",
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+    Column(
+        "invoice_creation",
+        PaymentLinksResourceInvoiceCreation,
+        ForeignKey("PaymentLinksResourceInvoiceCreation"),
+        comment="Configuration for creating invoice for payment mode payment links",
+        nullable=True,
+    ),
+    Column(
+        "line_items",
+        JSON,
+        comment="The line items representing what is being sold",
+        nullable=True,
+    ),
+    Column(
+        "livemode",
         Boolean,
         comment="Has the value `true` if the object exists in live mode or the value `false` if the object exists in test mode",
-    )
-    metadata = Column(
+    ),
+    Column(
+        "metadata",
         JSON,
         comment="Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format",
-    )
-    object = Column(
+    ),
+    Column(
+        "object",
         String,
         comment="String representing the object's type. Objects of the same type share the same value",
-    )
-    on_behalf_of = Column(
+    ),
+    Column(
+        "on_behalf_of",
         Account,
         ForeignKey("Account"),
         comment="The account on behalf of which to charge. See the [Connect documentation](https://support.stripe.com/questions/sending-invoices-on-behalf-of-connected-accounts) for details",
         nullable=True,
-    )
-    payment_intent_data = Column(
-        Integer,
-        ForeignKey("payment_links_resource_payment_intent_data.id"),
+    ),
+    Column(
+        "payment_intent_data",
+        PaymentLinksResourcePaymentIntentData,
+        ForeignKey("PaymentLinksResourcePaymentIntentData"),
         comment="Indicates the parameters to be passed to PaymentIntent creation during checkout",
         nullable=True,
-    )
-    payment_method_collection = Column(
-        String, comment="Configuration for collecting a payment method during checkout"
-    )
-    payment_method_types = Column(
+    ),
+    Column(
+        "payment_method_collection",
+        String,
+        comment="Configuration for collecting a payment method during checkout",
+    ),
+    Column(
+        "payment_method_types",
         ARRAY(String),
         comment="The list of payment method types that customers can use. When `null`, Stripe will dynamically show relevant payment methods you've enabled in your [payment method settings](https://dashboard.stripe.com/settings/payment_methods)",
         nullable=True,
-    )
-    phone_number_collection = Column(
-        Integer, ForeignKey("payment_links_resource_phone_number_collection.id")
-    )
-    shipping_address_collection = Column(
-        Integer,
-        ForeignKey("payment_links_resource_shipping_address_collection.id"),
+    ),
+    Column(
+        "phone_number_collection",
+        PaymentLinksResourcePhoneNumberCollection,
+        ForeignKey("PaymentLinksResourcePhoneNumberCollection"),
+    ),
+    Column(
+        "shipping_address_collection",
+        PaymentLinksResourceShippingAddressCollection,
+        ForeignKey("PaymentLinksResourceShippingAddressCollection"),
         comment="Configuration for collecting the customer's shipping address",
         nullable=True,
-    )
-    shipping_options = Column(
-        list, comment="The shipping rate options applied to the session"
-    )
-    submit_type = Column(
+    ),
+    Column(
+        "shipping_options",
+        list,
+        comment="The shipping rate options applied to the session",
+    ),
+    Column(
+        "submit_type",
         String,
         comment="Indicates the type of transaction being performed which customizes relevant text on the page, such as the submit button",
-    )
-    subscription_data = Column(
-        Integer,
-        ForeignKey("payment_links_resource_subscription_data.id"),
+    ),
+    Column(
+        "subscription_data",
+        PaymentLinksResourceSubscriptionData,
+        ForeignKey("PaymentLinksResourceSubscriptionData"),
         comment="When creating a subscription, the specified configuration data will be used. There must be at least one line item with a recurring price to use `subscription_data`",
         nullable=True,
-    )
-    tax_id_collection = Column(
-        Integer, ForeignKey("payment_links_resource_tax_id_collection.id")
-    )
-    transfer_data = Column(
-        Integer,
-        ForeignKey("payment_links_resource_transfer_data.id"),
+    ),
+    Column(
+        "tax_id_collection",
+        PaymentLinksResourceTaxIdCollection,
+        ForeignKey("PaymentLinksResourceTaxIdCollection"),
+    ),
+    Column(
+        "transfer_data",
+        PaymentLinksResourceTransferData,
+        ForeignKey("PaymentLinksResourceTransferData"),
         comment="The account (if any) the payments will be attributed to for tax reporting, and where funds from each payment will be transferred to",
         nullable=True,
-    )
-    url = Column(String, comment="The public URL that can be shared with customers")
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "PaymentLink(active={active!r}, after_completion={after_completion!r}, allow_promotion_codes={allow_promotion_codes!r}, application_fee_amount={application_fee_amount!r}, application_fee_percent={application_fee_percent!r}, automatic_tax={automatic_tax!r}, billing_address_collection={billing_address_collection!r}, consent_collection={consent_collection!r}, currency={currency!r}, custom_text={custom_text!r}, customer_creation={customer_creation!r}, id={id!r}, line_items={line_items!r}, livemode={livemode!r}, metadata={metadata!r}, object={object!r}, on_behalf_of={on_behalf_of!r}, payment_intent_data={payment_intent_data!r}, payment_method_collection={payment_method_collection!r}, payment_method_types={payment_method_types!r}, phone_number_collection={phone_number_collection!r}, shipping_address_collection={shipping_address_collection!r}, shipping_options={shipping_options!r}, submit_type={submit_type!r}, subscription_data={subscription_data!r}, tax_id_collection={tax_id_collection!r}, transfer_data={transfer_data!r}, url={url!r})".format(
-            active=self.active,
-            after_completion=self.after_completion,
-            allow_promotion_codes=self.allow_promotion_codes,
-            application_fee_amount=self.application_fee_amount,
-            application_fee_percent=self.application_fee_percent,
-            automatic_tax=self.automatic_tax,
-            billing_address_collection=self.billing_address_collection,
-            consent_collection=self.consent_collection,
-            currency=self.currency,
-            custom_text=self.custom_text,
-            customer_creation=self.customer_creation,
-            id=self.id,
-            line_items=self.line_items,
-            livemode=self.livemode,
-            metadata=self.metadata,
-            object=self.object,
-            on_behalf_of=self.on_behalf_of,
-            payment_intent_data=self.payment_intent_data,
-            payment_method_collection=self.payment_method_collection,
-            payment_method_types=self.payment_method_types,
-            phone_number_collection=self.phone_number_collection,
-            shipping_address_collection=self.shipping_address_collection,
-            shipping_options=self.shipping_options,
-            submit_type=self.submit_type,
-            subscription_data=self.subscription_data,
-            tax_id_collection=self.tax_id_collection,
-            transfer_data=self.transfer_data,
-            url=self.url,
-        )
-
-
-__all__ = ["payment_link"]
+    ),
+    Column("url", String, comment="The public URL that can be shared with customers"),
+)
+__all__ = ["payment_link.json"]

@@ -1,48 +1,36 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class EphemeralKey(Base):
-    __tablename__ = "ephemeral_key"
-    created = Column(
+EphemeralKey.Json = Table(
+    "ephemeral_key.json",
+    metadata,
+    Column(
+        "created",
         Integer,
         comment="Time at which the object was created. Measured in seconds since the Unix epoch",
-    )
-    expires = Column(
+    ),
+    Column(
+        "expires",
         Integer,
         comment="Time at which the key will expire. Measured in seconds since the Unix epoch",
-    )
-    id = Column(String, comment="Unique identifier for the object", primary_key=True)
-    livemode = Column(
+    ),
+    Column("id", String, comment="Unique identifier for the object", primary_key=True),
+    Column(
+        "livemode",
         Boolean,
         comment="Has the value `true` if the object exists in live mode or the value `false` if the object exists in test mode",
-    )
-    object = Column(
+    ),
+    Column(
+        "object",
         String,
         comment="String representing the object's type. Objects of the same type share the same value",
-    )
-    secret = Column(
+    ),
+    Column(
+        "secret",
         String,
         comment="The key's secret. You can use this value to make authorized requests to the Stripe API",
         nullable=True,
-    )
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "EphemeralKey(created={created!r}, expires={expires!r}, id={id!r}, livemode={livemode!r}, object={object!r}, secret={secret!r})".format(
-            created=self.created,
-            expires=self.expires,
-            id=self.id,
-            livemode=self.livemode,
-            object=self.object,
-            secret=self.secret,
-        )
-
-
-__all__ = ["ephemeral_key"]
+    ),
+)
+__all__ = ["ephemeral_key.json"]

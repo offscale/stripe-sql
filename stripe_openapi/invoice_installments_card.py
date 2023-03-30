@@ -1,27 +1,16 @@
-from sqlalchemy import Boolean, Column, Identity, Integer
+from sqlalchemy import Boolean, Column, Identity, Integer, Table
 
-from . import Base
+from . import metadata
 
-
-class InvoiceInstallmentsCard(Base):
-    __tablename__ = "invoice_installments_card"
-    enabled = Column(
+InvoiceInstallmentsCard.Json = Table(
+    "invoice_installments_card.json",
+    metadata,
+    Column(
+        "enabled",
         Boolean,
         comment="Whether Installments are enabled for this Invoice",
         nullable=True,
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "InvoiceInstallmentsCard(enabled={enabled!r}, id={id!r})".format(
-            enabled=self.enabled, id=self.id
-        )
-
-
-__all__ = ["invoice_installments_card"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["invoice_installments_card.json"]

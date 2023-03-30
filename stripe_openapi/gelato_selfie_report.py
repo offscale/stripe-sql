@@ -1,47 +1,30 @@
-from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class GelatoSelfieReport(Base):
-    """
-    Result from a selfie check
-    """
-
-    __tablename__ = "gelato_selfie_report"
-    document = Column(
+GelatoSelfieReport.Json = Table(
+    "gelato_selfie_report.json",
+    metadata,
+    Column(
+        "document",
         String,
         comment="ID of the [File](https://stripe.com/docs/api/files) holding the image of the identity document used in this check",
         nullable=True,
-    )
-    error = Column(
-        Integer,
-        ForeignKey("gelato_selfie_report_error.id"),
+    ),
+    Column(
+        "error",
+        GelatoSelfieReportError,
+        ForeignKey("GelatoSelfieReportError"),
         comment="Details on the verification error. Present when status is `unverified`",
         nullable=True,
-    )
-    selfie = Column(
+    ),
+    Column(
+        "selfie",
         String,
         comment="ID of the [File](https://stripe.com/docs/api/files) holding the image of the selfie used in this check",
         nullable=True,
-    )
-    status = Column(String, comment="Status of this `selfie` check")
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "GelatoSelfieReport(document={document!r}, error={error!r}, selfie={selfie!r}, status={status!r}, id={id!r})".format(
-            document=self.document,
-            error=self.error,
-            selfie=self.selfie,
-            status=self.status,
-            id=self.id,
-        )
-
-
-__all__ = ["gelato_selfie_report"]
+    ),
+    Column("status", String, comment="Status of this `selfie` check"),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["gelato_selfie_report.json"]

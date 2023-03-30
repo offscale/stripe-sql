@@ -1,33 +1,21 @@
-from sqlalchemy import Column, ForeignKey, Identity, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer, Table
 
-from . import Base
+from . import metadata
 
-
-class PaymentLinksResourceShippingOption(Base):
-    __tablename__ = "payment_links_resource_shipping_option"
-    shipping_amount = Column(
+PaymentLinksResourceShippingOption.Json = Table(
+    "payment_links_resource_shipping_option.json",
+    metadata,
+    Column(
+        "shipping_amount",
         Integer,
         comment="A non-negative integer in cents representing how much to charge",
-    )
-    shipping_rate = Column(
-        String,
-        ForeignKey("shipping_rate.id"),
+    ),
+    Column(
+        "shipping_rate",
+        ShippingRate,
+        ForeignKey("ShippingRate"),
         comment="The ID of the Shipping Rate to use for this shipping option",
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "PaymentLinksResourceShippingOption(shipping_amount={shipping_amount!r}, shipping_rate={shipping_rate!r}, id={id!r})".format(
-            shipping_amount=self.shipping_amount,
-            shipping_rate=self.shipping_rate,
-            id=self.id,
-        )
-
-
-__all__ = ["payment_links_resource_shipping_option"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["payment_links_resource_shipping_option.json"]

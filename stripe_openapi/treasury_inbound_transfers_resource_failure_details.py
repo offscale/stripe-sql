@@ -1,23 +1,11 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class TreasuryInboundTransfersResourceFailureDetails(Base):
-    __tablename__ = "treasury_inbound_transfers_resource_failure_details"
-    code = Column(String, comment="Reason for the failure")
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "TreasuryInboundTransfersResourceFailureDetails(code={code!r}, id={id!r})".format(
-            code=self.code, id=self.id
-        )
-
-
-__all__ = ["treasury_inbound_transfers_resource_failure_details"]
+TreasuryInboundTransfersResourceFailureDetails.Json = Table(
+    "treasury_inbound_transfers_resource_failure_details.json",
+    metadata,
+    Column("code", String, comment="Reason for the failure"),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["treasury_inbound_transfers_resource_failure_details.json"]

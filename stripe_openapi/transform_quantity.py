@@ -1,26 +1,16 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class TransformQuantity(Base):
-    __tablename__ = "transform_quantity"
-    divide_by = Column(Integer, comment="Divide usage by this number")
-    round = Column(
-        String, comment="After division, either round the result `up` or `down`"
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "TransformQuantity(divide_by={divide_by!r}, round={round!r}, id={id!r})".format(
-            divide_by=self.divide_by, round=self.round, id=self.id
-        )
-
-
-__all__ = ["transform_quantity"]
+TransformQuantity.Json = Table(
+    "transform_quantity.json",
+    metadata,
+    Column("divide_by", Integer, comment="Divide usage by this number"),
+    Column(
+        "round",
+        String,
+        comment="After division, either round the result `up` or `down`",
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["transform_quantity.json"]

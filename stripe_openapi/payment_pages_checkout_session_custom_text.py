@@ -1,34 +1,24 @@
-from sqlalchemy import Column, ForeignKey, Identity, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer, Table
 
-from . import Base
+from . import metadata
 
-
-class PaymentPagesCheckoutSessionCustomText(Base):
-    __tablename__ = "payment_pages_checkout_session_custom_text"
-    shipping_address = Column(
-        Integer,
-        ForeignKey("payment_pages_checkout_session_custom_text_position.id"),
+PaymentPagesCheckoutSessionCustomText.Json = Table(
+    "payment_pages_checkout_session_custom_text.json",
+    metadata,
+    Column(
+        "shipping_address",
+        PaymentPagesCheckoutSessionCustomTextPosition,
+        ForeignKey("PaymentPagesCheckoutSessionCustomTextPosition"),
         comment="Custom text that should be displayed alongside shipping address collection",
         nullable=True,
-    )
-    submit = Column(
-        Integer,
-        ForeignKey("payment_pages_checkout_session_custom_text_position.id"),
+    ),
+    Column(
+        "submit",
+        PaymentPagesCheckoutSessionCustomTextPosition,
+        ForeignKey("PaymentPagesCheckoutSessionCustomTextPosition"),
         comment="Custom text that should be displayed alongside the payment confirmation button",
         nullable=True,
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "PaymentPagesCheckoutSessionCustomText(shipping_address={shipping_address!r}, submit={submit!r}, id={id!r})".format(
-            shipping_address=self.shipping_address, submit=self.submit, id=self.id
-        )
-
-
-__all__ = ["payment_pages_checkout_session_custom_text"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["payment_pages_checkout_session_custom_text.json"]

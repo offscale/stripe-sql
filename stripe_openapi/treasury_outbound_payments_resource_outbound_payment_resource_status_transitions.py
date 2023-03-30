@@ -1,48 +1,36 @@
-from sqlalchemy import Column, Identity, Integer
+from sqlalchemy import Column, Identity, Integer, Table
 
-from . import Base
+from . import metadata
 
-
-class TreasuryOutboundPaymentsResourceOutboundPaymentResourceStatusTransitions(Base):
-    __tablename__ = "treasury_outbound_payments_resource_outbound_payment_resource_status_transitions"
-    canceled_at = Column(
+TreasuryOutboundPaymentsResourceOutboundPaymentResourceStatusTransitions.Json = Table(
+    "treasury_outbound_payments_resource_outbound_payment_resource_status_transitions.json",
+    metadata,
+    Column(
+        "canceled_at",
         Integer,
         comment="Timestamp describing when an OutboundPayment changed status to `canceled`",
         nullable=True,
-    )
-    failed_at = Column(
+    ),
+    Column(
+        "failed_at",
         Integer,
         comment="Timestamp describing when an OutboundPayment changed status to `failed`",
         nullable=True,
-    )
-    posted_at = Column(
+    ),
+    Column(
+        "posted_at",
         Integer,
         comment="Timestamp describing when an OutboundPayment changed status to `posted`",
         nullable=True,
-    )
-    returned_at = Column(
+    ),
+    Column(
+        "returned_at",
         Integer,
         comment="Timestamp describing when an OutboundPayment changed status to `returned`",
         nullable=True,
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "TreasuryOutboundPaymentsResourceOutboundPaymentResourceStatusTransitions(canceled_at={canceled_at!r}, failed_at={failed_at!r}, posted_at={posted_at!r}, returned_at={returned_at!r}, id={id!r})".format(
-            canceled_at=self.canceled_at,
-            failed_at=self.failed_at,
-            posted_at=self.posted_at,
-            returned_at=self.returned_at,
-            id=self.id,
-        )
-
-
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
 __all__ = [
-    "treasury_outbound_payments_resource_outbound_payment_resource_status_transitions"
+    "treasury_outbound_payments_resource_outbound_payment_resource_status_transitions.json"
 ]

@@ -1,30 +1,20 @@
-from sqlalchemy import ARRAY, Column, Integer, String
+from sqlalchemy import ARRAY, Column, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class InvoiceItemThresholdReason(Base):
-    __tablename__ = "invoice_item_threshold_reason"
-    line_item_ids = Column(
+InvoiceItemThresholdReason.Json = Table(
+    "invoice_item_threshold_reason.json",
+    metadata,
+    Column(
+        "line_item_ids",
         ARRAY(String),
         comment="The IDs of the line items that triggered the threshold invoice",
         primary_key=True,
-    )
-    usage_gte = Column(
+    ),
+    Column(
+        "usage_gte",
         Integer,
         comment="The quantity threshold boundary that applied to the given line item",
-    )
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "InvoiceItemThresholdReason(line_item_ids={line_item_ids!r}, usage_gte={usage_gte!r})".format(
-            line_item_ids=self.line_item_ids, usage_gte=self.usage_gte
-        )
-
-
-__all__ = ["invoice_item_threshold_reason"]
+    ),
+)
+__all__ = ["invoice_item_threshold_reason.json"]

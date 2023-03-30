@@ -1,34 +1,24 @@
-from sqlalchemy import Column, ForeignKey, Identity, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer, Table
 
-from . import Base
+from . import metadata
 
-
-class PaymentLinksResourceCustomText(Base):
-    __tablename__ = "payment_links_resource_custom_text"
-    shipping_address = Column(
-        Integer,
-        ForeignKey("payment_links_resource_custom_text_position.id"),
+PaymentLinksResourceCustomText.Json = Table(
+    "payment_links_resource_custom_text.json",
+    metadata,
+    Column(
+        "shipping_address",
+        PaymentLinksResourceCustomTextPosition,
+        ForeignKey("PaymentLinksResourceCustomTextPosition"),
         comment="Custom text that should be displayed alongside shipping address collection",
         nullable=True,
-    )
-    submit = Column(
-        Integer,
-        ForeignKey("payment_links_resource_custom_text_position.id"),
+    ),
+    Column(
+        "submit",
+        PaymentLinksResourceCustomTextPosition,
+        ForeignKey("PaymentLinksResourceCustomTextPosition"),
         comment="Custom text that should be displayed alongside the payment confirmation button",
         nullable=True,
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "PaymentLinksResourceCustomText(shipping_address={shipping_address!r}, submit={submit!r}, id={id!r})".format(
-            shipping_address=self.shipping_address, submit=self.submit, id=self.id
-        )
-
-
-__all__ = ["payment_links_resource_custom_text"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["payment_links_resource_custom_text.json"]

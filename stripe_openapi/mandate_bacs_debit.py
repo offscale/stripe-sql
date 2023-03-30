@@ -1,37 +1,25 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class MandateBacsDebit(Base):
-    __tablename__ = "mandate_bacs_debit"
-    network_status = Column(
+MandateBacsDebit.Json = Table(
+    "mandate_bacs_debit.json",
+    metadata,
+    Column(
+        "network_status",
         String,
         comment="The status of the mandate on the Bacs network. Can be one of `pending`, `revoked`, `refused`, or `accepted`",
-    )
-    reference = Column(
+    ),
+    Column(
+        "reference",
         String,
         comment="The unique reference identifying the mandate on the Bacs network",
-    )
-    url = Column(
+    ),
+    Column(
+        "url",
         String,
         comment="The URL that will contain the mandate that the customer has signed",
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "MandateBacsDebit(network_status={network_status!r}, reference={reference!r}, url={url!r}, id={id!r})".format(
-            network_status=self.network_status,
-            reference=self.reference,
-            url=self.url,
-            id=self.id,
-        )
-
-
-__all__ = ["mandate_bacs_debit"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["mandate_bacs_debit.json"]

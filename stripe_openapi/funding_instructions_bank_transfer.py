@@ -1,31 +1,17 @@
-from sqlalchemy import Column, Identity, Integer, String, list
+from sqlalchemy import Column, Identity, Integer, String, Table, list
 
-from . import Base
+from . import metadata
 
-
-class FundingInstructionsBankTransfer(Base):
-    __tablename__ = "funding_instructions_bank_transfer"
-    country = Column(String, comment="The country of the bank account to fund")
-    financial_addresses = Column(
+FundingInstructionsBankTransfer.Json = Table(
+    "funding_instructions_bank_transfer.json",
+    metadata,
+    Column("country", String, comment="The country of the bank account to fund"),
+    Column(
+        "financial_addresses",
         list,
         comment="A list of financial addresses that can be used to fund a particular balance",
-    )
-    type = Column(String, comment="The bank_transfer type")
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "FundingInstructionsBankTransfer(country={country!r}, financial_addresses={financial_addresses!r}, type={type!r}, id={id!r})".format(
-            country=self.country,
-            financial_addresses=self.financial_addresses,
-            type=self.type,
-            id=self.id,
-        )
-
-
-__all__ = ["funding_instructions_bank_transfer"]
+    ),
+    Column("type", String, comment="The bank_transfer type"),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["funding_instructions_bank_transfer.json"]

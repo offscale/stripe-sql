@@ -1,34 +1,16 @@
-from sqlalchemy import Column, Identity, Integer, String, list
+from sqlalchemy import Column, Identity, Integer, String, Table, list
 
-from . import Base
+from . import metadata
 
-
-class Level3(Base):
-    __tablename__ = "level3"
-    customer_reference = Column(String, nullable=True)
-    line_items = Column(list)
-    merchant_reference = Column(String)
-    shipping_address_zip = Column(String, nullable=True)
-    shipping_amount = Column(Integer, nullable=True)
-    shipping_from_zip = Column(String, nullable=True)
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "Level3(customer_reference={customer_reference!r}, line_items={line_items!r}, merchant_reference={merchant_reference!r}, shipping_address_zip={shipping_address_zip!r}, shipping_amount={shipping_amount!r}, shipping_from_zip={shipping_from_zip!r}, id={id!r})".format(
-            customer_reference=self.customer_reference,
-            line_items=self.line_items,
-            merchant_reference=self.merchant_reference,
-            shipping_address_zip=self.shipping_address_zip,
-            shipping_amount=self.shipping_amount,
-            shipping_from_zip=self.shipping_from_zip,
-            id=self.id,
-        )
-
-
-__all__ = ["level3"]
+Level3.Json = Table(
+    "level3.json",
+    metadata,
+    Column("customer_reference", String, nullable=True),
+    Column("line_items", list),
+    Column("merchant_reference", String),
+    Column("shipping_address_zip", String, nullable=True),
+    Column("shipping_amount", Integer, nullable=True),
+    Column("shipping_from_zip", String, nullable=True),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["level3.json"]

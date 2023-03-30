@@ -1,32 +1,24 @@
-from sqlalchemy import Column, ForeignKey, Identity, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer, Table
 
-from . import Base
+from stripe_openapi.account import Account
 
+from . import metadata
 
-class ChargeTransferData(Base):
-    __tablename__ = "charge_transfer_data"
-    amount = Column(
+ChargeTransferData.Json = Table(
+    "charge_transfer_data.json",
+    metadata,
+    Column(
+        "amount",
         Integer,
         comment="The amount transferred to the destination account, if specified. By default, the entire charge amount is transferred to the destination account",
         nullable=True,
-    )
-    destination = Column(
+    ),
+    Column(
+        "destination",
         Account,
         ForeignKey("Account"),
         comment="ID of an existing, connected Stripe account to transfer funds to if `transfer_data` was specified in the charge request",
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "ChargeTransferData(amount={amount!r}, destination={destination!r}, id={id!r})".format(
-            amount=self.amount, destination=self.destination, id=self.id
-        )
-
-
-__all__ = ["charge_transfer_data"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["charge_transfer_data.json"]

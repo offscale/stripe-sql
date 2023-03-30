@@ -1,36 +1,28 @@
-from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class SetupIntentPaymentMethodOptionsAcssDebit(Base):
-    __tablename__ = "setup_intent_payment_method_options_acss_debit"
-    currency = Column(
-        String, comment="Currency supported by the bank account", nullable=True
-    )
-    mandate_options = Column(
-        Integer,
-        ForeignKey("setup_intent_payment_method_options_mandate_options_acss_debit.id"),
+SetupIntentPaymentMethodOptionsAcssDebit.Json = Table(
+    "setup_intent_payment_method_options_acss_debit.json",
+    metadata,
+    Column(
+        "currency",
+        String,
+        comment="Currency supported by the bank account",
         nullable=True,
-    )
-    verification_method = Column(
-        String, comment="Bank account verification method", nullable=True
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "SetupIntentPaymentMethodOptionsAcssDebit(currency={currency!r}, mandate_options={mandate_options!r}, verification_method={verification_method!r}, id={id!r})".format(
-            currency=self.currency,
-            mandate_options=self.mandate_options,
-            verification_method=self.verification_method,
-            id=self.id,
-        )
-
-
-__all__ = ["setup_intent_payment_method_options_acss_debit"]
+    ),
+    Column(
+        "mandate_options",
+        SetupIntentPaymentMethodOptionsMandateOptionsAcssDebit,
+        ForeignKey("SetupIntentPaymentMethodOptionsMandateOptionsAcssDebit"),
+        nullable=True,
+    ),
+    Column(
+        "verification_method",
+        String,
+        comment="Bank account verification method",
+        nullable=True,
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["setup_intent_payment_method_options_acss_debit.json"]

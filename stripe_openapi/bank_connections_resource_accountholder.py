@@ -1,35 +1,30 @@
-from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table
 
-from . import Base
+from stripe_openapi.account import Account
+from stripe_openapi.customer import Customer
 
+from . import metadata
 
-class BankConnectionsResourceAccountholder(Base):
-    __tablename__ = "bank_connections_resource_accountholder"
-    account = Column(
+BankConnectionsResourceAccountholder.Json = Table(
+    "bank_connections_resource_accountholder.json",
+    metadata,
+    Column(
+        "account",
         Account,
         ForeignKey("Account"),
         comment="The ID of the Stripe account this account belongs to. Should only be present if `account_holder.type` is `account`",
         nullable=True,
-    )
-    customer = Column(
+    ),
+    Column(
+        "customer",
         Customer,
         ForeignKey("Customer"),
         comment="ID of the Stripe customer this account belongs to. Present if and only if `account_holder.type` is `customer`",
         nullable=True,
-    )
-    type = Column(String, comment="Type of account holder that this account belongs to")
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "BankConnectionsResourceAccountholder(account={account!r}, customer={customer!r}, type={type!r}, id={id!r})".format(
-            account=self.account, customer=self.customer, type=self.type, id=self.id
-        )
-
-
-__all__ = ["bank_connections_resource_accountholder"]
+    ),
+    Column(
+        "type", String, comment="Type of account holder that this account belongs to"
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["bank_connections_resource_accountholder.json"]

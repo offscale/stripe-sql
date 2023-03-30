@@ -1,32 +1,22 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class PaymentMethodIdeal(Base):
-    __tablename__ = "payment_method_ideal"
-    bank = Column(
+PaymentMethodIdeal.Json = Table(
+    "payment_method_ideal.json",
+    metadata,
+    Column(
+        "bank",
         String,
-        comment="The customer's bank, if provided. Can be one of `abn_amro`, `asn_bank`, `bunq`, `handelsbanken`, `ing`, `knab`, `moneyou`, `rabobank`, `regiobank`, `revolut`, `sns_bank`, `triodos_bank`, or `van_lanschot`",
+        comment="The customer's bank, if provided. Can be one of `abn_amro`, `asn_bank`, `bunq`, `handelsbanken`, `ing`, `knab`, `moneyou`, `rabobank`, `regiobank`, `revolut`, `sns_bank`, `triodos_bank`, `van_lanschot`, or `yoursafe`",
         nullable=True,
-    )
-    bic = Column(
+    ),
+    Column(
+        "bic",
         String,
         comment="The Bank Identifier Code of the customer's bank, if the bank was provided",
         nullable=True,
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "PaymentMethodIdeal(bank={bank!r}, bic={bic!r}, id={id!r})".format(
-            bank=self.bank, bic=self.bic, id=self.id
-        )
-
-
-__all__ = ["payment_method_ideal"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["payment_method_ideal.json"]

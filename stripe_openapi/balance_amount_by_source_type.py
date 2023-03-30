@@ -1,25 +1,13 @@
-from sqlalchemy import Column, Identity, Integer
+from sqlalchemy import Column, Identity, Integer, Table
 
-from . import Base
+from . import metadata
 
-
-class BalanceAmountBySourceType(Base):
-    __tablename__ = "balance_amount_by_source_type"
-    bank_account = Column(Integer, comment="Amount for bank account", nullable=True)
-    card = Column(Integer, comment="Amount for card", nullable=True)
-    fpx = Column(Integer, comment="Amount for FPX", nullable=True)
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "BalanceAmountBySourceType(bank_account={bank_account!r}, card={card!r}, fpx={fpx!r}, id={id!r})".format(
-            bank_account=self.bank_account, card=self.card, fpx=self.fpx, id=self.id
-        )
-
-
-__all__ = ["balance_amount_by_source_type"]
+BalanceAmountBySourceType.Json = Table(
+    "balance_amount_by_source_type.json",
+    metadata,
+    Column("bank_account", Integer, comment="Amount for bank account", nullable=True),
+    Column("card", Integer, comment="Amount for card", nullable=True),
+    Column("fpx", Integer, comment="Amount for FPX", nullable=True),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["balance_amount_by_source_type.json"]

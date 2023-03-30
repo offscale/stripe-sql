@@ -1,52 +1,40 @@
-from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class LegalEntityPersonVerification(Base):
-    __tablename__ = "legal_entity_person_verification"
-    additional_document = Column(
-        Integer,
-        ForeignKey("legal_entity_person_verification_document.id"),
+LegalEntityPersonVerification.Json = Table(
+    "legal_entity_person_verification.json",
+    metadata,
+    Column(
+        "additional_document",
+        LegalEntityPersonVerificationDocument,
+        ForeignKey("LegalEntityPersonVerificationDocument"),
         comment="A document showing address, either a passport, local ID card, or utility bill from a well-known utility company",
         nullable=True,
-    )
-    details = Column(
+    ),
+    Column(
+        "details",
         String,
         comment='A user-displayable string describing the verification state for the person. For example, this may say "Provided identity information could not be verified"',
         nullable=True,
-    )
-    details_code = Column(
+    ),
+    Column(
+        "details_code",
         String,
         comment="One of `document_address_mismatch`, `document_dob_mismatch`, `document_duplicate_type`, `document_id_number_mismatch`, `document_name_mismatch`, `document_nationality_mismatch`, `failed_keyed_identity`, or `failed_other`. A machine-readable code specifying the verification state for the person",
         nullable=True,
-    )
-    document = Column(
-        Integer,
-        ForeignKey("legal_entity_person_verification_document.id"),
+    ),
+    Column(
+        "document",
+        LegalEntityPersonVerificationDocument,
+        ForeignKey("LegalEntityPersonVerificationDocument"),
         nullable=True,
-    )
-    status = Column(
+    ),
+    Column(
+        "status",
         String,
         comment="The state of verification for the person. Possible values are `unverified`, `pending`, or `verified`",
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "LegalEntityPersonVerification(additional_document={additional_document!r}, details={details!r}, details_code={details_code!r}, document={document!r}, status={status!r}, id={id!r})".format(
-            additional_document=self.additional_document,
-            details=self.details,
-            details_code=self.details_code,
-            document=self.document,
-            status=self.status,
-            id=self.id,
-        )
-
-
-__all__ = ["legal_entity_person_verification"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["legal_entity_person_verification.json"]

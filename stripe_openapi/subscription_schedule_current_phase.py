@@ -1,28 +1,20 @@
-from sqlalchemy import Column, Identity, Integer
+from sqlalchemy import Column, Identity, Integer, Table
 
-from . import Base
+from . import metadata
 
-
-class SubscriptionScheduleCurrentPhase(Base):
-    __tablename__ = "subscription_schedule_current_phase"
-    end_date = Column(
-        Integer, comment="The end of this phase of the subscription schedule"
-    )
-    start_date = Column(
-        Integer, comment="The start of this phase of the subscription schedule"
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "SubscriptionScheduleCurrentPhase(end_date={end_date!r}, start_date={start_date!r}, id={id!r})".format(
-            end_date=self.end_date, start_date=self.start_date, id=self.id
-        )
-
-
-__all__ = ["subscription_schedule_current_phase"]
+SubscriptionScheduleCurrentPhase.Json = Table(
+    "subscription_schedule_current_phase.json",
+    metadata,
+    Column(
+        "end_date",
+        Integer,
+        comment="The end of this phase of the subscription schedule",
+    ),
+    Column(
+        "start_date",
+        Integer,
+        comment="The start of this phase of the subscription schedule",
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["subscription_schedule_current_phase.json"]

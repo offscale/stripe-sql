@@ -1,28 +1,17 @@
-from sqlalchemy import Column, ForeignKey, Identity, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer, Table
 
-from . import Base
+from . import metadata
 
-
-class SetupAttemptPaymentMethodDetailsCard(Base):
-    __tablename__ = "setup_attempt_payment_method_details_card"
-    three_d_secure = Column(
-        Integer,
-        ForeignKey("three_d_secure_details.id"),
+SetupAttemptPaymentMethodDetailsCard.Json = Table(
+    "setup_attempt_payment_method_details_card.json",
+    metadata,
+    Column(
+        "three_d_secure",
+        ThreeDSecureDetails,
+        ForeignKey("ThreeDSecureDetails"),
         comment="Populated if this authorization used 3D Secure authentication",
         nullable=True,
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "SetupAttemptPaymentMethodDetailsCard(three_d_secure={three_d_secure!r}, id={id!r})".format(
-            three_d_secure=self.three_d_secure, id=self.id
-        )
-
-
-__all__ = ["setup_attempt_payment_method_details_card"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["setup_attempt_payment_method_details_card.json"]

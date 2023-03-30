@@ -1,49 +1,46 @@
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, Table
 
-from . import Base
+from . import metadata
 
-
-class PaymentMethodDetailsAcssDebit(Base):
-    __tablename__ = "payment_method_details_acss_debit"
-    bank_name = Column(
+PaymentMethodDetailsAcssDebit.Json = Table(
+    "payment_method_details_acss_debit.json",
+    metadata,
+    Column(
+        "bank_name",
         String,
         comment="Name of the bank associated with the bank account",
         nullable=True,
         primary_key=True,
-    )
-    fingerprint = Column(
+    ),
+    Column(
+        "fingerprint",
         String,
         comment="Uniquely identifies this particular bank account. You can use this attribute to check whether two bank accounts are the same",
         nullable=True,
-    )
-    institution_number = Column(
-        String, comment="Institution number of the bank account", nullable=True
-    )
-    last4 = Column(
-        String, comment="Last four digits of the bank account number", nullable=True
-    )
-    mandate = Column(
-        String, comment="ID of the mandate used to make this payment", nullable=True
-    )
-    transit_number = Column(
-        String, comment="Transit number of the bank account", nullable=True
-    )
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "PaymentMethodDetailsAcssDebit(bank_name={bank_name!r}, fingerprint={fingerprint!r}, institution_number={institution_number!r}, last4={last4!r}, mandate={mandate!r}, transit_number={transit_number!r})".format(
-            bank_name=self.bank_name,
-            fingerprint=self.fingerprint,
-            institution_number=self.institution_number,
-            last4=self.last4,
-            mandate=self.mandate,
-            transit_number=self.transit_number,
-        )
-
-
-__all__ = ["payment_method_details_acss_debit"]
+    ),
+    Column(
+        "institution_number",
+        String,
+        comment="Institution number of the bank account",
+        nullable=True,
+    ),
+    Column(
+        "last4",
+        String,
+        comment="Last four digits of the bank account number",
+        nullable=True,
+    ),
+    Column(
+        "mandate",
+        String,
+        comment="ID of the mandate used to make this payment",
+        nullable=True,
+    ),
+    Column(
+        "transit_number",
+        String,
+        comment="Transit number of the bank account",
+        nullable=True,
+    ),
+)
+__all__ = ["payment_method_details_acss_debit.json"]

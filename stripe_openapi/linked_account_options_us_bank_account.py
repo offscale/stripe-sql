@@ -1,32 +1,22 @@
-from sqlalchemy import ARRAY, Column, Identity, Integer, String
+from sqlalchemy import ARRAY, Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class LinkedAccountOptionsUsBankAccount(Base):
-    __tablename__ = "linked_account_options_us_bank_account"
-    permissions = Column(
+LinkedAccountOptionsUsBankAccount.Json = Table(
+    "linked_account_options_us_bank_account.json",
+    metadata,
+    Column(
+        "permissions",
         ARRAY(String),
         comment="The list of permissions to request. The `payment_method` permission must be included",
         nullable=True,
-    )
-    return_url = Column(
+    ),
+    Column(
+        "return_url",
         String,
         comment="For webview integrations only. Upon completing OAuth login in the native browser, the user will be redirected to this URL to return to your app",
         nullable=True,
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "LinkedAccountOptionsUsBankAccount(permissions={permissions!r}, return_url={return_url!r}, id={id!r})".format(
-            permissions=self.permissions, return_url=self.return_url, id=self.id
-        )
-
-
-__all__ = ["linked_account_options_us_bank_account"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["linked_account_options_us_bank_account.json"]

@@ -1,44 +1,27 @@
-from sqlalchemy import Column, Identity, Integer, String, list
+from sqlalchemy import Column, Identity, Integer, String, Table, list
 
-from . import Base
+from . import metadata
 
-
-class TerminalReaderReaderResourceCart(Base):
-    """
-    Represents a cart to be displayed on the reader
-    """
-
-    __tablename__ = "terminal_reader_reader_resource_cart"
-    currency = Column(
+TerminalReaderReaderResourceCart.Json = Table(
+    "terminal_reader_reader_resource_cart.json",
+    metadata,
+    Column(
+        "currency",
         String,
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",
-    )
-    line_items = Column(list, comment="List of line items in the cart")
-    tax = Column(
+    ),
+    Column("line_items", list, comment="List of line items in the cart"),
+    Column(
+        "tax",
         Integer,
         comment="Tax amount for the entire cart. A positive integer in the [smallest currency unit](https://stripe.com/docs/currencies#zero-decimal)",
         nullable=True,
-    )
-    total = Column(
+    ),
+    Column(
+        "total",
         Integer,
         comment="Total amount for the entire cart, including tax. A positive integer in the [smallest currency unit](https://stripe.com/docs/currencies#zero-decimal)",
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "TerminalReaderReaderResourceCart(currency={currency!r}, line_items={line_items!r}, tax={tax!r}, total={total!r}, id={id!r})".format(
-            currency=self.currency,
-            line_items=self.line_items,
-            tax=self.tax,
-            total=self.total,
-            id=self.id,
-        )
-
-
-__all__ = ["terminal_reader_reader_resource_cart"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["terminal_reader_reader_resource_cart.json"]

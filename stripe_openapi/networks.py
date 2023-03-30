@@ -1,26 +1,14 @@
-from sqlalchemy import ARRAY, Column, Identity, Integer, String
+from sqlalchemy import ARRAY, Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class Networks(Base):
-    __tablename__ = "networks"
-    available = Column(ARRAY(String), comment="All available networks for the card")
-    preferred = Column(
-        String, comment="The preferred network for the card", nullable=True
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "Networks(available={available!r}, preferred={preferred!r}, id={id!r})".format(
-            available=self.available, preferred=self.preferred, id=self.id
-        )
-
-
-__all__ = ["networks"]
+Networks.Json = Table(
+    "networks.json",
+    metadata,
+    Column("available", ARRAY(String), comment="All available networks for the card"),
+    Column(
+        "preferred", String, comment="The preferred network for the card", nullable=True
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["networks.json"]

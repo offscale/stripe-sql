@@ -1,44 +1,32 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class TransferSchedule(Base):
-    __tablename__ = "transfer_schedule"
-    delay_days = Column(
+TransferSchedule.Json = Table(
+    "transfer_schedule.json",
+    metadata,
+    Column(
+        "delay_days",
         Integer,
         comment="The number of days charges for the account will be held before being paid out",
-    )
-    interval = Column(
+    ),
+    Column(
+        "interval",
         String,
         comment="How frequently funds will be paid out. One of `manual` (payouts only created via API call), `daily`, `weekly`, or `monthly`",
-    )
-    monthly_anchor = Column(
+    ),
+    Column(
+        "monthly_anchor",
         Integer,
         comment="The day of the month funds will be paid out. Only shown if `interval` is monthly. Payouts scheduled between the 29th and 31st of the month are sent on the last day of shorter months",
         nullable=True,
-    )
-    weekly_anchor = Column(
+    ),
+    Column(
+        "weekly_anchor",
         String,
         comment="The day of the week funds will be paid out, of the style 'monday', 'tuesday', etc. Only shown if `interval` is weekly",
         nullable=True,
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "TransferSchedule(delay_days={delay_days!r}, interval={interval!r}, monthly_anchor={monthly_anchor!r}, weekly_anchor={weekly_anchor!r}, id={id!r})".format(
-            delay_days=self.delay_days,
-            interval=self.interval,
-            monthly_anchor=self.monthly_anchor,
-            weekly_anchor=self.weekly_anchor,
-            id=self.id,
-        )
-
-
-__all__ = ["transfer_schedule"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["transfer_schedule.json"]

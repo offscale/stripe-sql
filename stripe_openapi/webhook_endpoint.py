@@ -1,87 +1,65 @@
-from sqlalchemy import ARRAY, JSON, Boolean, Column, Integer, String
+from sqlalchemy import ARRAY, JSON, Boolean, Column, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class WebhookEndpoint(Base):
-    """
-    You can configure [webhook endpoints](https://stripe.com/docs/webhooks/) via the API to be
-
-    notified about events that happen in your Stripe account or connected
-    accounts.
-
-    Most users configure webhooks from [the dashboard](https://dashboard.stripe.com/webhooks), which provides a user interface for registering and testing your webhook endpoints.
-
-    Related guide: [Setting up Webhooks](https://stripe.com/docs/webhooks/configure).
-
-    """
-
-    __tablename__ = "webhook_endpoint"
-    api_version = Column(
+WebhookEndpoint.Json = Table(
+    "webhook_endpoint.json",
+    metadata,
+    Column(
+        "api_version",
         String,
         comment="The API version events are rendered as for this webhook endpoint",
         nullable=True,
-    )
-    application = Column(
-        String, comment="The ID of the associated Connect application", nullable=True
-    )
-    created = Column(
+    ),
+    Column(
+        "application",
+        String,
+        comment="The ID of the associated Connect application",
+        nullable=True,
+    ),
+    Column(
+        "created",
         Integer,
         comment="Time at which the object was created. Measured in seconds since the Unix epoch",
-    )
-    description = Column(
+    ),
+    Column(
+        "description",
         String,
         comment="An optional description of what the webhook is used for",
         nullable=True,
-    )
-    enabled_events = Column(
+    ),
+    Column(
+        "enabled_events",
         ARRAY(String),
         comment="The list of events to enable for this endpoint. `['*']` indicates that all events are enabled, except those that require explicit selection",
-    )
-    id = Column(String, comment="Unique identifier for the object", primary_key=True)
-    livemode = Column(
+    ),
+    Column("id", String, comment="Unique identifier for the object", primary_key=True),
+    Column(
+        "livemode",
         Boolean,
         comment="Has the value `true` if the object exists in live mode or the value `false` if the object exists in test mode",
-    )
-    metadata = Column(
+    ),
+    Column(
+        "metadata",
         JSON,
         comment="Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format",
-    )
-    object = Column(
+    ),
+    Column(
+        "object",
         String,
         comment="String representing the object's type. Objects of the same type share the same value",
-    )
-    secret = Column(
+    ),
+    Column(
+        "secret",
         String,
         comment="The endpoint's secret, used to generate [webhook signatures](https://stripe.com/docs/webhooks/signatures). Only returned at creation",
         nullable=True,
-    )
-    status = Column(
-        String, comment="The status of the webhook. It can be `enabled` or `disabled`"
-    )
-    url = Column(String, comment="The URL of the webhook endpoint")
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "WebhookEndpoint(api_version={api_version!r}, application={application!r}, created={created!r}, description={description!r}, enabled_events={enabled_events!r}, id={id!r}, livemode={livemode!r}, metadata={metadata!r}, object={object!r}, secret={secret!r}, status={status!r}, url={url!r})".format(
-            api_version=self.api_version,
-            application=self.application,
-            created=self.created,
-            description=self.description,
-            enabled_events=self.enabled_events,
-            id=self.id,
-            livemode=self.livemode,
-            metadata=self.metadata,
-            object=self.object,
-            secret=self.secret,
-            status=self.status,
-            url=self.url,
-        )
-
-
-__all__ = ["webhook_endpoint"]
+    ),
+    Column(
+        "status",
+        String,
+        comment="The status of the webhook. It can be `enabled` or `disabled`",
+    ),
+    Column("url", String, comment="The URL of the webhook endpoint"),
+)
+__all__ = ["webhook_endpoint.json"]

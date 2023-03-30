@@ -1,37 +1,21 @@
-from sqlalchemy import Boolean, Column, Identity, Integer, String, list
+from sqlalchemy import Boolean, Column, Identity, Integer, String, Table, list
 
-from . import Base
+from . import metadata
 
-
-class TreasuryFinancialAccountsResourceAchToggleSettings(Base):
-    """
-    Toggle settings for enabling/disabling an ACH specific feature
-    """
-
-    __tablename__ = "treasury_financial_accounts_resource_ach_toggle_settings"
-    requested = Column(
-        Boolean, comment="Whether the FinancialAccount should have the Feature"
-    )
-    status = Column(String, comment="Whether the Feature is operational")
-    status_details = Column(
+TreasuryFinancialAccountsResourceAchToggleSettings.Json = Table(
+    "treasury_financial_accounts_resource_ach_toggle_settings.json",
+    metadata,
+    Column(
+        "requested",
+        Boolean,
+        comment="Whether the FinancialAccount should have the Feature",
+    ),
+    Column("status", String, comment="Whether the Feature is operational"),
+    Column(
+        "status_details",
         list,
         comment="Additional details; includes at least one entry when the status is not `active`",
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "TreasuryFinancialAccountsResourceAchToggleSettings(requested={requested!r}, status={status!r}, status_details={status_details!r}, id={id!r})".format(
-            requested=self.requested,
-            status=self.status,
-            status_details=self.status_details,
-            id=self.id,
-        )
-
-
-__all__ = ["treasury_financial_accounts_resource_ach_toggle_settings"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["treasury_financial_accounts_resource_ach_toggle_settings.json"]

@@ -1,38 +1,30 @@
-from sqlalchemy import Column, Identity, Integer, list
+from sqlalchemy import Column, Identity, Integer, Table, list
 
-from . import Base
+from . import metadata
 
-
-class TerminalConfigurationConfigurationResourceCurrencySpecificConfig(Base):
-    __tablename__ = (
-        "terminal_configuration_configuration_resource_currency_specific_config"
-    )
-    fixed_amounts = Column(
-        list, comment="Fixed amounts displayed when collecting a tip", nullable=True
-    )
-    percentages = Column(
-        list, comment="Percentages displayed when collecting a tip", nullable=True
-    )
-    smart_tip_threshold = Column(
+TerminalConfigurationConfigurationResourceCurrencySpecificConfig.Json = Table(
+    "terminal_configuration_configuration_resource_currency_specific_config.json",
+    metadata,
+    Column(
+        "fixed_amounts",
+        list,
+        comment="Fixed amounts displayed when collecting a tip",
+        nullable=True,
+    ),
+    Column(
+        "percentages",
+        list,
+        comment="Percentages displayed when collecting a tip",
+        nullable=True,
+    ),
+    Column(
+        "smart_tip_threshold",
         Integer,
         comment="Below this amount, fixed amounts will be displayed; above it, percentages will be displayed",
         nullable=True,
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "TerminalConfigurationConfigurationResourceCurrencySpecificConfig(fixed_amounts={fixed_amounts!r}, percentages={percentages!r}, smart_tip_threshold={smart_tip_threshold!r}, id={id!r})".format(
-            fixed_amounts=self.fixed_amounts,
-            percentages=self.percentages,
-            smart_tip_threshold=self.smart_tip_threshold,
-            id=self.id,
-        )
-
-
-__all__ = ["terminal_configuration_configuration_resource_currency_specific_config"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = [
+    "terminal_configuration_configuration_resource_currency_specific_config.json"
+]

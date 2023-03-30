@@ -1,50 +1,38 @@
-from sqlalchemy import Column, ForeignKey, Identity, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer, Table
 
-from . import Base
+from . import metadata
 
-
-class PaymentIntentNextActionKonbiniStores(Base):
-    __tablename__ = "payment_intent_next_action_konbini_stores"
-    familymart = Column(
-        Integer,
-        ForeignKey("payment_intent_next_action_konbini_familymart.id"),
+PaymentIntentNextActionKonbiniStores.Json = Table(
+    "payment_intent_next_action_konbini_stores.json",
+    metadata,
+    Column(
+        "familymart",
+        PaymentIntentNextActionKonbiniFamilymart,
+        ForeignKey("PaymentIntentNextActionKonbiniFamilymart"),
         comment="FamilyMart instruction details",
         nullable=True,
-    )
-    lawson = Column(
-        Integer,
-        ForeignKey("payment_intent_next_action_konbini_lawson.id"),
+    ),
+    Column(
+        "lawson",
+        PaymentIntentNextActionKonbiniLawson,
+        ForeignKey("PaymentIntentNextActionKonbiniLawson"),
         comment="Lawson instruction details",
         nullable=True,
-    )
-    ministop = Column(
-        Integer,
-        ForeignKey("payment_intent_next_action_konbini_ministop.id"),
+    ),
+    Column(
+        "ministop",
+        PaymentIntentNextActionKonbiniMinistop,
+        ForeignKey("PaymentIntentNextActionKonbiniMinistop"),
         comment="Ministop instruction details",
         nullable=True,
-    )
-    seicomart = Column(
-        Integer,
-        ForeignKey("payment_intent_next_action_konbini_seicomart.id"),
+    ),
+    Column(
+        "seicomart",
+        PaymentIntentNextActionKonbiniSeicomart,
+        ForeignKey("PaymentIntentNextActionKonbiniSeicomart"),
         comment="Seicomart instruction details",
         nullable=True,
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "PaymentIntentNextActionKonbiniStores(familymart={familymart!r}, lawson={lawson!r}, ministop={ministop!r}, seicomart={seicomart!r}, id={id!r})".format(
-            familymart=self.familymart,
-            lawson=self.lawson,
-            ministop=self.ministop,
-            seicomart=self.seicomart,
-            id=self.id,
-        )
-
-
-__all__ = ["payment_intent_next_action_konbini_stores"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["payment_intent_next_action_konbini_stores.json"]

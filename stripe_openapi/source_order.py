@@ -1,42 +1,32 @@
-from sqlalchemy import Column, ForeignKey, Identity, Integer, String, list
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table, list
 
-from . import Base
+from stripe_openapi.shipping import Shipping
 
+from . import metadata
 
-class SourceOrder(Base):
-    __tablename__ = "source_order"
-    amount = Column(
+SourceOrder.Json = Table(
+    "source_order.json",
+    metadata,
+    Column(
+        "amount",
         Integer,
         comment="A positive integer in the smallest currency unit (that is, 100 cents for $1.00, or 1 for ¥1, Japanese Yen being a zero-decimal currency) representing the total amount for the order",
-    )
-    currency = Column(
+    ),
+    Column(
+        "currency",
         String,
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",
-    )
-    email = Column(
+    ),
+    Column(
+        "email",
         String,
         comment="The email address of the customer placing the order",
         nullable=True,
-    )
-    items = Column(list, comment="List of items constituting the order", nullable=True)
-    shipping = Column(Shipping, ForeignKey("Shipping"), nullable=True)
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "SourceOrder(amount={amount!r}, currency={currency!r}, email={email!r}, items={items!r}, shipping={shipping!r}, id={id!r})".format(
-            amount=self.amount,
-            currency=self.currency,
-            email=self.email,
-            items=self.items,
-            shipping=self.shipping,
-            id=self.id,
-        )
-
-
-__all__ = ["source_order"]
+    ),
+    Column(
+        "items", list, comment="List of items constituting the order", nullable=True
+    ),
+    Column("shipping", Shipping, ForeignKey("Shipping"), nullable=True),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["source_order.json"]

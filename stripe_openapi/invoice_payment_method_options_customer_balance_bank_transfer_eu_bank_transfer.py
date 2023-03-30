@@ -1,30 +1,17 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class InvoicePaymentMethodOptionsCustomerBalanceBankTransferEuBankTransfer(Base):
-    __tablename__ = (
-        "invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transfer"
-    )
-    country = Column(
+InvoicePaymentMethodOptionsCustomerBalanceBankTransferEuBankTransfer.Json = Table(
+    "invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transfer.json",
+    metadata,
+    Column(
+        "country",
         String,
-        comment="The desired country code of the bank account information. Permitted values include: `DE`, `ES`, `FR`, `IE`, or `NL`",
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "InvoicePaymentMethodOptionsCustomerBalanceBankTransferEuBankTransfer(country={country!r}, id={id!r})".format(
-            country=self.country, id=self.id
-        )
-
-
+        comment="The desired country code of the bank account information. Permitted values include: `BE`, `DE`, `ES`, `FR`, `IE`, or `NL`",
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
 __all__ = [
-    "invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transfer"
+    "invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transfer.json"
 ]

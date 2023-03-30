@@ -1,24 +1,12 @@
-from sqlalchemy import Column, Identity, Integer, list
+from sqlalchemy import Column, Identity, Integer, Table, list
 
-from . import Base
+from . import metadata
 
-
-class PaymentPagesCheckoutSessionTotalDetailsResourceBreakdown(Base):
-    __tablename__ = "payment_pages_checkout_session_total_details_resource_breakdown"
-    discounts = Column(list, comment="The aggregated discounts")
-    taxes = Column(list, comment="The aggregated tax amounts by rate")
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "PaymentPagesCheckoutSessionTotalDetailsResourceBreakdown(discounts={discounts!r}, taxes={taxes!r}, id={id!r})".format(
-            discounts=self.discounts, taxes=self.taxes, id=self.id
-        )
-
-
-__all__ = ["payment_pages_checkout_session_total_details_resource_breakdown"]
+PaymentPagesCheckoutSessionTotalDetailsResourceBreakdown.Json = Table(
+    "payment_pages_checkout_session_total_details_resource_breakdown.json",
+    metadata,
+    Column("discounts", list, comment="The aggregated discounts"),
+    Column("taxes", list, comment="The aggregated tax amounts by rate"),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["payment_pages_checkout_session_total_details_resource_breakdown.json"]

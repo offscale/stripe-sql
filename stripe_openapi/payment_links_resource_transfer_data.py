@@ -1,32 +1,24 @@
-from sqlalchemy import Column, ForeignKey, Identity, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer, Table
 
-from . import Base
+from stripe_openapi.account import Account
 
+from . import metadata
 
-class PaymentLinksResourceTransferData(Base):
-    __tablename__ = "payment_links_resource_transfer_data"
-    amount = Column(
+PaymentLinksResourceTransferData.Json = Table(
+    "payment_links_resource_transfer_data.json",
+    metadata,
+    Column(
+        "amount",
         Integer,
         comment="The amount in %s that will be transferred to the destination account. By default, the entire amount is transferred to the destination",
         nullable=True,
-    )
-    destination = Column(
+    ),
+    Column(
+        "destination",
         Account,
         ForeignKey("Account"),
         comment="The connected account receiving the transfer",
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "PaymentLinksResourceTransferData(amount={amount!r}, destination={destination!r}, id={id!r})".format(
-            amount=self.amount, destination=self.destination, id=self.id
-        )
-
-
-__all__ = ["payment_links_resource_transfer_data"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["payment_links_resource_transfer_data.json"]

@@ -1,35 +1,28 @@
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, Table
 
-from . import Base
+from . import metadata
 
-
-class PaymentMethodDetailsSepaCreditTransfer(Base):
-    __tablename__ = "payment_method_details_sepa_credit_transfer"
-    bank_name = Column(
+PaymentMethodDetailsSepaCreditTransfer.Json = Table(
+    "payment_method_details_sepa_credit_transfer.json",
+    metadata,
+    Column(
+        "bank_name",
         String,
         comment="Name of the bank associated with the bank account",
         nullable=True,
         primary_key=True,
-    )
-    bic = Column(
+    ),
+    Column(
+        "bic",
         String,
         comment="Bank Identifier Code of the bank associated with the bank account",
         nullable=True,
-    )
-    iban = Column(
-        String, comment="IBAN of the bank account to transfer funds to", nullable=True
-    )
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "PaymentMethodDetailsSepaCreditTransfer(bank_name={bank_name!r}, bic={bic!r}, iban={iban!r})".format(
-            bank_name=self.bank_name, bic=self.bic, iban=self.iban
-        )
-
-
-__all__ = ["payment_method_details_sepa_credit_transfer"]
+    ),
+    Column(
+        "iban",
+        String,
+        comment="IBAN of the bank account to transfer funds to",
+        nullable=True,
+    ),
+)
+__all__ = ["payment_method_details_sepa_credit_transfer.json"]

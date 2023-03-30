@@ -1,31 +1,22 @@
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, Table
 
-from . import Base
+from . import metadata
 
-
-class TaxIdVerification(Base):
-    __tablename__ = "tax_id_verification"
-    status = Column(
+TaxIdVerification.Json = Table(
+    "tax_id_verification.json",
+    metadata,
+    Column(
+        "status",
         String,
         comment="Verification status, one of `pending`, `verified`, `unverified`, or `unavailable`",
-    )
-    verified_address = Column(String, comment="Verified address", nullable=True)
-    verified_name = Column(
-        String, comment="Verified name", nullable=True, primary_key=True
-    )
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "TaxIdVerification(status={status!r}, verified_address={verified_address!r}, verified_name={verified_name!r})".format(
-            status=self.status,
-            verified_address=self.verified_address,
-            verified_name=self.verified_name,
-        )
-
-
-__all__ = ["tax_id_verification"]
+    ),
+    Column("verified_address", String, comment="Verified address", nullable=True),
+    Column(
+        "verified_name",
+        String,
+        comment="Verified name",
+        nullable=True,
+        primary_key=True,
+    ),
+)
+__all__ = ["tax_id_verification.json"]

@@ -1,53 +1,42 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Identity, Integer, String
+from sqlalchemy import Boolean, Column, ForeignKey, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class IssuingAuthorizationPendingRequest(Base):
-    __tablename__ = "issuing_authorization_pending_request"
-    amount = Column(
+IssuingAuthorizationPendingRequest.Json = Table(
+    "issuing_authorization_pending_request.json",
+    metadata,
+    Column(
+        "amount",
         Integer,
         comment="The additional amount Stripe will hold if the authorization is approved, in the card's [currency](https://stripe.com/docs/api#issuing_authorization_object-pending-request-currency) and in the [smallest currency unit](https://stripe.com/docs/currencies#zero-decimal)",
-    )
-    amount_details = Column(
-        Integer,
-        ForeignKey("issuing_authorization_amount_details.id"),
+    ),
+    Column(
+        "amount_details",
+        IssuingAuthorizationAmountDetails,
+        ForeignKey("IssuingAuthorizationAmountDetails"),
         comment="Detailed breakdown of amount components. These amounts are denominated in `currency` and in the [smallest currency unit](https://stripe.com/docs/currencies#zero-decimal)",
         nullable=True,
-    )
-    currency = Column(
+    ),
+    Column(
+        "currency",
         String,
         comment="Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)",
-    )
-    is_amount_controllable = Column(
+    ),
+    Column(
+        "is_amount_controllable",
         Boolean,
         comment="If set `true`, you may provide [amount](https://stripe.com/docs/api/issuing/authorizations/approve#approve_issuing_authorization-amount) to control how much to hold for the authorization",
-    )
-    merchant_amount = Column(
+    ),
+    Column(
+        "merchant_amount",
         Integer,
         comment="The amount the merchant is requesting to be authorized in the `merchant_currency`. The amount is in the [smallest currency unit](https://stripe.com/docs/currencies#zero-decimal)",
-    )
-    merchant_currency = Column(
-        String, comment="The local currency the merchant is requesting to authorize"
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "IssuingAuthorizationPendingRequest(amount={amount!r}, amount_details={amount_details!r}, currency={currency!r}, is_amount_controllable={is_amount_controllable!r}, merchant_amount={merchant_amount!r}, merchant_currency={merchant_currency!r}, id={id!r})".format(
-            amount=self.amount,
-            amount_details=self.amount_details,
-            currency=self.currency,
-            is_amount_controllable=self.is_amount_controllable,
-            merchant_amount=self.merchant_amount,
-            merchant_currency=self.merchant_currency,
-            id=self.id,
-        )
-
-
-__all__ = ["issuing_authorization_pending_request"]
+    ),
+    Column(
+        "merchant_currency",
+        String,
+        comment="The local currency the merchant is requesting to authorize",
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["issuing_authorization_pending_request.json"]

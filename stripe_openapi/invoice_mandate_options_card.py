@@ -1,38 +1,28 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class InvoiceMandateOptionsCard(Base):
-    __tablename__ = "invoice_mandate_options_card"
-    amount = Column(
-        Integer, comment="Amount to be charged for future payments", nullable=True
-    )
-    amount_type = Column(
+InvoiceMandateOptionsCard.Json = Table(
+    "invoice_mandate_options_card.json",
+    metadata,
+    Column(
+        "amount",
+        Integer,
+        comment="Amount to be charged for future payments",
+        nullable=True,
+    ),
+    Column(
+        "amount_type",
         String,
         comment="One of `fixed` or `maximum`. If `fixed`, the `amount` param refers to the exact amount to be charged in future payments. If `maximum`, the amount charged can be up to the value passed for the `amount` param",
         nullable=True,
-    )
-    description = Column(
+    ),
+    Column(
+        "description",
         String,
         comment="A description of the mandate or subscription that is meant to be displayed to the customer",
         nullable=True,
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "InvoiceMandateOptionsCard(amount={amount!r}, amount_type={amount_type!r}, description={description!r}, id={id!r})".format(
-            amount=self.amount,
-            amount_type=self.amount_type,
-            description=self.description,
-            id=self.id,
-        )
-
-
-__all__ = ["invoice_mandate_options_card"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["invoice_mandate_options_card.json"]

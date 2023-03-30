@@ -1,26 +1,15 @@
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, Table
 
-from . import Base
+from . import metadata
 
-
-class ReceivedPaymentMethodDetailsFinancialAccount(Base):
-    __tablename__ = "received_payment_method_details_financial_account"
-    id = Column(String, comment="The FinancialAccount ID", primary_key=True)
-    network = Column(
+ReceivedPaymentMethodDetailsFinancialAccount.Json = Table(
+    "received_payment_method_details_financial_account.json",
+    metadata,
+    Column("id", String, comment="The FinancialAccount ID", primary_key=True),
+    Column(
+        "network",
         String,
         comment="The rails the ReceivedCredit was sent over. A FinancialAccount can only send funds over `stripe`",
-    )
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "ReceivedPaymentMethodDetailsFinancialAccount(id={id!r}, network={network!r})".format(
-            id=self.id, network=self.network
-        )
-
-
-__all__ = ["received_payment_method_details_financial_account"]
+    ),
+)
+__all__ = ["received_payment_method_details_financial_account.json"]

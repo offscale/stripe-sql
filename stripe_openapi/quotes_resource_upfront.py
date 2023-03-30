@@ -1,38 +1,29 @@
-from sqlalchemy import JSON, Column, ForeignKey, Identity, Integer
+from sqlalchemy import JSON, Column, ForeignKey, Identity, Integer, Table
 
-from . import Base
+from . import metadata
 
-
-class QuotesResourceUpfront(Base):
-    __tablename__ = "quotes_resource_upfront"
-    amount_subtotal = Column(
-        Integer, comment="Total before any discounts or taxes are applied"
-    )
-    amount_total = Column(
-        Integer, comment="Total after discounts and taxes are applied"
-    )
-    line_items = Column(
+QuotesResourceUpfront.Json = Table(
+    "quotes_resource_upfront.json",
+    metadata,
+    Column(
+        "amount_subtotal",
+        Integer,
+        comment="Total before any discounts or taxes are applied",
+    ),
+    Column(
+        "amount_total", Integer, comment="Total after discounts and taxes are applied"
+    ),
+    Column(
+        "line_items",
         JSON,
         comment="The line items that will appear on the next invoice after this quote is accepted. This does not include pending invoice items that exist on the customer but may still be included in the next invoice",
         nullable=True,
-    )
-    total_details = Column(Integer, ForeignKey("quotes_resource_total_details.id"))
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "QuotesResourceUpfront(amount_subtotal={amount_subtotal!r}, amount_total={amount_total!r}, line_items={line_items!r}, total_details={total_details!r}, id={id!r})".format(
-            amount_subtotal=self.amount_subtotal,
-            amount_total=self.amount_total,
-            line_items=self.line_items,
-            total_details=self.total_details,
-            id=self.id,
-        )
-
-
-__all__ = ["quotes_resource_upfront"]
+    ),
+    Column(
+        "total_details",
+        QuotesResourceTotalDetails,
+        ForeignKey("QuotesResourceTotalDetails"),
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["quotes_resource_upfront.json"]

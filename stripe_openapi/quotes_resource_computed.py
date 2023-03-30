@@ -1,29 +1,18 @@
-from sqlalchemy import Column, ForeignKey, Identity, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer, Table
 
-from . import Base
+from . import metadata
 
-
-class QuotesResourceComputed(Base):
-    __tablename__ = "quotes_resource_computed"
-    recurring = Column(
-        Integer,
-        ForeignKey("quotes_resource_recurring.id"),
+QuotesResourceComputed.Json = Table(
+    "quotes_resource_computed.json",
+    metadata,
+    Column(
+        "recurring",
+        QuotesResourceRecurring,
+        ForeignKey("QuotesResourceRecurring"),
         comment="The definitive totals and line items the customer will be charged on a recurring basis. Takes into account the line items with recurring prices and discounts with `duration=forever` coupons only. Defaults to `null` if no inputted line items with recurring prices",
         nullable=True,
-    )
-    upfront = Column(Integer, ForeignKey("quotes_resource_upfront.id"))
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "QuotesResourceComputed(recurring={recurring!r}, upfront={upfront!r}, id={id!r})".format(
-            recurring=self.recurring, upfront=self.upfront, id=self.id
-        )
-
-
-__all__ = ["quotes_resource_computed"]
+    ),
+    Column("upfront", QuotesResourceUpfront, ForeignKey("QuotesResourceUpfront")),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["quotes_resource_computed.json"]

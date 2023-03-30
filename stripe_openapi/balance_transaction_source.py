@@ -1,20 +1,10 @@
-from sqlalchemy import Column, Identity, Integer
+from sqlalchemy import Column, Identity, Integer, Table
 
-from . import Base
+from . import metadata
 
-
-class BalanceTransactionSource(Base):
-    __tablename__ = "balance_transaction_source"
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "BalanceTransactionSource(id={id!r})".format(id=self.id)
-
-
-__all__ = ["balance_transaction_source"]
+BalanceTransactionSource.Json = Table(
+    "balance_transaction_source.json",
+    metadata,
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["balance_transaction_source.json"]

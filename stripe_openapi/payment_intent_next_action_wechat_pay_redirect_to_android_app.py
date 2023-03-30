@@ -1,38 +1,23 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class PaymentIntentNextActionWechatPayRedirectToAndroidApp(Base):
-    __tablename__ = "payment_intent_next_action_wechat_pay_redirect_to_android_app"
-    app_id = Column(
-        String, comment="app_id is the APP ID registered on WeChat open platform"
-    )
-    nonce_str = Column(String, comment="nonce_str is a random string")
-    package = Column(String, comment="package is static value")
-    partner_id = Column(String, comment="an unique merchant ID assigned by WeChat Pay")
-    prepay_id = Column(String, comment="an unique trading ID assigned by WeChat Pay")
-    sign = Column(String, comment="A signature")
-    timestamp = Column(String, comment="Specifies the current time in epoch format")
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "PaymentIntentNextActionWechatPayRedirectToAndroidApp(app_id={app_id!r}, nonce_str={nonce_str!r}, package={package!r}, partner_id={partner_id!r}, prepay_id={prepay_id!r}, sign={sign!r}, timestamp={timestamp!r}, id={id!r})".format(
-            app_id=self.app_id,
-            nonce_str=self.nonce_str,
-            package=self.package,
-            partner_id=self.partner_id,
-            prepay_id=self.prepay_id,
-            sign=self.sign,
-            timestamp=self.timestamp,
-            id=self.id,
-        )
-
-
-__all__ = ["payment_intent_next_action_wechat_pay_redirect_to_android_app"]
+PaymentIntentNextActionWechatPayRedirectToAndroidApp.Json = Table(
+    "payment_intent_next_action_wechat_pay_redirect_to_android_app.json",
+    metadata,
+    Column(
+        "app_id",
+        String,
+        comment="app_id is the APP ID registered on WeChat open platform",
+    ),
+    Column("nonce_str", String, comment="nonce_str is a random string"),
+    Column("package", String, comment="package is static value"),
+    Column(
+        "partner_id", String, comment="an unique merchant ID assigned by WeChat Pay"
+    ),
+    Column("prepay_id", String, comment="an unique trading ID assigned by WeChat Pay"),
+    Column("sign", String, comment="A signature"),
+    Column("timestamp", String, comment="Specifies the current time in epoch format"),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["payment_intent_next_action_wechat_pay_redirect_to_android_app.json"]

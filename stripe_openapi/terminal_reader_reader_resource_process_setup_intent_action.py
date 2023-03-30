@@ -1,38 +1,22 @@
-from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class TerminalReaderReaderResourceProcessSetupIntentAction(Base):
-    """
-    Represents a reader action to process a setup intent
-    """
-
-    __tablename__ = "terminal_reader_reader_resource_process_setup_intent_action"
-    generated_card = Column(
+TerminalReaderReaderResourceProcessSetupIntentAction.Json = Table(
+    "terminal_reader_reader_resource_process_setup_intent_action.json",
+    metadata,
+    Column(
+        "generated_card",
         String,
         comment="ID of a card PaymentMethod generated from the card_present PaymentMethod that may be attached to a Customer for future transactions. Only present if it was possible to generate a card PaymentMethod",
         nullable=True,
-    )
-    setup_intent = Column(
-        String,
-        ForeignKey("setup_intent.id"),
+    ),
+    Column(
+        "setup_intent",
+        SetupIntent,
+        ForeignKey("SetupIntent"),
         comment="Most recent SetupIntent processed by the reader",
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "TerminalReaderReaderResourceProcessSetupIntentAction(generated_card={generated_card!r}, setup_intent={setup_intent!r}, id={id!r})".format(
-            generated_card=self.generated_card,
-            setup_intent=self.setup_intent,
-            id=self.id,
-        )
-
-
-__all__ = ["terminal_reader_reader_resource_process_setup_intent_action"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["terminal_reader_reader_resource_process_setup_intent_action.json"]

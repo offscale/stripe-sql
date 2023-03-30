@@ -1,34 +1,23 @@
-from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class MandateBlik(Base):
-    __tablename__ = "mandate_blik"
-    expires_after = Column(
-        Integer, comment="Date at which the mandate expires", nullable=True
-    )
-    off_session = Column(
+MandateBlik.Json = Table(
+    "mandate_blik.json",
+    metadata,
+    Column(
+        "expires_after",
         Integer,
-        ForeignKey("mandate_options_off_session_details_blik.id"),
+        comment="Date at which the mandate expires",
         nullable=True,
-    )
-    type = Column(String, comment="Type of the mandate", nullable=True)
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "MandateBlik(expires_after={expires_after!r}, off_session={off_session!r}, type={type!r}, id={id!r})".format(
-            expires_after=self.expires_after,
-            off_session=self.off_session,
-            type=self.type,
-            id=self.id,
-        )
-
-
-__all__ = ["mandate_blik"]
+    ),
+    Column(
+        "off_session",
+        MandateOptionsOffSessionDetailsBlik,
+        ForeignKey("MandateOptionsOffSessionDetailsBlik"),
+        nullable=True,
+    ),
+    Column("type", String, comment="Type of the mandate", nullable=True),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["mandate_blik.json"]

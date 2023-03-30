@@ -1,34 +1,22 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class PaymentLinksResourcePaymentIntentData(Base):
-    __tablename__ = "payment_links_resource_payment_intent_data"
-    capture_method = Column(
+PaymentLinksResourcePaymentIntentData.Json = Table(
+    "payment_links_resource_payment_intent_data.json",
+    metadata,
+    Column(
+        "capture_method",
         String,
         comment="Indicates when the funds will be captured from the customer's account",
         nullable=True,
-    )
-    setup_future_usage = Column(
+    ),
+    Column(
+        "setup_future_usage",
         String,
         comment="Indicates that you intend to make future payments with the payment method collected during checkout",
         nullable=True,
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "PaymentLinksResourcePaymentIntentData(capture_method={capture_method!r}, setup_future_usage={setup_future_usage!r}, id={id!r})".format(
-            capture_method=self.capture_method,
-            setup_future_usage=self.setup_future_usage,
-            id=self.id,
-        )
-
-
-__all__ = ["payment_links_resource_payment_intent_data"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["payment_links_resource_payment_intent_data.json"]

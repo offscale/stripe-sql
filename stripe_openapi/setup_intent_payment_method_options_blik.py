@@ -1,27 +1,16 @@
-from sqlalchemy import Column, ForeignKey, Identity, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer, Table
 
-from . import Base
+from . import metadata
 
-
-class SetupIntentPaymentMethodOptionsBlik(Base):
-    __tablename__ = "setup_intent_payment_method_options_blik"
-    mandate_options = Column(
-        Integer,
-        ForeignKey("setup_intent_payment_method_options_mandate_options_blik.id"),
+SetupIntentPaymentMethodOptionsBlik.Json = Table(
+    "setup_intent_payment_method_options_blik.json",
+    metadata,
+    Column(
+        "mandate_options",
+        SetupIntentPaymentMethodOptionsMandateOptionsBlik,
+        ForeignKey("SetupIntentPaymentMethodOptionsMandateOptionsBlik"),
         nullable=True,
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "SetupIntentPaymentMethodOptionsBlik(mandate_options={mandate_options!r}, id={id!r})".format(
-            mandate_options=self.mandate_options, id=self.id
-        )
-
-
-__all__ = ["setup_intent_payment_method_options_blik"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["setup_intent_payment_method_options_blik.json"]

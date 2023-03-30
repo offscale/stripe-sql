@@ -1,26 +1,12 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class SourceTypeEps(Base):
-    __tablename__ = "source_type_eps"
-    reference = Column(String, nullable=True)
-    statement_descriptor = Column(String, nullable=True)
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "SourceTypeEps(reference={reference!r}, statement_descriptor={statement_descriptor!r}, id={id!r})".format(
-            reference=self.reference,
-            statement_descriptor=self.statement_descriptor,
-            id=self.id,
-        )
-
-
-__all__ = ["source_type_eps"]
+SourceTypeEps.Json = Table(
+    "source_type_eps.json",
+    metadata,
+    Column("reference", String, nullable=True),
+    Column("statement_descriptor", String, nullable=True),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["source_type_eps.json"]

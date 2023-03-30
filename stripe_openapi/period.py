@@ -1,32 +1,22 @@
-from sqlalchemy import Column, Identity, Integer
+from sqlalchemy import Column, Identity, Integer, Table
 
-from . import Base
+from . import metadata
 
-
-class Period(Base):
-    __tablename__ = "period"
-    end = Column(
+Period.Json = Table(
+    "period.json",
+    metadata,
+    Column(
+        "end",
         Integer,
         comment="The end date of this usage period. All usage up to and including this point in time is included",
         nullable=True,
-    )
-    start = Column(
+    ),
+    Column(
+        "start",
         Integer,
         comment="The start date of this usage period. All usage after this point in time is included",
         nullable=True,
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "Period(end={end!r}, start={start!r}, id={id!r})".format(
-            end=self.end, start=self.start, id=self.id
-        )
-
-
-__all__ = ["period"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["period.json"]

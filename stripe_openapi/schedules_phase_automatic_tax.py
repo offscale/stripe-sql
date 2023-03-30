@@ -1,26 +1,15 @@
-from sqlalchemy import Boolean, Column, Identity, Integer
+from sqlalchemy import Boolean, Column, Identity, Integer, Table
 
-from . import Base
+from . import metadata
 
-
-class SchedulesPhaseAutomaticTax(Base):
-    __tablename__ = "schedules_phase_automatic_tax"
-    enabled = Column(
+SchedulesPhaseAutomaticTax.Json = Table(
+    "schedules_phase_automatic_tax.json",
+    metadata,
+    Column(
+        "enabled",
         Boolean,
         comment="Whether Stripe automatically computes tax on invoices created during this phase",
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "SchedulesPhaseAutomaticTax(enabled={enabled!r}, id={id!r})".format(
-            enabled=self.enabled, id=self.id
-        )
-
-
-__all__ = ["schedules_phase_automatic_tax"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["schedules_phase_automatic_tax.json"]

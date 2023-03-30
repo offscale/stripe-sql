@@ -1,23 +1,11 @@
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, Table
 
-from . import Base
+from . import metadata
 
-
-class OutboundPaymentsPaymentMethodDetailsFinancialAccount(Base):
-    __tablename__ = "outbound_payments_payment_method_details_financial_account"
-    id = Column(String, comment="Token of the FinancialAccount", primary_key=True)
-    network = Column(String, comment="The rails used to send funds")
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "OutboundPaymentsPaymentMethodDetailsFinancialAccount(id={id!r}, network={network!r})".format(
-            id=self.id, network=self.network
-        )
-
-
-__all__ = ["outbound_payments_payment_method_details_financial_account"]
+OutboundPaymentsPaymentMethodDetailsFinancialAccount.Json = Table(
+    "outbound_payments_payment_method_details_financial_account.json",
+    metadata,
+    Column("id", String, comment="Token of the FinancialAccount", primary_key=True),
+    Column("network", String, comment="The rails used to send funds"),
+)
+__all__ = ["outbound_payments_payment_method_details_financial_account.json"]

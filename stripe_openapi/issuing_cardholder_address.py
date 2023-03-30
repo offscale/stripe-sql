@@ -1,23 +1,13 @@
-from sqlalchemy import Column, ForeignKey, Identity, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer, Table
 
-from . import Base
+from stripe_openapi.address import Address
 
+from . import metadata
 
-class IssuingCardholderAddress(Base):
-    __tablename__ = "issuing_cardholder_address"
-    address = Column(Address, ForeignKey("Address"))
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "IssuingCardholderAddress(address={address!r}, id={id!r})".format(
-            address=self.address, id=self.id
-        )
-
-
-__all__ = ["issuing_cardholder_address"]
+IssuingCardholderAddress.Json = Table(
+    "issuing_cardholder_address.json",
+    metadata,
+    Column("address", Address, ForeignKey("Address")),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["issuing_cardholder_address.json"]

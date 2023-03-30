@@ -1,62 +1,30 @@
-from sqlalchemy import Boolean, Column, Identity, Integer, String
+from sqlalchemy import Boolean, Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class SourceTypeThreeDSecure(Base):
-    __tablename__ = "source_type_three_d_secure"
-    address_line1_check = Column(String, nullable=True)
-    address_zip_check = Column(String, nullable=True)
-    authenticated = Column(Boolean, nullable=True)
-    brand = Column(String, nullable=True)
-    card = Column(String, nullable=True)
-    country = Column(String, nullable=True)
-    customer = Column(String, nullable=True)
-    cvc_check = Column(String, nullable=True)
-    description = Column(String, nullable=True)
-    dynamic_last4 = Column(String, nullable=True)
-    exp_month = Column(Integer, nullable=True)
-    exp_year = Column(Integer, nullable=True)
-    fingerprint = Column(String, nullable=True)
-    funding = Column(String, nullable=True)
-    iin = Column(String, nullable=True)
-    issuer = Column(String, nullable=True)
-    last4 = Column(String, nullable=True)
-    name = Column(String, nullable=True)
-    three_d_secure = Column(String, nullable=True)
-    tokenization_method = Column(String, nullable=True)
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "SourceTypeThreeDSecure(address_line1_check={address_line1_check!r}, address_zip_check={address_zip_check!r}, authenticated={authenticated!r}, brand={brand!r}, card={card!r}, country={country!r}, customer={customer!r}, cvc_check={cvc_check!r}, description={description!r}, dynamic_last4={dynamic_last4!r}, exp_month={exp_month!r}, exp_year={exp_year!r}, fingerprint={fingerprint!r}, funding={funding!r}, iin={iin!r}, issuer={issuer!r}, last4={last4!r}, name={name!r}, three_d_secure={three_d_secure!r}, tokenization_method={tokenization_method!r}, id={id!r})".format(
-            address_line1_check=self.address_line1_check,
-            address_zip_check=self.address_zip_check,
-            authenticated=self.authenticated,
-            brand=self.brand,
-            card=self.card,
-            country=self.country,
-            customer=self.customer,
-            cvc_check=self.cvc_check,
-            description=self.description,
-            dynamic_last4=self.dynamic_last4,
-            exp_month=self.exp_month,
-            exp_year=self.exp_year,
-            fingerprint=self.fingerprint,
-            funding=self.funding,
-            iin=self.iin,
-            issuer=self.issuer,
-            last4=self.last4,
-            name=self.name,
-            three_d_secure=self.three_d_secure,
-            tokenization_method=self.tokenization_method,
-            id=self.id,
-        )
-
-
-__all__ = ["source_type_three_d_secure"]
+SourceTypeThreeDSecure.Json = Table(
+    "source_type_three_d_secure.json",
+    metadata,
+    Column("address_line1_check", String, nullable=True),
+    Column("address_zip_check", String, nullable=True),
+    Column("authenticated", Boolean, nullable=True),
+    Column("brand", String, nullable=True),
+    Column("card", String, nullable=True),
+    Column("country", String, nullable=True),
+    Column("customer", String, nullable=True),
+    Column("cvc_check", String, nullable=True),
+    Column("description", String, nullable=True),
+    Column("dynamic_last4", String, nullable=True),
+    Column("exp_month", Integer, nullable=True),
+    Column("exp_year", Integer, nullable=True),
+    Column("fingerprint", String, nullable=True),
+    Column("funding", String, nullable=True),
+    Column("iin", String, nullable=True),
+    Column("issuer", String, nullable=True),
+    Column("last4", String, nullable=True),
+    Column("name", String, nullable=True),
+    Column("three_d_secure", String, nullable=True),
+    Column("tokenization_method", String, nullable=True),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["source_type_three_d_secure.json"]

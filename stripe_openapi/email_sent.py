@@ -1,26 +1,12 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class EmailSent(Base):
-    __tablename__ = "email_sent"
-    email_sent_at = Column(Integer, comment="The timestamp when the email was sent")
-    email_sent_to = Column(String, comment="The recipient's email address")
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "EmailSent(email_sent_at={email_sent_at!r}, email_sent_to={email_sent_to!r}, id={id!r})".format(
-            email_sent_at=self.email_sent_at,
-            email_sent_to=self.email_sent_to,
-            id=self.id,
-        )
-
-
-__all__ = ["email_sent"]
+EmailSent.Json = Table(
+    "email_sent.json",
+    metadata,
+    Column("email_sent_at", Integer, comment="The timestamp when the email was sent"),
+    Column("email_sent_to", String, comment="The recipient's email address"),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["email_sent.json"]

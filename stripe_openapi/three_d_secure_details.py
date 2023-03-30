@@ -1,44 +1,34 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class ThreeDSecureDetails(Base):
-    __tablename__ = "three_d_secure_details"
-    authentication_flow = Column(
+ThreeDSecureDetails.Json = Table(
+    "three_d_secure_details.json",
+    metadata,
+    Column(
+        "authentication_flow",
         String,
         comment="For authenticated transactions: how the customer was authenticated by\nthe issuing bank",
         nullable=True,
-    )
-    result = Column(
+    ),
+    Column(
+        "result",
         String,
         comment="Indicates the outcome of 3D Secure authentication",
         nullable=True,
-    )
-    result_reason = Column(
+    ),
+    Column(
+        "result_reason",
         String,
         comment="Additional information about why 3D Secure succeeded or failed based\non the `result`",
         nullable=True,
-    )
-    version = Column(
-        String, comment="The version of 3D Secure that was used", nullable=True
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "ThreeDSecureDetails(authentication_flow={authentication_flow!r}, result={result!r}, result_reason={result_reason!r}, version={version!r}, id={id!r})".format(
-            authentication_flow=self.authentication_flow,
-            result=self.result,
-            result_reason=self.result_reason,
-            version=self.version,
-            id=self.id,
-        )
-
-
-__all__ = ["three_d_secure_details"]
+    ),
+    Column(
+        "version",
+        String,
+        comment="The version of 3D Secure that was used",
+        nullable=True,
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["three_d_secure_details.json"]

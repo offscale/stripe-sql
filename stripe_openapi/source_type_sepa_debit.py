@@ -1,36 +1,17 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class SourceTypeSepaDebit(Base):
-    __tablename__ = "source_type_sepa_debit"
-    bank_code = Column(String, nullable=True)
-    branch_code = Column(String, nullable=True)
-    country = Column(String, nullable=True)
-    fingerprint = Column(String, nullable=True)
-    last4 = Column(String, nullable=True)
-    mandate_reference = Column(String, nullable=True)
-    mandate_url = Column(String, nullable=True)
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "SourceTypeSepaDebit(bank_code={bank_code!r}, branch_code={branch_code!r}, country={country!r}, fingerprint={fingerprint!r}, last4={last4!r}, mandate_reference={mandate_reference!r}, mandate_url={mandate_url!r}, id={id!r})".format(
-            bank_code=self.bank_code,
-            branch_code=self.branch_code,
-            country=self.country,
-            fingerprint=self.fingerprint,
-            last4=self.last4,
-            mandate_reference=self.mandate_reference,
-            mandate_url=self.mandate_url,
-            id=self.id,
-        )
-
-
-__all__ = ["source_type_sepa_debit"]
+SourceTypeSepaDebit.Json = Table(
+    "source_type_sepa_debit.json",
+    metadata,
+    Column("bank_code", String, nullable=True),
+    Column("branch_code", String, nullable=True),
+    Column("country", String, nullable=True),
+    Column("fingerprint", String, nullable=True),
+    Column("last4", String, nullable=True),
+    Column("mandate_reference", String, nullable=True),
+    Column("mandate_url", String, nullable=True),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["source_type_sepa_debit.json"]

@@ -1,26 +1,15 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class PaymentLinksResourceCompletionBehaviorRedirect(Base):
-    __tablename__ = "payment_links_resource_completion_behavior_redirect"
-    url = Column(
+PaymentLinksResourceCompletionBehaviorRedirect.Json = Table(
+    "payment_links_resource_completion_behavior_redirect.json",
+    metadata,
+    Column(
+        "url",
         String,
         comment="The URL the customer will be redirected to after the purchase is complete",
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "PaymentLinksResourceCompletionBehaviorRedirect(url={url!r}, id={id!r})".format(
-            url=self.url, id=self.id
-        )
-
-
-__all__ = ["payment_links_resource_completion_behavior_redirect"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["payment_links_resource_completion_behavior_redirect.json"]

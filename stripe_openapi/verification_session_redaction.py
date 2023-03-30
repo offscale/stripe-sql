@@ -1,26 +1,15 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class VerificationSessionRedaction(Base):
-    __tablename__ = "verification_session_redaction"
-    status = Column(
+VerificationSessionRedaction.Json = Table(
+    "verification_session_redaction.json",
+    metadata,
+    Column(
+        "status",
         String,
         comment="Indicates whether this object and its related objects have been redacted or not",
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "VerificationSessionRedaction(status={status!r}, id={id!r})".format(
-            status=self.status, id=self.id
-        )
-
-
-__all__ = ["verification_session_redaction"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["verification_session_redaction.json"]

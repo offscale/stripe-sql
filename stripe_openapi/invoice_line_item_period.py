@@ -1,27 +1,18 @@
-from sqlalchemy import Column, Identity, Integer
+from sqlalchemy import Column, Identity, Integer, Table
 
-from . import Base
+from . import metadata
 
-
-class InvoiceLineItemPeriod(Base):
-    __tablename__ = "invoice_line_item_period"
-    end = Column(
+InvoiceLineItemPeriod.Json = Table(
+    "invoice_line_item_period.json",
+    metadata,
+    Column(
+        "end",
         Integer,
-        comment="The end of the period, which must be greater than or equal to the start",
-    )
-    start = Column(Integer, comment="The start of the period")
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "InvoiceLineItemPeriod(end={end!r}, start={start!r}, id={id!r})".format(
-            end=self.end, start=self.start, id=self.id
-        )
-
-
-__all__ = ["invoice_line_item_period"]
+        comment="The end of the period, which must be greater than or equal to the start. This value is inclusive",
+    ),
+    Column(
+        "start", Integer, comment="The start of the period. This value is inclusive"
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["invoice_line_item_period.json"]

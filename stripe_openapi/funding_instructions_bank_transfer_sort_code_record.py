@@ -1,34 +1,17 @@
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, Table
 
-from . import Base
+from . import metadata
 
-
-class FundingInstructionsBankTransferSortCodeRecord(Base):
-    """
-    Sort Code Records contain U.K. bank account details per the sort code format.
-    """
-
-    __tablename__ = "funding_instructions_bank_transfer_sort_code_record"
-    account_holder_name = Column(
+FundingInstructionsBankTransferSortCodeRecord.Json = Table(
+    "funding_instructions_bank_transfer_sort_code_record.json",
+    metadata,
+    Column(
+        "account_holder_name",
         String,
         comment="The name of the person or business that owns the bank account",
         primary_key=True,
-    )
-    account_number = Column(String, comment="The account number")
-    sort_code = Column(String, comment="The six-digit sort code")
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "FundingInstructionsBankTransferSortCodeRecord(account_holder_name={account_holder_name!r}, account_number={account_number!r}, sort_code={sort_code!r})".format(
-            account_holder_name=self.account_holder_name,
-            account_number=self.account_number,
-            sort_code=self.sort_code,
-        )
-
-
-__all__ = ["funding_instructions_bank_transfer_sort_code_record"]
+    ),
+    Column("account_number", String, comment="The account number"),
+    Column("sort_code", String, comment="The six-digit sort code"),
+)
+__all__ = ["funding_instructions_bank_transfer_sort_code_record.json"]

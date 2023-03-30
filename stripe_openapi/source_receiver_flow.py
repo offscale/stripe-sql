@@ -1,53 +1,41 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class SourceReceiverFlow(Base):
-    __tablename__ = "source_receiver_flow"
-    address = Column(
+SourceReceiverFlow.Json = Table(
+    "source_receiver_flow.json",
+    metadata,
+    Column(
+        "address",
         String,
         comment="The address of the receiver source. This is the value that should be communicated to the customer to send their funds to",
         nullable=True,
-    )
-    amount_charged = Column(
+    ),
+    Column(
+        "amount_charged",
         Integer,
         comment="The total amount that was moved to your balance. This is almost always equal to the amount charged. In rare cases when customers deposit excess funds and we are unable to refund those, those funds get moved to your balance and show up in amount_charged as well. The amount charged is expressed in the source's currency",
-    )
-    amount_received = Column(
+    ),
+    Column(
+        "amount_received",
         Integer,
         comment="The total amount received by the receiver source. `amount_received = amount_returned + amount_charged` should be true for consumed sources unless customers deposit excess funds. The amount received is expressed in the source's currency",
-    )
-    amount_returned = Column(
+    ),
+    Column(
+        "amount_returned",
         Integer,
         comment="The total amount that was returned to the customer. The amount returned is expressed in the source's currency",
-    )
-    refund_attributes_method = Column(
+    ),
+    Column(
+        "refund_attributes_method",
         String,
         comment="Type of refund attribute method, one of `email`, `manual`, or `none`",
-    )
-    refund_attributes_status = Column(
+    ),
+    Column(
+        "refund_attributes_status",
         String,
         comment="Type of refund attribute status, one of `missing`, `requested`, or `available`",
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "SourceReceiverFlow(address={address!r}, amount_charged={amount_charged!r}, amount_received={amount_received!r}, amount_returned={amount_returned!r}, refund_attributes_method={refund_attributes_method!r}, refund_attributes_status={refund_attributes_status!r}, id={id!r})".format(
-            address=self.address,
-            amount_charged=self.amount_charged,
-            amount_received=self.amount_received,
-            amount_returned=self.amount_returned,
-            refund_attributes_method=self.refund_attributes_method,
-            refund_attributes_status=self.refund_attributes_status,
-            id=self.id,
-        )
-
-
-__all__ = ["source_receiver_flow"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["source_receiver_flow.json"]

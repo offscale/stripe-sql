@@ -1,81 +1,67 @@
-from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class ApiErrors(Base):
-    __tablename__ = "api_errors"
-    charge = Column(
-        String, comment="For card errors, the ID of the failed charge", nullable=True
-    )
-    code = Column(
+ApiErrors.Json = Table(
+    "api_errors.json",
+    metadata,
+    Column(
+        "charge",
+        String,
+        comment="For card errors, the ID of the failed charge",
+        nullable=True,
+    ),
+    Column(
+        "code",
         String,
         comment="For some errors that could be handled programmatically, a short string indicating the [error code](https://stripe.com/docs/error-codes) reported",
         nullable=True,
-    )
-    decline_code = Column(
+    ),
+    Column(
+        "decline_code",
         String,
         comment="For card errors resulting from a card issuer decline, a short string indicating the [card issuer's reason for the decline](https://stripe.com/docs/declines#issuer-declines) if they provide one",
         nullable=True,
-    )
-    doc_url = Column(
+    ),
+    Column(
+        "doc_url",
         String,
         comment="A URL to more information about the [error code](https://stripe.com/docs/error-codes) reported",
         nullable=True,
-    )
-    message = Column(
+    ),
+    Column(
+        "message",
         String,
         comment="A human-readable message providing more details about the error. For card errors, these messages can be shown to your users",
         nullable=True,
-    )
-    param = Column(
+    ),
+    Column(
+        "param",
         String,
         comment="If the error is parameter-specific, the parameter related to the error. For example, you can use this to display a message near the correct form field",
         nullable=True,
-    )
-    payment_intent = Column(String, ForeignKey("payment_intent.id"), nullable=True)
-    payment_method = Column(String, ForeignKey("payment_method.id"), nullable=True)
-    payment_method_type = Column(
+    ),
+    Column("payment_intent", PaymentIntent, ForeignKey("PaymentIntent"), nullable=True),
+    Column("payment_method", PaymentMethod, ForeignKey("PaymentMethod"), nullable=True),
+    Column(
+        "payment_method_type",
         String,
         comment="If the error is specific to the type of payment method, the payment method type that had a problem. This field is only populated for invoice-related errors",
         nullable=True,
-    )
-    request_log_url = Column(
+    ),
+    Column(
+        "request_log_url",
         String,
         comment="A URL to the request log entry in your dashboard",
         nullable=True,
-    )
-    setup_intent = Column(String, ForeignKey("setup_intent.id"), nullable=True)
-    source = Column(Integer, ForeignKey("payment_source.id"), nullable=True)
-    type = Column(
+    ),
+    Column("setup_intent", SetupIntent, ForeignKey("SetupIntent"), nullable=True),
+    Column("source", PaymentSource, ForeignKey("PaymentSource"), nullable=True),
+    Column(
+        "type",
         String,
         comment="The type of error returned. One of `api_error`, `card_error`, `idempotency_error`, or `invalid_request_error`",
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "ApiErrors(charge={charge!r}, code={code!r}, decline_code={decline_code!r}, doc_url={doc_url!r}, message={message!r}, param={param!r}, payment_intent={payment_intent!r}, payment_method={payment_method!r}, payment_method_type={payment_method_type!r}, request_log_url={request_log_url!r}, setup_intent={setup_intent!r}, source={source!r}, type={type!r}, id={id!r})".format(
-            charge=self.charge,
-            code=self.code,
-            decline_code=self.decline_code,
-            doc_url=self.doc_url,
-            message=self.message,
-            param=self.param,
-            payment_intent=self.payment_intent,
-            payment_method=self.payment_method,
-            payment_method_type=self.payment_method_type,
-            request_log_url=self.request_log_url,
-            setup_intent=self.setup_intent,
-            source=self.source,
-            type=self.type,
-            id=self.id,
-        )
-
-
-__all__ = ["api_errors"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["api_errors.json"]

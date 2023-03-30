@@ -1,40 +1,27 @@
-from sqlalchemy import ARRAY, Boolean, Column, Identity, Integer, String, list
+from sqlalchemy import ARRAY, Boolean, Column, Identity, Integer, String, Table, list
 
-from . import Base
+from . import metadata
 
-
-class PortalSubscriptionUpdate(Base):
-    __tablename__ = "portal_subscription_update"
-    default_allowed_updates = Column(
+PortalSubscriptionUpdate.Json = Table(
+    "portal_subscription_update.json",
+    metadata,
+    Column(
+        "default_allowed_updates",
         ARRAY(String),
         comment="The types of subscription updates that are supported for items listed in the `products` attribute. When empty, subscriptions are not updateable",
-    )
-    enabled = Column(Boolean, comment="Whether the feature is enabled")
-    products = Column(
+    ),
+    Column("enabled", Boolean, comment="Whether the feature is enabled"),
+    Column(
+        "products",
         list,
         comment="The list of products that support subscription updates",
         nullable=True,
-    )
-    proration_behavior = Column(
+    ),
+    Column(
+        "proration_behavior",
         String,
         comment="Determines how to handle prorations resulting from subscription updates. Valid values are `none`, `create_prorations`, and `always_invoice`",
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "PortalSubscriptionUpdate(default_allowed_updates={default_allowed_updates!r}, enabled={enabled!r}, products={products!r}, proration_behavior={proration_behavior!r}, id={id!r})".format(
-            default_allowed_updates=self.default_allowed_updates,
-            enabled=self.enabled,
-            products=self.products,
-            proration_behavior=self.proration_behavior,
-            id=self.id,
-        )
-
-
-__all__ = ["portal_subscription_update"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["portal_subscription_update.json"]

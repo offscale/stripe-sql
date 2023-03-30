@@ -1,50 +1,37 @@
-from sqlalchemy import Column, Float, Identity, Integer, String
+from sqlalchemy import Column, Float, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class RadarReviewResourceLocation(Base):
-    __tablename__ = "radar_review_resource_location"
-    city = Column(
-        String, comment="The city where the payment originated", nullable=True
-    )
-    country = Column(
+RadarReviewResourceLocation.Json = Table(
+    "radar_review_resource_location.json",
+    metadata,
+    Column(
+        "city", String, comment="The city where the payment originated", nullable=True
+    ),
+    Column(
+        "country",
         String,
         comment="Two-letter ISO code representing the country where the payment originated",
         nullable=True,
-    )
-    latitude = Column(
+    ),
+    Column(
+        "latitude",
         Float,
         comment="The geographic latitude where the payment originated",
         nullable=True,
-    )
-    longitude = Column(
+    ),
+    Column(
+        "longitude",
         Float,
         comment="The geographic longitude where the payment originated",
         nullable=True,
-    )
-    region = Column(
+    ),
+    Column(
+        "region",
         String,
         comment="The state/county/province/region where the payment originated",
         nullable=True,
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "RadarReviewResourceLocation(city={city!r}, country={country!r}, latitude={latitude!r}, longitude={longitude!r}, region={region!r}, id={id!r})".format(
-            city=self.city,
-            country=self.country,
-            latitude=self.latitude,
-            longitude=self.longitude,
-            region=self.region,
-            id=self.id,
-        )
-
-
-__all__ = ["radar_review_resource_location"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["radar_review_resource_location.json"]

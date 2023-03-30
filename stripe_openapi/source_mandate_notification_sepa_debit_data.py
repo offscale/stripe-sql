@@ -1,34 +1,28 @@
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, Table
 
-from . import Base
+from . import metadata
 
-
-class SourceMandateNotificationSepaDebitData(Base):
-    __tablename__ = "source_mandate_notification_sepa_debit_data"
-    creditor_identifier = Column(
-        String, comment="SEPA creditor ID", nullable=True, primary_key=True
-    )
-    last4 = Column(
+SourceMandateNotificationSepaDebitData.Json = Table(
+    "source_mandate_notification_sepa_debit_data.json",
+    metadata,
+    Column(
+        "creditor_identifier",
+        String,
+        comment="SEPA creditor ID",
+        nullable=True,
+        primary_key=True,
+    ),
+    Column(
+        "last4",
         String,
         comment="Last 4 digits of the account number associated with the debit",
         nullable=True,
-    )
-    mandate_reference = Column(
-        String, comment="Mandate reference associated with the debit", nullable=True
-    )
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "SourceMandateNotificationSepaDebitData(creditor_identifier={creditor_identifier!r}, last4={last4!r}, mandate_reference={mandate_reference!r})".format(
-            creditor_identifier=self.creditor_identifier,
-            last4=self.last4,
-            mandate_reference=self.mandate_reference,
-        )
-
-
-__all__ = ["source_mandate_notification_sepa_debit_data"]
+    ),
+    Column(
+        "mandate_reference",
+        String,
+        comment="Mandate reference associated with the debit",
+        nullable=True,
+    ),
+)
+__all__ = ["source_mandate_notification_sepa_debit_data.json"]

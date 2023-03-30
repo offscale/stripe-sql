@@ -1,27 +1,16 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class PaymentMethodDetailsPaynow(Base):
-    __tablename__ = "payment_method_details_paynow"
-    reference = Column(
+PaymentMethodDetailsPaynow.Json = Table(
+    "payment_method_details_paynow.json",
+    metadata,
+    Column(
+        "reference",
         String,
         comment="Reference number associated with this PayNow payment",
         nullable=True,
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "PaymentMethodDetailsPaynow(reference={reference!r}, id={id!r})".format(
-            reference=self.reference, id=self.id
-        )
-
-
-__all__ = ["payment_method_details_paynow"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["payment_method_details_paynow.json"]

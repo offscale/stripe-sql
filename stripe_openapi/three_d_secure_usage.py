@@ -1,23 +1,11 @@
-from sqlalchemy import Boolean, Column, Identity, Integer
+from sqlalchemy import Boolean, Column, Identity, Integer, Table
 
-from . import Base
+from . import metadata
 
-
-class ThreeDSecureUsage(Base):
-    __tablename__ = "three_d_secure_usage"
-    supported = Column(Boolean, comment="Whether 3D Secure is supported on this card")
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "ThreeDSecureUsage(supported={supported!r}, id={id!r})".format(
-            supported=self.supported, id=self.id
-        )
-
-
-__all__ = ["three_d_secure_usage"]
+ThreeDSecureUsage.Json = Table(
+    "three_d_secure_usage.json",
+    metadata,
+    Column("supported", Boolean, comment="Whether 3D Secure is supported on this card"),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["three_d_secure_usage.json"]

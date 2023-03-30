@@ -1,52 +1,41 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class PaymentMethodDetailsSepaDebit(Base):
-    __tablename__ = "payment_method_details_sepa_debit"
-    bank_code = Column(
+PaymentMethodDetailsSepaDebit.Json = Table(
+    "payment_method_details_sepa_debit.json",
+    metadata,
+    Column(
+        "bank_code",
         String,
         comment="Bank code of bank associated with the bank account",
         nullable=True,
-    )
-    branch_code = Column(
+    ),
+    Column(
+        "branch_code",
         String,
         comment="Branch code of bank associated with the bank account",
         nullable=True,
-    )
-    country = Column(
+    ),
+    Column(
+        "country",
         String,
         comment="Two-letter ISO code representing the country the bank account is located in",
         nullable=True,
-    )
-    fingerprint = Column(
+    ),
+    Column(
+        "fingerprint",
         String,
         comment="Uniquely identifies this particular bank account. You can use this attribute to check whether two bank accounts are the same",
         nullable=True,
-    )
-    last4 = Column(String, comment="Last four characters of the IBAN", nullable=True)
-    mandate = Column(
-        String, comment="ID of the mandate used to make this payment", nullable=True
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "PaymentMethodDetailsSepaDebit(bank_code={bank_code!r}, branch_code={branch_code!r}, country={country!r}, fingerprint={fingerprint!r}, last4={last4!r}, mandate={mandate!r}, id={id!r})".format(
-            bank_code=self.bank_code,
-            branch_code=self.branch_code,
-            country=self.country,
-            fingerprint=self.fingerprint,
-            last4=self.last4,
-            mandate=self.mandate,
-            id=self.id,
-        )
-
-
-__all__ = ["payment_method_details_sepa_debit"]
+    ),
+    Column("last4", String, comment="Last four characters of the IBAN", nullable=True),
+    Column(
+        "mandate",
+        String,
+        comment="ID of the mandate used to make this payment",
+        nullable=True,
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["payment_method_details_sepa_debit.json"]

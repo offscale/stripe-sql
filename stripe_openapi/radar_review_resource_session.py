@@ -1,46 +1,34 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class RadarReviewResourceSession(Base):
-    __tablename__ = "radar_review_resource_session"
-    browser = Column(
+RadarReviewResourceSession.Json = Table(
+    "radar_review_resource_session.json",
+    metadata,
+    Column(
+        "browser",
         String,
         comment="The browser used in this browser session (e.g., `Chrome`)",
         nullable=True,
-    )
-    device = Column(
+    ),
+    Column(
+        "device",
         String,
         comment="Information about the device used for the browser session (e.g., `Samsung SM-G930T`)",
         nullable=True,
-    )
-    platform = Column(
+    ),
+    Column(
+        "platform",
         String,
         comment="The platform for the browser session (e.g., `Macintosh`)",
         nullable=True,
-    )
-    version = Column(
+    ),
+    Column(
+        "version",
         String,
         comment="The version for the browser session (e.g., `61.0.3163.100`)",
         nullable=True,
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "RadarReviewResourceSession(browser={browser!r}, device={device!r}, platform={platform!r}, version={version!r}, id={id!r})".format(
-            browser=self.browser,
-            device=self.device,
-            platform=self.platform,
-            version=self.version,
-            id=self.id,
-        )
-
-
-__all__ = ["radar_review_resource_session"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["radar_review_resource_session.json"]

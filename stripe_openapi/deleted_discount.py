@@ -1,75 +1,64 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Table
 
-from . import Base
+from stripe_openapi.coupon import Coupon
+from stripe_openapi.customer import Customer
 
+from . import metadata
 
-class DeletedDiscount(Base):
-    __tablename__ = "deleted_discount"
-    checkout_session = Column(
+DeletedDiscount.Json = Table(
+    "deleted_discount.json",
+    metadata,
+    Column(
+        "checkout_session",
         String,
         comment="The Checkout session that this coupon is applied to, if it is applied to a particular session in payment mode. Will not be present for subscription mode",
         nullable=True,
-    )
-    coupon = Column(Coupon, ForeignKey("Coupon"))
-    customer = Column(
+    ),
+    Column("coupon", Coupon, ForeignKey("Coupon")),
+    Column(
+        "customer",
         Customer,
         ForeignKey("DeletedCustomer"),
         comment="The ID of the customer associated with this discount",
         nullable=True,
-    )
-    deleted = Column(Boolean, comment="Always true for a deleted object")
-    id = Column(
+    ),
+    Column("deleted", Boolean, comment="Always true for a deleted object"),
+    Column(
+        "id",
         String,
         comment="The ID of the discount object. Discounts cannot be fetched by ID. Use `expand[]=discounts` in API calls to expand discount IDs in an array",
         primary_key=True,
-    )
-    invoice = Column(
+    ),
+    Column(
+        "invoice",
         String,
         comment="The invoice that the discount's coupon was applied to, if it was applied directly to a particular invoice",
         nullable=True,
-    )
-    invoice_item = Column(
+    ),
+    Column(
+        "invoice_item",
         String,
         comment="The invoice item `id` (or invoice line item `id` for invoice line items of type='subscription') that the discount's coupon was applied to, if it was applied directly to a particular invoice item or invoice line item",
         nullable=True,
-    )
-    object = Column(
+    ),
+    Column(
+        "object",
         String,
         comment="String representing the object's type. Objects of the same type share the same value",
-    )
-    promotion_code = Column(
-        String,
-        ForeignKey("promotion_code.id"),
+    ),
+    Column(
+        "promotion_code",
+        PromotionCode,
+        ForeignKey("PromotionCode"),
         comment="The promotion code applied to create this discount",
         nullable=True,
-    )
-    start = Column(Integer, comment="Date that the coupon was applied")
-    subscription = Column(
+    ),
+    Column("start", Integer, comment="Date that the coupon was applied"),
+    Column(
+        "subscription",
         String,
         comment="The subscription that this coupon is applied to, if it is applied to a particular subscription",
         nullable=True,
-    )
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "DeletedDiscount(checkout_session={checkout_session!r}, coupon={coupon!r}, customer={customer!r}, deleted={deleted!r}, id={id!r}, invoice={invoice!r}, invoice_item={invoice_item!r}, object={object!r}, promotion_code={promotion_code!r}, start={start!r}, subscription={subscription!r})".format(
-            checkout_session=self.checkout_session,
-            coupon=self.coupon,
-            customer=self.customer,
-            deleted=self.deleted,
-            id=self.id,
-            invoice=self.invoice,
-            invoice_item=self.invoice_item,
-            object=self.object,
-            promotion_code=self.promotion_code,
-            start=self.start,
-            subscription=self.subscription,
-        )
-
-
-__all__ = ["deleted_discount"]
+    ),
+)
+__all__ = ["deleted_discount.json"]

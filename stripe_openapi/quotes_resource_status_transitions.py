@@ -1,40 +1,28 @@
-from sqlalchemy import Column, Identity, Integer
+from sqlalchemy import Column, Identity, Integer, Table
 
-from . import Base
+from . import metadata
 
-
-class QuotesResourceStatusTransitions(Base):
-    __tablename__ = "quotes_resource_status_transitions"
-    accepted_at = Column(
+QuotesResourceStatusTransitions.Json = Table(
+    "quotes_resource_status_transitions.json",
+    metadata,
+    Column(
+        "accepted_at",
         Integer,
         comment="The time that the quote was accepted. Measured in seconds since Unix epoch",
         nullable=True,
-    )
-    canceled_at = Column(
+    ),
+    Column(
+        "canceled_at",
         Integer,
         comment="The time that the quote was canceled. Measured in seconds since Unix epoch",
         nullable=True,
-    )
-    finalized_at = Column(
+    ),
+    Column(
+        "finalized_at",
         Integer,
         comment="The time that the quote was finalized. Measured in seconds since Unix epoch",
         nullable=True,
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "QuotesResourceStatusTransitions(accepted_at={accepted_at!r}, canceled_at={canceled_at!r}, finalized_at={finalized_at!r}, id={id!r})".format(
-            accepted_at=self.accepted_at,
-            canceled_at=self.canceled_at,
-            finalized_at=self.finalized_at,
-            id=self.id,
-        )
-
-
-__all__ = ["quotes_resource_status_transitions"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["quotes_resource_status_transitions.json"]

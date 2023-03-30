@@ -1,27 +1,16 @@
-from sqlalchemy import ARRAY, Boolean, Column, Identity, Integer, String
+from sqlalchemy import ARRAY, Boolean, Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class PortalCustomerUpdate(Base):
-    __tablename__ = "portal_customer_update"
-    allowed_updates = Column(
+PortalCustomerUpdate.Json = Table(
+    "portal_customer_update.json",
+    metadata,
+    Column(
+        "allowed_updates",
         ARRAY(String),
         comment="The types of customer updates that are supported. When empty, customers are not updateable",
-    )
-    enabled = Column(Boolean, comment="Whether the feature is enabled")
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "PortalCustomerUpdate(allowed_updates={allowed_updates!r}, enabled={enabled!r}, id={id!r})".format(
-            allowed_updates=self.allowed_updates, enabled=self.enabled, id=self.id
-        )
-
-
-__all__ = ["portal_customer_update"]
+    ),
+    Column("enabled", Boolean, comment="Whether the feature is enabled"),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["portal_customer_update.json"]

@@ -1,32 +1,15 @@
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, Table
 
-from . import Base
+from . import metadata
 
-
-class SourceTypeAchDebit(Base):
-    __tablename__ = "source_type_ach_debit"
-    bank_name = Column(String, nullable=True, primary_key=True)
-    country = Column(String, nullable=True)
-    fingerprint = Column(String, nullable=True)
-    last4 = Column(String, nullable=True)
-    routing_number = Column(String, nullable=True)
-    type = Column(String, nullable=True)
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "SourceTypeAchDebit(bank_name={bank_name!r}, country={country!r}, fingerprint={fingerprint!r}, last4={last4!r}, routing_number={routing_number!r}, type={type!r})".format(
-            bank_name=self.bank_name,
-            country=self.country,
-            fingerprint=self.fingerprint,
-            last4=self.last4,
-            routing_number=self.routing_number,
-            type=self.type,
-        )
-
-
-__all__ = ["source_type_ach_debit"]
+SourceTypeAchDebit.Json = Table(
+    "source_type_ach_debit.json",
+    metadata,
+    Column("bank_name", String, nullable=True, primary_key=True),
+    Column("country", String, nullable=True),
+    Column("fingerprint", String, nullable=True),
+    Column("last4", String, nullable=True),
+    Column("routing_number", String, nullable=True),
+    Column("type", String, nullable=True),
+)
+__all__ = ["source_type_ach_debit.json"]

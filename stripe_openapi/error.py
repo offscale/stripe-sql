@@ -1,25 +1,11 @@
-from sqlalchemy import Column, ForeignKey, Identity, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer, Table
 
-from . import Base
+from . import metadata
 
-
-class Error(Base):
-    """
-    An error response from the Stripe API
-    """
-
-    __tablename__ = "error"
-    error = Column(Integer, ForeignKey("api_errors.id"))
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "Error(error={error!r}, id={id!r})".format(error=self.error, id=self.id)
-
-
-__all__ = ["error"]
+Error.Json = Table(
+    "error.json",
+    metadata,
+    Column("error", ApiErrors, ForeignKey("ApiErrors")),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["error.json"]

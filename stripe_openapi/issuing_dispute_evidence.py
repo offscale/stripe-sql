@@ -1,59 +1,57 @@
-from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class IssuingDisputeEvidence(Base):
-    __tablename__ = "issuing_dispute_evidence"
-    canceled = Column(
-        Integer, ForeignKey("issuing_dispute_canceled_evidence.id"), nullable=True
-    )
-    duplicate = Column(
-        Integer, ForeignKey("issuing_dispute_duplicate_evidence.id"), nullable=True
-    )
-    fraudulent = Column(
-        Integer, ForeignKey("issuing_dispute_fraudulent_evidence.id"), nullable=True
-    )
-    merchandise_not_as_described = Column(
-        Integer,
-        ForeignKey("issuing_dispute_merchandise_not_as_described_evidence.id"),
+IssuingDisputeEvidence.Json = Table(
+    "issuing_dispute_evidence.json",
+    metadata,
+    Column(
+        "canceled",
+        IssuingDisputeCanceledEvidence,
+        ForeignKey("IssuingDisputeCanceledEvidence"),
         nullable=True,
-    )
-    not_received = Column(
-        Integer, ForeignKey("issuing_dispute_not_received_evidence.id"), nullable=True
-    )
-    other = Column(
-        Integer, ForeignKey("issuing_dispute_other_evidence.id"), nullable=True
-    )
-    reason = Column(
+    ),
+    Column(
+        "duplicate",
+        IssuingDisputeDuplicateEvidence,
+        ForeignKey("IssuingDisputeDuplicateEvidence"),
+        nullable=True,
+    ),
+    Column(
+        "fraudulent",
+        IssuingDisputeFraudulentEvidence,
+        ForeignKey("IssuingDisputeFraudulentEvidence"),
+        nullable=True,
+    ),
+    Column(
+        "merchandise_not_as_described",
+        IssuingDisputeMerchandiseNotAsDescribedEvidence,
+        ForeignKey("IssuingDisputeMerchandiseNotAsDescribedEvidence"),
+        nullable=True,
+    ),
+    Column(
+        "not_received",
+        IssuingDisputeNotReceivedEvidence,
+        ForeignKey("IssuingDisputeNotReceivedEvidence"),
+        nullable=True,
+    ),
+    Column(
+        "other",
+        IssuingDisputeOtherEvidence,
+        ForeignKey("IssuingDisputeOtherEvidence"),
+        nullable=True,
+    ),
+    Column(
+        "reason",
         String,
         comment="The reason for filing the dispute. Its value will match the field containing the evidence",
-    )
-    service_not_as_described = Column(
-        Integer,
-        ForeignKey("issuing_dispute_service_not_as_described_evidence.id"),
+    ),
+    Column(
+        "service_not_as_described",
+        IssuingDisputeServiceNotAsDescribedEvidence,
+        ForeignKey("IssuingDisputeServiceNotAsDescribedEvidence"),
         nullable=True,
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "IssuingDisputeEvidence(canceled={canceled!r}, duplicate={duplicate!r}, fraudulent={fraudulent!r}, merchandise_not_as_described={merchandise_not_as_described!r}, not_received={not_received!r}, other={other!r}, reason={reason!r}, service_not_as_described={service_not_as_described!r}, id={id!r})".format(
-            canceled=self.canceled,
-            duplicate=self.duplicate,
-            fraudulent=self.fraudulent,
-            merchandise_not_as_described=self.merchandise_not_as_described,
-            not_received=self.not_received,
-            other=self.other,
-            reason=self.reason,
-            service_not_as_described=self.service_not_as_described,
-            id=self.id,
-        )
-
-
-__all__ = ["issuing_dispute_evidence"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["issuing_dispute_evidence.json"]

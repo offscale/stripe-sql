@@ -1,25 +1,16 @@
-from sqlalchemy import Boolean, Column, Identity, Integer
+from sqlalchemy import Boolean, Column, Identity, Integer, Table
 
-from . import Base
+from . import metadata
 
-
-class CheckoutCardInstallmentsOptions(Base):
-    __tablename__ = "checkout_card_installments_options"
-    enabled = Column(
-        Boolean, comment="Indicates if installments are enabled", nullable=True
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "CheckoutCardInstallmentsOptions(enabled={enabled!r}, id={id!r})".format(
-            enabled=self.enabled, id=self.id
-        )
-
-
-__all__ = ["checkout_card_installments_options"]
+CheckoutCardInstallmentsOptions.Json = Table(
+    "checkout_card_installments_options.json",
+    metadata,
+    Column(
+        "enabled",
+        Boolean,
+        comment="Indicates if installments are enabled",
+        nullable=True,
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["checkout_card_installments_options.json"]

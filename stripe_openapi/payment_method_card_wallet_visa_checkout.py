@@ -1,48 +1,38 @@
-from sqlalchemy import Column, ForeignKey, Identity, Integer, String
+from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table
 
-from . import Base
+from stripe_openapi.address import Address
 
+from . import metadata
 
-class PaymentMethodCardWalletVisaCheckout(Base):
-    __tablename__ = "payment_method_card_wallet_visa_checkout"
-    billing_address = Column(
+PaymentMethodCardWalletVisaCheckout.Json = Table(
+    "payment_method_card_wallet_visa_checkout.json",
+    metadata,
+    Column(
+        "billing_address",
         Address,
         ForeignKey("Address"),
         comment="Owner's verified billing address. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated",
         nullable=True,
-    )
-    email = Column(
+    ),
+    Column(
+        "email",
         String,
         comment="Owner's verified email. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated",
         nullable=True,
-    )
-    name = Column(
+    ),
+    Column(
+        "name",
         String,
         comment="Owner's verified full name. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated",
         nullable=True,
-    )
-    shipping_address = Column(
+    ),
+    Column(
+        "shipping_address",
         Address,
         ForeignKey("Address"),
         comment="Owner's verified shipping address. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated",
         nullable=True,
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "PaymentMethodCardWalletVisaCheckout(billing_address={billing_address!r}, email={email!r}, name={name!r}, shipping_address={shipping_address!r}, id={id!r})".format(
-            billing_address=self.billing_address,
-            email=self.email,
-            name=self.name,
-            shipping_address=self.shipping_address,
-            id=self.id,
-        )
-
-
-__all__ = ["payment_method_card_wallet_visa_checkout"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["payment_method_card_wallet_visa_checkout.json"]

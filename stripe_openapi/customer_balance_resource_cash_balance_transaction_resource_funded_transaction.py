@@ -1,32 +1,19 @@
-from sqlalchemy import Column, ForeignKey, Identity, Integer
+from sqlalchemy import Column, ForeignKey, Identity, Integer, Table
 
-from . import Base
+from . import metadata
 
-
-class CustomerBalanceResourceCashBalanceTransactionResourceFundedTransaction(Base):
-    __tablename__ = (
-        "customer_balance_resource_cash_balance_transaction_resource_funded_transaction"
-    )
-    bank_transfer = Column(
-        Integer,
+CustomerBalanceResourceCashBalanceTransactionResourceFundedTransaction.Json = Table(
+    "customer_balance_resource_cash_balance_transaction_resource_funded_transaction.json",
+    metadata,
+    Column(
+        "bank_transfer",
+        CustomerBalanceResourceCashBalanceTransactionResourceFundedTransactionResourceBankTransfer,
         ForeignKey(
-            "customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer.id"
+            "CustomerBalanceResourceCashBalanceTransactionResourceFundedTransactionResourceBankTransfer"
         ),
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "CustomerBalanceResourceCashBalanceTransactionResourceFundedTransaction(bank_transfer={bank_transfer!r}, id={id!r})".format(
-            bank_transfer=self.bank_transfer, id=self.id
-        )
-
-
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
 __all__ = [
-    "customer_balance_resource_cash_balance_transaction_resource_funded_transaction"
+    "customer_balance_resource_cash_balance_transaction_resource_funded_transaction.json"
 ]

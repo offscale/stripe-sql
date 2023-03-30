@@ -1,26 +1,15 @@
-from sqlalchemy import Boolean, Column, Identity, Integer
+from sqlalchemy import Boolean, Column, Identity, Integer, Table
 
-from . import Base
+from . import metadata
 
-
-class PaymentPagesCheckoutSessionPhoneNumberCollection(Base):
-    __tablename__ = "payment_pages_checkout_session_phone_number_collection"
-    enabled = Column(
+PaymentPagesCheckoutSessionPhoneNumberCollection.Json = Table(
+    "payment_pages_checkout_session_phone_number_collection.json",
+    metadata,
+    Column(
+        "enabled",
         Boolean,
         comment="Indicates whether phone number collection is enabled for the session",
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "PaymentPagesCheckoutSessionPhoneNumberCollection(enabled={enabled!r}, id={id!r})".format(
-            enabled=self.enabled, id=self.id
-        )
-
-
-__all__ = ["payment_pages_checkout_session_phone_number_collection"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["payment_pages_checkout_session_phone_number_collection.json"]

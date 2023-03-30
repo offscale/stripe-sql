@@ -1,32 +1,22 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class GelatoIdNumberReportError(Base):
-    __tablename__ = "gelato_id_number_report_error"
-    code = Column(
+GelatoIdNumberReportError.Json = Table(
+    "gelato_id_number_report_error.json",
+    metadata,
+    Column(
+        "code",
         String,
         comment="A short machine-readable string giving the reason for the verification failure",
         nullable=True,
-    )
-    reason = Column(
+    ),
+    Column(
+        "reason",
         String,
         comment="A human-readable message giving the reason for the failure. These messages can be shown to your users",
         nullable=True,
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "GelatoIdNumberReportError(code={code!r}, reason={reason!r}, id={id!r})".format(
-            code=self.code, reason=self.reason, id=self.id
-        )
-
-
-__all__ = ["gelato_id_number_report_error"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["gelato_id_number_report_error.json"]

@@ -1,46 +1,34 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class PaymentMethodDetailsGiropay(Base):
-    __tablename__ = "payment_method_details_giropay"
-    bank_code = Column(
+PaymentMethodDetailsGiropay.Json = Table(
+    "payment_method_details_giropay.json",
+    metadata,
+    Column(
+        "bank_code",
         String,
         comment="Bank code of bank associated with the bank account",
         nullable=True,
-    )
-    bank_name = Column(
+    ),
+    Column(
+        "bank_name",
         String,
         comment="Name of the bank associated with the bank account",
         nullable=True,
-    )
-    bic = Column(
+    ),
+    Column(
+        "bic",
         String,
         comment="Bank Identifier Code of the bank associated with the bank account",
         nullable=True,
-    )
-    verified_name = Column(
+    ),
+    Column(
+        "verified_name",
         String,
         comment="Owner's verified full name. Values are verified or provided by Giropay directly\n(if supported) at the time of authorization or settlement. They cannot be set or mutated.\nGiropay rarely provides this information so the attribute is usually empty",
         nullable=True,
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "PaymentMethodDetailsGiropay(bank_code={bank_code!r}, bank_name={bank_name!r}, bic={bic!r}, verified_name={verified_name!r}, id={id!r})".format(
-            bank_code=self.bank_code,
-            bank_name=self.bank_name,
-            bic=self.bic,
-            verified_name=self.verified_name,
-            id=self.id,
-        )
-
-
-__all__ = ["payment_method_details_giropay"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["payment_method_details_giropay.json"]

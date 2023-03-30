@@ -1,34 +1,22 @@
-from sqlalchemy import Boolean, Column, Identity, Integer
+from sqlalchemy import Boolean, Column, Identity, Integer, Table
 
-from . import Base
+from . import metadata
 
-
-class PaymentIntentProcessingCustomerNotification(Base):
-    __tablename__ = "payment_intent_processing_customer_notification"
-    approval_requested = Column(
+PaymentIntentProcessingCustomerNotification.Json = Table(
+    "payment_intent_processing_customer_notification.json",
+    metadata,
+    Column(
+        "approval_requested",
         Boolean,
         comment="Whether customer approval has been requested for this payment. For payments greater than INR 15000 or mandate amount, the customer must provide explicit approval of the payment with their bank",
         nullable=True,
-    )
-    completes_at = Column(
+    ),
+    Column(
+        "completes_at",
         Integer,
         comment="If customer approval is required, they need to provide approval before this time",
         nullable=True,
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "PaymentIntentProcessingCustomerNotification(approval_requested={approval_requested!r}, completes_at={completes_at!r}, id={id!r})".format(
-            approval_requested=self.approval_requested,
-            completes_at=self.completes_at,
-            id=self.id,
-        )
-
-
-__all__ = ["payment_intent_processing_customer_notification"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["payment_intent_processing_customer_notification.json"]

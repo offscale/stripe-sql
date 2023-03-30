@@ -1,37 +1,28 @@
-from sqlalchemy import Column, Identity, Integer, String
+from sqlalchemy import Column, Identity, Integer, String, Table
 
-from . import Base
+from . import metadata
 
-
-class LegalEntityUboDeclaration(Base):
-    __tablename__ = "legal_entity_ubo_declaration"
-    date = Column(
+LegalEntityUboDeclaration.Json = Table(
+    "legal_entity_ubo_declaration.json",
+    metadata,
+    Column(
+        "date",
         Integer,
         comment="The Unix timestamp marking when the beneficial owner attestation was made",
         nullable=True,
-    )
-    ip = Column(
+    ),
+    Column(
+        "ip",
         String,
         comment="The IP address from which the beneficial owner attestation was made",
         nullable=True,
-    )
-    user_agent = Column(
+    ),
+    Column(
+        "user_agent",
         String,
         comment="The user-agent string from the browser where the beneficial owner attestation was made",
         nullable=True,
-    )
-    id = Column(Integer, primary_key=True, server_default=Identity())
-
-    def __repr__(self):
-        """
-        Emit a string representation of the current instance
-
-        :return: String representation of instance
-        :rtype: ```str```
-        """
-        return "LegalEntityUboDeclaration(date={date!r}, ip={ip!r}, user_agent={user_agent!r}, id={id!r})".format(
-            date=self.date, ip=self.ip, user_agent=self.user_agent, id=self.id
-        )
-
-
-__all__ = ["legal_entity_ubo_declaration"]
+    ),
+    Column("id", Integer, primary_key=True, server_default=Identity()),
+)
+__all__ = ["legal_entity_ubo_declaration.json"]
