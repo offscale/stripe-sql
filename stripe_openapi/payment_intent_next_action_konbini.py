@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table
 
 from . import metadata
 
-PaymentIntentNextActionKonbini.Json = Table(
-    "payment_intent_next_action_konbini.json",
+PaymentIntentNextActionKonbiniJson = Table(
+    "payment_intent_next_action_konbinijson",
     metadata,
     Column(
         "expires_at",

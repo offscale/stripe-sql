@@ -16,8 +16,8 @@ from stripe_openapi.account import Account
 
 from . import metadata
 
-PaymentLink.Json = Table(
-    "payment_link.json",
+PaymentLinkJson = Table(
+    "payment_linkjson",
     metadata,
     Column(
         "active",

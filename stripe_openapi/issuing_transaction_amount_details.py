@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, Table
 
 from . import metadata
 
-IssuingTransactionAmountDetails.Json = Table(
-    "issuing_transaction_amount_details.json",
+IssuingTransactionAmountDetailsJson = Table(
+    "issuing_transaction_amount_detailsjson",
     metadata,
     Column(
         "atm_fee",

@@ -4,8 +4,8 @@ from stripe_openapi.source import Source
 
 from . import metadata
 
-Topup.Json = Table(
-    "topup.json",
+TopupJson = Table(
+    "topupjson",
     metadata,
     Column("amount", Integer, comment="Amount transferred"),
     Column(

@@ -4,8 +4,8 @@ from stripe_openapi.address import Address
 
 from . import metadata
 
-BillingDetails.Json = Table(
-    "billing_details.json",
+BillingDetailsJson = Table(
+    "billing_detailsjson",
     metadata,
     Column(
         "address",

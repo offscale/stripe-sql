@@ -6,8 +6,8 @@ from stripe_openapi.subscription import Subscription
 
 from . import metadata
 
-SubscriptionSchedule.Json = Table(
-    "subscription_schedule.json",
+SubscriptionScheduleJson = Table(
+    "subscription_schedulejson",
     metadata,
     Column(
         "application",

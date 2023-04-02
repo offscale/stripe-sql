@@ -4,8 +4,8 @@ from stripe_openapi.person import Person
 
 from . import metadata
 
-Account.Json = Table(
-    "account.json",
+AccountJson = Table(
+    "accountjson",
     metadata,
     Column(
         "business_profile",

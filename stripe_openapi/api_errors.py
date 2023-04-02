@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table
 
 from . import metadata
 
-ApiErrors.Json = Table(
-    "api_errors.json",
+ApiErrorsJson = Table(
+    "api_errorsjson",
     metadata,
     Column(
         "charge",

@@ -2,8 +2,8 @@ from sqlalchemy import Column, String, Table
 
 from . import metadata
 
-NotificationEventRequest.Json = Table(
-    "notification_event_request.json",
+NotificationEventRequestJson = Table(
+    "notification_event_requestjson",
     metadata,
     Column(
         "id",

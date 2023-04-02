@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, Identity, Integer, Table
 
 from . import metadata
 
-PaymentIntentProcessingCustomerNotification.Json = Table(
-    "payment_intent_processing_customer_notification.json",
+PaymentIntentProcessingCustomerNotificationJson = Table(
+    "payment_intent_processing_customer_notificationjson",
     metadata,
     Column(
         "approval_requested",

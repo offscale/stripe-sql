@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, Identity, Integer, String, Table
 
 from . import metadata
 
-AccountUnificationAccountController.Json = Table(
-    "account_unification_account_controller.json",
+AccountUnificationAccountControllerJson = Table(
+    "account_unification_account_controllerjson",
     metadata,
     Column(
         "is_controller",

@@ -2,8 +2,8 @@ from sqlalchemy import Column, String, Table
 
 from . import metadata
 
-CustomerBalanceResourceCashBalanceTransactionResourceFundedTransactionResourceBankTransferResourceEuBankTransfer.Json = Table(
-    "customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_eu_bank_transfer.json",
+CustomerBalanceResourceCashBalanceTransactionResourceFundedTransactionResourceBankTransferResourceEuBankTransferJson = Table(
+    "customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_eu_bank_transferjson",
     metadata,
     Column(
         "bic",

@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, Identity, Integer, String, Table
 
 from . import metadata
 
-SourceTypeThreeDSecure.Json = Table(
-    "source_type_three_d_secure.json",
+SourceTypeThreeDSecureJson = Table(
+    "source_type_three_d_securejson",
     metadata,
     Column("address_line1_check", String, nullable=True),
     Column("address_zip_check", String, nullable=True),

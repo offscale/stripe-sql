@@ -4,8 +4,8 @@ from stripe_openapi.shipping import Shipping
 
 from . import metadata
 
-SourceOrder.Json = Table(
-    "source_order.json",
+SourceOrderJson = Table(
+    "source_orderjson",
     metadata,
     Column(
         "amount",

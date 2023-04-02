@@ -2,8 +2,8 @@ from sqlalchemy import Column, String, Table
 
 from . import metadata
 
-SourceTransactionChfCreditTransferData.Json = Table(
-    "source_transaction_chf_credit_transfer_data.json",
+SourceTransactionChfCreditTransferDataJson = Table(
+    "source_transaction_chf_credit_transfer_datajson",
     metadata,
     Column(
         "reference",

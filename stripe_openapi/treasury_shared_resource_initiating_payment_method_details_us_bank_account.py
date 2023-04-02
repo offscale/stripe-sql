@@ -2,8 +2,8 @@ from sqlalchemy import Column, String, Table
 
 from . import metadata
 
-TreasurySharedResourceInitiatingPaymentMethodDetailsUsBankAccount.Json = Table(
-    "treasury_shared_resource_initiating_payment_method_details_us_bank_account.json",
+TreasurySharedResourceInitiatingPaymentMethodDetailsUsBankAccountJson = Table(
+    "treasury_shared_resource_initiating_payment_method_details_us_bank_accountjson",
     metadata,
     Column("bank_name", String, comment="Bank name", nullable=True, primary_key=True),
     Column(

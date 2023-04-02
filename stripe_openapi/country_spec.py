@@ -2,8 +2,8 @@ from sqlalchemy import ARRAY, JSON, Column, ForeignKey, String, Table
 
 from . import metadata
 
-CountrySpec.Json = Table(
-    "country_spec.json",
+CountrySpecJson = Table(
+    "country_specjson",
     metadata,
     Column(
         "default_currency",

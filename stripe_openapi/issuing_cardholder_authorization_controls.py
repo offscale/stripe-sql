@@ -2,8 +2,8 @@ from sqlalchemy import ARRAY, Column, Identity, Integer, String, Table, list
 
 from . import metadata
 
-IssuingCardholderAuthorizationControls.Json = Table(
-    "issuing_cardholder_authorization_controls.json",
+IssuingCardholderAuthorizationControlsJson = Table(
+    "issuing_cardholder_authorization_controlsjson",
     metadata,
     Column(
         "allowed_categories",

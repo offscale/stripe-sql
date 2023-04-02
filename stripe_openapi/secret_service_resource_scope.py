@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-SecretServiceResourceScope.Json = Table(
-    "secret_service_resource_scope.json",
+SecretServiceResourceScopeJson = Table(
+    "secret_service_resource_scopejson",
     metadata,
     Column("type", String, comment="The secret scope type"),
     Column(

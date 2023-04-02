@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, Integer, String, Table
 
 from . import metadata
 
-EphemeralKey.Json = Table(
-    "ephemeral_key.json",
+EphemeralKeyJson = Table(
+    "ephemeral_keyjson",
     metadata,
     Column(
         "created",

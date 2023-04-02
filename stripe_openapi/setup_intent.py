@@ -7,8 +7,8 @@ from stripe_openapi.mandate import Mandate
 
 from . import metadata
 
-SetupIntent.Json = Table(
-    "setup_intent.json",
+SetupIntentJson = Table(
+    "setup_intentjson",
     metadata,
     Column(
         "application",

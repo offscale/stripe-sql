@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-SourceTypeAlipay.Json = Table(
-    "source_type_alipay.json",
+SourceTypeAlipayJson = Table(
+    "source_type_alipayjson",
     metadata,
     Column("data_string", String, nullable=True),
     Column("native_url", String, nullable=True),

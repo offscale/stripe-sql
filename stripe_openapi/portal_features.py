@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, Table
 
 from . import metadata
 
-PortalFeatures.Json = Table(
-    "portal_features.json",
+PortalFeaturesJson = Table(
+    "portal_featuresjson",
     metadata,
     Column("customer_update", PortalCustomerUpdate, ForeignKey("PortalCustomerUpdate")),
     Column("invoice_history", PortalInvoiceList, ForeignKey("PortalInvoiceList")),

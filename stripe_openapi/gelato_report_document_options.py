@@ -2,8 +2,8 @@ from sqlalchemy import ARRAY, Boolean, Column, String, Table
 
 from . import metadata
 
-GelatoReportDocumentOptions.Json = Table(
-    "gelato_report_document_options.json",
+GelatoReportDocumentOptionsJson = Table(
+    "gelato_report_document_optionsjson",
     metadata,
     Column(
         "allowed_types",

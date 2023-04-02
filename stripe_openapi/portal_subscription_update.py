@@ -2,8 +2,8 @@ from sqlalchemy import ARRAY, Boolean, Column, Identity, Integer, String, Table,
 
 from . import metadata
 
-PortalSubscriptionUpdate.Json = Table(
-    "portal_subscription_update.json",
+PortalSubscriptionUpdateJson = Table(
+    "portal_subscription_updatejson",
     metadata,
     Column(
         "default_allowed_updates",

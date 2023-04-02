@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, String, Table
 
 from . import metadata
 
-IssuingCardWallets.Json = Table(
-    "issuing_card_wallets.json",
+IssuingCardWalletsJson = Table(
+    "issuing_card_walletsjson",
     metadata,
     Column("apple_pay", IssuingCardApplePay, ForeignKey("IssuingCardApplePay")),
     Column("google_pay", IssuingCardGooglePay, ForeignKey("IssuingCardGooglePay")),

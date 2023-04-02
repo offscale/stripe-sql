@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Table
 
 from . import metadata
 
-GelatoVerificationReportOptions.Json = Table(
-    "gelato_verification_report_options.json",
+GelatoVerificationReportOptionsJson = Table(
+    "gelato_verification_report_optionsjson",
     metadata,
     Column(
         "document",

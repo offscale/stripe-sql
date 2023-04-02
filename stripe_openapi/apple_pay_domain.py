@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, Identity, Integer, String, Table
 
 from . import metadata
 
-ApplePayDomain.Json = Table(
-    "apple_pay_domain.json",
+ApplePayDomainJson = Table(
+    "apple_pay_domainjson",
     metadata,
     Column(
         "created",

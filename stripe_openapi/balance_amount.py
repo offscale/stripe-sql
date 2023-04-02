@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table
 
 from . import metadata
 
-BalanceAmount.Json = Table(
-    "balance_amount.json",
+BalanceAmountJson = Table(
+    "balance_amountjson",
     metadata,
     Column("amount", Integer, comment="Balance amount"),
     Column(

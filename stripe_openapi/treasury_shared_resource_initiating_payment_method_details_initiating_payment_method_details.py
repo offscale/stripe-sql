@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table
 
 from . import metadata
 
-TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatingPaymentMethodDetails.Json = Table(
-    "treasury_shared_resource_initiating_payment_method_details_initiating_payment_method_details.json",
+TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatingPaymentMethodDetailsJson = Table(
+    "treasury_shared_resource_initiating_payment_method_details_initiating_payment_method_detailsjson",
     metadata,
     Column("balance", String, comment="Set when `type` is `balance`", nullable=True),
     Column(

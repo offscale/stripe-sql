@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-ShippingRateDeliveryEstimateBound.Json = Table(
-    "shipping_rate_delivery_estimate_bound.json",
+ShippingRateDeliveryEstimateBoundJson = Table(
+    "shipping_rate_delivery_estimate_boundjson",
     metadata,
     Column("unit", String, comment="A unit of time"),
     Column("value", Integer, comment="Must be greater than 0"),

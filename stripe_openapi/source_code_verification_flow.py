@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-SourceCodeVerificationFlow.Json = Table(
-    "source_code_verification_flow.json",
+SourceCodeVerificationFlowJson = Table(
+    "source_code_verification_flowjson",
     metadata,
     Column(
         "attempts_remaining",

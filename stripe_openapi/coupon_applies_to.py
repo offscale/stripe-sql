@@ -2,8 +2,8 @@ from sqlalchemy import ARRAY, Column, Identity, Integer, String, Table
 
 from . import metadata
 
-CouponAppliesTo.Json = Table(
-    "coupon_applies_to.json",
+CouponAppliesToJson = Table(
+    "coupon_applies_tojson",
     metadata,
     Column(
         "products",

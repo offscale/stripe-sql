@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-Address.Json = Table(
-    "address.json",
+AddressJson = Table(
+    "addressjson",
     metadata,
     Column(
         "city",

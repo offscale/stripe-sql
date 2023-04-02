@@ -2,8 +2,8 @@ from sqlalchemy import Column, String, Table
 
 from . import metadata
 
-SourceTypeGiropay.Json = Table(
-    "source_type_giropay.json",
+SourceTypeGiropayJson = Table(
+    "source_type_giropayjson",
     metadata,
     Column("bank_code", String, nullable=True),
     Column("bank_name", String, nullable=True, primary_key=True),

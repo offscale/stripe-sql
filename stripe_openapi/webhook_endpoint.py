@@ -2,8 +2,8 @@ from sqlalchemy import ARRAY, JSON, Boolean, Column, Integer, String, Table
 
 from . import metadata
 
-WebhookEndpoint.Json = Table(
-    "webhook_endpoint.json",
+WebhookEndpointJson = Table(
+    "webhook_endpointjson",
     metadata,
     Column(
         "api_version",

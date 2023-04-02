@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, Table
 
 from . import metadata
 
-IssuingCardholderCompany.Json = Table(
-    "issuing_cardholder_company.json",
+IssuingCardholderCompanyJson = Table(
+    "issuing_cardholder_companyjson",
     metadata,
     Column(
         "tax_id_provided",

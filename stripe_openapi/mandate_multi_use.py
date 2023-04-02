@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, Table
 
 from . import metadata
 
-MandateMultiUse.Json = Table(
-    "mandate_multi_use.json",
+MandateMultiUseJson = Table(
+    "mandate_multi_usejson",
     metadata,
     Column("id", Integer, primary_key=True, server_default=Identity()),
 )

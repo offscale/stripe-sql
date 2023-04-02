@@ -2,8 +2,8 @@ from sqlalchemy import JSON, Column, ForeignKey, Identity, Integer, String, Tabl
 
 from . import metadata
 
-SetupIntentNextAction.Json = Table(
-    "setup_intent_next_action.json",
+SetupIntentNextActionJson = Table(
+    "setup_intent_next_actionjson",
     metadata,
     Column(
         "cashapp_handle_redirect_or_display_qr_code",

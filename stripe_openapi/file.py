@@ -2,8 +2,8 @@ from sqlalchemy import JSON, Column, Integer, String, Table
 
 from . import metadata
 
-File.Json = Table(
-    "file.json",
+FileJson = Table(
+    "filejson",
     metadata,
     Column(
         "created",

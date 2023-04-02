@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-IssuingTransactionFuelData.Json = Table(
-    "issuing_transaction_fuel_data.json",
+IssuingTransactionFuelDataJson = Table(
+    "issuing_transaction_fuel_datajson",
     metadata,
     Column(
         "type",

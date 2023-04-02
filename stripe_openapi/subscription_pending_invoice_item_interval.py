@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-SubscriptionPendingInvoiceItemInterval.Json = Table(
-    "subscription_pending_invoice_item_interval.json",
+SubscriptionPendingInvoiceItemIntervalJson = Table(
+    "subscription_pending_invoice_item_intervaljson",
     metadata,
     Column(
         "interval",

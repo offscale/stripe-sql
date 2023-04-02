@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, Table
 
 from . import metadata
 
-TerminalReaderReaderResourceProcessPaymentIntentAction.Json = Table(
-    "terminal_reader_reader_resource_process_payment_intent_action.json",
+TerminalReaderReaderResourceProcessPaymentIntentActionJson = Table(
+    "terminal_reader_reader_resource_process_payment_intent_actionjson",
     metadata,
     Column(
         "payment_intent",

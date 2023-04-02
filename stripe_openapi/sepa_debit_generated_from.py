@@ -4,8 +4,8 @@ from stripe_openapi.charge import Charge
 
 from . import metadata
 
-SepaDebitGeneratedFrom.Json = Table(
-    "sepa_debit_generated_from.json",
+SepaDebitGeneratedFromJson = Table(
+    "sepa_debit_generated_fromjson",
     metadata,
     Column(
         "charge",

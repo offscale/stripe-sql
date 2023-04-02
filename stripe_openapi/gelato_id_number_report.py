@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table
 
 from . import metadata
 
-GelatoIdNumberReport.Json = Table(
-    "gelato_id_number_report.json",
+GelatoIdNumberReportJson = Table(
+    "gelato_id_number_reportjson",
     metadata,
     Column(
         "dob",

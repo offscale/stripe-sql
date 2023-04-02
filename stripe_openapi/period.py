@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, Table
 
 from . import metadata
 
-Period.Json = Table(
-    "period.json",
+PeriodJson = Table(
+    "periodjson",
     metadata,
     Column(
         "end",

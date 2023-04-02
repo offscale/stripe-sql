@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-CustomerTaxLocation.Json = Table(
-    "customer_tax_location.json",
+CustomerTaxLocationJson = Table(
+    "customer_tax_locationjson",
     metadata,
     Column(
         "country", String, comment="The customer's country as identified by Stripe Tax"

@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table
 
 from . import metadata
 
-PaymentIntentProcessing.Json = Table(
-    "payment_intent_processing.json",
+PaymentIntentProcessingJson = Table(
+    "payment_intent_processingjson",
     metadata,
     Column(
         "card",

@@ -4,8 +4,8 @@ from stripe_openapi.file import File
 
 from . import metadata
 
-IssuingCardholderIdDocument.Json = Table(
-    "issuing_cardholder_id_document.json",
+IssuingCardholderIdDocumentJson = Table(
+    "issuing_cardholder_id_documentjson",
     metadata,
     Column(
         "back",

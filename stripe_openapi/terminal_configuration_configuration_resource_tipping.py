@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, Table
 
 from . import metadata
 
-TerminalConfigurationConfigurationResourceTipping.Json = Table(
-    "terminal_configuration_configuration_resource_tipping.json",
+TerminalConfigurationConfigurationResourceTippingJson = Table(
+    "terminal_configuration_configuration_resource_tippingjson",
     metadata,
     Column(
         "aud",

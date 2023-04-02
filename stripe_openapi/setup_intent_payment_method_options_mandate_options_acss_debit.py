@@ -2,8 +2,8 @@ from sqlalchemy import ARRAY, Column, Identity, Integer, String, Table
 
 from . import metadata
 
-SetupIntentPaymentMethodOptionsMandateOptionsAcssDebit.Json = Table(
-    "setup_intent_payment_method_options_mandate_options_acss_debit.json",
+SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitJson = Table(
+    "setup_intent_payment_method_options_mandate_options_acss_debitjson",
     metadata,
     Column(
         "custom_mandate_url",

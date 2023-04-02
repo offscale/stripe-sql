@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, Table
 
 from . import metadata
 
-BalanceAmountBySourceType.Json = Table(
-    "balance_amount_by_source_type.json",
+BalanceAmountBySourceTypeJson = Table(
+    "balance_amount_by_source_typejson",
     metadata,
     Column("bank_account", Integer, comment="Amount for bank account", nullable=True),
     Column("card", Integer, comment="Amount for card", nullable=True),

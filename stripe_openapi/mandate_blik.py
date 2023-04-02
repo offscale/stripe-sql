@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table
 
 from . import metadata
 
-MandateBlik.Json = Table(
-    "mandate_blik.json",
+MandateBlikJson = Table(
+    "mandate_blikjson",
     metadata,
     Column(
         "expires_after",

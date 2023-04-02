@@ -5,8 +5,8 @@ from stripe_openapi.recurring import Recurring
 
 from . import metadata
 
-Price.Json = Table(
-    "price.json",
+PriceJson = Table(
+    "pricejson",
     metadata,
     Column(
         "active", Boolean, comment="Whether the price can be used for new purchases"

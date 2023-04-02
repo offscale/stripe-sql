@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-SourceTransactionPaperCheckData.Json = Table(
-    "source_transaction_paper_check_data.json",
+SourceTransactionPaperCheckDataJson = Table(
+    "source_transaction_paper_check_datajson",
     metadata,
     Column(
         "available_at",

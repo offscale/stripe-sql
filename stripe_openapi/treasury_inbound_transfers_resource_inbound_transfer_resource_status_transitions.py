@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, Table
 
 from . import metadata
 
-TreasuryInboundTransfersResourceInboundTransferResourceStatusTransitions.Json = Table(
-    "treasury_inbound_transfers_resource_inbound_transfer_resource_status_transitions.json",
+TreasuryInboundTransfersResourceInboundTransferResourceStatusTransitionsJson = Table(
+    "treasury_inbound_transfers_resource_inbound_transfer_resource_status_transitionsjson",
     metadata,
     Column(
         "canceled_at",

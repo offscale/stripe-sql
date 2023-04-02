@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, Identity, Integer, Table
 
 from . import metadata
 
-PaymentFlowsAutomaticPaymentMethodsPaymentIntent.Json = Table(
-    "payment_flows_automatic_payment_methods_payment_intent.json",
+PaymentFlowsAutomaticPaymentMethodsPaymentIntentJson = Table(
+    "payment_flows_automatic_payment_methods_payment_intentjson",
     metadata,
     Column(
         "enabled",

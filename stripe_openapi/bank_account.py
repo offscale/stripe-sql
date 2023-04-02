@@ -15,8 +15,8 @@ from stripe_openapi.customer import Customer
 
 from . import metadata
 
-BankAccount.Json = Table(
-    "bank_account.json",
+BankAccountJson = Table(
+    "bank_accountjson",
     metadata,
     Column(
         "account",

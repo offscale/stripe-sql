@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, Identity, Integer, Table
 
 from . import metadata
 
-PaymentIntentNextActionCardAwaitNotification.Json = Table(
-    "payment_intent_next_action_card_await_notification.json",
+PaymentIntentNextActionCardAwaitNotificationJson = Table(
+    "payment_intent_next_action_card_await_notificationjson",
     metadata,
     Column(
         "charge_attempt_at",

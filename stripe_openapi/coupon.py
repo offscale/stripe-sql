@@ -2,8 +2,8 @@ from sqlalchemy import JSON, Boolean, Column, Float, ForeignKey, Integer, String
 
 from . import metadata
 
-Coupon.Json = Table(
-    "coupon.json",
+CouponJson = Table(
+    "couponjson",
     metadata,
     Column(
         "amount_off",

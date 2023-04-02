@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-LegalEntityJapanAddress.Json = Table(
-    "legal_entity_japan_address.json",
+LegalEntityJapanAddressJson = Table(
+    "legal_entity_japan_addressjson",
     metadata,
     Column("city", String, comment="City/Ward", nullable=True),
     Column(

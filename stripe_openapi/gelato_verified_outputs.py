@@ -4,8 +4,8 @@ from stripe_openapi.address import Address
 
 from . import metadata
 
-GelatoVerifiedOutputs.Json = Table(
-    "gelato_verified_outputs.json",
+GelatoVerifiedOutputsJson = Table(
+    "gelato_verified_outputsjson",
     metadata,
     Column(
         "address",

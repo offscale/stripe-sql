@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-PaymentLinksResourcePaymentIntentData.Json = Table(
-    "payment_links_resource_payment_intent_data.json",
+PaymentLinksResourcePaymentIntentDataJson = Table(
+    "payment_links_resource_payment_intent_datajson",
     metadata,
     Column(
         "capture_method",

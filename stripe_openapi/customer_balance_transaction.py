@@ -5,8 +5,8 @@ from stripe_openapi.invoice import Invoice
 
 from . import metadata
 
-CustomerBalanceTransaction.Json = Table(
-    "customer_balance_transaction.json",
+CustomerBalanceTransactionJson = Table(
+    "customer_balance_transactionjson",
     metadata,
     Column(
         "amount",

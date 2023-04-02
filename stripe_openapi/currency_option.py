@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table, lis
 
 from . import metadata
 
-CurrencyOption.Json = Table(
-    "currency_option.json",
+CurrencyOptionJson = Table(
+    "currency_optionjson",
     metadata,
     Column(
         "custom_unit_amount",

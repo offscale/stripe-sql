@@ -4,8 +4,8 @@ from stripe_openapi.period import Period
 
 from . import metadata
 
-UsageRecordSummary.Json = Table(
-    "usage_record_summary.json",
+UsageRecordSummaryJson = Table(
+    "usage_record_summaryjson",
     metadata,
     Column("id", String, comment="Unique identifier for the object", primary_key=True),
     Column(

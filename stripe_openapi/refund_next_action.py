@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table
 
 from . import metadata
 
-RefundNextAction.Json = Table(
-    "refund_next_action.json",
+RefundNextActionJson = Table(
+    "refund_next_actionjson",
     metadata,
     Column(
         "display_details",

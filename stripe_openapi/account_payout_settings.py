@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, ForeignKey, Identity, Integer, String, T
 
 from . import metadata
 
-AccountPayoutSettings.Json = Table(
-    "account_payout_settings.json",
+AccountPayoutSettingsJson = Table(
+    "account_payout_settingsjson",
     metadata,
     Column(
         "debit_negative_balances",

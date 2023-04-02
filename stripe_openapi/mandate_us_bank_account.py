@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, Table
 
 from . import metadata
 
-MandateUsBankAccount.Json = Table(
-    "mandate_us_bank_account.json",
+MandateUsBankAccountJson = Table(
+    "mandate_us_bank_accountjson",
     metadata,
     Column("id", Integer, primary_key=True, server_default=Identity()),
 )

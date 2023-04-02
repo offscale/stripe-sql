@@ -4,8 +4,8 @@ from stripe_openapi.account import Account
 
 from . import metadata
 
-InvoiceTransferData.Json = Table(
-    "invoice_transfer_data.json",
+InvoiceTransferDataJson = Table(
+    "invoice_transfer_datajson",
     metadata,
     Column(
         "amount",

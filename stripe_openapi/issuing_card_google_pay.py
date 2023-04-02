@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, Identity, Integer, String, Table
 
 from . import metadata
 
-IssuingCardGooglePay.Json = Table(
-    "issuing_card_google_pay.json",
+IssuingCardGooglePayJson = Table(
+    "issuing_card_google_payjson",
     metadata,
     Column("eligible", Boolean, comment="Google Pay Eligibility"),
     Column(

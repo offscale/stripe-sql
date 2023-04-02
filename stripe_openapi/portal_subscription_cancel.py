@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, ForeignKey, Identity, Integer, String, T
 
 from . import metadata
 
-PortalSubscriptionCancel.Json = Table(
-    "portal_subscription_cancel.json",
+PortalSubscriptionCancelJson = Table(
+    "portal_subscription_canceljson",
     metadata,
     Column(
         "cancellation_reason",

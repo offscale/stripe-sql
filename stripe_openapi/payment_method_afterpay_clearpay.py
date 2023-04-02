@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, Table
 
 from . import metadata
 
-PaymentMethodAfterpayClearpay.Json = Table(
-    "payment_method_afterpay_clearpay.json",
+PaymentMethodAfterpayClearpayJson = Table(
+    "payment_method_afterpay_clearpayjson",
     metadata,
     Column("id", Integer, primary_key=True, server_default=Identity()),
 )

@@ -4,8 +4,8 @@ from stripe_openapi.address import Address
 
 from . import metadata
 
-AccountBusinessProfile.Json = Table(
-    "account_business_profile.json",
+AccountBusinessProfileJson = Table(
+    "account_business_profilejson",
     metadata,
     Column(
         "mcc",

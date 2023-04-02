@@ -5,8 +5,8 @@ from stripe_openapi.price import Price
 
 from . import metadata
 
-LineItem.Json = Table(
-    "line_item.json",
+LineItemJson = Table(
+    "line_itemjson",
     metadata,
     Column("amount", Integer, comment="The amount, in %s"),
     Column(

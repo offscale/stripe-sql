@@ -4,8 +4,8 @@ from stripe_openapi.rule import Rule
 
 from . import metadata
 
-ChargeOutcome.Json = Table(
-    "charge_outcome.json",
+ChargeOutcomeJson = Table(
+    "charge_outcomejson",
     metadata,
     Column(
         "network_status",

@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-RadarRadarOptions.Json = Table(
-    "radar_radar_options.json",
+RadarRadarOptionsJson = Table(
+    "radar_radar_optionsjson",
     metadata,
     Column(
         "session",

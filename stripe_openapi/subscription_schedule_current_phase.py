@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, Table
 
 from . import metadata
 
-SubscriptionScheduleCurrentPhase.Json = Table(
-    "subscription_schedule_current_phase.json",
+SubscriptionScheduleCurrentPhaseJson = Table(
+    "subscription_schedule_current_phasejson",
     metadata,
     Column(
         "end_date",

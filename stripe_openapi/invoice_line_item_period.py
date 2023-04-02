@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, Table
 
 from . import metadata
 
-InvoiceLineItemPeriod.Json = Table(
-    "invoice_line_item_period.json",
+InvoiceLineItemPeriodJson = Table(
+    "invoice_line_item_periodjson",
     metadata,
     Column(
         "end",

@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, Table
 
 from . import metadata
 
-LegalEntityCompanyVerification.Json = Table(
-    "legal_entity_company_verification.json",
+LegalEntityCompanyVerificationJson = Table(
+    "legal_entity_company_verificationjson",
     metadata,
     Column(
         "document",

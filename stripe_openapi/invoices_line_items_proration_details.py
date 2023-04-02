@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, Table
 
 from . import metadata
 
-InvoicesLineItemsProrationDetails.Json = Table(
-    "invoices_line_items_proration_details.json",
+InvoicesLineItemsProrationDetailsJson = Table(
+    "invoices_line_items_proration_detailsjson",
     metadata,
     Column(
         "credited_items",

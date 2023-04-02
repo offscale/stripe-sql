@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, Float, Identity, Integer, String, Table
 
 from . import metadata
 
-PersonRelationship.Json = Table(
-    "person_relationship.json",
+PersonRelationshipJson = Table(
+    "person_relationshipjson",
     metadata,
     Column(
         "director",

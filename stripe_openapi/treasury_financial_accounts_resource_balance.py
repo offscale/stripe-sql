@@ -2,8 +2,8 @@ from sqlalchemy import JSON, Column, Identity, Integer, Table
 
 from . import metadata
 
-TreasuryFinancialAccountsResourceBalance.Json = Table(
-    "treasury_financial_accounts_resource_balance.json",
+TreasuryFinancialAccountsResourceBalanceJson = Table(
+    "treasury_financial_accounts_resource_balancejson",
     metadata,
     Column("cash", JSON, comment="Funds the user can spend right now"),
     Column(

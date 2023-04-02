@@ -2,8 +2,8 @@ from sqlalchemy import ARRAY, Boolean, Column, String, Table
 
 from . import metadata
 
-GelatoSessionDocumentOptions.Json = Table(
-    "gelato_session_document_options.json",
+GelatoSessionDocumentOptionsJson = Table(
+    "gelato_session_document_optionsjson",
     metadata,
     Column(
         "allowed_types",

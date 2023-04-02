@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-PortalBusinessProfile.Json = Table(
-    "portal_business_profile.json",
+PortalBusinessProfileJson = Table(
+    "portal_business_profilejson",
     metadata,
     Column(
         "headline",

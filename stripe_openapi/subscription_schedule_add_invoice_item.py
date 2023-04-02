@@ -4,8 +4,8 @@ from stripe_openapi.price import Price
 
 from . import metadata
 
-SubscriptionScheduleAddInvoiceItem.Json = Table(
-    "subscription_schedule_add_invoice_item.json",
+SubscriptionScheduleAddInvoiceItemJson = Table(
+    "subscription_schedule_add_invoice_itemjson",
     metadata,
     Column(
         "price",

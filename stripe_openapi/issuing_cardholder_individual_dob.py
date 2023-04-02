@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, Table
 
 from . import metadata
 
-IssuingCardholderIndividualDob.Json = Table(
-    "issuing_cardholder_individual_dob.json",
+IssuingCardholderIndividualDobJson = Table(
+    "issuing_cardholder_individual_dobjson",
     metadata,
     Column("day", Integer, comment="The day of birth, between 1 and 31", nullable=True),
     Column(

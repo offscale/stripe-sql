@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, String, Table
 
 from . import metadata
 
-DeletedBankAccount.Json = Table(
-    "deleted_bank_account.json",
+DeletedBankAccountJson = Table(
+    "deleted_bank_accountjson",
     metadata,
     Column(
         "currency",

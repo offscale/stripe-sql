@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, Table
 
 from . import metadata
 
-PromotionCodeCurrencyOption.Json = Table(
-    "promotion_code_currency_option.json",
+PromotionCodeCurrencyOptionJson = Table(
+    "promotion_code_currency_optionjson",
     metadata,
     Column(
         "minimum_amount",

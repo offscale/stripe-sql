@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table, lis
 
 from . import metadata
 
-InvoiceSettingCustomerSetting.Json = Table(
-    "invoice_setting_customer_setting.json",
+InvoiceSettingCustomerSettingJson = Table(
+    "invoice_setting_customer_settingjson",
     metadata,
     Column(
         "custom_fields",

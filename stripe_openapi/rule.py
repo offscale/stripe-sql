@@ -2,8 +2,8 @@ from sqlalchemy import Column, String, Table
 
 from . import metadata
 
-Rule.Json = Table(
-    "rule.json",
+RuleJson = Table(
+    "rulejson",
     metadata,
     Column("action", String, comment="The action taken on the payment"),
     Column("id", String, comment="Unique identifier for the object", primary_key=True),

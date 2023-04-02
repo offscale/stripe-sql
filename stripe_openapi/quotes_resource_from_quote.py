@@ -4,8 +4,8 @@ from stripe_openapi.quote import Quote
 
 from . import metadata
 
-QuotesResourceFromQuote.Json = Table(
-    "quotes_resource_from_quote.json",
+QuotesResourceFromQuoteJson = Table(
+    "quotes_resource_from_quotejson",
     metadata,
     Column(
         "is_revision",

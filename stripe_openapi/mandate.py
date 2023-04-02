@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, ForeignKey, String, Table
 
 from . import metadata
 
-Mandate.Json = Table(
-    "mandate.json",
+MandateJson = Table(
+    "mandatejson",
     metadata,
     Column("customer_acceptance", CustomerAcceptance, ForeignKey("CustomerAcceptance")),
     Column("id", String, comment="Unique identifier for the object", primary_key=True),

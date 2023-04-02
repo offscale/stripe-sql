@@ -4,8 +4,8 @@ from stripe_openapi.file import File
 
 from . import metadata
 
-IssuingDisputeCanceledEvidence.Json = Table(
-    "issuing_dispute_canceled_evidence.json",
+IssuingDisputeCanceledEvidenceJson = Table(
+    "issuing_dispute_canceled_evidencejson",
     metadata,
     Column(
         "additional_documentation",

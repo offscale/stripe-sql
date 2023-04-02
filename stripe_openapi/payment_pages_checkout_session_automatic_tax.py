@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, Identity, Integer, String, Table
 
 from . import metadata
 
-PaymentPagesCheckoutSessionAutomaticTax.Json = Table(
-    "payment_pages_checkout_session_automatic_tax.json",
+PaymentPagesCheckoutSessionAutomaticTaxJson = Table(
+    "payment_pages_checkout_session_automatic_taxjson",
     metadata,
     Column(
         "enabled",

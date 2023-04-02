@@ -4,8 +4,8 @@ from stripe_openapi.discount import Discount
 
 from . import metadata
 
-LineItemsDiscountAmount.Json = Table(
-    "line_items_discount_amount.json",
+LineItemsDiscountAmountJson = Table(
+    "line_items_discount_amountjson",
     metadata,
     Column("amount", Integer, comment="The amount discounted"),
     Column("discount", Discount, ForeignKey("Discount")),

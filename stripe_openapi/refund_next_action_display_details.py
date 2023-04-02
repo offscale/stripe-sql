@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, Table
 
 from . import metadata
 
-RefundNextActionDisplayDetails.Json = Table(
-    "refund_next_action_display_details.json",
+RefundNextActionDisplayDetailsJson = Table(
+    "refund_next_action_display_detailsjson",
     metadata,
     Column("email_sent", EmailSent, ForeignKey("EmailSent")),
     Column("expires_at", Integer, comment="The expiry timestamp"),

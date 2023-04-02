@@ -15,8 +15,8 @@ from stripe_openapi.coupon import Coupon
 
 from . import metadata
 
-SubscriptionSchedulePhaseConfiguration.Json = Table(
-    "subscription_schedule_phase_configuration.json",
+SubscriptionSchedulePhaseConfigurationJson = Table(
+    "subscription_schedule_phase_configurationjson",
     metadata,
     Column(
         "add_invoice_items",

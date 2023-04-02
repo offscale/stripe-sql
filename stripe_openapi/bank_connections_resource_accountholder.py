@@ -5,8 +5,8 @@ from stripe_openapi.customer import Customer
 
 from . import metadata
 
-BankConnectionsResourceAccountholder.Json = Table(
-    "bank_connections_resource_accountholder.json",
+BankConnectionsResourceAccountholderJson = Table(
+    "bank_connections_resource_accountholderjson",
     metadata,
     Column(
         "account",

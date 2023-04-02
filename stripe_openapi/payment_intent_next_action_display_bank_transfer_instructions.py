@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table, list
 
 from . import metadata
 
-PaymentIntentNextActionDisplayBankTransferInstructions.Json = Table(
-    "payment_intent_next_action_display_bank_transfer_instructions.json",
+PaymentIntentNextActionDisplayBankTransferInstructionsJson = Table(
+    "payment_intent_next_action_display_bank_transfer_instructionsjson",
     metadata,
     Column(
         "amount_remaining",

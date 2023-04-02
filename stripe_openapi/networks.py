@@ -2,8 +2,8 @@ from sqlalchemy import ARRAY, Column, Identity, Integer, String, Table
 
 from . import metadata
 
-Networks.Json = Table(
-    "networks.json",
+NetworksJson = Table(
+    "networksjson",
     metadata,
     Column("available", ARRAY(String), comment="All available networks for the card"),
     Column(

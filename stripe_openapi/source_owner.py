@@ -4,8 +4,8 @@ from stripe_openapi.address import Address
 
 from . import metadata
 
-SourceOwner.Json = Table(
-    "source_owner.json",
+SourceOwnerJson = Table(
+    "source_ownerjson",
     metadata,
     Column(
         "address",

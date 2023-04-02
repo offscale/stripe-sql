@@ -2,8 +2,8 @@ from sqlalchemy import Column, String, Table
 
 from . import metadata
 
-PaymentMethodDetailsAchDebit.Json = Table(
-    "payment_method_details_ach_debit.json",
+PaymentMethodDetailsAchDebitJson = Table(
+    "payment_method_details_ach_debitjson",
     metadata,
     Column(
         "account_holder_type",

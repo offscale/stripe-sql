@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table
 
 from . import metadata
 
-TerminalReaderReaderResourceProcessSetupIntentAction.Json = Table(
-    "terminal_reader_reader_resource_process_setup_intent_action.json",
+TerminalReaderReaderResourceProcessSetupIntentActionJson = Table(
+    "terminal_reader_reader_resource_process_setup_intent_actionjson",
     metadata,
     Column(
         "generated_card",

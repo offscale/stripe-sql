@@ -2,8 +2,8 @@ from sqlalchemy import Column, Float, Identity, Integer, Table
 
 from . import metadata
 
-PackageDimensions.Json = Table(
-    "package_dimensions.json",
+PackageDimensionsJson = Table(
+    "package_dimensionsjson",
     metadata,
     Column("height", Float, comment="Height, in inches"),
     Column("length", Float, comment="Length, in inches"),

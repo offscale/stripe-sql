@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-PaymentIntentNextActionKonbiniMinistop.Json = Table(
-    "payment_intent_next_action_konbini_ministop.json",
+PaymentIntentNextActionKonbiniMinistopJson = Table(
+    "payment_intent_next_action_konbini_ministopjson",
     metadata,
     Column(
         "confirmation_number", String, comment="The confirmation number", nullable=True

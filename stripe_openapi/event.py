@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Table
 
 from . import metadata
 
-Event.Json = Table(
-    "event.json",
+EventJson = Table(
+    "eventjson",
     metadata,
     Column(
         "account",

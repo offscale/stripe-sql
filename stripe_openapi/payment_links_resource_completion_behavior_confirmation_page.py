@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-PaymentLinksResourceCompletionBehaviorConfirmationPage.Json = Table(
-    "payment_links_resource_completion_behavior_confirmation_page.json",
+PaymentLinksResourceCompletionBehaviorConfirmationPageJson = Table(
+    "payment_links_resource_completion_behavior_confirmation_pagejson",
     metadata,
     Column(
         "custom_message",

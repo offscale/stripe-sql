@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, Table
 
 from . import metadata
 
-PaymentIntentNextActionKonbiniStores.Json = Table(
-    "payment_intent_next_action_konbini_stores.json",
+PaymentIntentNextActionKonbiniStoresJson = Table(
+    "payment_intent_next_action_konbini_storesjson",
     metadata,
     Column(
         "familymart",

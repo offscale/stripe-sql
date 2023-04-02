@@ -12,8 +12,8 @@ from stripe_openapi.transfer import Transfer
 
 from . import metadata
 
-Charge.Json = Table(
-    "charge.json",
+ChargeJson = Table(
+    "chargejson",
     metadata,
     Column(
         "alternate_statement_descriptors",

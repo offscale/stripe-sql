@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-LegalEntityUboDeclaration.Json = Table(
-    "legal_entity_ubo_declaration.json",
+LegalEntityUboDeclarationJson = Table(
+    "legal_entity_ubo_declarationjson",
     metadata,
     Column(
         "date",

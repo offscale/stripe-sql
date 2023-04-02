@@ -11,8 +11,8 @@ from sqlalchemy import (
 
 from . import metadata
 
-CashBalance.Json = Table(
-    "cash_balance.json",
+CashBalanceJson = Table(
+    "cash_balancejson",
     metadata,
     Column(
         "available",

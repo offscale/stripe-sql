@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, Table
 
 from . import metadata
 
-DeletedExternalAccount.Json = Table(
-    "deleted_external_account.json",
+DeletedExternalAccountJson = Table(
+    "deleted_external_accountjson",
     metadata,
     Column("id", Integer, primary_key=True, server_default=Identity()),
 )

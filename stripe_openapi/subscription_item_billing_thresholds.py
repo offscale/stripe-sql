@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, Table
 
 from . import metadata
 
-SubscriptionItemBillingThresholds.Json = Table(
-    "subscription_item_billing_thresholds.json",
+SubscriptionItemBillingThresholdsJson = Table(
+    "subscription_item_billing_thresholdsjson",
     metadata,
     Column(
         "usage_gte",

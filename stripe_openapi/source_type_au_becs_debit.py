@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-SourceTypeAuBecsDebit.Json = Table(
-    "source_type_au_becs_debit.json",
+SourceTypeAuBecsDebitJson = Table(
+    "source_type_au_becs_debitjson",
     metadata,
     Column("bsb_number", String, nullable=True),
     Column("fingerprint", String, nullable=True),

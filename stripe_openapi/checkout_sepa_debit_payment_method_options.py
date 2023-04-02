@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-CheckoutSepaDebitPaymentMethodOptions.Json = Table(
-    "checkout_sepa_debit_payment_method_options.json",
+CheckoutSepaDebitPaymentMethodOptionsJson = Table(
+    "checkout_sepa_debit_payment_method_optionsjson",
     metadata,
     Column(
         "setup_future_usage",

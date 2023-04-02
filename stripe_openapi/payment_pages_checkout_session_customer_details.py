@@ -4,8 +4,8 @@ from stripe_openapi.address import Address
 
 from . import metadata
 
-PaymentPagesCheckoutSessionCustomerDetails.Json = Table(
-    "payment_pages_checkout_session_customer_details.json",
+PaymentPagesCheckoutSessionCustomerDetailsJson = Table(
+    "payment_pages_checkout_session_customer_detailsjson",
     metadata,
     Column(
         "address",

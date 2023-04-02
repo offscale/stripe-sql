@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, Identity, Integer, Table
 
 from . import metadata
 
-AccountDeclineChargeOn.Json = Table(
-    "account_decline_charge_on.json",
+AccountDeclineChargeOnJson = Table(
+    "account_decline_charge_onjson",
     metadata,
     Column(
         "avs_failure",

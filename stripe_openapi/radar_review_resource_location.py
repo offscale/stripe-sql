@@ -2,8 +2,8 @@ from sqlalchemy import Column, Float, Identity, Integer, String, Table
 
 from . import metadata
 
-RadarReviewResourceLocation.Json = Table(
-    "radar_review_resource_location.json",
+RadarReviewResourceLocationJson = Table(
+    "radar_review_resource_locationjson",
     metadata,
     Column(
         "city", String, comment="The city where the payment originated", nullable=True

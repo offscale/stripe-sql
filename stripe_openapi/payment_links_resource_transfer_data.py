@@ -4,8 +4,8 @@ from stripe_openapi.account import Account
 
 from . import metadata
 
-PaymentLinksResourceTransferData.Json = Table(
-    "payment_links_resource_transfer_data.json",
+PaymentLinksResourceTransferDataJson = Table(
+    "payment_links_resource_transfer_datajson",
     metadata,
     Column(
         "amount",

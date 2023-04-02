@@ -4,8 +4,8 @@ from stripe_openapi.refund import Refund
 
 from . import metadata
 
-CustomerBalanceResourceCashBalanceTransactionResourceRefundedFromPaymentTransaction.Json = Table(
-    "customer_balance_resource_cash_balance_transaction_resource_refunded_from_payment_transaction.json",
+CustomerBalanceResourceCashBalanceTransactionResourceRefundedFromPaymentTransactionJson = Table(
+    "customer_balance_resource_cash_balance_transaction_resource_refunded_from_payment_transactionjson",
     metadata,
     Column(
         "refund",

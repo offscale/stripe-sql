@@ -4,8 +4,8 @@ from stripe_openapi.invoice import Invoice
 
 from . import metadata
 
-InvoicesFromInvoice.Json = Table(
-    "invoices_from_invoice.json",
+InvoicesFromInvoiceJson = Table(
+    "invoices_from_invoicejson",
     metadata,
     Column(
         "action",

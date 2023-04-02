@@ -2,8 +2,8 @@ from sqlalchemy import ARRAY, Column, Identity, Integer, String, Table
 
 from . import metadata
 
-InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptions.Json = Table(
-    "invoice_payment_method_options_us_bank_account_linked_account_options.json",
+InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsJson = Table(
+    "invoice_payment_method_options_us_bank_account_linked_account_optionsjson",
     metadata,
     Column(
         "permissions",

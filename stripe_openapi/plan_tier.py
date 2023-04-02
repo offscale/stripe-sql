@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-PlanTier.Json = Table(
-    "plan_tier.json",
+PlanTierJson = Table(
+    "plan_tierjson",
     metadata,
     Column("flat_amount", Integer, comment="Price for the entire tier", nullable=True),
     Column(

@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, Identity, Integer, Table
 
 from . import metadata
 
-ThreeDSecureUsage.Json = Table(
-    "three_d_secure_usage.json",
+ThreeDSecureUsageJson = Table(
+    "three_d_secure_usagejson",
     metadata,
     Column("supported", Boolean, comment="Whether 3D Secure is supported on this card"),
     Column("id", Integer, primary_key=True, server_default=Identity()),

@@ -2,8 +2,8 @@ from sqlalchemy import Column, String, Table
 
 from . import metadata
 
-Application.Json = Table(
-    "application.json",
+ApplicationJson = Table(
+    "applicationjson",
     metadata,
     Column("id", String, comment="Unique identifier for the object", primary_key=True),
     Column("name", String, comment="The name of the application", nullable=True),

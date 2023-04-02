@@ -4,8 +4,8 @@ from stripe_openapi.address import Address
 
 from . import metadata
 
-PaymentMethodCardWalletVisaCheckout.Json = Table(
-    "payment_method_card_wallet_visa_checkout.json",
+PaymentMethodCardWalletVisaCheckoutJson = Table(
+    "payment_method_card_wallet_visa_checkoutjson",
     metadata,
     Column(
         "billing_address",

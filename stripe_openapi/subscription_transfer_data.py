@@ -4,8 +4,8 @@ from stripe_openapi.account import Account
 
 from . import metadata
 
-SubscriptionTransferData.Json = Table(
-    "subscription_transfer_data.json",
+SubscriptionTransferDataJson = Table(
+    "subscription_transfer_datajson",
     metadata,
     Column(
         "amount_percent",

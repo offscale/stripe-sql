@@ -2,8 +2,8 @@ from sqlalchemy import ARRAY, Column, Identity, Integer, String, Table
 
 from . import metadata
 
-LinkedAccountOptionsUsBankAccount.Json = Table(
-    "linked_account_options_us_bank_account.json",
+LinkedAccountOptionsUsBankAccountJson = Table(
+    "linked_account_options_us_bank_accountjson",
     metadata,
     Column(
         "permissions",

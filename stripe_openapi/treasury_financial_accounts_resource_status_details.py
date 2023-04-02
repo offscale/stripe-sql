@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, Table
 
 from . import metadata
 
-TreasuryFinancialAccountsResourceStatusDetails.Json = Table(
-    "treasury_financial_accounts_resource_status_details.json",
+TreasuryFinancialAccountsResourceStatusDetailsJson = Table(
+    "treasury_financial_accounts_resource_status_detailsjson",
     metadata,
     Column(
         "closed",

@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-SourceTypeEps.Json = Table(
-    "source_type_eps.json",
+SourceTypeEpsJson = Table(
+    "source_type_epsjson",
     metadata,
     Column("reference", String, nullable=True),
     Column("statement_descriptor", String, nullable=True),

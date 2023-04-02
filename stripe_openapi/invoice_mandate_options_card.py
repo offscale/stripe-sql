@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-InvoiceMandateOptionsCard.Json = Table(
-    "invoice_mandate_options_card.json",
+InvoiceMandateOptionsCardJson = Table(
+    "invoice_mandate_options_cardjson",
     metadata,
     Column(
         "amount",

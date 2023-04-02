@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, String, Table
 
 from . import metadata
 
-DeletedInvoiceitem.Json = Table(
-    "deleted_invoiceitem.json",
+DeletedInvoiceitemJson = Table(
+    "deleted_invoiceitemjson",
     metadata,
     Column("deleted", Boolean, comment="Always true for a deleted object"),
     Column("id", String, comment="Unique identifier for the object", primary_key=True),

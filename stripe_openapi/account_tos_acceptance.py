@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-AccountTosAcceptance.Json = Table(
-    "account_tos_acceptance.json",
+AccountTosAcceptanceJson = Table(
+    "account_tos_acceptancejson",
     metadata,
     Column(
         "date",

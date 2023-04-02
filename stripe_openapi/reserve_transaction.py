@@ -2,8 +2,8 @@ from sqlalchemy import Column, Integer, String, Table
 
 from . import metadata
 
-ReserveTransaction.Json = Table(
-    "reserve_transaction.json",
+ReserveTransactionJson = Table(
+    "reserve_transactionjson",
     metadata,
     Column("amount", Integer),
     Column(

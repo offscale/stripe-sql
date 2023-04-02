@@ -4,8 +4,8 @@ from stripe_openapi.account import Account
 
 from . import metadata
 
-SubscriptionSchedulesResourceDefaultSettings.Json = Table(
-    "subscription_schedules_resource_default_settings.json",
+SubscriptionSchedulesResourceDefaultSettingsJson = Table(
+    "subscription_schedules_resource_default_settingsjson",
     metadata,
     Column(
         "application_fee_percent",

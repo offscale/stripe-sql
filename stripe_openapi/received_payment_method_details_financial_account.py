@@ -2,8 +2,8 @@ from sqlalchemy import Column, String, Table
 
 from . import metadata
 
-ReceivedPaymentMethodDetailsFinancialAccount.Json = Table(
-    "received_payment_method_details_financial_account.json",
+ReceivedPaymentMethodDetailsFinancialAccountJson = Table(
+    "received_payment_method_details_financial_accountjson",
     metadata,
     Column("id", String, comment="The FinancialAccount ID", primary_key=True),
     Column(

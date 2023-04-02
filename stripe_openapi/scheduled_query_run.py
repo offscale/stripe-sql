@@ -4,8 +4,8 @@ from stripe_openapi.file import File
 
 from . import metadata
 
-ScheduledQueryRun.Json = Table(
-    "scheduled_query_run.json",
+ScheduledQueryRunJson = Table(
+    "scheduled_query_runjson",
     metadata,
     Column(
         "created",

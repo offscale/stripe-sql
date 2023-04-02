@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, Table
 
 from . import metadata
 
-SetupIntentPaymentMethodOptionsBlik.Json = Table(
-    "setup_intent_payment_method_options_blik.json",
+SetupIntentPaymentMethodOptionsBlikJson = Table(
+    "setup_intent_payment_method_options_blikjson",
     metadata,
     Column(
         "mandate_options",

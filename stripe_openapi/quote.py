@@ -18,8 +18,8 @@ from stripe_openapi.subscription import Subscription
 
 from . import metadata
 
-Quote.Json = Table(
-    "quote.json",
+QuoteJson = Table(
+    "quotejson",
     metadata,
     Column(
         "amount_subtotal",

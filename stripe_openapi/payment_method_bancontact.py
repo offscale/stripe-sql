@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, Table
 
 from . import metadata
 
-PaymentMethodBancontact.Json = Table(
-    "payment_method_bancontact.json",
+PaymentMethodBancontactJson = Table(
+    "payment_method_bancontactjson",
     metadata,
     Column("id", Integer, primary_key=True, server_default=Identity()),
 )

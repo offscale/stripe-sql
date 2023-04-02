@@ -2,8 +2,8 @@ from sqlalchemy import Column, Integer, String, Table
 
 from . import metadata
 
-TaxDeductedAtSource.Json = Table(
-    "tax_deducted_at_source.json",
+TaxDeductedAtSourceJson = Table(
+    "tax_deducted_at_sourcejson",
     metadata,
     Column("id", String, comment="Unique identifier for the object", primary_key=True),
     Column(

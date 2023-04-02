@@ -4,8 +4,8 @@ from stripe_openapi.mandate import Mandate
 
 from . import metadata
 
-SetupAttemptPaymentMethodDetailsIdeal.Json = Table(
-    "setup_attempt_payment_method_details_ideal.json",
+SetupAttemptPaymentMethodDetailsIdealJson = Table(
+    "setup_attempt_payment_method_details_idealjson",
     metadata,
     Column(
         "bank",

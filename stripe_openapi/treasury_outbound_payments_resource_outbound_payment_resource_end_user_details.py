@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, Identity, Integer, String, Table
 
 from . import metadata
 
-TreasuryOutboundPaymentsResourceOutboundPaymentResourceEndUserDetails.Json = Table(
-    "treasury_outbound_payments_resource_outbound_payment_resource_end_user_details.json",
+TreasuryOutboundPaymentsResourceOutboundPaymentResourceEndUserDetailsJson = Table(
+    "treasury_outbound_payments_resource_outbound_payment_resource_end_user_detailsjson",
     metadata,
     Column(
         "ip_address",

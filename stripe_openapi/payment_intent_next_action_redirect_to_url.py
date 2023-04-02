@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-PaymentIntentNextActionRedirectToUrl.Json = Table(
-    "payment_intent_next_action_redirect_to_url.json",
+PaymentIntentNextActionRedirectToUrlJson = Table(
+    "payment_intent_next_action_redirect_to_urljson",
     metadata,
     Column(
         "return_url",

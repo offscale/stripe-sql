@@ -2,8 +2,8 @@ from sqlalchemy import Column, String, Table
 
 from . import metadata
 
-TaxCode.Json = Table(
-    "tax_code.json",
+TaxCodeJson = Table(
+    "tax_codejson",
     metadata,
     Column(
         "description",

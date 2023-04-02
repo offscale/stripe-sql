@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, Table
 
 from . import metadata
 
-InvoicePaymentMethodOptionsKonbini.Json = Table(
-    "invoice_payment_method_options_konbini.json",
+InvoicePaymentMethodOptionsKonbiniJson = Table(
+    "invoice_payment_method_options_konbinijson",
     metadata,
     Column("id", Integer, primary_key=True, server_default=Identity()),
 )

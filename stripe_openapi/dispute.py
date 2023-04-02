@@ -4,8 +4,8 @@ from stripe_openapi.charge import Charge
 
 from . import metadata
 
-Dispute.Json = Table(
-    "dispute.json",
+DisputeJson = Table(
+    "disputejson",
     metadata,
     Column(
         "amount",

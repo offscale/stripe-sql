@@ -4,8 +4,8 @@ from stripe_openapi.charge import Charge
 
 from . import metadata
 
-Review.Json = Table(
-    "review.json",
+ReviewJson = Table(
+    "reviewjson",
     metadata,
     Column(
         "billing_zip",

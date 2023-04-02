@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, Table
 
 from . import metadata
 
-IssuingCardholderVerification.Json = Table(
-    "issuing_cardholder_verification.json",
+IssuingCardholderVerificationJson = Table(
+    "issuing_cardholder_verificationjson",
     metadata,
     Column(
         "document",

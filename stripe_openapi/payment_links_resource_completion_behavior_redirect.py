@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-PaymentLinksResourceCompletionBehaviorRedirect.Json = Table(
-    "payment_links_resource_completion_behavior_redirect.json",
+PaymentLinksResourceCompletionBehaviorRedirectJson = Table(
+    "payment_links_resource_completion_behavior_redirectjson",
     metadata,
     Column(
         "url",

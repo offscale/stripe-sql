@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, Identity, Integer, Table, list
 
 from . import metadata
 
-SubscriptionsResourcePendingUpdate.Json = Table(
-    "subscriptions_resource_pending_update.json",
+SubscriptionsResourcePendingUpdateJson = Table(
+    "subscriptions_resource_pending_updatejson",
     metadata,
     Column(
         "billing_cycle_anchor",

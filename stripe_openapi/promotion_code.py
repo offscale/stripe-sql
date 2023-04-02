@@ -5,8 +5,8 @@ from stripe_openapi.customer import Customer
 
 from . import metadata
 
-PromotionCode.Json = Table(
-    "promotion_code.json",
+PromotionCodeJson = Table(
+    "promotion_codejson",
     metadata,
     Column(
         "active",

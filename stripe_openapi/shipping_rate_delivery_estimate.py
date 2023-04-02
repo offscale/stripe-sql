@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, Table
 
 from . import metadata
 
-ShippingRateDeliveryEstimate.Json = Table(
-    "shipping_rate_delivery_estimate.json",
+ShippingRateDeliveryEstimateJson = Table(
+    "shipping_rate_delivery_estimatejson",
     metadata,
     Column(
         "maximum",

@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-PaymentMethodDetailsPromptpay.Json = Table(
-    "payment_method_details_promptpay.json",
+PaymentMethodDetailsPromptpayJson = Table(
+    "payment_method_details_promptpayjson",
     metadata,
     Column(
         "reference",

@@ -2,8 +2,8 @@ from sqlalchemy import Column, String, Table
 
 from . import metadata
 
-AccountDashboardSettings.Json = Table(
-    "account_dashboard_settings.json",
+AccountDashboardSettingsJson = Table(
+    "account_dashboard_settingsjson",
     metadata,
     Column(
         "display_name",

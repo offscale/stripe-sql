@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-TreasuryReceivedDebitsResourceReversalDetails.Json = Table(
-    "treasury_received_debits_resource_reversal_details.json",
+TreasuryReceivedDebitsResourceReversalDetailsJson = Table(
+    "treasury_received_debits_resource_reversal_detailsjson",
     metadata,
     Column(
         "deadline",

@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, Integer, String, Table
 
 from . import metadata
 
-UsageRecord.Json = Table(
-    "usage_record.json",
+UsageRecordJson = Table(
+    "usage_recordjson",
     metadata,
     Column("id", String, comment="Unique identifier for the object", primary_key=True),
     Column(

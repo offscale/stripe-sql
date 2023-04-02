@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, ForeignKey, Identity, Integer, String, T
 
 from . import metadata
 
-IssuingAuthorizationPendingRequest.Json = Table(
-    "issuing_authorization_pending_request.json",
+IssuingAuthorizationPendingRequestJson = Table(
+    "issuing_authorization_pending_requestjson",
     metadata,
     Column(
         "amount",

@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, Integer, String, Table, list
 
 from . import metadata
 
-CreditNoteLineItem.Json = Table(
-    "credit_note_line_item.json",
+CreditNoteLineItemJson = Table(
+    "credit_note_line_itemjson",
     metadata,
     Column(
         "amount",

@@ -2,8 +2,8 @@ from sqlalchemy import Column, Integer, Table
 
 from . import metadata
 
-InvoicesStatusTransitions.Json = Table(
-    "invoices_status_transitions.json",
+InvoicesStatusTransitionsJson = Table(
+    "invoices_status_transitionsjson",
     metadata,
     Column(
         "finalized_at",

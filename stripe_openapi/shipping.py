@@ -4,8 +4,8 @@ from stripe_openapi.address import Address
 
 from . import metadata
 
-Shipping.Json = Table(
-    "shipping.json",
+ShippingJson = Table(
+    "shippingjson",
     metadata,
     Column("address", Address, ForeignKey("Address"), nullable=True),
     Column(

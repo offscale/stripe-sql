@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-Fee.Json = Table(
-    "fee.json",
+FeeJson = Table(
+    "feejson",
     metadata,
     Column("amount", Integer, comment="Amount of the fee, in cents"),
     Column(

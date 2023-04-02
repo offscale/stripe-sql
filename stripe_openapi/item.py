@@ -4,8 +4,8 @@ from stripe_openapi.price import Price
 
 from . import metadata
 
-Item.Json = Table(
-    "item.json",
+ItemJson = Table(
+    "itemjson",
     metadata,
     Column(
         "amount_discount",

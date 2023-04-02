@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, Table
 
 from . import metadata
 
-PaymentMethodCardPresent.Json = Table(
-    "payment_method_card_present.json",
+PaymentMethodCardPresentJson = Table(
+    "payment_method_card_presentjson",
     metadata,
     Column("id", Integer, primary_key=True, server_default=Identity()),
 )

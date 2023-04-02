@@ -2,8 +2,8 @@ from sqlalchemy import ARRAY, Column, ForeignKey, Identity, Integer, String, Tab
 
 from . import metadata
 
-InvoicesPaymentSettings.Json = Table(
-    "invoices_payment_settings.json",
+InvoicesPaymentSettingsJson = Table(
+    "invoices_payment_settingsjson",
     metadata,
     Column(
         "default_mandate",

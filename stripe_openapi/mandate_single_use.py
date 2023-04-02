@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-MandateSingleUse.Json = Table(
-    "mandate_single_use.json",
+MandateSingleUseJson = Table(
+    "mandate_single_usejson",
     metadata,
     Column(
         "amount", Integer, comment="On a single use mandate, the amount of the payment"

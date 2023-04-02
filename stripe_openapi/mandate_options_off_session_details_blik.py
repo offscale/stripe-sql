@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-MandateOptionsOffSessionDetailsBlik.Json = Table(
-    "mandate_options_off_session_details_blik.json",
+MandateOptionsOffSessionDetailsBlikJson = Table(
+    "mandate_options_off_session_details_blikjson",
     metadata,
     Column(
         "amount", Integer, comment="Amount of each recurring payment", nullable=True

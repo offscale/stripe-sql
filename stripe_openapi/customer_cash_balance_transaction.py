@@ -4,8 +4,8 @@ from stripe_openapi.customer import Customer
 
 from . import metadata
 
-CustomerCashBalanceTransaction.Json = Table(
-    "customer_cash_balance_transaction.json",
+CustomerCashBalanceTransactionJson = Table(
+    "customer_cash_balance_transactionjson",
     metadata,
     Column(
         "applied_to_payment",

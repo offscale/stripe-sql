@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-InvoiceSettingRenderingOptions.Json = Table(
-    "invoice_setting_rendering_options.json",
+InvoiceSettingRenderingOptionsJson = Table(
+    "invoice_setting_rendering_optionsjson",
     metadata,
     Column(
         "amount_tax_display",

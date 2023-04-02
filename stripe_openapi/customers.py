@@ -16,8 +16,8 @@ from stripe_openapi.shipping import Shipping
 
 from . import metadata
 
-Customers.Json = Table(
-    "customers.json",
+CustomersJson = Table(
+    "customersjson",
     metadata,
     Column(
         "address",

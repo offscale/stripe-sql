@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-PortalFlowsAfterCompletionHostedConfirmation.Json = Table(
-    "portal_flows_after_completion_hosted_confirmation.json",
+PortalFlowsAfterCompletionHostedConfirmationJson = Table(
+    "portal_flows_after_completion_hosted_confirmationjson",
     metadata,
     Column(
         "custom_message",

@@ -5,8 +5,8 @@ from stripe_openapi.price import Price
 
 from . import metadata
 
-SubscriptionItem.Json = Table(
-    "subscription_item.json",
+SubscriptionItemJson = Table(
+    "subscription_itemjson",
     metadata,
     Column(
         "billing_thresholds",

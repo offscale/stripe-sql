@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-SourceReceiverFlow.Json = Table(
-    "source_receiver_flow.json",
+SourceReceiverFlowJson = Table(
+    "source_receiver_flowjson",
     metadata,
     Column(
         "address",

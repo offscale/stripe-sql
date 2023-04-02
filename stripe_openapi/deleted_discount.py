@@ -5,8 +5,8 @@ from stripe_openapi.customer import Customer
 
 from . import metadata
 
-DeletedDiscount.Json = Table(
-    "deleted_discount.json",
+DeletedDiscountJson = Table(
+    "deleted_discountjson",
     metadata,
     Column(
         "checkout_session",

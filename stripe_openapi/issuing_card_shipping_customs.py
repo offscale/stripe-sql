@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-IssuingCardShippingCustoms.Json = Table(
-    "issuing_card_shipping_customs.json",
+IssuingCardShippingCustomsJson = Table(
+    "issuing_card_shipping_customsjson",
     metadata,
     Column(
         "eori_number",

@@ -2,8 +2,8 @@ from sqlalchemy import JSON, Column, ForeignKey, Identity, Integer, String, Tabl
 
 from . import metadata
 
-BankConnectionsResourceBalance.Json = Table(
-    "bank_connections_resource_balance.json",
+BankConnectionsResourceBalanceJson = Table(
+    "bank_connections_resource_balancejson",
     metadata,
     Column(
         "as_of",

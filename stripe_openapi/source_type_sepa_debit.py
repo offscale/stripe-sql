@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-SourceTypeSepaDebit.Json = Table(
-    "source_type_sepa_debit.json",
+SourceTypeSepaDebitJson = Table(
+    "source_type_sepa_debitjson",
     metadata,
     Column("bank_code", String, nullable=True),
     Column("branch_code", String, nullable=True),

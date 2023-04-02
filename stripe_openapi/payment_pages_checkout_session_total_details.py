@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, Table
 
 from . import metadata
 
-PaymentPagesCheckoutSessionTotalDetails.Json = Table(
-    "payment_pages_checkout_session_total_details.json",
+PaymentPagesCheckoutSessionTotalDetailsJson = Table(
+    "payment_pages_checkout_session_total_detailsjson",
     metadata,
     Column("amount_discount", Integer, comment="This is the sum of all the discounts"),
     Column(

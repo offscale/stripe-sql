@@ -4,8 +4,8 @@ from stripe_openapi.customer import Customer
 
 from . import metadata
 
-PaymentMethod.Json = Table(
-    "payment_method.json",
+PaymentMethodJson = Table(
+    "payment_methodjson",
     metadata,
     Column(
         "acss_debit",

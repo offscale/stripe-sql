@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, Table
 
 from . import metadata
 
-PaymentFlowsAmountDetails.Json = Table(
-    "payment_flows_amount_details.json",
+PaymentFlowsAmountDetailsJson = Table(
+    "payment_flows_amount_detailsjson",
     metadata,
     Column(
         "tip",

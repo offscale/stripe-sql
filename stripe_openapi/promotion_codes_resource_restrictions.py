@@ -2,8 +2,8 @@ from sqlalchemy import JSON, Boolean, Column, Identity, Integer, String, Table
 
 from . import metadata
 
-PromotionCodesResourceRestrictions.Json = Table(
-    "promotion_codes_resource_restrictions.json",
+PromotionCodesResourceRestrictionsJson = Table(
+    "promotion_codes_resource_restrictionsjson",
     metadata,
     Column(
         "currency_options",

@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-PaymentIntentNextActionWechatPayRedirectToAndroidApp.Json = Table(
-    "payment_intent_next_action_wechat_pay_redirect_to_android_app.json",
+PaymentIntentNextActionWechatPayRedirectToAndroidAppJson = Table(
+    "payment_intent_next_action_wechat_pay_redirect_to_android_appjson",
     metadata,
     Column(
         "app_id",

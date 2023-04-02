@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-SetupIntentNextActionRedirectToUrl.Json = Table(
-    "setup_intent_next_action_redirect_to_url.json",
+SetupIntentNextActionRedirectToUrlJson = Table(
+    "setup_intent_next_action_redirect_to_urljson",
     metadata,
     Column(
         "return_url",

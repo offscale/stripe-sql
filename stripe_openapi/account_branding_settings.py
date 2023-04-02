@@ -4,8 +4,8 @@ from stripe_openapi.file import File
 
 from . import metadata
 
-AccountBrandingSettings.Json = Table(
-    "account_branding_settings.json",
+AccountBrandingSettingsJson = Table(
+    "account_branding_settingsjson",
     metadata,
     Column(
         "icon",

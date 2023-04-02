@@ -2,8 +2,8 @@ from sqlalchemy import ARRAY, Column, ForeignKey, Identity, Integer, String, Tab
 
 from . import metadata
 
-TreasuryFinancialAccountsResourceFinancialAddress.Json = Table(
-    "treasury_financial_accounts_resource_financial_address.json",
+TreasuryFinancialAccountsResourceFinancialAddressJson = Table(
+    "treasury_financial_accounts_resource_financial_addressjson",
     metadata,
     Column(
         "aba",

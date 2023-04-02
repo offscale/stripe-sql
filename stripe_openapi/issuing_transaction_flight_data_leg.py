@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, Identity, Integer, String, Table
 
 from . import metadata
 
-IssuingTransactionFlightDataLeg.Json = Table(
-    "issuing_transaction_flight_data_leg.json",
+IssuingTransactionFlightDataLegJson = Table(
+    "issuing_transaction_flight_data_legjson",
     metadata,
     Column(
         "arrival_airport_code",

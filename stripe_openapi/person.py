@@ -14,8 +14,8 @@ from stripe_openapi.address import Address
 
 from . import metadata
 
-Person.Json = Table(
-    "person.json",
+PersonJson = Table(
+    "personjson",
     metadata,
     Column(
         "account",

@@ -4,8 +4,8 @@ from stripe_openapi.address import Address
 
 from . import metadata
 
-TreasurySharedResourceBillingDetails.Json = Table(
-    "treasury_shared_resource_billing_details.json",
+TreasurySharedResourceBillingDetailsJson = Table(
+    "treasury_shared_resource_billing_detailsjson",
     metadata,
     Column("address", Address, ForeignKey("Address")),
     Column("email", String, comment="Email address", nullable=True),

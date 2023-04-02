@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, Table
 
 from . import metadata
 
-QuotesResourceStatusTransitions.Json = Table(
-    "quotes_resource_status_transitions.json",
+QuotesResourceStatusTransitionsJson = Table(
+    "quotes_resource_status_transitionsjson",
     metadata,
     Column(
         "accepted_at",

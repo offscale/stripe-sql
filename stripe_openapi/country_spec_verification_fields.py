@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, Table
 
 from . import metadata
 
-CountrySpecVerificationFields.Json = Table(
-    "country_spec_verification_fields.json",
+CountrySpecVerificationFieldsJson = Table(
+    "country_spec_verification_fieldsjson",
     metadata,
     Column(
         "company",

@@ -4,8 +4,8 @@ from stripe_openapi.customer import Customer
 
 from . import metadata
 
-TaxId.Json = Table(
-    "tax_id.json",
+TaxIdJson = Table(
+    "tax_idjson",
     metadata,
     Column(
         "country",

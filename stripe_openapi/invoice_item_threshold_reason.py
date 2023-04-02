@@ -2,8 +2,8 @@ from sqlalchemy import ARRAY, Column, Integer, String, Table
 
 from . import metadata
 
-InvoiceItemThresholdReason.Json = Table(
-    "invoice_item_threshold_reason.json",
+InvoiceItemThresholdReasonJson = Table(
+    "invoice_item_threshold_reasonjson",
     metadata,
     Column(
         "line_item_ids",

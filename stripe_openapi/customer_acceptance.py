@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table
 
 from . import metadata
 
-CustomerAcceptance.Json = Table(
-    "customer_acceptance.json",
+CustomerAcceptanceJson = Table(
+    "customer_acceptancejson",
     metadata,
     Column(
         "accepted_at",

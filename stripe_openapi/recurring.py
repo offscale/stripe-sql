@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-Recurring.Json = Table(
-    "recurring.json",
+RecurringJson = Table(
+    "recurringjson",
     metadata,
     Column(
         "aggregate_usage",

@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-MandateSepaDebit.Json = Table(
-    "mandate_sepa_debit.json",
+MandateSepaDebitJson = Table(
+    "mandate_sepa_debitjson",
     metadata,
     Column("reference", String, comment="The unique reference of the mandate"),
     Column(

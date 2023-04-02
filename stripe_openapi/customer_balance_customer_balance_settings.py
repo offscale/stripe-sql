@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, Identity, Integer, String, Table
 
 from . import metadata
 
-CustomerBalanceCustomerBalanceSettings.Json = Table(
-    "customer_balance_customer_balance_settings.json",
+CustomerBalanceCustomerBalanceSettingsJson = Table(
+    "customer_balance_customer_balance_settingsjson",
     metadata,
     Column(
         "reconciliation_mode",

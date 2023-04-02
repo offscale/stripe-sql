@@ -4,8 +4,8 @@ from stripe_openapi.account import Account
 
 from . import metadata
 
-ConnectCollectionTransfer.Json = Table(
-    "connect_collection_transfer.json",
+ConnectCollectionTransferJson = Table(
+    "connect_collection_transferjson",
     metadata,
     Column("amount", Integer, comment="Amount transferred, in %s"),
     Column(

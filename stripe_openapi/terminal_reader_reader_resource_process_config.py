@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, ForeignKey, Identity, Integer, Table
 
 from . import metadata
 
-TerminalReaderReaderResourceProcessConfig.Json = Table(
-    "terminal_reader_reader_resource_process_config.json",
+TerminalReaderReaderResourceProcessConfigJson = Table(
+    "terminal_reader_reader_resource_process_configjson",
     metadata,
     Column(
         "skip_tipping",

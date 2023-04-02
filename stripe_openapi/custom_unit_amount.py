@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, Table
 
 from . import metadata
 
-CustomUnitAmount.Json = Table(
-    "custom_unit_amount.json",
+CustomUnitAmountJson = Table(
+    "custom_unit_amountjson",
     metadata,
     Column(
         "maximum",

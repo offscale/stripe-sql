@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, Integer, String, Table, list
 
 from . import metadata
 
-IssuingTransactionFlightData.Json = Table(
-    "issuing_transaction_flight_data.json",
+IssuingTransactionFlightDataJson = Table(
+    "issuing_transaction_flight_datajson",
     metadata,
     Column(
         "departure_at",

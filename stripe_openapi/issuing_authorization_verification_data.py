@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-IssuingAuthorizationVerificationData.Json = Table(
-    "issuing_authorization_verification_data.json",
+IssuingAuthorizationVerificationDataJson = Table(
+    "issuing_authorization_verification_datajson",
     metadata,
     Column(
         "address_line1_check",

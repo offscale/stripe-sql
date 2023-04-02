@@ -5,8 +5,8 @@ from stripe_openapi.charge import Charge
 
 from . import metadata
 
-Transfer.Json = Table(
-    "transfer.json",
+TransferJson = Table(
+    "transferjson",
     metadata,
     Column("amount", Integer, comment="Amount in %s to be transferred"),
     Column(

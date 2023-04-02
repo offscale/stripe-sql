@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-AccountRequirementsError.Json = Table(
-    "account_requirements_error.json",
+AccountRequirementsErrorJson = Table(
+    "account_requirements_errorjson",
     metadata,
     Column("code", String, comment="The code for the type of error"),
     Column(

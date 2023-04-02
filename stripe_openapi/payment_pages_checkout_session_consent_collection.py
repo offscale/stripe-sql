@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-PaymentPagesCheckoutSessionConsentCollection.Json = Table(
-    "payment_pages_checkout_session_consent_collection.json",
+PaymentPagesCheckoutSessionConsentCollectionJson = Table(
+    "payment_pages_checkout_session_consent_collectionjson",
     metadata,
     Column(
         "promotions",

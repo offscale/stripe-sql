@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-PortalFlowsAfterCompletionRedirect.Json = Table(
-    "portal_flows_after_completion_redirect.json",
+PortalFlowsAfterCompletionRedirectJson = Table(
+    "portal_flows_after_completion_redirectjson",
     metadata,
     Column(
         "return_url",

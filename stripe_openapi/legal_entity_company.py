@@ -4,8 +4,8 @@ from stripe_openapi.address import Address
 
 from . import metadata
 
-LegalEntityCompany.Json = Table(
-    "legal_entity_company.json",
+LegalEntityCompanyJson = Table(
+    "legal_entity_companyjson",
     metadata,
     Column("address", Address, ForeignKey("Address"), nullable=True),
     Column(

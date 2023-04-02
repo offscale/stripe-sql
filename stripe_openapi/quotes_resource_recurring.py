@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table
 
 from . import metadata
 
-QuotesResourceRecurring.Json = Table(
-    "quotes_resource_recurring.json",
+QuotesResourceRecurringJson = Table(
+    "quotes_resource_recurringjson",
     metadata,
     Column(
         "amount_subtotal",

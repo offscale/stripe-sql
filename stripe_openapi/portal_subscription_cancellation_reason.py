@@ -2,8 +2,8 @@ from sqlalchemy import ARRAY, Boolean, Column, Identity, Integer, String, Table
 
 from . import metadata
 
-PortalSubscriptionCancellationReason.Json = Table(
-    "portal_subscription_cancellation_reason.json",
+PortalSubscriptionCancellationReasonJson = Table(
+    "portal_subscription_cancellation_reasonjson",
     metadata,
     Column("enabled", Boolean, comment="Whether the feature is enabled"),
     Column(

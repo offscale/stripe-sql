@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-TerminalReaderReaderResourceLineItem.Json = Table(
-    "terminal_reader_reader_resource_line_item.json",
+TerminalReaderReaderResourceLineItemJson = Table(
+    "terminal_reader_reader_resource_line_itemjson",
     metadata,
     Column(
         "amount",

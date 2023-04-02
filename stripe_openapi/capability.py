@@ -4,8 +4,8 @@ from stripe_openapi.account import Account
 
 from . import metadata
 
-Capability.Json = Table(
-    "capability.json",
+CapabilityJson = Table(
+    "capabilityjson",
     metadata,
     Column(
         "account",

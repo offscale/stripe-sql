@@ -4,8 +4,8 @@ from stripe_openapi.networks import Networks
 
 from . import metadata
 
-PaymentMethodCard.Json = Table(
-    "payment_method_card.json",
+PaymentMethodCardJson = Table(
+    "payment_method_cardjson",
     metadata,
     Column(
         "brand",

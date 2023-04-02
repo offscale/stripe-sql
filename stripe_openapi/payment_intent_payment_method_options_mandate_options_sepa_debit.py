@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, Table
 
 from . import metadata
 
-PaymentIntentPaymentMethodOptionsMandateOptionsSepaDebit.Json = Table(
-    "payment_intent_payment_method_options_mandate_options_sepa_debit.json",
+PaymentIntentPaymentMethodOptionsMandateOptionsSepaDebitJson = Table(
+    "payment_intent_payment_method_options_mandate_options_sepa_debitjson",
     metadata,
     Column("id", Integer, primary_key=True, server_default=Identity()),
 )

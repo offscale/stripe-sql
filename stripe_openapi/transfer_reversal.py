@@ -5,8 +5,8 @@ from stripe_openapi.transfer import Transfer
 
 from . import metadata
 
-TransferReversal.Json = Table(
-    "transfer_reversal.json",
+TransferReversalJson = Table(
+    "transfer_reversaljson",
     metadata,
     Column("amount", Integer, comment="Amount, in %s"),
     Column(

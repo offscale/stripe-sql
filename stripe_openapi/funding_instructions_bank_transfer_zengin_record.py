@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-FundingInstructionsBankTransferZenginRecord.Json = Table(
-    "funding_instructions_bank_transfer_zengin_record.json",
+FundingInstructionsBankTransferZenginRecordJson = Table(
+    "funding_instructions_bank_transfer_zengin_recordjson",
     metadata,
     Column(
         "account_holder_name", String, comment="The account holder name", nullable=True

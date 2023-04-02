@@ -4,8 +4,8 @@ from stripe_openapi.file import File
 
 from . import metadata
 
-TerminalConfigurationConfigurationResourceDeviceTypeSpecificConfig.Json = Table(
-    "terminal_configuration_configuration_resource_device_type_specific_config.json",
+TerminalConfigurationConfigurationResourceDeviceTypeSpecificConfigJson = Table(
+    "terminal_configuration_configuration_resource_device_type_specific_configjson",
     metadata,
     Column(
         "splashscreen",

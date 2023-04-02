@@ -23,8 +23,8 @@ from stripe_openapi.subscription import Subscription
 
 from . import metadata
 
-Invoice.Json = Table(
-    "invoice.json",
+InvoiceJson = Table(
+    "invoicejson",
     metadata,
     Column(
         "account_country",

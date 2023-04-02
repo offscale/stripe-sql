@@ -4,8 +4,8 @@ from stripe_openapi.file import File
 
 from . import metadata
 
-LegalEntityCompanyVerificationDocument.Json = Table(
-    "legal_entity_company_verification_document.json",
+LegalEntityCompanyVerificationDocumentJson = Table(
+    "legal_entity_company_verification_documentjson",
     metadata,
     Column(
         "back",

@@ -4,8 +4,8 @@ from stripe_openapi.file import File
 
 from . import metadata
 
-FileLink.Json = Table(
-    "file_link.json",
+FileLinkJson = Table(
+    "file_linkjson",
     metadata,
     Column(
         "created",

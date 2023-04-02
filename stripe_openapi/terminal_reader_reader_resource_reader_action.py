@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table
 
 from . import metadata
 
-TerminalReaderReaderResourceReaderAction.Json = Table(
-    "terminal_reader_reader_resource_reader_action.json",
+TerminalReaderReaderResourceReaderActionJson = Table(
+    "terminal_reader_reader_resource_reader_actionjson",
     metadata,
     Column(
         "failure_code",

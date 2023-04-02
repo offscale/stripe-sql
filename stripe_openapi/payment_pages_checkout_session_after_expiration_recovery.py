@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, Identity, Integer, String, Table
 
 from . import metadata
 
-PaymentPagesCheckoutSessionAfterExpirationRecovery.Json = Table(
-    "payment_pages_checkout_session_after_expiration_recovery.json",
+PaymentPagesCheckoutSessionAfterExpirationRecoveryJson = Table(
+    "payment_pages_checkout_session_after_expiration_recoveryjson",
     metadata,
     Column(
         "allow_promotion_codes",

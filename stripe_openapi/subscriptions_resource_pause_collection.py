@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-SubscriptionsResourcePauseCollection.Json = Table(
-    "subscriptions_resource_pause_collection.json",
+SubscriptionsResourcePauseCollectionJson = Table(
+    "subscriptions_resource_pause_collectionjson",
     metadata,
     Column(
         "behavior",

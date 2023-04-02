@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-VerificationSessionRedaction.Json = Table(
-    "verification_session_redaction.json",
+VerificationSessionRedactionJson = Table(
+    "verification_session_redactionjson",
     metadata,
     Column(
         "status",

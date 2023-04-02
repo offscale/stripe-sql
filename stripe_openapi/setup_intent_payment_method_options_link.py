@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-SetupIntentPaymentMethodOptionsLink.Json = Table(
-    "setup_intent_payment_method_options_link.json",
+SetupIntentPaymentMethodOptionsLinkJson = Table(
+    "setup_intent_payment_method_options_linkjson",
     metadata,
     Column(
         "persistent_token",

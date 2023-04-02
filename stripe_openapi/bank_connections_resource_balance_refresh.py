@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-BankConnectionsResourceBalanceRefresh.Json = Table(
-    "bank_connections_resource_balance_refresh.json",
+BankConnectionsResourceBalanceRefreshJson = Table(
+    "bank_connections_resource_balance_refreshjson",
     metadata,
     Column(
         "last_attempted_at",

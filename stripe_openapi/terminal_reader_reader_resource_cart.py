@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table, list
 
 from . import metadata
 
-TerminalReaderReaderResourceCart.Json = Table(
-    "terminal_reader_reader_resource_cart.json",
+TerminalReaderReaderResourceCartJson = Table(
+    "terminal_reader_reader_resource_cartjson",
     metadata,
     Column(
         "currency",

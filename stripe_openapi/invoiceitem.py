@@ -8,8 +8,8 @@ from stripe_openapi.subscription import Subscription
 
 from . import metadata
 
-Invoiceitem.Json = Table(
-    "invoiceitem.json",
+InvoiceitemJson = Table(
+    "invoiceitemjson",
     metadata,
     Column(
         "amount",

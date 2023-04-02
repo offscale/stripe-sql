@@ -10,8 +10,8 @@ from stripe_openapi.shipping import Shipping
 
 from . import metadata
 
-PaymentIntent.Json = Table(
-    "payment_intent.json",
+PaymentIntentJson = Table(
+    "payment_intentjson",
     metadata,
     Column(
         "amount",

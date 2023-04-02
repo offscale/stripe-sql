@@ -4,8 +4,8 @@ from stripe_openapi.payout import Payout
 
 from . import metadata
 
-Payout.Json = Table(
-    "payout.json",
+PayoutJson = Table(
+    "payoutjson",
     metadata,
     Column(
         "amount",

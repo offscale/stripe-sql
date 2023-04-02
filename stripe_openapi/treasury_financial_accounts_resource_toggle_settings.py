@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, Identity, Integer, String, Table, list
 
 from . import metadata
 
-TreasuryFinancialAccountsResourceToggleSettings.Json = Table(
-    "treasury_financial_accounts_resource_toggle_settings.json",
+TreasuryFinancialAccountsResourceToggleSettingsJson = Table(
+    "treasury_financial_accounts_resource_toggle_settingsjson",
     metadata,
     Column(
         "requested",

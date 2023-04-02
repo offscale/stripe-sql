@@ -4,8 +4,8 @@ from stripe_openapi.charge import Charge
 
 from . import metadata
 
-Refund.Json = Table(
-    "refund.json",
+RefundJson = Table(
+    "refundjson",
     metadata,
     Column("amount", Integer, comment="Amount, in %s"),
     Column(

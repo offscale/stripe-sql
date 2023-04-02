@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, Identity, Integer, Table
 
 from . import metadata
 
-SubscriptionSchedulesResourceDefaultSettingsAutomaticTax.Json = Table(
-    "subscription_schedules_resource_default_settings_automatic_tax.json",
+SubscriptionSchedulesResourceDefaultSettingsAutomaticTaxJson = Table(
+    "subscription_schedules_resource_default_settings_automatic_taxjson",
     metadata,
     Column(
         "enabled",

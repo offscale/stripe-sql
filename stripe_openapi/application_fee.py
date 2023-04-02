@@ -6,8 +6,8 @@ from stripe_openapi.charge import Charge
 
 from . import metadata
 
-ApplicationFee.Json = Table(
-    "application_fee.json",
+ApplicationFeeJson = Table(
+    "application_feejson",
     metadata,
     Column(
         "account",

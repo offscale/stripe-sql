@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, Identity, Integer, Table
 
 from . import metadata
 
-CheckoutCardInstallmentsOptions.Json = Table(
-    "checkout_card_installments_options.json",
+CheckoutCardInstallmentsOptionsJson = Table(
+    "checkout_card_installments_optionsjson",
     metadata,
     Column(
         "enabled",

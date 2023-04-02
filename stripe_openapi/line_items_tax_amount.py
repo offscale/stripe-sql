@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, Table
 
 from . import metadata
 
-LineItemsTaxAmount.Json = Table(
-    "line_items_tax_amount.json",
+LineItemsTaxAmountJson = Table(
+    "line_items_tax_amountjson",
     metadata,
     Column("amount", Integer, comment="Amount of tax applied for this rate"),
     Column("rate", TaxRate, ForeignKey("TaxRate")),

@@ -2,8 +2,8 @@ from sqlalchemy import Column, String, Table
 
 from . import metadata
 
-IssuingAuthorizationNetworkData.Json = Table(
-    "issuing_authorization_network_data.json",
+IssuingAuthorizationNetworkDataJson = Table(
+    "issuing_authorization_network_datajson",
     metadata,
     Column(
         "acquiring_institution_id",

@@ -11,8 +11,8 @@ from sqlalchemy import (
 
 from . import metadata
 
-ShippingRate.Json = Table(
-    "shipping_rate.json",
+ShippingRateJson = Table(
+    "shipping_ratejson",
     metadata,
     Column(
         "active",

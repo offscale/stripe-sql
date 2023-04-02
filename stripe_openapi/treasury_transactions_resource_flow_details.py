@@ -4,8 +4,8 @@ from stripe_openapi.issuing__authorization import Issuing__Authorization
 
 from . import metadata
 
-TreasuryTransactionsResourceFlowDetails.Json = Table(
-    "treasury_transactions_resource_flow_details.json",
+TreasuryTransactionsResourceFlowDetailsJson = Table(
+    "treasury_transactions_resource_flow_detailsjson",
     metadata,
     Column(
         "credit_reversal",

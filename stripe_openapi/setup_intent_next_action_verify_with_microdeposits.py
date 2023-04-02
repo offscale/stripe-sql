@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-SetupIntentNextActionVerifyWithMicrodeposits.Json = Table(
-    "setup_intent_next_action_verify_with_microdeposits.json",
+SetupIntentNextActionVerifyWithMicrodepositsJson = Table(
+    "setup_intent_next_action_verify_with_microdepositsjson",
     metadata,
     Column(
         "arrival_date",

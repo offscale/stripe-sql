@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table
 
 from . import metadata
 
-SetupIntentPaymentMethodOptionsMandateOptionsBlik.Json = Table(
-    "setup_intent_payment_method_options_mandate_options_blik.json",
+SetupIntentPaymentMethodOptionsMandateOptionsBlikJson = Table(
+    "setup_intent_payment_method_options_mandate_options_blikjson",
     metadata,
     Column(
         "expires_after",

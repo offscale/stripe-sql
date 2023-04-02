@@ -2,8 +2,8 @@ from sqlalchemy import ARRAY, Column, Identity, Integer, String, Table
 
 from . import metadata
 
-FinancialReportingFinanceReportRunRunParameters.Json = Table(
-    "financial_reporting_finance_report_run_run_parameters.json",
+FinancialReportingFinanceReportRunRunParametersJson = Table(
+    "financial_reporting_finance_report_run_run_parametersjson",
     metadata,
     Column(
         "columns",

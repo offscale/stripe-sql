@@ -4,8 +4,8 @@ from stripe_openapi.payout import Payout
 
 from . import metadata
 
-TreasuryReceivedCreditsResourceSourceFlowsDetails.Json = Table(
-    "treasury_received_credits_resource_source_flows_details.json",
+TreasuryReceivedCreditsResourceSourceFlowsDetailsJson = Table(
+    "treasury_received_credits_resource_source_flows_detailsjson",
     metadata,
     Column(
         "credit_reversal",

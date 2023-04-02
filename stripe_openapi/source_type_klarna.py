@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-SourceTypeKlarna.Json = Table(
-    "source_type_klarna.json",
+SourceTypeKlarnaJson = Table(
+    "source_type_klarnajson",
     metadata,
     Column("background_image_url", String, nullable=True),
     Column("client_token", String, nullable=True),

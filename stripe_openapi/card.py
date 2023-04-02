@@ -5,8 +5,8 @@ from stripe_openapi.customer import Customer
 
 from . import metadata
 
-Card.Json = Table(
-    "card.json",
+CardJson = Table(
+    "cardjson",
     metadata,
     Column(
         "account",

@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-CheckoutOxxoPaymentMethodOptions.Json = Table(
-    "checkout_oxxo_payment_method_options.json",
+CheckoutOxxoPaymentMethodOptionsJson = Table(
+    "checkout_oxxo_payment_method_optionsjson",
     metadata,
     Column(
         "expires_after_days",

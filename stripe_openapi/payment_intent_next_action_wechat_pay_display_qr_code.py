@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-PaymentIntentNextActionWechatPayDisplayQrCode.Json = Table(
-    "payment_intent_next_action_wechat_pay_display_qr_code.json",
+PaymentIntentNextActionWechatPayDisplayQrCodeJson = Table(
+    "payment_intent_next_action_wechat_pay_display_qr_codejson",
     metadata,
     Column("data", String, comment="The data being used to generate QR code"),
     Column(

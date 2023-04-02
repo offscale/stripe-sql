@@ -4,8 +4,8 @@ from stripe_openapi.address import Address
 
 from . import metadata
 
-PaymentMethodCardWalletMasterpass.Json = Table(
-    "payment_method_card_wallet_masterpass.json",
+PaymentMethodCardWalletMasterpassJson = Table(
+    "payment_method_card_wallet_masterpassjson",
     metadata,
     Column(
         "billing_address",

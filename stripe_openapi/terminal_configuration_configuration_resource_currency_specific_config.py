@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, Table, list
 
 from . import metadata
 
-TerminalConfigurationConfigurationResourceCurrencySpecificConfig.Json = Table(
-    "terminal_configuration_configuration_resource_currency_specific_config.json",
+TerminalConfigurationConfigurationResourceCurrencySpecificConfigJson = Table(
+    "terminal_configuration_configuration_resource_currency_specific_configjson",
     metadata,
     Column(
         "fixed_amounts",

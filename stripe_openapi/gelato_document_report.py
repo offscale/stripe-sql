@@ -4,8 +4,8 @@ from stripe_openapi.address import Address
 
 from . import metadata
 
-GelatoDocumentReport.Json = Table(
-    "gelato_document_report.json",
+GelatoDocumentReportJson = Table(
+    "gelato_document_reportjson",
     metadata,
     Column(
         "address",

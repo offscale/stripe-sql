@@ -2,8 +2,8 @@ from sqlalchemy import Column, String, Table
 
 from . import metadata
 
-SourceTypeMultibanco.Json = Table(
-    "source_type_multibanco.json",
+SourceTypeMultibancoJson = Table(
+    "source_type_multibancojson",
     metadata,
     Column("entity", String, nullable=True),
     Column("reference", String, nullable=True),

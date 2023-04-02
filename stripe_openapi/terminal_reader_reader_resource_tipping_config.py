@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, Table
 
 from . import metadata
 
-TerminalReaderReaderResourceTippingConfig.Json = Table(
-    "terminal_reader_reader_resource_tipping_config.json",
+TerminalReaderReaderResourceTippingConfigJson = Table(
+    "terminal_reader_reader_resource_tipping_configjson",
     metadata,
     Column(
         "amount_eligible",

@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-PaymentIntentNextActionDisplayOxxoDetails.Json = Table(
-    "payment_intent_next_action_display_oxxo_details.json",
+PaymentIntentNextActionDisplayOxxoDetailsJson = Table(
+    "payment_intent_next_action_display_oxxo_detailsjson",
     metadata,
     Column(
         "expires_after",

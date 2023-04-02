@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, Table
 
 from . import metadata
 
-GelatoDataVerifiedOutputsDate.Json = Table(
-    "gelato_data_verified_outputs_date.json",
+GelatoDataVerifiedOutputsDateJson = Table(
+    "gelato_data_verified_outputs_datejson",
     metadata,
     Column("day", Integer, comment="Numerical day between 1 and 31", nullable=True),
     Column("month", Integer, comment="Numerical month between 1 and 12", nullable=True),

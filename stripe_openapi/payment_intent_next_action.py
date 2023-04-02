@@ -2,8 +2,8 @@ from sqlalchemy import JSON, Column, ForeignKey, String, Table
 
 from . import metadata
 
-PaymentIntentNextAction.Json = Table(
-    "payment_intent_next_action.json",
+PaymentIntentNextActionJson = Table(
+    "payment_intent_next_actionjson",
     metadata,
     Column(
         "alipay_handle_redirect",

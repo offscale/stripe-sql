@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, Identity, Integer, String, Table
 
 from . import metadata
 
-AutomaticTax.Json = Table(
-    "automatic_tax.json",
+AutomaticTaxJson = Table(
+    "automatic_taxjson",
     metadata,
     Column(
         "enabled",

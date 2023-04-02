@@ -4,8 +4,8 @@ from stripe_openapi.card import Card
 
 from . import metadata
 
-Token.Json = Table(
-    "token.json",
+TokenJson = Table(
+    "tokenjson",
     metadata,
     Column("bank_account", BankAccount, ForeignKey("BankAccount"), nullable=True),
     Column("card", Card, ForeignKey("Card"), nullable=True),

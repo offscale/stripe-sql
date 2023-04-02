@@ -2,8 +2,8 @@ from sqlalchemy import ARRAY, Column, Identity, Integer, String, Table
 
 from . import metadata
 
-UsBankAccountNetworks.Json = Table(
-    "us_bank_account_networks.json",
+UsBankAccountNetworksJson = Table(
+    "us_bank_account_networksjson",
     metadata,
     Column("preferred", String, comment="The preferred network", nullable=True),
     Column("supported", ARRAY(String), comment="All supported networks"),

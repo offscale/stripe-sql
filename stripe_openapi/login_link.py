@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-LoginLink.Json = Table(
-    "login_link.json",
+LoginLinkJson = Table(
+    "login_linkjson",
     metadata,
     Column(
         "created",

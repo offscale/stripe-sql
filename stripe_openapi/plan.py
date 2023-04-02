@@ -4,8 +4,8 @@ from stripe_openapi.product import Product
 
 from . import metadata
 
-Plan.Json = Table(
-    "plan.json",
+PlanJson = Table(
+    "planjson",
     metadata,
     Column("active", Boolean, comment="Whether the plan can be used for new purchases"),
     Column(

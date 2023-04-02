@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, Table
 
 from . import metadata
 
-MandateLink.Json = Table(
-    "mandate_link.json",
+MandateLinkJson = Table(
+    "mandate_linkjson",
     metadata,
     Column("id", Integer, primary_key=True, server_default=Identity()),
 )

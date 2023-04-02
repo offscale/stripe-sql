@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, ForeignKey, Identity, Integer, Table
 
 from . import metadata
 
-InvoiceTaxAmount.Json = Table(
-    "invoice_tax_amount.json",
+InvoiceTaxAmountJson = Table(
+    "invoice_tax_amountjson",
     metadata,
     Column("amount", Integer, comment="The amount, in %s, of the tax"),
     Column(

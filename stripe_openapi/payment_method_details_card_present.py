@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Table
 
 from . import metadata
 
-PaymentMethodDetailsCardPresent.Json = Table(
-    "payment_method_details_card_present.json",
+PaymentMethodDetailsCardPresentJson = Table(
+    "payment_method_details_card_presentjson",
     metadata,
     Column(
         "amount_authorized", Integer, comment="The authorized amount", nullable=True

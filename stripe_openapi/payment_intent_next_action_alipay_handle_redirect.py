@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-PaymentIntentNextActionAlipayHandleRedirect.Json = Table(
-    "payment_intent_next_action_alipay_handle_redirect.json",
+PaymentIntentNextActionAlipayHandleRedirectJson = Table(
+    "payment_intent_next_action_alipay_handle_redirectjson",
     metadata,
     Column(
         "native_data",

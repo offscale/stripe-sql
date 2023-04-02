@@ -2,8 +2,8 @@ from sqlalchemy import Column, String, Table
 
 from . import metadata
 
-PlatformTaxFee.Json = Table(
-    "platform_tax_fee.json",
+PlatformTaxFeeJson = Table(
+    "platform_tax_feejson",
     metadata,
     Column(
         "account", String, comment="The Connected account that incurred this charge"

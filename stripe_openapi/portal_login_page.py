@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, Identity, Integer, String, Table
 
 from . import metadata
 
-PortalLoginPage.Json = Table(
-    "portal_login_page.json",
+PortalLoginPageJson = Table(
+    "portal_login_pagejson",
     metadata,
     Column(
         "enabled",

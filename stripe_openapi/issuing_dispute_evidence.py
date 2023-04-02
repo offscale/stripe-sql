@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table
 
 from . import metadata
 
-IssuingDisputeEvidence.Json = Table(
-    "issuing_dispute_evidence.json",
+IssuingDisputeEvidenceJson = Table(
+    "issuing_dispute_evidencejson",
     metadata,
     Column(
         "canceled",

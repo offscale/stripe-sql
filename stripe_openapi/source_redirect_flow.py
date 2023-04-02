@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-SourceRedirectFlow.Json = Table(
-    "source_redirect_flow.json",
+SourceRedirectFlowJson = Table(
+    "source_redirect_flowjson",
     metadata,
     Column(
         "failure_reason",

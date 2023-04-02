@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, Table
 
 from . import metadata
 
-GelatoDataDocumentReportExpirationDate.Json = Table(
-    "gelato_data_document_report_expiration_date.json",
+GelatoDataDocumentReportExpirationDateJson = Table(
+    "gelato_data_document_report_expiration_datejson",
     metadata,
     Column("day", Integer, comment="Numerical day between 1 and 31", nullable=True),
     Column("month", Integer, comment="Numerical month between 1 and 12", nullable=True),

@@ -6,8 +6,8 @@ from stripe_openapi.refund import Refund
 
 from . import metadata
 
-CreditNote.Json = Table(
-    "credit_note.json",
+CreditNoteJson = Table(
+    "credit_notejson",
     metadata,
     Column(
         "amount",

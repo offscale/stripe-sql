@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, Table
 
 from . import metadata
 
-InvoiceSettingSubscriptionScheduleSetting.Json = Table(
-    "invoice_setting_subscription_schedule_setting.json",
+InvoiceSettingSubscriptionScheduleSettingJson = Table(
+    "invoice_setting_subscription_schedule_settingjson",
     metadata,
     Column(
         "days_until_due",

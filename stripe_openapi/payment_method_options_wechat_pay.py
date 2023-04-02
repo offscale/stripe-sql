@@ -2,8 +2,8 @@ from sqlalchemy import Column, String, Table
 
 from . import metadata
 
-PaymentMethodOptionsWechatPay.Json = Table(
-    "payment_method_options_wechat_pay.json",
+PaymentMethodOptionsWechatPayJson = Table(
+    "payment_method_options_wechat_payjson",
     metadata,
     Column(
         "app_id",

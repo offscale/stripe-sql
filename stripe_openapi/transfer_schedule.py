@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-TransferSchedule.Json = Table(
-    "transfer_schedule.json",
+TransferScheduleJson = Table(
+    "transfer_schedulejson",
     metadata,
     Column(
         "delay_days",

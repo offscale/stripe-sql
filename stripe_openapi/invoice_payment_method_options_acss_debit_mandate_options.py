@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-InvoicePaymentMethodOptionsAcssDebitMandateOptions.Json = Table(
-    "invoice_payment_method_options_acss_debit_mandate_options.json",
+InvoicePaymentMethodOptionsAcssDebitMandateOptionsJson = Table(
+    "invoice_payment_method_options_acss_debit_mandate_optionsjson",
     metadata,
     Column(
         "transaction_type",

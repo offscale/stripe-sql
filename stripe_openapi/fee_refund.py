@@ -2,8 +2,8 @@ from sqlalchemy import JSON, Column, ForeignKey, Integer, String, Table
 
 from . import metadata
 
-FeeRefund.Json = Table(
-    "fee_refund.json",
+FeeRefundJson = Table(
+    "fee_refundjson",
     metadata,
     Column("amount", Integer, comment="Amount, in %s"),
     Column(

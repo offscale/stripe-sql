@@ -4,8 +4,8 @@ from stripe_openapi.treasury__transaction import Treasury__Transaction
 
 from . import metadata
 
-TreasuryOutboundPaymentsResourceReturnedStatus.Json = Table(
-    "treasury_outbound_payments_resource_returned_status.json",
+TreasuryOutboundPaymentsResourceReturnedStatusJson = Table(
+    "treasury_outbound_payments_resource_returned_statusjson",
     metadata,
     Column("code", String, comment="Reason for the return"),
     Column(

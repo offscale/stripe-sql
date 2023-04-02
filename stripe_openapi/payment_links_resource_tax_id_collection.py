@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, Identity, Integer, Table
 
 from . import metadata
 
-PaymentLinksResourceTaxIdCollection.Json = Table(
-    "payment_links_resource_tax_id_collection.json",
+PaymentLinksResourceTaxIdCollectionJson = Table(
+    "payment_links_resource_tax_id_collectionjson",
     metadata,
     Column(
         "enabled",

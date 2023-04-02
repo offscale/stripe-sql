@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, Identity, Integer, String, Table
 
 from . import metadata
 
-IssuingCardApplePay.Json = Table(
-    "issuing_card_apple_pay.json",
+IssuingCardApplePayJson = Table(
+    "issuing_card_apple_payjson",
     metadata,
     Column("eligible", Boolean, comment="Apple Pay Eligibility"),
     Column(

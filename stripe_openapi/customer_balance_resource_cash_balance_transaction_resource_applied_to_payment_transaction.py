@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, Table
 
 from . import metadata
 
-CustomerBalanceResourceCashBalanceTransactionResourceAppliedToPaymentTransaction.Json = Table(
-    "customer_balance_resource_cash_balance_transaction_resource_applied_to_payment_transaction.json",
+CustomerBalanceResourceCashBalanceTransactionResourceAppliedToPaymentTransactionJson = Table(
+    "customer_balance_resource_cash_balance_transaction_resource_applied_to_payment_transactionjson",
     metadata,
     Column(
         "payment_intent",

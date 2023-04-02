@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-TransformQuantity.Json = Table(
-    "transform_quantity.json",
+TransformQuantityJson = Table(
+    "transform_quantityjson",
     metadata,
     Column("divide_by", Integer, comment="Divide usage by this number"),
     Column(

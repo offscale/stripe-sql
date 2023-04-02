@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-AlternateStatementDescriptors.Json = Table(
-    "alternate_statement_descriptors.json",
+AlternateStatementDescriptorsJson = Table(
+    "alternate_statement_descriptorsjson",
     metadata,
     Column(
         "kana", String, comment="The Kana variation of the descriptor", nullable=True

@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-Level3LineItems.Json = Table(
-    "level3_line_items.json",
+LevelLineItemsJson = Table(
+    "level_line_itemsjson",
     metadata,
     Column("discount_amount", Integer, nullable=True),
     Column("product_code", String),

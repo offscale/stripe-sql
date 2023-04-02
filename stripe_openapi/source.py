@@ -2,8 +2,8 @@ from sqlalchemy import JSON, Boolean, Column, ForeignKey, Integer, String, Table
 
 from . import metadata
 
-Source.Json = Table(
-    "source.json",
+SourceJson = Table(
+    "sourcejson",
     metadata,
     Column(
         "ach_credit_transfer",

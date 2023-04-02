@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-SourceOrderItem.Json = Table(
-    "source_order_item.json",
+SourceOrderItemJson = Table(
+    "source_order_itemjson",
     metadata,
     Column(
         "amount",

@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table, lis
 
 from . import metadata
 
-IssuingTransactionPurchaseDetails.Json = Table(
-    "issuing_transaction_purchase_details.json",
+IssuingTransactionPurchaseDetailsJson = Table(
+    "issuing_transaction_purchase_detailsjson",
     metadata,
     Column(
         "flight",

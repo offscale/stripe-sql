@@ -6,8 +6,8 @@ from stripe_openapi.customer import Customer
 
 from . import metadata
 
-SetupAttempt.Json = Table(
-    "setup_attempt.json",
+SetupAttemptJson = Table(
+    "setup_attemptjson",
     metadata,
     Column(
         "application",

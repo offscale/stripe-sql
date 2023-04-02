@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-ThreeDSecureDetails.Json = Table(
-    "three_d_secure_details.json",
+ThreeDSecureDetailsJson = Table(
+    "three_d_secure_detailsjson",
     metadata,
     Column(
         "authentication_flow",

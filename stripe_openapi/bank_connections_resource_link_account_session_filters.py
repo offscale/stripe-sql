@@ -2,8 +2,8 @@ from sqlalchemy import ARRAY, Column, Identity, Integer, String, Table
 
 from . import metadata
 
-BankConnectionsResourceLinkAccountSessionFilters.Json = Table(
-    "bank_connections_resource_link_account_session_filters.json",
+BankConnectionsResourceLinkAccountSessionFiltersJson = Table(
+    "bank_connections_resource_link_account_session_filtersjson",
     metadata,
     Column(
         "countries",

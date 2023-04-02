@@ -2,8 +2,8 @@ from sqlalchemy import ARRAY, Column, Identity, Integer, String, Table, list
 
 from . import metadata
 
-AccountFutureRequirements.Json = Table(
-    "account_future_requirements.json",
+AccountFutureRequirementsJson = Table(
+    "account_future_requirementsjson",
     metadata,
     Column(
         "alternatives",

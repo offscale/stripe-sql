@@ -2,8 +2,8 @@ from sqlalchemy import ARRAY, Column, Identity, Integer, String, Table
 
 from . import metadata
 
-InvoicesLineItemsCreditedItems.Json = Table(
-    "invoices_line_items_credited_items.json",
+InvoicesLineItemsCreditedItemsJson = Table(
+    "invoices_line_items_credited_itemsjson",
     metadata,
     Column(
         "invoice", String, comment="Invoice containing the credited invoice line items"

@@ -2,8 +2,8 @@ from sqlalchemy import Column, ForeignKey, Identity, Integer, String, Table
 
 from . import metadata
 
-CustomerTax.Json = Table(
-    "customer_tax.json",
+CustomerTaxJson = Table(
+    "customer_taxjson",
     metadata,
     Column(
         "automatic_tax",

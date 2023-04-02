@@ -2,8 +2,8 @@ from sqlalchemy import JSON, Column, ForeignKey, Identity, Integer, Table
 
 from . import metadata
 
-QuotesResourceUpfront.Json = Table(
-    "quotes_resource_upfront.json",
+QuotesResourceUpfrontJson = Table(
+    "quotes_resource_upfrontjson",
     metadata,
     Column(
         "amount_subtotal",

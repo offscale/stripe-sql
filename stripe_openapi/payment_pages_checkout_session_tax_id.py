@@ -2,8 +2,8 @@ from sqlalchemy import Column, Identity, Integer, String, Table
 
 from . import metadata
 
-PaymentPagesCheckoutSessionTaxId.Json = Table(
-    "payment_pages_checkout_session_tax_id.json",
+PaymentPagesCheckoutSessionTaxIdJson = Table(
+    "payment_pages_checkout_session_tax_idjson",
     metadata,
     Column(
         "type",
